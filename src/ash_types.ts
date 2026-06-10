@@ -209,6 +209,81 @@ export type WaitlistEntryAttributesOnlySchema = {
 };
 
 
+// ChatMessage Schema
+export type ChatMessageResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "role" | "content" | "created_at";
+  id: string;
+  role: string;
+  content: string;
+  created_at: string | null;
+};
+
+
+
+export type ChatMessageAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "role" | "content" | "created_at";
+  id: string;
+  role: string;
+  content: string;
+  created_at: string | null;
+};
+
+
+export type ChatMessageInputSchema = {
+  id: string;
+  role: string;
+  content: string;
+  created_at?: string | null;
+};
+
+
+// ChatReply Schema
+export type ChatReplyResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "response" | "conversation_id";
+  response: string;
+  conversation_id: UUID;
+};
+
+
+
+export type ChatReplyAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "response" | "conversation_id";
+  response: string;
+  conversation_id: UUID;
+};
+
+
+export type ChatReplyInputSchema = {
+  response: string;
+  conversation_id: UUID;
+};
+
+
+// ChatSuggestions Schema
+export type ChatSuggestionsResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "suggestions";
+  suggestions: Array<string>;
+};
+
+
+
+export type ChatSuggestionsAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "suggestions";
+  suggestions: Array<string>;
+};
+
+
+export type ChatSuggestionsInputSchema = {
+  suggestions: Array<string>;
+};
+
+
 // PublicConversation Schema
 export type PublicConversationResourceSchema = {
   __type: "Resource";
@@ -233,6 +308,9 @@ export type PublicConversationResourceSchema = {
   origin_entity_id: UUID;
   message_count: number;
   has_letta_agent: boolean | null;
+  chat_reply_type: { __type: "Relationship"; __resource: ChatReplyResourceSchema | null; };
+  chat_suggestions_type: { __type: "Relationship"; __resource: ChatSuggestionsResourceSchema | null; };
+  chat_message_type: { __type: "Relationship"; __resource: ChatMessageResourceSchema | null; };
   user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   root_conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
@@ -2777,6 +2855,73 @@ export type WaitlistEntryFilterInput = {
 
 
 };
+export type ChatMessageFilterInput = {
+  and?: Array<ChatMessageFilterInput>;
+  or?: Array<ChatMessageFilterInput>;
+  not?: Array<ChatMessageFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  role?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  content?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  created_at?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type ChatReplyFilterInput = {
+  and?: Array<ChatReplyFilterInput>;
+  or?: Array<ChatReplyFilterInput>;
+  not?: Array<ChatReplyFilterInput>;
+
+  response?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  conversation_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+
+
+};
+export type ChatSuggestionsFilterInput = {
+  and?: Array<ChatSuggestionsFilterInput>;
+  or?: Array<ChatSuggestionsFilterInput>;
+  not?: Array<ChatSuggestionsFilterInput>;
+
+  suggestions?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+  };
+
+
+
+};
 export type PublicConversationFilterInput = {
   and?: Array<PublicConversationFilterInput>;
   or?: Array<PublicConversationFilterInput>;
@@ -2923,6 +3068,27 @@ export type PublicConversationFilterInput = {
   has_letta_agent?: {
     eq?: boolean;
     not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  chat_reply_type?: {
+    eq?: ChatReplyResourceSchema;
+    not_eq?: ChatReplyResourceSchema;
+    in?: Array<ChatReplyResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  chat_suggestions_type?: {
+    eq?: ChatSuggestionsResourceSchema;
+    not_eq?: ChatSuggestionsResourceSchema;
+    in?: Array<ChatSuggestionsResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  chat_message_type?: {
+    eq?: ChatMessageResourceSchema;
+    not_eq?: ChatMessageResourceSchema;
+    in?: Array<ChatMessageResourceSchema>;
     is_nil?: boolean;
   };
 
@@ -7583,7 +7749,16 @@ export type SocialSignInResponseFilterField = (typeof socialSignInResponseFilter
 export const waitlistEntryFilterFields = ["id", "email", "full_name", "company_name", "role", "interest_areas", "message", "source", "metadata", "status", "invitation_token", "expires_at", "invited_at", "approved_by", "created_at", "updated_at"] as const;
 export type WaitlistEntryFilterField = (typeof waitlistEntryFilterFields)[number];
 
-export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages"] as const;
+export const chatMessageFilterFields = ["id", "role", "content", "created_at"] as const;
+export type ChatMessageFilterField = (typeof chatMessageFilterFields)[number];
+
+export const chatReplyFilterFields = ["response", "conversation_id"] as const;
+export type ChatReplyFilterField = (typeof chatReplyFilterFields)[number];
+
+export const chatSuggestionsFilterFields = ["suggestions"] as const;
+export type ChatSuggestionsFilterField = (typeof chatSuggestionsFilterFields)[number];
+
+export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages"] as const;
 export type PublicConversationFilterField = (typeof publicConversationFilterFields)[number];
 
 export const publicMessageFilterFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id", "conversation"] as const;
@@ -7743,7 +7918,16 @@ export type SocialSignInResponseSortField = (typeof socialSignInResponseSortFiel
 export const waitlistEntrySortFields = ["id", "email", "full_name", "company_name", "role", "interest_areas", "message", "source", "metadata", "status", "invitation_token", "expires_at", "invited_at", "approved_by", "created_at", "updated_at"] as const;
 export type WaitlistEntrySortField = (typeof waitlistEntrySortFields)[number];
 
-export const publicConversationSortFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "message_count"] as const;
+export const chatMessageSortFields = ["id", "role", "content", "created_at"] as const;
+export type ChatMessageSortField = (typeof chatMessageSortFields)[number];
+
+export const chatReplySortFields = ["response", "conversation_id"] as const;
+export type ChatReplySortField = (typeof chatReplySortFields)[number];
+
+export const chatSuggestionsSortFields = ["suggestions"] as const;
+export type ChatSuggestionsSortField = (typeof chatSuggestionsSortFields)[number];
+
+export const publicConversationSortFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "message_count"] as const;
 export type PublicConversationSortField = (typeof publicConversationSortFields)[number];
 
 export const publicMessageSortFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id"] as const;
