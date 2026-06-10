@@ -1,0 +1,28 @@
+{
+  "name": "@origins/sdk",
+  "version": "0.3.0",
+  "description": "TypeScript client SDK for Origins. Generated — do not edit by hand.",
+  "main": "src/ash_rpc.ts",
+  "types": "src/ash_rpc.ts",
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Source-of-Origins/origins_sdk_typescript.git"
+  },
+  "scripts": {
+    "build": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "phoenix": "^1.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.0",
+    "@types/phoenix": "^1.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
