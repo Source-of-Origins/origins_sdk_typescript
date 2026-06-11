@@ -1347,6 +1347,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_assessment_graph",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "GetAssessmentGraphInput",
+        "result": "GetAssessmentGraphResult"
+      },
+      "variantNames": {
+        "channel": "get_assessment_graph_channel",
+        "validation": "validate_get_assessment_graph"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read App records",
@@ -1800,6 +1834,79 @@
       "variantNames": {
         "channel": "list_libraries_for_app_channel",
         "validation": "validate_list_libraries_for_app"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read AssessmentResponse records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_my_assessment_response",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "GetMyAssessmentResponseFields",
+        "filterInput": "AssessmentResponseFilterInput",
+        "inferResult": "InferGetMyAssessmentResponseResult",
+        "input": "GetMyAssessmentResponseInput",
+        "result": "GetMyAssessmentResponseResult"
+      },
+      "variantNames": {
+        "channel": "get_my_assessment_response_channel",
+        "validation": "validate_get_my_assessment_response"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new AssessmentResponse",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "upsert_assessment_response",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "UpsertAssessmentResponseFields",
+        "inferResult": "InferUpsertAssessmentResponseResult",
+        "input": "UpsertAssessmentResponseInput",
+        "result": "UpsertAssessmentResponseResult"
+      },
+      "variantNames": {
+        "channel": "upsert_assessment_response_channel",
+        "validation": "validate_upsert_assessment_response"
       },
       "variants": {
         "channel": true,
@@ -6363,6 +6470,42 @@
       "variantNames": {
         "channel": "upsert_website_scrape_library_file_channel",
         "validation": "validate_upsert_website_scrape_library_file"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Resolve a VFS path to a playable HLS URL (read-only, zero side effects).",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "resolve_video_playback",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "VideoAsset",
+      "see": [],
+      "types": {
+        "fields": "ResolveVideoPlaybackFields",
+        "inferResult": "InferResolveVideoPlaybackResult",
+        "input": "ResolveVideoPlaybackInput",
+        "result": "ResolveVideoPlaybackResult"
+      },
+      "variantNames": {
+        "channel": "resolve_video_playback_channel",
+        "validation": "validate_resolve_video_playback"
       },
       "variants": {
         "channel": true,

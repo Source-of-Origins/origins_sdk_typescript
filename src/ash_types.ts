@@ -430,6 +430,7 @@ export type AppResourceSchema = {
   origin_entity_id: UUID;
   has_letta_agent: boolean | null;
   generation_history: { __type: "ComplexCalculation"; __returnType: Array<GenerationHistoryEntryResourceSchema> | null; __args: { limit?: number | null; before?: string | null }; };
+  assessment_graph: { __type: "Relationship"; __resource: AssessmentGraphResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   app_libraries: { __type: "Relationship"; __array: true; __resource: AppLibraryResourceSchema; };
   libraries: { __type: "Relationship"; __array: true; __resource: LibraryResourceSchema; };
@@ -510,6 +511,72 @@ export type AppLibraryAttributesOnlySchema = {
   updated_at: UtcDateTimeUsec;
   app_id: UUID;
   library_id: UUID;
+};
+
+
+// AssessmentGraph Schema
+export type AssessmentGraphResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "start_node";
+  start_node: string | null;
+  nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeResourceSchema; };
+  edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeResourceSchema; };
+};
+
+
+
+export type AssessmentGraphAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "start_node";
+  start_node: string | null;
+  nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema; };
+  edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema; };
+};
+
+
+export type AssessmentGraphInputSchema = {
+  start_node?: string | null;
+  nodes?: Array<OriginsAppsNodeInputSchema> | null;
+  edges?: Array<OriginsAppsEdgeInputSchema> | null;
+};
+
+
+// AssessmentResponse Schema
+export type AssessmentResponseResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "user_id" | "email" | "answers" | "path_history" | "current_node" | "completed_at" | "created_at" | "updated_at" | "app_id";
+  id: UUID;
+  user_id: UUID | null;
+  email: string | null;
+  answers: Record<string, any> | null;
+  path_history: Array<string> | null;
+  current_node: string | null;
+  completed_at: UtcDateTime | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  app_id: UUID;
+  graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeResourceSchema; };
+  graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeResourceSchema; };
+  app: { __type: "Relationship"; __resource: AppResourceSchema; };
+};
+
+
+
+export type AssessmentResponseAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "user_id" | "email" | "answers" | "path_history" | "current_node" | "completed_at" | "created_at" | "updated_at" | "app_id";
+  id: UUID;
+  user_id: UUID | null;
+  email: string | null;
+  answers: Record<string, any> | null;
+  path_history: Array<string> | null;
+  current_node: string | null;
+  completed_at: UtcDateTime | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  app_id: UUID;
+  graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema; };
+  graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema; };
 };
 
 
@@ -597,6 +664,42 @@ export type CourseEnrollmentAttributesOnlySchema = {
 };
 
 
+// OriginsAppsEdge Schema
+export type OriginsAppsEdgeResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "source" | "target" | "condition_type" | "condition_field" | "condition_op" | "condition_value";
+  source: string;
+  target: string;
+  condition_type: "conditional" | "default" | null;
+  condition_field: string | null;
+  condition_op: string | null;
+  condition_value: string | null;
+};
+
+
+
+export type OriginsAppsEdgeAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "source" | "target" | "condition_type" | "condition_field" | "condition_op" | "condition_value";
+  source: string;
+  target: string;
+  condition_type: "conditional" | "default" | null;
+  condition_field: string | null;
+  condition_op: string | null;
+  condition_value: string | null;
+};
+
+
+export type OriginsAppsEdgeInputSchema = {
+  source: string;
+  target: string;
+  condition_type?: "conditional" | "default" | null;
+  condition_field?: string | null;
+  condition_op?: string | null;
+  condition_value?: string | null;
+};
+
+
 // GenerationHistoryEntry Schema
 export type GenerationHistoryEntryResourceSchema = {
   __type: "Resource";
@@ -636,6 +739,42 @@ export type GenerationHistoryEntryInputSchema = {
   tool_return?: string | null;
   tool_return_status?: string | null;
   created_at?: string | null;
+};
+
+
+// OriginsAppsNode Schema
+export type OriginsAppsNodeResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min";
+  id: string;
+  type: "interstitial" | "question" | "terminal" | null;
+  kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
+  required: boolean | null;
+  max: number | null;
+  min: number | null;
+};
+
+
+
+export type OriginsAppsNodeAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min";
+  id: string;
+  type: "interstitial" | "question" | "terminal" | null;
+  kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
+  required: boolean | null;
+  max: number | null;
+  min: number | null;
+};
+
+
+export type OriginsAppsNodeInputSchema = {
+  id: string;
+  type?: "interstitial" | "question" | "terminal" | null;
+  kind?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
+  required?: boolean | null;
+  max?: number | null;
+  min?: number | null;
 };
 
 
@@ -944,6 +1083,159 @@ export type OriginsIdentityAppearanceConfigInputSchema = {
 };
 
 
+// OriginsIdentityBrandConversationConfig Schema
+export type OriginsIdentityBrandConversationConfigResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "checkmark_color" | "checkmark_bg_color" | "show_chat_button" | "chat_button_bg" | "chat_button_text" | "button_border_radius" | "show_share_button" | "share_button_bg" | "share_button_border" | "share_button_icon" | "show_description" | "show_content_section" | "show_avatars_section" | "selected_avatars" | "avatars_section_label" | "show_podcast_link" | "show_origins_button" | "origins_button_bg" | "origins_button_text" | "origins_button_border" | "origins_button_text_color" | "send_button_bg" | "send_button_text" | "user_bubble_bg" | "user_bubble_text" | "ai_bubble_bg" | "ai_bubble_text" | "chat_input_active_border" | "page_background_color" | "enabled_mode_ids";
+  checkmark_color: string | null;
+  checkmark_bg_color: string | null;
+  show_chat_button: boolean | null;
+  chat_button_bg: string | null;
+  chat_button_text: string | null;
+  button_border_radius: number | null;
+  show_share_button: boolean | null;
+  share_button_bg: string | null;
+  share_button_border: string | null;
+  share_button_icon: string | null;
+  show_description: boolean | null;
+  show_content_section: boolean | null;
+  show_avatars_section: boolean | null;
+  selected_avatars: Array<string> | null;
+  avatars_section_label: string | null;
+  show_podcast_link: boolean | null;
+  show_origins_button: boolean | null;
+  origins_button_bg: string | null;
+  origins_button_text: string | null;
+  origins_button_border: string | null;
+  origins_button_text_color: string | null;
+  send_button_bg: string | null;
+  send_button_text: string | null;
+  user_bubble_bg: string | null;
+  user_bubble_text: string | null;
+  ai_bubble_bg: string | null;
+  ai_bubble_text: string | null;
+  chat_input_active_border: string | null;
+  page_background_color: string | null;
+  enabled_mode_ids: Array<string> | null;
+  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityBrandConversationSocialLinkResourceSchema; };
+};
+
+
+
+export type OriginsIdentityBrandConversationConfigAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "checkmark_color" | "checkmark_bg_color" | "show_chat_button" | "chat_button_bg" | "chat_button_text" | "button_border_radius" | "show_share_button" | "share_button_bg" | "share_button_border" | "share_button_icon" | "show_description" | "show_content_section" | "show_avatars_section" | "selected_avatars" | "avatars_section_label" | "show_podcast_link" | "show_origins_button" | "origins_button_bg" | "origins_button_text" | "origins_button_border" | "origins_button_text_color" | "send_button_bg" | "send_button_text" | "user_bubble_bg" | "user_bubble_text" | "ai_bubble_bg" | "ai_bubble_text" | "chat_input_active_border" | "page_background_color" | "enabled_mode_ids";
+  checkmark_color: string | null;
+  checkmark_bg_color: string | null;
+  show_chat_button: boolean | null;
+  chat_button_bg: string | null;
+  chat_button_text: string | null;
+  button_border_radius: number | null;
+  show_share_button: boolean | null;
+  share_button_bg: string | null;
+  share_button_border: string | null;
+  share_button_icon: string | null;
+  show_description: boolean | null;
+  show_content_section: boolean | null;
+  show_avatars_section: boolean | null;
+  selected_avatars: Array<string> | null;
+  avatars_section_label: string | null;
+  show_podcast_link: boolean | null;
+  show_origins_button: boolean | null;
+  origins_button_bg: string | null;
+  origins_button_text: string | null;
+  origins_button_border: string | null;
+  origins_button_text_color: string | null;
+  send_button_bg: string | null;
+  send_button_text: string | null;
+  user_bubble_bg: string | null;
+  user_bubble_text: string | null;
+  ai_bubble_bg: string | null;
+  ai_bubble_text: string | null;
+  chat_input_active_border: string | null;
+  page_background_color: string | null;
+  enabled_mode_ids: Array<string> | null;
+  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityBrandConversationSocialLinkAttributesOnlySchema; };
+};
+
+
+export type OriginsIdentityBrandConversationConfigInputSchema = {
+  checkmark_color?: string | null;
+  checkmark_bg_color?: string | null;
+  show_chat_button?: boolean | null;
+  chat_button_bg?: string | null;
+  chat_button_text?: string | null;
+  button_border_radius?: number | null;
+  show_share_button?: boolean | null;
+  share_button_bg?: string | null;
+  share_button_border?: string | null;
+  share_button_icon?: string | null;
+  show_description?: boolean | null;
+  show_content_section?: boolean | null;
+  show_avatars_section?: boolean | null;
+  selected_avatars?: Array<string> | null;
+  avatars_section_label?: string | null;
+  show_podcast_link?: boolean | null;
+  show_origins_button?: boolean | null;
+  origins_button_bg?: string | null;
+  origins_button_text?: string | null;
+  origins_button_border?: string | null;
+  origins_button_text_color?: string | null;
+  social_links?: Array<OriginsIdentityBrandConversationSocialLinkInputSchema> | null;
+  send_button_bg?: string | null;
+  send_button_text?: string | null;
+  user_bubble_bg?: string | null;
+  user_bubble_text?: string | null;
+  ai_bubble_bg?: string | null;
+  ai_bubble_text?: string | null;
+  chat_input_active_border?: string | null;
+  page_background_color?: string | null;
+  enabled_mode_ids?: Array<string> | null;
+};
+
+
+// OriginsIdentityBrandConversationSocialLink Schema
+export type OriginsIdentityBrandConversationSocialLinkResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "platform" | "url" | "visible" | "icon" | "icon_name" | "custom_icon_url" | "custom_label" | "custom_url";
+  platform: string | null;
+  url: string | null;
+  visible: boolean | null;
+  icon: string | null;
+  icon_name: string | null;
+  custom_icon_url: string | null;
+  custom_label: string | null;
+  custom_url: string | null;
+};
+
+
+
+export type OriginsIdentityBrandConversationSocialLinkAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "platform" | "url" | "visible" | "icon" | "icon_name" | "custom_icon_url" | "custom_label" | "custom_url";
+  platform: string | null;
+  url: string | null;
+  visible: boolean | null;
+  icon: string | null;
+  icon_name: string | null;
+  custom_icon_url: string | null;
+  custom_label: string | null;
+  custom_url: string | null;
+};
+
+
+export type OriginsIdentityBrandConversationSocialLinkInputSchema = {
+  platform?: string | null;
+  url?: string | null;
+  visible?: boolean | null;
+  icon?: string | null;
+  icon_name?: string | null;
+  custom_icon_url?: string | null;
+  custom_label?: string | null;
+  custom_url?: string | null;
+};
+
+
 // ChatConfig Schema
 export type ChatConfigResourceSchema = {
   __type: "Resource";
@@ -1186,6 +1478,7 @@ export type OriginEntityResourceSchema = {
   presigned_banner_url: string | null;
   social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkResourceSchema; };
   appearance_config: { __type: "Relationship"; __resource: OriginsIdentityAppearanceConfigResourceSchema | null; };
+  brand_conversation_config: { __type: "Relationship"; __resource: OriginsIdentityBrandConversationConfigResourceSchema | null; };
   public_profile_config: { __type: "Relationship"; __resource: OriginsIdentityPublicProfileConfigResourceSchema | null; };
   scraped_website_content_type: { __type: "Relationship"; __resource: ScrapedWebsiteContentResourceSchema | null; };
   tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
@@ -1260,6 +1553,7 @@ export type OriginEntityAttributesOnlySchema = {
   setup_progress_id: UUID | null;
   social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkAttributesOnlySchema; };
   appearance_config: { __type: "Relationship"; __resource: OriginsIdentityAppearanceConfigAttributesOnlySchema | null; };
+  brand_conversation_config: { __type: "Relationship"; __resource: OriginsIdentityBrandConversationConfigAttributesOnlySchema | null; };
   public_profile_config: { __type: "Relationship"; __resource: OriginsIdentityPublicProfileConfigAttributesOnlySchema | null; };
 };
 
@@ -2121,6 +2415,7 @@ export type LibraryFileResourceSchema = {
   library_id: UUID;
   signed_s3_url: string | null;
   library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
+  video_asset: { __type: "Relationship"; __resource: VideoAssetResourceSchema | null; };
 };
 
 
@@ -2139,6 +2434,78 @@ export type LibraryFileAttributesOnlySchema = {
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   library_id: UUID;
+};
+
+
+// VideoAsset Schema
+export type VideoAssetResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "otterwake_org" | "otterwake_upload_id" | "otterwake_asset_id" | "otterwake_playback_id" | "status" | "duration" | "aspect_ratio" | "error" | "captioned_at" | "created_at" | "updated_at" | "library_file_id";
+  id: UUID;
+  otterwake_org: string;
+  otterwake_upload_id: string | null;
+  otterwake_asset_id: string | null;
+  otterwake_playback_id: string | null;
+  status: "errored" | "preparing" | "ready";
+  duration: number | null;
+  aspect_ratio: string | null;
+  error: string | null;
+  captioned_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  library_file_id: UUID;
+  resolved_playback_type: { __type: "Relationship"; __resource: ResolvedPlaybackResourceSchema | null; };
+  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema; };
+};
+
+
+
+export type VideoAssetAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "otterwake_org" | "otterwake_upload_id" | "otterwake_asset_id" | "otterwake_playback_id" | "status" | "duration" | "aspect_ratio" | "error" | "captioned_at" | "created_at" | "updated_at" | "library_file_id";
+  id: UUID;
+  otterwake_org: string;
+  otterwake_upload_id: string | null;
+  otterwake_asset_id: string | null;
+  otterwake_playback_id: string | null;
+  status: "errored" | "preparing" | "ready";
+  duration: number | null;
+  aspect_ratio: string | null;
+  error: string | null;
+  captioned_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  library_file_id: UUID;
+};
+
+
+// ResolvedPlayback Schema
+export type ResolvedPlaybackResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "status" | "src" | "poster" | "library_file_id";
+  status: string;
+  src: string | null;
+  poster: string | null;
+  library_file_id: UUID | null;
+};
+
+
+
+export type ResolvedPlaybackAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "status" | "src" | "poster" | "library_file_id";
+  status: string;
+  src: string | null;
+  poster: string | null;
+  library_file_id: UUID | null;
+};
+
+
+export type ResolvedPlaybackInputSchema = {
+  status: string;
+  src?: string | null;
+  poster?: string | null;
+  library_file_id?: UUID | null;
 };
 
 
@@ -3381,6 +3748,13 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
+  assessment_graph?: {
+    eq?: AssessmentGraphResourceSchema;
+    not_eq?: AssessmentGraphResourceSchema;
+    in?: Array<AssessmentGraphResourceSchema>;
+    is_nil?: boolean;
+  };
+
   has_letta_agent?: {
     eq?: boolean;
     not_eq?: boolean;
@@ -3502,6 +3876,136 @@ export type AppLibraryFilterInput = {
   app?: AppFilterInput;
 
   library?: LibraryFilterInput;
+
+};
+export type AssessmentGraphFilterInput = {
+  and?: Array<AssessmentGraphFilterInput>;
+  or?: Array<AssessmentGraphFilterInput>;
+  not?: Array<AssessmentGraphFilterInput>;
+
+  start_node?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  nodes?: {
+    eq?: Array<OriginsAppsNodeResourceSchema>;
+    not_eq?: Array<OriginsAppsNodeResourceSchema>;
+    in?: Array<Array<OriginsAppsNodeResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  edges?: {
+    eq?: Array<OriginsAppsEdgeResourceSchema>;
+    not_eq?: Array<OriginsAppsEdgeResourceSchema>;
+    in?: Array<Array<OriginsAppsEdgeResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type AssessmentResponseFilterInput = {
+  and?: Array<AssessmentResponseFilterInput>;
+  or?: Array<AssessmentResponseFilterInput>;
+  not?: Array<AssessmentResponseFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  user_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+  email?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  answers?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+  path_history?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    is_nil?: boolean;
+  };
+
+  current_node?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  graph_snapshot_nodes?: {
+    eq?: Array<OriginsAppsNodeResourceSchema>;
+    not_eq?: Array<OriginsAppsNodeResourceSchema>;
+    in?: Array<Array<OriginsAppsNodeResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  graph_snapshot_edges?: {
+    eq?: Array<OriginsAppsEdgeResourceSchema>;
+    not_eq?: Array<OriginsAppsEdgeResourceSchema>;
+    in?: Array<Array<OriginsAppsEdgeResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  completed_at?: {
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+    less_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    is_nil?: boolean;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  app_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+
+  app?: AppFilterInput;
 
 };
 export type CourseActivityCompletionFilterInput = {
@@ -3737,6 +4241,54 @@ export type CourseEnrollmentFilterInput = {
   activity_completions?: CourseActivityCompletionFilterInput;
 
 };
+export type OriginsAppsEdgeFilterInput = {
+  and?: Array<OriginsAppsEdgeFilterInput>;
+  or?: Array<OriginsAppsEdgeFilterInput>;
+  not?: Array<OriginsAppsEdgeFilterInput>;
+
+  source?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  target?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  condition_type?: {
+    eq?: "conditional" | "default";
+    not_eq?: "conditional" | "default";
+    in?: Array<"conditional" | "default">;
+    is_nil?: boolean;
+  };
+
+  condition_field?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  condition_op?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  condition_value?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
 export type GenerationHistoryEntryFilterInput = {
   and?: Array<GenerationHistoryEntryFilterInput>;
   or?: Array<GenerationHistoryEntryFilterInput>;
@@ -3793,6 +4345,62 @@ export type GenerationHistoryEntryFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsNodeFilterInput = {
+  and?: Array<OriginsAppsNodeFilterInput>;
+  or?: Array<OriginsAppsNodeFilterInput>;
+  not?: Array<OriginsAppsNodeFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  type?: {
+    eq?: "interstitial" | "question" | "terminal";
+    not_eq?: "interstitial" | "question" | "terminal";
+    in?: Array<"interstitial" | "question" | "terminal">;
+    is_nil?: boolean;
+  };
+
+  kind?: {
+    eq?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
+    not_eq?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
+    in?: Array<"multi_select" | "single_select" | "slider_group" | "text" | "yes_no">;
+    is_nil?: boolean;
+  };
+
+  required?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  max?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  min?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
     is_nil?: boolean;
   };
 
@@ -4524,6 +5132,291 @@ export type OriginsIdentityAppearanceConfigFilterInput = {
 
 
 };
+export type OriginsIdentityBrandConversationConfigFilterInput = {
+  and?: Array<OriginsIdentityBrandConversationConfigFilterInput>;
+  or?: Array<OriginsIdentityBrandConversationConfigFilterInput>;
+  not?: Array<OriginsIdentityBrandConversationConfigFilterInput>;
+
+  checkmark_color?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  checkmark_bg_color?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  show_chat_button?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  chat_button_bg?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  chat_button_text?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  button_border_radius?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  show_share_button?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  share_button_bg?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  share_button_border?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  share_button_icon?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  show_description?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  show_content_section?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  show_avatars_section?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  selected_avatars?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    is_nil?: boolean;
+  };
+
+  avatars_section_label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  show_podcast_link?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  show_origins_button?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  origins_button_bg?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  origins_button_text?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  origins_button_border?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  origins_button_text_color?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  social_links?: {
+    eq?: Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>;
+    not_eq?: Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>;
+    in?: Array<Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  send_button_bg?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  send_button_text?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  user_bubble_bg?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  user_bubble_text?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  ai_bubble_bg?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  ai_bubble_text?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  chat_input_active_border?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  page_background_color?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  enabled_mode_ids?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsIdentityBrandConversationSocialLinkFilterInput = {
+  and?: Array<OriginsIdentityBrandConversationSocialLinkFilterInput>;
+  or?: Array<OriginsIdentityBrandConversationSocialLinkFilterInput>;
+  not?: Array<OriginsIdentityBrandConversationSocialLinkFilterInput>;
+
+  platform?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  visible?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  icon?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  icon_name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  custom_icon_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  custom_label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  custom_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
 export type ChatConfigFilterInput = {
   and?: Array<ChatConfigFilterInput>;
   or?: Array<ChatConfigFilterInput>;
@@ -5191,6 +6084,13 @@ export type OriginEntityFilterInput = {
     eq?: OriginsIdentityAppearanceConfigResourceSchema;
     not_eq?: OriginsIdentityAppearanceConfigResourceSchema;
     in?: Array<OriginsIdentityAppearanceConfigResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  brand_conversation_config?: {
+    eq?: OriginsIdentityBrandConversationConfigResourceSchema;
+    not_eq?: OriginsIdentityBrandConversationConfigResourceSchema;
+    in?: Array<OriginsIdentityBrandConversationConfigResourceSchema>;
     is_nil?: boolean;
   };
 
@@ -7243,6 +8143,160 @@ export type LibraryFileFilterInput = {
 
   library?: LibraryFilterInput;
 
+  video_asset?: VideoAssetFilterInput;
+
+};
+export type VideoAssetFilterInput = {
+  and?: Array<VideoAssetFilterInput>;
+  or?: Array<VideoAssetFilterInput>;
+  not?: Array<VideoAssetFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  otterwake_org?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  otterwake_upload_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  otterwake_asset_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  otterwake_playback_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  status?: {
+    eq?: "errored" | "preparing" | "ready";
+    not_eq?: "errored" | "preparing" | "ready";
+    in?: Array<"errored" | "preparing" | "ready">;
+  };
+
+  duration?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  aspect_ratio?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  error?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  captioned_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  library_file_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  resolved_playback_type?: {
+    eq?: ResolvedPlaybackResourceSchema;
+    not_eq?: ResolvedPlaybackResourceSchema;
+    in?: Array<ResolvedPlaybackResourceSchema>;
+    is_nil?: boolean;
+  };
+
+
+  library_file?: LibraryFileFilterInput;
+
+};
+export type ResolvedPlaybackFilterInput = {
+  and?: Array<ResolvedPlaybackFilterInput>;
+  or?: Array<ResolvedPlaybackFilterInput>;
+  not?: Array<ResolvedPlaybackFilterInput>;
+
+  status?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  src?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  poster?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  library_file_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+
+
 };
 export type ChatBindingFilterInput = {
   and?: Array<ChatBindingFilterInput>;
@@ -7767,7 +8821,7 @@ export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number
 export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
-export const appFilterFields = ["id", "app_type", "title", "slug", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "is_published", "meta", "created_at", "updated_at", "origin_entity_id", "generation_history", "has_letta_agent", "origin_entity", "app_libraries", "libraries"] as const;
+export const appFilterFields = ["id", "app_type", "title", "slug", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "is_published", "meta", "created_at", "updated_at", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "origin_entity", "app_libraries", "libraries"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
@@ -7776,14 +8830,26 @@ export type AppVersionFilterField = (typeof appVersionFilterFields)[number];
 export const appLibraryFilterFields = ["id", "created_at", "updated_at", "app_id", "library_id", "app", "library"] as const;
 export type AppLibraryFilterField = (typeof appLibraryFilterFields)[number];
 
+export const assessmentGraphFilterFields = ["start_node", "nodes", "edges"] as const;
+export type AssessmentGraphFilterField = (typeof assessmentGraphFilterFields)[number];
+
+export const assessmentResponseFilterFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "completed_at", "created_at", "updated_at", "app_id", "app"] as const;
+export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFields)[number];
+
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
 
 export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers", "user", "character", "app", "activity_completions"] as const;
 export type CourseEnrollmentFilterField = (typeof courseEnrollmentFilterFields)[number];
 
+export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
+export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[number];
+
 export const generationHistoryEntryFilterFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntryFilterField = (typeof generationHistoryEntryFilterFields)[number];
+
+export const originsAppsNodeFilterFields = ["id", "type", "kind", "required", "max", "min"] as const;
+export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[number];
 
 export const appTemplateFilterFields = ["id", "name", "description", "app_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
 export type AppTemplateFilterField = (typeof appTemplateFilterFields)[number];
@@ -7806,6 +8872,12 @@ export type HomepageCardFilterField = (typeof homepageCardFilterFields)[number];
 export const originsIdentityAppearanceConfigFilterFields = ["checkmark_color", "show_chat_button", "chat_button_bg", "chat_button_text", "show_share_button", "share_button_border", "share_button_text", "share_button_bg", "button_border_radius", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "send_button_bg", "send_button_text"] as const;
 export type OriginsIdentityAppearanceConfigFilterField = (typeof originsIdentityAppearanceConfigFilterFields)[number];
 
+export const originsIdentityBrandConversationConfigFilterFields = ["checkmark_color", "checkmark_bg_color", "show_chat_button", "chat_button_bg", "chat_button_text", "button_border_radius", "show_share_button", "share_button_bg", "share_button_border", "share_button_icon", "show_description", "show_content_section", "show_avatars_section", "selected_avatars", "avatars_section_label", "show_podcast_link", "show_origins_button", "origins_button_bg", "origins_button_text", "origins_button_border", "origins_button_text_color", "social_links", "send_button_bg", "send_button_text", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "chat_input_active_border", "page_background_color", "enabled_mode_ids"] as const;
+export type OriginsIdentityBrandConversationConfigFilterField = (typeof originsIdentityBrandConversationConfigFilterFields)[number];
+
+export const originsIdentityBrandConversationSocialLinkFilterFields = ["platform", "url", "visible", "icon", "icon_name", "custom_icon_url", "custom_label", "custom_url"] as const;
+export type OriginsIdentityBrandConversationSocialLinkFilterField = (typeof originsIdentityBrandConversationSocialLinkFilterFields)[number];
+
 export const chatConfigFilterFields = ["id", "chat_button_color", "welcome_message", "show_close_button", "show_powered_by", "show_header_avatar", "show_ai_message_avatar", "chat_button_show_icon", "public_profile_button_show_icon", "podcast_button_show_icon", "public_profile_show_brand_logo", "podcast_show_brand_logo", "use_chat_button_for_public_profile", "use_chat_button_for_podcast", "available_avatar_ids", "chat_button_text", "show_brand_logo", "chat_window_title", "chat_bubble_color", "chat_bubble_text_color", "user_bubble_color", "user_bubble_text_color", "enable_sound_notifications", "show_typing_indicator", "enable_chat_history", "inherits_descendant_knowledge", "created_at", "updated_at", "button_shape", "window_size", "header_style", "window_border_radius", "window_animation", "send_button_style", "input_placeholder", "window_position_mode", "chat_button_icon", "chat_button_text_color", "public_profile_button_icon", "public_profile_button_text_color", "podcast_button_icon", "podcast_button_text_color", "public_profile_button_color", "podcast_button_color", "chat_button_border_color", "public_profile_button_border_color", "podcast_button_border_color", "public_profile_button_shape", "podcast_button_shape", "public_profile_button_text", "podcast_button_text", "input_style", "chat_button_position", "response_delay", "origin_entity_id", "origin_entity"] as const;
 export type ChatConfigFilterField = (typeof chatConfigFilterFields)[number];
 
@@ -7815,7 +8887,7 @@ export type OriginsIdentityCustomLinkFilterField = (typeof originsIdentityCustom
 export const originAssetFilterFields = ["id", "asset_type", "asset_url", "asset_key", "asset_name", "asset_metadata", "source_platform", "shared_with_origin_entity_ids", "is_shared_globally", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
 export type OriginAssetFilterField = (typeof originAssetFilterFields)[number];
 
-export const originEntityFilterFields = ["id", "tenant_id", "parent_origin_entity_id", "name", "description", "title", "personality_traits", "mission_statement", "core_values", "accent_colors", "tone_of_voice", "key_messaging", "target_audience", "content_themes", "categories", "picture_url", "picture_key", "banner_url", "banner_key", "social_links", "voice_settings", "voice_config", "guardrails_settings", "appearance_config", "public_profile_config", "engagement_metrics", "extracted_content", "ai_generated_summary", "is_public", "is_active", "is_featured", "slug", "website_content", "last_website_scrape", "page_sections_config", "content_tabs_config", "youtube_channel_id", "youtube_channel_data", "youtube_sync_settings", "youtube_content_settings", "podcast_content_settings", "podcast_button_visible", "podcast_button_link", "podcast_button_text", "podcast_button_color", "podcast_button_text_color", "created_at", "updated_at", "setup_progress_id", "presigned_picture_url", "presigned_banner_url", "scraped_website_content_type", "tenant", "setup_progress", "parent_origin_entity", "child_origin_entities", "memberships", "soul_config", "chat_config", "podcast_config", "origin_assets", "youtube_episodes", "apps", "interview_sessions", "prompt_tools", "prompt_contexts", "feature_flags", "feedbacks", "homepage_cards"] as const;
+export const originEntityFilterFields = ["id", "tenant_id", "parent_origin_entity_id", "name", "description", "title", "personality_traits", "mission_statement", "core_values", "accent_colors", "tone_of_voice", "key_messaging", "target_audience", "content_themes", "categories", "picture_url", "picture_key", "banner_url", "banner_key", "social_links", "voice_settings", "voice_config", "guardrails_settings", "appearance_config", "brand_conversation_config", "public_profile_config", "engagement_metrics", "extracted_content", "ai_generated_summary", "is_public", "is_active", "is_featured", "slug", "website_content", "last_website_scrape", "page_sections_config", "content_tabs_config", "youtube_channel_id", "youtube_channel_data", "youtube_sync_settings", "youtube_content_settings", "podcast_content_settings", "podcast_button_visible", "podcast_button_link", "podcast_button_text", "podcast_button_color", "podcast_button_text_color", "created_at", "updated_at", "setup_progress_id", "presigned_picture_url", "presigned_banner_url", "scraped_website_content_type", "tenant", "setup_progress", "parent_origin_entity", "child_origin_entities", "memberships", "soul_config", "chat_config", "podcast_config", "origin_assets", "youtube_episodes", "apps", "interview_sessions", "prompt_tools", "prompt_contexts", "feature_flags", "feedbacks", "homepage_cards"] as const;
 export type OriginEntityFilterField = (typeof originEntityFilterFields)[number];
 
 export const scrapedWebsiteContentFilterFields = ["url", "title", "meta_description", "meta_keywords", "open_graph", "headings", "paragraphs", "text_content", "scraped_at"] as const;
@@ -7890,6 +8962,12 @@ export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFiel
 export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
+export const videoAssetFilterFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "library_file"] as const;
+export type VideoAssetFilterField = (typeof videoAssetFilterFields)[number];
+
+export const resolvedPlaybackFilterFields = ["status", "src", "poster", "library_file_id"] as const;
+export type ResolvedPlaybackFilterField = (typeof resolvedPlaybackFilterFields)[number];
+
 export const chatBindingFilterFields = ["id", "chat_guid", "prospect_labels", "notes", "bound_at", "created_at", "updated_at", "origin_entity_id", "prospect_phones", "origin_entity"] as const;
 export type ChatBindingFilterField = (typeof chatBindingFilterFields)[number];
 
@@ -7936,7 +9014,7 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
-export const appSortFields = ["id", "app_type", "title", "slug", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "is_published", "meta", "created_at", "updated_at", "origin_entity_id", "generation_history", "has_letta_agent"] as const;
+export const appSortFields = ["id", "app_type", "title", "slug", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "is_published", "meta", "created_at", "updated_at", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
@@ -7945,14 +9023,26 @@ export type AppVersionSortField = (typeof appVersionSortFields)[number];
 export const appLibrarySortFields = ["id", "created_at", "updated_at", "app_id", "library_id"] as const;
 export type AppLibrarySortField = (typeof appLibrarySortFields)[number];
 
+export const assessmentGraphSortFields = ["start_node", "nodes", "edges"] as const;
+export type AssessmentGraphSortField = (typeof assessmentGraphSortFields)[number];
+
+export const assessmentResponseSortFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "completed_at", "created_at", "updated_at", "app_id"] as const;
+export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[number];
+
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];
 
 export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers"] as const;
 export type CourseEnrollmentSortField = (typeof courseEnrollmentSortFields)[number];
 
+export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
+export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number];
+
 export const generationHistoryEntrySortFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntrySortField = (typeof generationHistoryEntrySortFields)[number];
+
+export const originsAppsNodeSortFields = ["id", "type", "kind", "required", "max", "min"] as const;
+export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number];
 
 export const appTemplateSortFields = ["id", "name", "description", "app_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
 export type AppTemplateSortField = (typeof appTemplateSortFields)[number];
@@ -7975,6 +9065,12 @@ export type HomepageCardSortField = (typeof homepageCardSortFields)[number];
 export const originsIdentityAppearanceConfigSortFields = ["checkmark_color", "show_chat_button", "chat_button_bg", "chat_button_text", "show_share_button", "share_button_border", "share_button_text", "share_button_bg", "button_border_radius", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "send_button_bg", "send_button_text"] as const;
 export type OriginsIdentityAppearanceConfigSortField = (typeof originsIdentityAppearanceConfigSortFields)[number];
 
+export const originsIdentityBrandConversationConfigSortFields = ["checkmark_color", "checkmark_bg_color", "show_chat_button", "chat_button_bg", "chat_button_text", "button_border_radius", "show_share_button", "share_button_bg", "share_button_border", "share_button_icon", "show_description", "show_content_section", "show_avatars_section", "selected_avatars", "avatars_section_label", "show_podcast_link", "show_origins_button", "origins_button_bg", "origins_button_text", "origins_button_border", "origins_button_text_color", "social_links", "send_button_bg", "send_button_text", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "chat_input_active_border", "page_background_color", "enabled_mode_ids"] as const;
+export type OriginsIdentityBrandConversationConfigSortField = (typeof originsIdentityBrandConversationConfigSortFields)[number];
+
+export const originsIdentityBrandConversationSocialLinkSortFields = ["platform", "url", "visible", "icon", "icon_name", "custom_icon_url", "custom_label", "custom_url"] as const;
+export type OriginsIdentityBrandConversationSocialLinkSortField = (typeof originsIdentityBrandConversationSocialLinkSortFields)[number];
+
 export const chatConfigSortFields = ["id", "chat_button_color", "welcome_message", "show_close_button", "show_powered_by", "show_header_avatar", "show_ai_message_avatar", "chat_button_show_icon", "public_profile_button_show_icon", "podcast_button_show_icon", "public_profile_show_brand_logo", "podcast_show_brand_logo", "use_chat_button_for_public_profile", "use_chat_button_for_podcast", "available_avatar_ids", "chat_button_text", "show_brand_logo", "chat_window_title", "chat_bubble_color", "chat_bubble_text_color", "user_bubble_color", "user_bubble_text_color", "enable_sound_notifications", "show_typing_indicator", "enable_chat_history", "inherits_descendant_knowledge", "created_at", "updated_at", "button_shape", "window_size", "header_style", "window_border_radius", "window_animation", "send_button_style", "input_placeholder", "window_position_mode", "chat_button_icon", "chat_button_text_color", "public_profile_button_icon", "public_profile_button_text_color", "podcast_button_icon", "podcast_button_text_color", "public_profile_button_color", "podcast_button_color", "chat_button_border_color", "public_profile_button_border_color", "podcast_button_border_color", "public_profile_button_shape", "podcast_button_shape", "public_profile_button_text", "podcast_button_text", "input_style", "chat_button_position", "response_delay", "origin_entity_id"] as const;
 export type ChatConfigSortField = (typeof chatConfigSortFields)[number];
 
@@ -7984,7 +9080,7 @@ export type OriginsIdentityCustomLinkSortField = (typeof originsIdentityCustomLi
 export const originAssetSortFields = ["id", "asset_type", "asset_url", "asset_key", "asset_name", "asset_metadata", "source_platform", "shared_with_origin_entity_ids", "is_shared_globally", "created_at", "updated_at", "origin_entity_id"] as const;
 export type OriginAssetSortField = (typeof originAssetSortFields)[number];
 
-export const originEntitySortFields = ["id", "tenant_id", "parent_origin_entity_id", "name", "description", "title", "personality_traits", "mission_statement", "core_values", "accent_colors", "tone_of_voice", "key_messaging", "target_audience", "content_themes", "categories", "picture_url", "picture_key", "banner_url", "banner_key", "social_links", "voice_settings", "voice_config", "guardrails_settings", "appearance_config", "public_profile_config", "engagement_metrics", "extracted_content", "ai_generated_summary", "is_public", "is_active", "is_featured", "slug", "website_content", "last_website_scrape", "page_sections_config", "content_tabs_config", "youtube_channel_id", "youtube_channel_data", "youtube_sync_settings", "youtube_content_settings", "podcast_content_settings", "podcast_button_visible", "podcast_button_link", "podcast_button_text", "podcast_button_color", "podcast_button_text_color", "created_at", "updated_at", "setup_progress_id", "presigned_picture_url", "presigned_banner_url", "scraped_website_content_type"] as const;
+export const originEntitySortFields = ["id", "tenant_id", "parent_origin_entity_id", "name", "description", "title", "personality_traits", "mission_statement", "core_values", "accent_colors", "tone_of_voice", "key_messaging", "target_audience", "content_themes", "categories", "picture_url", "picture_key", "banner_url", "banner_key", "social_links", "voice_settings", "voice_config", "guardrails_settings", "appearance_config", "brand_conversation_config", "public_profile_config", "engagement_metrics", "extracted_content", "ai_generated_summary", "is_public", "is_active", "is_featured", "slug", "website_content", "last_website_scrape", "page_sections_config", "content_tabs_config", "youtube_channel_id", "youtube_channel_data", "youtube_sync_settings", "youtube_content_settings", "podcast_content_settings", "podcast_button_visible", "podcast_button_link", "podcast_button_text", "podcast_button_color", "podcast_button_text_color", "created_at", "updated_at", "setup_progress_id", "presigned_picture_url", "presigned_banner_url", "scraped_website_content_type"] as const;
 export type OriginEntitySortField = (typeof originEntitySortFields)[number];
 
 export const scrapedWebsiteContentSortFields = ["url", "title", "meta_description", "meta_keywords", "open_graph", "headings", "paragraphs", "text_content", "scraped_at"] as const;
@@ -8058,6 +9154,12 @@ export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[
 
 export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
+
+export const videoAssetSortFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type"] as const;
+export type VideoAssetSortField = (typeof videoAssetSortFields)[number];
+
+export const resolvedPlaybackSortFields = ["status", "src", "poster", "library_file_id"] as const;
+export type ResolvedPlaybackSortField = (typeof resolvedPlaybackSortFields)[number];
 
 export const chatBindingSortFields = ["id", "chat_guid", "prospect_labels", "notes", "bound_at", "created_at", "updated_at", "origin_entity_id", "prospect_phones"] as const;
 export type ChatBindingSortField = (typeof chatBindingSortFields)[number];
