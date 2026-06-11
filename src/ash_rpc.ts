@@ -367,8 +367,8 @@ export async function list_my_tenant_grants<Fields extends ListMyTenantGrantsFie
   filter?: StaffTenantGrantFilterInput;
   sort?: SortString<StaffTenantGrantSortField> | SortString<StaffTenantGrantSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListMyTenantGrantsResult<Fields>> {
   const payload = {
@@ -396,8 +396,8 @@ export async function validate_list_my_tenant_grants(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -493,8 +493,8 @@ export async function create_tenant_for_user(
   tenant?: string;
   input: CreateTenantForUserInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateTenantForUserResult> {
   const payload = {
@@ -521,8 +521,8 @@ export async function validate_create_tenant_for_user(
   tenant?: string;
   input: CreateTenantForUserInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -618,8 +618,8 @@ export async function get_tenant<Fields extends GetTenantFields>(
   input: GetTenantInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetTenantResult<Fields>> {
   const payload = {
@@ -647,8 +647,8 @@ export async function validate_get_tenant(
   tenant?: string;
   input: GetTenantInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -743,8 +743,8 @@ export async function list_all_tenants<Fields extends ListAllTenantsFields>(
   filter?: TenantFilterInput;
   sort?: SortString<TenantSortField> | SortString<TenantSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListAllTenantsResult<Fields>> {
   const payload = {
@@ -772,8 +772,8 @@ export async function validate_list_all_tenants(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -867,8 +867,8 @@ export async function list_my_tenants<Fields extends ListMyTenantsFields>(
   filter?: TenantFilterInput;
   sort?: SortString<TenantSortField> | SortString<TenantSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListMyTenantsResult<Fields>> {
   const payload = {
@@ -896,8 +896,8 @@ export async function validate_list_my_tenants(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -989,8 +989,8 @@ export async function get_current_user<Fields extends GetCurrentUserFields>(
   tenant?: string;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetCurrentUserResult<Fields>> {
   const payload = {
@@ -1016,8 +1016,8 @@ export async function validate_get_current_user(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1107,8 +1107,8 @@ export async function list_all_users<Fields extends ListAllUsersFields>(
   filter?: UserFilterInput;
   sort?: SortString<UserSortField> | SortString<UserSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListAllUsersResult<Fields>> {
   const payload = {
@@ -1136,8 +1136,8 @@ export async function validate_list_all_users(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1243,8 +1243,8 @@ export async function register_with_invitation<Fields extends RegisterWithInvita
   fields?: Fields;
   metadata_fields?: MetadataFields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<RegisterWithInvitationResult<Fields extends undefined ? [] : Fields, MetadataFields>> {
   const payload = {
@@ -1273,8 +1273,8 @@ export async function validate_register_with_invitation(
   tenant?: string;
   input: RegisterWithInvitationInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1383,8 +1383,8 @@ export async function register_with_password<Fields extends RegisterWithPassword
   fields?: Fields;
   metadata_fields?: MetadataFields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<RegisterWithPasswordResult<Fields extends undefined ? [] : Fields, MetadataFields>> {
   const payload = {
@@ -1413,8 +1413,8 @@ export async function validate_register_with_password(
   tenant?: string;
   input: RegisterWithPasswordInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1510,8 +1510,8 @@ export async function sign_in_with_apple_token(
   tenant?: string;
   input: SignInWithAppleTokenInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SignInWithAppleTokenResult> {
   const payload = {
@@ -1538,8 +1538,8 @@ export async function validate_sign_in_with_apple_token(
   tenant?: string;
   input: SignInWithAppleTokenInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1631,8 +1631,8 @@ export async function sign_in_with_google_token(
   tenant?: string;
   input: SignInWithGoogleTokenInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SignInWithGoogleTokenResult> {
   const payload = {
@@ -1659,8 +1659,8 @@ export async function validate_sign_in_with_google_token(
   tenant?: string;
   input: SignInWithGoogleTokenInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1764,8 +1764,8 @@ export async function sign_in_with_password<Fields extends SignInWithPasswordFie
   fields: Fields;
   metadata_fields?: MetadataFields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SignInWithPasswordResult<Fields, MetadataFields>> {
   const payload = {
@@ -1794,8 +1794,8 @@ export async function validate_sign_in_with_password(
   tenant?: string;
   input: SignInWithPasswordInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -1891,8 +1891,8 @@ export async function start_tenant_session(
   tenant?: string;
   input: StartTenantSessionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<StartTenantSessionResult> {
   const payload = {
@@ -1919,8 +1919,8 @@ export async function validate_start_tenant_session(
   tenant?: string;
   input: StartTenantSessionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2013,8 +2013,8 @@ export async function approve_waitlist_entry<Fields extends ApproveWaitlistEntry
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ApproveWaitlistEntryResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -2042,8 +2042,8 @@ export async function validate_approve_waitlist_entry(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2131,8 +2131,8 @@ export async function delete_waitlist_entry(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteWaitlistEntryResult> {
   const payload = {
@@ -2159,8 +2159,8 @@ export async function validate_delete_waitlist_entry(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2256,8 +2256,8 @@ export async function get_waitlist_entry_by_token<Fields extends GetWaitlistEntr
   input: GetWaitlistEntryByTokenInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetWaitlistEntryByTokenResult<Fields>> {
   const payload = {
@@ -2285,8 +2285,8 @@ export async function validate_get_waitlist_entry_by_token(
   tenant?: string;
   input: GetWaitlistEntryByTokenInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2401,8 +2401,8 @@ export type ListWaitlistEntriesConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListWaitlistEntriesResult<Fields extends ListWaitlistEntriesFields, Page extends ListWaitlistEntriesConfig["page"] = undefined> = | { success: true; data: InferListWaitlistEntriesResult<Fields, Page>; }
@@ -2444,8 +2444,8 @@ export async function validate_list_waitlist_entries(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2551,8 +2551,8 @@ export async function reject_waitlist_entry<Fields extends RejectWaitlistEntryFi
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<RejectWaitlistEntryResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -2580,8 +2580,8 @@ export async function validate_reject_waitlist_entry(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2686,8 +2686,8 @@ export async function submit_waitlist_entry<Fields extends SubmitWaitlistEntryFi
   input: SubmitWaitlistEntryInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SubmitWaitlistEntryResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -2715,8 +2715,8 @@ export async function validate_submit_waitlist_entry(
   tenant?: string;
   input: SubmitWaitlistEntryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2817,8 +2817,8 @@ export async function avatar_public_chat(
   tenant?: string;
   input: AvatarPublicChatInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<AvatarPublicChatResult> {
   const payload = {
@@ -2845,8 +2845,8 @@ export async function validate_avatar_public_chat(
   tenant?: string;
   input: AvatarPublicChatInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -2955,8 +2955,8 @@ export async function create_conversation<Fields extends CreateConversationField
   input: CreateConversationInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateConversationResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -2984,8 +2984,8 @@ export async function validate_create_conversation(
   tenant?: string;
   input: CreateConversationInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3085,8 +3085,8 @@ export async function find_root_conversation<Fields extends FindRootConversation
   input: FindRootConversationInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<FindRootConversationResult<Fields>> {
   const payload = {
@@ -3114,8 +3114,8 @@ export async function validate_find_root_conversation(
   tenant?: string;
   input: FindRootConversationInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3210,8 +3210,8 @@ export async function generate_chat_suggestions(
   tenant?: string;
   input: GenerateChatSuggestionsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GenerateChatSuggestionsResult> {
   const payload = {
@@ -3238,8 +3238,8 @@ export async function validate_generate_chat_suggestions(
   tenant?: string;
   input: GenerateChatSuggestionsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3331,8 +3331,8 @@ export async function get_brand_users(
   tenant?: string;
   input: GetBrandUsersInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetBrandUsersResult> {
   const payload = {
@@ -3359,8 +3359,8 @@ export async function validate_get_brand_users(
   tenant?: string;
   input: GetBrandUsersInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3452,8 +3452,8 @@ export async function get_conversation_history(
   tenant?: string;
   input: GetConversationHistoryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetConversationHistoryResult> {
   const payload = {
@@ -3480,8 +3480,8 @@ export async function validate_get_conversation_history(
   tenant?: string;
   input: GetConversationHistoryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3594,8 +3594,8 @@ export type ListConversationsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListConversationsResult<Fields extends ListConversationsFields, Page extends ListConversationsConfig["page"] = undefined> = | { success: true; data: InferListConversationsResult<Fields, Page>; }
@@ -3637,8 +3637,8 @@ export async function validate_list_conversations(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3749,8 +3749,8 @@ export async function list_my_conversations<Fields extends ListMyConversationsFi
   filter?: PublicConversationFilterInput;
   sort?: SortString<PublicConversationSortField> | SortString<PublicConversationSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListMyConversationsResult<Fields>> {
   const payload = {
@@ -3780,8 +3780,8 @@ export async function validate_list_my_conversations(
   tenant?: string;
   input: ListMyConversationsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -3884,8 +3884,8 @@ export async function preview_chat(
   tenant?: string;
   input: PreviewChatInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<PreviewChatResult> {
   const payload = {
@@ -3912,8 +3912,8 @@ export async function validate_preview_chat(
   tenant?: string;
   input: PreviewChatInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4023,8 +4023,8 @@ export async function update_conversation<Fields extends UpdateConversationField
   input: UpdateConversationInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateConversationResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -4054,8 +4054,8 @@ export async function validate_update_conversation(
   identity: UUID | string;
   input: UpdateConversationInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4154,8 +4154,8 @@ export async function presign_storage_url(
   tenant?: string;
   input: PresignStorageUrlInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<PresignStorageUrlResult> {
   const payload = {
@@ -4182,8 +4182,8 @@ export async function validate_presign_storage_url(
   tenant?: string;
   input: PresignStorageUrlInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4279,8 +4279,8 @@ export async function upload_chat_attachment(
   tenant?: string;
   input: UploadChatAttachmentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UploadChatAttachmentResult> {
   const payload = {
@@ -4307,8 +4307,8 @@ export async function validate_upload_chat_attachment(
   tenant?: string;
   input: UploadChatAttachmentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4416,8 +4416,8 @@ export async function create_app<Fields extends CreateAppFields | undefined = un
   input: CreateAppInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateAppResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -4445,8 +4445,8 @@ export async function validate_create_app(
   tenant?: string;
   input: CreateAppInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4546,8 +4546,8 @@ export async function create_app_from_template<Fields extends CreateAppFromTempl
   input: CreateAppFromTemplateInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateAppFromTemplateResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -4575,8 +4575,8 @@ export async function validate_create_app_from_template(
   tenant?: string;
   input: CreateAppFromTemplateInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4664,8 +4664,8 @@ export async function destroy_app(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DestroyAppResult> {
   const payload = {
@@ -4692,8 +4692,8 @@ export async function validate_destroy_app(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4790,8 +4790,8 @@ export async function duplicate_app<Fields extends DuplicateAppFields | undefine
   input: DuplicateAppInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DuplicateAppResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -4819,8 +4819,8 @@ export async function validate_duplicate_app(
   tenant?: string;
   input: DuplicateAppInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -4915,8 +4915,8 @@ export async function for_user_personalized(
   tenant?: string;
   input: ForUserPersonalizedInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ForUserPersonalizedResult> {
   const payload = {
@@ -4943,8 +4943,8 @@ export async function validate_for_user_personalized(
   tenant?: string;
   input: ForUserPersonalizedInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5040,8 +5040,8 @@ export async function get_app<Fields extends GetAppFields>(
   input: GetAppInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetAppResult<Fields>> {
   const payload = {
@@ -5069,8 +5069,8 @@ export async function validate_get_app(
   tenant?: string;
   input: GetAppInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5170,8 +5170,8 @@ export async function get_app_for_origin_type_and_slug<Fields extends GetAppForO
   input: GetAppForOriginTypeAndSlugInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetAppForOriginTypeAndSlugResult<Fields>> {
   const payload = {
@@ -5199,8 +5199,8 @@ export async function validate_get_app_for_origin_type_and_slug(
   tenant?: string;
   input: GetAppForOriginTypeAndSlugInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5300,8 +5300,8 @@ export async function list_apps_for_origin<Fields extends ListAppsForOriginField
   filter?: AppFilterInput;
   sort?: SortString<AppSortField> | SortString<AppSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListAppsForOriginResult<Fields>> {
   const payload = {
@@ -5331,8 +5331,8 @@ export async function validate_list_apps_for_origin(
   tenant?: string;
   input: ListAppsForOriginInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5437,8 +5437,8 @@ export async function list_apps_for_origin_and_type<Fields extends ListAppsForOr
   filter?: AppFilterInput;
   sort?: SortString<AppSortField> | SortString<AppSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListAppsForOriginAndTypeResult<Fields>> {
   const payload = {
@@ -5468,8 +5468,8 @@ export async function validate_list_apps_for_origin_and_type(
   tenant?: string;
   input: ListAppsForOriginAndTypeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5567,8 +5567,8 @@ export async function parse_assessment_blocks(
   tenant?: string;
   input: ParseAssessmentBlocksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ParseAssessmentBlocksResult> {
   const payload = {
@@ -5595,8 +5595,8 @@ export async function validate_parse_assessment_blocks(
   tenant?: string;
   input: ParseAssessmentBlocksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5688,8 +5688,8 @@ export async function parse_course_blocks(
   tenant?: string;
   input: ParseCourseBlocksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ParseCourseBlocksResult> {
   const payload = {
@@ -5716,8 +5716,8 @@ export async function validate_parse_course_blocks(
   tenant?: string;
   input: ParseCourseBlocksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5809,8 +5809,8 @@ export async function parse_landing_blocks(
   tenant?: string;
   input: ParseLandingBlocksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ParseLandingBlocksResult> {
   const payload = {
@@ -5837,8 +5837,8 @@ export async function validate_parse_landing_blocks(
   tenant?: string;
   input: ParseLandingBlocksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -5936,8 +5936,8 @@ export async function restore_app_version<Fields extends RestoreAppVersionFields
   input: RestoreAppVersionInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<RestoreAppVersionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -5967,8 +5967,8 @@ export async function validate_restore_app_version(
   identity: UUID | string;
   input: RestoreAppVersionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6068,8 +6068,8 @@ export async function send_app_chat_message(
   tenant?: string;
   input: SendAppChatMessageInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SendAppChatMessageResult> {
   const payload = {
@@ -6096,8 +6096,8 @@ export async function validate_send_app_chat_message(
   tenant?: string;
   input: SendAppChatMessageInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6206,8 +6206,8 @@ export async function update_app<Fields extends UpdateAppFields | undefined = un
   input: UpdateAppInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateAppResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -6237,8 +6237,8 @@ export async function validate_update_app(
   identity: UUID | string;
   input: UpdateAppInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6358,8 +6358,8 @@ export type ListAppVersionsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListAppVersionsResult<Fields extends ListAppVersionsFields, Page extends ListAppVersionsConfig["page"] = undefined> = | { success: true; data: InferListAppVersionsResult<Fields, Page>; }
@@ -6401,8 +6401,8 @@ export async function validate_list_app_versions(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6513,8 +6513,8 @@ export async function attach_library_to_app<Fields extends AttachLibraryToAppFie
   input: AttachLibraryToAppInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<AttachLibraryToAppResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -6542,8 +6542,8 @@ export async function validate_attach_library_to_app(
   tenant?: string;
   input: AttachLibraryToAppInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6631,8 +6631,8 @@ export async function detach_library_from_app(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DetachLibraryFromAppResult> {
   const payload = {
@@ -6659,8 +6659,8 @@ export async function validate_detach_library_from_app(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6773,8 +6773,8 @@ export type ListAppLibrariesConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListAppLibrariesResult<Fields extends ListAppLibrariesFields, Page extends ListAppLibrariesConfig["page"] = undefined> = | { success: true; data: InferListAppLibrariesResult<Fields, Page>; }
@@ -6816,8 +6816,8 @@ export async function validate_list_app_libraries(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -6928,8 +6928,8 @@ export async function list_libraries_for_app<Fields extends ListLibrariesForAppF
   filter?: AppLibraryFilterInput;
   sort?: SortString<AppLibrarySortField> | SortString<AppLibrarySortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListLibrariesForAppResult<Fields>> {
   const payload = {
@@ -6959,8 +6959,8 @@ export async function validate_list_libraries_for_app(
   tenant?: string;
   input: ListLibrariesForAppInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7068,8 +7068,8 @@ export async function answer_activity_prompt<Fields extends AnswerActivityPrompt
   input: AnswerActivityPromptInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<AnswerActivityPromptResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -7097,8 +7097,8 @@ export async function validate_answer_activity_prompt(
   tenant?: string;
   input: AnswerActivityPromptInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7202,8 +7202,8 @@ export async function complete_activity_step<Fields extends CompleteActivityStep
   input: CompleteActivityStepInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CompleteActivityStepResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -7231,8 +7231,8 @@ export async function validate_complete_activity_step(
   tenant?: string;
   input: CompleteActivityStepInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7332,8 +7332,8 @@ export async function advance_enrollment_session<Fields extends AdvanceEnrollmen
   input?: AdvanceEnrollmentSessionInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<AdvanceEnrollmentSessionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -7363,8 +7363,8 @@ export async function validate_advance_enrollment_session(
   identity: UUID | string;
   input?: AdvanceEnrollmentSessionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7464,8 +7464,8 @@ export async function complete_enrollment<Fields extends CompleteEnrollmentField
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CompleteEnrollmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -7493,8 +7493,8 @@ export async function validate_complete_enrollment(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7601,8 +7601,8 @@ export async function create_enrollment<Fields extends CreateEnrollmentFields | 
   input: CreateEnrollmentInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateEnrollmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -7630,8 +7630,8 @@ export async function validate_create_enrollment(
   tenant?: string;
   input: CreateEnrollmentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7732,8 +7732,8 @@ export async function find_enrollment<Fields extends FindEnrollmentFields>(
   filter?: CourseEnrollmentFilterInput;
   sort?: SortString<CourseEnrollmentSortField> | SortString<CourseEnrollmentSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<FindEnrollmentResult<Fields>> {
   const payload = {
@@ -7763,8 +7763,8 @@ export async function validate_find_enrollment(
   tenant?: string;
   input: FindEnrollmentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7866,8 +7866,8 @@ export async function get_enrollment<Fields extends GetEnrollmentFields>(
   input: GetEnrollmentInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetEnrollmentResult<Fields>> {
   const payload = {
@@ -7895,8 +7895,8 @@ export async function validate_get_enrollment(
   tenant?: string;
   input: GetEnrollmentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -7991,8 +7991,8 @@ export async function pause_enrollment<Fields extends PauseEnrollmentFields | un
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<PauseEnrollmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -8020,8 +8020,8 @@ export async function validate_pause_enrollment(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8116,8 +8116,8 @@ export async function reactivate_enrollment<Fields extends ReactivateEnrollmentF
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ReactivateEnrollmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -8145,8 +8145,8 @@ export async function validate_reactivate_enrollment(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8241,8 +8241,8 @@ export async function resume_enrollment<Fields extends ResumeEnrollmentFields | 
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ResumeEnrollmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -8270,8 +8270,8 @@ export async function validate_resume_enrollment(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8366,8 +8366,8 @@ export async function start_enrollment<Fields extends StartEnrollmentFields | un
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<StartEnrollmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -8395,8 +8395,8 @@ export async function validate_start_enrollment(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8491,8 +8491,8 @@ export async function list_app_templates<Fields extends ListAppTemplatesFields>(
   filter?: AppTemplateFilterInput;
   sort?: SortString<AppTemplateSortField> | SortString<AppTemplateSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListAppTemplatesResult<Fields>> {
   const payload = {
@@ -8520,8 +8520,8 @@ export async function validate_list_app_templates(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8620,8 +8620,8 @@ export async function list_app_templates_for_type<Fields extends ListAppTemplate
   filter?: AppTemplateFilterInput;
   sort?: SortString<AppTemplateSortField> | SortString<AppTemplateSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListAppTemplatesForTypeResult<Fields>> {
   const payload = {
@@ -8651,8 +8651,8 @@ export async function validate_list_app_templates_for_type(
   tenant?: string;
   input: ListAppTemplatesForTypeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8756,8 +8756,8 @@ export async function list_webhook_deliveries<Fields extends ListWebhookDeliveri
   filter?: WebhookDeliveryFilterInput;
   sort?: SortString<WebhookDeliverySortField> | SortString<WebhookDeliverySortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListWebhookDeliveriesResult<Fields>> {
   const payload = {
@@ -8787,8 +8787,8 @@ export async function validate_list_webhook_deliveries(
   tenant?: string;
   input: ListWebhookDeliveriesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -8896,8 +8896,8 @@ export async function create_webhook_subscription<Fields extends CreateWebhookSu
   input: CreateWebhookSubscriptionInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateWebhookSubscriptionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -8925,8 +8925,8 @@ export async function validate_create_webhook_subscription(
   tenant?: string;
   input: CreateWebhookSubscriptionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9014,8 +9014,8 @@ export async function destroy_webhook_subscription(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DestroyWebhookSubscriptionResult> {
   const payload = {
@@ -9042,8 +9042,8 @@ export async function validate_destroy_webhook_subscription(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9141,8 +9141,8 @@ export async function list_webhook_subscriptions<Fields extends ListWebhookSubsc
   filter?: WebhookSubscriptionFilterInput;
   sort?: SortString<WebhookSubscriptionSortField> | SortString<WebhookSubscriptionSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListWebhookSubscriptionsResult<Fields>> {
   const payload = {
@@ -9172,8 +9172,8 @@ export async function validate_list_webhook_subscriptions(
   tenant?: string;
   input: ListWebhookSubscriptionsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9272,8 +9272,8 @@ export async function send_test_webhook(
   tenant?: string;
   input: SendTestWebhookInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SendTestWebhookResult> {
   const payload = {
@@ -9300,8 +9300,8 @@ export async function validate_send_test_webhook(
   tenant?: string;
   input: SendTestWebhookInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9402,8 +9402,8 @@ export async function update_webhook_subscription<Fields extends UpdateWebhookSu
   input: UpdateWebhookSubscriptionInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateWebhookSubscriptionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -9433,8 +9433,8 @@ export async function validate_update_webhook_subscription(
   identity: UUID | string;
   input: UpdateWebhookSubscriptionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9540,8 +9540,8 @@ export async function create_feature_flag<Fields extends CreateFeatureFlagFields
   input: CreateFeatureFlagInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateFeatureFlagResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -9569,8 +9569,8 @@ export async function validate_create_feature_flag(
   tenant?: string;
   input: CreateFeatureFlagInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9658,8 +9658,8 @@ export async function delete_feature_flag(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteFeatureFlagResult> {
   const payload = {
@@ -9686,8 +9686,8 @@ export async function validate_delete_feature_flag(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9780,8 +9780,8 @@ export async function list_feature_flags<Fields extends ListFeatureFlagsFields>(
   filter?: FeatureFlagFilterInput;
   sort?: SortString<FeatureFlagSortField> | SortString<FeatureFlagSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListFeatureFlagsResult<Fields>> {
   const payload = {
@@ -9809,8 +9809,8 @@ export async function validate_list_feature_flags(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -9909,8 +9909,8 @@ export async function update_feature_flag<Fields extends UpdateFeatureFlagFields
   input?: UpdateFeatureFlagInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateFeatureFlagResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -9940,8 +9940,8 @@ export async function validate_update_feature_flag(
   identity: UUID | string;
   input?: UpdateFeatureFlagInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10056,8 +10056,8 @@ export async function create_feedback<Fields extends CreateFeedbackFields | unde
   input: CreateFeedbackInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateFeedbackResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -10085,8 +10085,8 @@ export async function validate_create_feedback(
   tenant?: string;
   input: CreateFeedbackInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10201,8 +10201,8 @@ export type ListFeedbackConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListFeedbackResult<Fields extends ListFeedbackFields, Page extends ListFeedbackConfig["page"] = undefined> = | { success: true; data: InferListFeedbackResult<Fields, Page>; }
@@ -10244,8 +10244,8 @@ export async function validate_list_feedback(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10367,8 +10367,8 @@ export async function update_feedback<Fields extends UpdateFeedbackFields | unde
   input: UpdateFeedbackInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateFeedbackResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -10398,8 +10398,8 @@ export async function validate_update_feedback(
   identity: UUID | string;
   input: UpdateFeedbackInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10520,8 +10520,8 @@ export async function create_homepage_card<Fields extends CreateHomepageCardFiel
   input: CreateHomepageCardInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateHomepageCardResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -10549,8 +10549,8 @@ export async function validate_create_homepage_card(
   tenant?: string;
   input: CreateHomepageCardInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10638,8 +10638,8 @@ export async function delete_homepage_card(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteHomepageCardResult> {
   const payload = {
@@ -10666,8 +10666,8 @@ export async function validate_delete_homepage_card(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10760,8 +10760,8 @@ export async function list_homepage_cards<Fields extends ListHomepageCardsFields
   filter?: HomepageCardFilterInput;
   sort?: SortString<HomepageCardSortField> | SortString<HomepageCardSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListHomepageCardsResult<Fields>> {
   const payload = {
@@ -10789,8 +10789,8 @@ export async function validate_list_homepage_cards(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -10906,8 +10906,8 @@ export async function update_homepage_card<Fields extends UpdateHomepageCardFiel
   input: UpdateHomepageCardInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateHomepageCardResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -10937,8 +10937,8 @@ export async function validate_update_homepage_card(
   identity: UUID | string;
   input: UpdateHomepageCardInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -11093,8 +11093,8 @@ export async function create_chat_config<Fields extends CreateChatConfigFields |
   input?: CreateChatConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateChatConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -11122,8 +11122,8 @@ export async function validate_create_chat_config(
   tenant?: string;
   input?: CreateChatConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -11238,8 +11238,8 @@ export type ListChatConfigsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListChatConfigsResult<Fields extends ListChatConfigsFields, Page extends ListChatConfigsConfig["page"] = undefined> = | { success: true; data: InferListChatConfigsResult<Fields, Page>; }
@@ -11281,8 +11281,8 @@ export async function validate_list_chat_configs(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -11444,8 +11444,8 @@ export async function update_chat_config<Fields extends UpdateChatConfigFields |
   input?: UpdateChatConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateChatConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -11475,8 +11475,8 @@ export async function validate_update_chat_config(
   identity: UUID | string;
   input?: UpdateChatConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -11588,8 +11588,8 @@ export async function create_origin_asset<Fields extends CreateOriginAssetFields
   input: CreateOriginAssetInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateOriginAssetResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -11617,8 +11617,8 @@ export async function validate_create_origin_asset(
   tenant?: string;
   input: CreateOriginAssetInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -11717,8 +11717,8 @@ export async function edit_asset_image(
   tenant?: string;
   input: EditAssetImageInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<EditAssetImageResult> {
   const payload = {
@@ -11745,8 +11745,8 @@ export async function validate_edit_asset_image(
   tenant?: string;
   input: EditAssetImageInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -11848,8 +11848,8 @@ export type ListOriginAssetsConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListOriginAssetsResult<Fields extends ListOriginAssetsFields, Page extends ListOriginAssetsConfig["page"] = undefined> = | { success: true; data: InferListOriginAssetsResult<Fields, Page>; }
@@ -11891,8 +11891,8 @@ export async function validate_list_origin_assets(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12007,8 +12007,8 @@ export async function update_origin_asset<Fields extends UpdateOriginAssetFields
   input: UpdateOriginAssetInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateOriginAssetResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -12038,8 +12038,8 @@ export async function validate_update_origin_asset(
   identity: UUID | string;
   input: UpdateOriginAssetInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12142,8 +12142,8 @@ export async function clone_cartesia_voice(
   tenant?: string;
   input: CloneCartesiaVoiceInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CloneCartesiaVoiceResult> {
   const payload = {
@@ -12170,8 +12170,8 @@ export async function validate_clone_cartesia_voice(
   tenant?: string;
   input: CloneCartesiaVoiceInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12312,8 +12312,8 @@ export async function create_origin_entity<Fields extends CreateOriginEntityFiel
   input: CreateOriginEntityInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateOriginEntityResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -12341,8 +12341,8 @@ export async function validate_create_origin_entity(
   tenant?: string;
   input: CreateOriginEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12430,8 +12430,8 @@ export async function delete_origin_entity(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteOriginEntityResult> {
   const payload = {
@@ -12458,8 +12458,8 @@ export async function validate_delete_origin_entity(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12553,8 +12553,8 @@ export async function discover_and_extract_profile(
   tenant?: string;
   input: DiscoverAndExtractProfileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DiscoverAndExtractProfileResult> {
   const payload = {
@@ -12581,8 +12581,8 @@ export async function validate_discover_and_extract_profile(
   tenant?: string;
   input: DiscoverAndExtractProfileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12675,8 +12675,8 @@ export async function discover_entity_links(
   tenant?: string;
   input: DiscoverEntityLinksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DiscoverEntityLinksResult> {
   const payload = {
@@ -12703,8 +12703,8 @@ export async function validate_discover_entity_links(
   tenant?: string;
   input: DiscoverEntityLinksInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12798,8 +12798,8 @@ export async function generate_profile_description(
   tenant?: string;
   input: GenerateProfileDescriptionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GenerateProfileDescriptionResult> {
   const payload = {
@@ -12826,8 +12826,8 @@ export async function validate_generate_profile_description(
   tenant?: string;
   input: GenerateProfileDescriptionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -12922,8 +12922,8 @@ export async function generate_soul_config(
   tenant?: string;
   input: GenerateSoulConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GenerateSoulConfigResult> {
   const payload = {
@@ -12950,8 +12950,8 @@ export async function validate_generate_soul_config(
   tenant?: string;
   input: GenerateSoulConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13047,8 +13047,8 @@ export async function get_origin_entity<Fields extends GetOriginEntityFields>(
   input: GetOriginEntityInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetOriginEntityResult<Fields>> {
   const payload = {
@@ -13076,8 +13076,8 @@ export async function validate_get_origin_entity(
   tenant?: string;
   input: GetOriginEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13175,8 +13175,8 @@ export async function get_origin_entity_by_slug<Fields extends GetOriginEntityBy
   input: GetOriginEntityBySlugInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetOriginEntityBySlugResult<Fields>> {
   const payload = {
@@ -13204,8 +13204,8 @@ export async function validate_get_origin_entity_by_slug(
   tenant?: string;
   input: GetOriginEntityBySlugInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13303,8 +13303,8 @@ export async function get_public_origin_entity<Fields extends GetPublicOriginEnt
   input: GetPublicOriginEntityInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetPublicOriginEntityResult<Fields>> {
   const payload = {
@@ -13332,8 +13332,8 @@ export async function validate_get_public_origin_entity(
   tenant?: string;
   input: GetPublicOriginEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13422,8 +13422,8 @@ export async function list_cartesia_voices(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListCartesiaVoicesResult> {
   const payload = {
@@ -13448,8 +13448,8 @@ export async function validate_list_cartesia_voices(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13546,8 +13546,8 @@ export type ListOriginEntitiesConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListOriginEntitiesResult<Fields extends ListOriginEntitiesFields, Page extends ListOriginEntitiesConfig["page"] = undefined> = | { success: true; data: InferListOriginEntitiesResult<Fields, Page>; }
@@ -13589,8 +13589,8 @@ export async function validate_list_origin_entities(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13692,8 +13692,8 @@ export async function list_origin_entities_for_switcher<Fields extends ListOrigi
   filter?: OriginEntityFilterInput;
   sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListOriginEntitiesForSwitcherResult<Fields>> {
   const payload = {
@@ -13721,8 +13721,8 @@ export async function validate_list_origin_entities_for_switcher(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13825,8 +13825,8 @@ export type ListOriginEntitiesForUserConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListOriginEntitiesForUserResult<Fields extends ListOriginEntitiesForUserFields, Page extends ListOriginEntitiesForUserConfig["page"] = undefined> = | { success: true; data: InferListOriginEntitiesForUserResult<Fields, Page>; }
@@ -13868,8 +13868,8 @@ export async function validate_list_origin_entities_for_user(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -13980,8 +13980,8 @@ export type ListPublicOriginEntitiesConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListPublicOriginEntitiesResult<Fields extends ListPublicOriginEntitiesFields, Page extends ListPublicOriginEntitiesConfig["page"] = undefined> = | { success: true; data: InferListPublicOriginEntitiesResult<Fields, Page>; }
@@ -14023,8 +14023,8 @@ export async function validate_list_public_origin_entities(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14130,8 +14130,8 @@ export async function scrape_website_content<Fields extends ScrapeWebsiteContent
   input: ScrapeWebsiteContentInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ScrapeWebsiteContentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -14159,8 +14159,8 @@ export async function validate_scrape_website_content(
   tenant?: string;
   input: ScrapeWebsiteContentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14254,8 +14254,8 @@ export async function speech_to_text(
   tenant?: string;
   input: SpeechToTextInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SpeechToTextResult> {
   const payload = {
@@ -14282,8 +14282,8 @@ export async function validate_speech_to_text(
   tenant?: string;
   input: SpeechToTextInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14378,8 +14378,8 @@ export async function text_to_speech(
   tenant?: string;
   input: TextToSpeechInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<TextToSpeechResult> {
   const payload = {
@@ -14406,8 +14406,8 @@ export async function validate_text_to_speech(
   tenant?: string;
   input: TextToSpeechInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14549,8 +14549,8 @@ export async function update_origin_entity<Fields extends UpdateOriginEntityFiel
   input: UpdateOriginEntityInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateOriginEntityResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -14580,8 +14580,8 @@ export async function validate_update_origin_entity(
   identity: UUID | string;
   input: UpdateOriginEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14689,8 +14689,8 @@ export async function update_origin_entity_profile_config<Fields extends UpdateO
   input?: UpdateOriginEntityProfileConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateOriginEntityProfileConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -14720,8 +14720,8 @@ export async function validate_update_origin_entity_profile_config(
   identity: UUID | string;
   input?: UpdateOriginEntityProfileConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14826,8 +14826,8 @@ export async function accept_membership_invitation<Fields extends AcceptMembersh
   input: AcceptMembershipInvitationInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<AcceptMembershipInvitationResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -14857,8 +14857,8 @@ export async function validate_accept_membership_invitation(
   identity: UUID | string;
   input: AcceptMembershipInvitationInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -14958,8 +14958,8 @@ export async function activate_membership<Fields extends ActivateMembershipField
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ActivateMembershipResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -14987,8 +14987,8 @@ export async function validate_activate_membership(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15095,8 +15095,8 @@ export async function create_origin_entity_membership<Fields extends CreateOrigi
   input: CreateOriginEntityMembershipInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateOriginEntityMembershipResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -15124,8 +15124,8 @@ export async function validate_create_origin_entity_membership(
   tenant?: string;
   input: CreateOriginEntityMembershipInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15213,8 +15213,8 @@ export async function delete_origin_entity_membership(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteOriginEntityMembershipResult> {
   const payload = {
@@ -15241,8 +15241,8 @@ export async function validate_delete_origin_entity_membership(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15340,8 +15340,8 @@ export async function get_inherited_memberships<Fields extends GetInheritedMembe
   filter?: OriginEntityMembershipFilterInput;
   sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetInheritedMembershipsResult<Fields>> {
   const payload = {
@@ -15371,8 +15371,8 @@ export async function validate_get_inherited_memberships(
   tenant?: string;
   input: GetInheritedMembershipsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15474,8 +15474,8 @@ export async function get_membership_by_token<Fields extends GetMembershipByToke
   input: GetMembershipByTokenInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetMembershipByTokenResult<Fields>> {
   const payload = {
@@ -15503,8 +15503,8 @@ export async function validate_get_membership_by_token(
   tenant?: string;
   input: GetMembershipByTokenInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15604,8 +15604,8 @@ export async function get_memberships_for_origin<Fields extends GetMembershipsFo
   filter?: OriginEntityMembershipFilterInput;
   sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetMembershipsForOriginResult<Fields>> {
   const payload = {
@@ -15635,8 +15635,8 @@ export async function validate_get_memberships_for_origin(
   tenant?: string;
   input: GetMembershipsForOriginInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15740,8 +15740,8 @@ export async function get_memberships_for_user<Fields extends GetMembershipsForU
   filter?: OriginEntityMembershipFilterInput;
   sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetMembershipsForUserResult<Fields>> {
   const payload = {
@@ -15771,8 +15771,8 @@ export async function validate_get_memberships_for_user(
   tenant?: string;
   input: GetMembershipsForUserInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -15874,8 +15874,8 @@ export async function get_origin_entity_membership<Fields extends GetOriginEntit
   input: GetOriginEntityMembershipInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetOriginEntityMembershipResult<Fields>> {
   const payload = {
@@ -15903,8 +15903,8 @@ export async function validate_get_origin_entity_membership(
   tenant?: string;
   input: GetOriginEntityMembershipInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16004,8 +16004,8 @@ export async function get_pending_memberships<Fields extends GetPendingMembershi
   filter?: OriginEntityMembershipFilterInput;
   sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetPendingMembershipsResult<Fields>> {
   const payload = {
@@ -16035,8 +16035,8 @@ export async function validate_get_pending_memberships(
   tenant?: string;
   input: GetPendingMembershipsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16141,8 +16141,8 @@ export async function invite_to_origin<Fields extends InviteToOriginFields | und
   input: InviteToOriginInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<InviteToOriginResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -16170,8 +16170,8 @@ export async function validate_invite_to_origin(
   tenant?: string;
   input: InviteToOriginInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16286,8 +16286,8 @@ export type ListOriginEntityMembershipsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListOriginEntityMembershipsResult<Fields extends ListOriginEntityMembershipsFields, Page extends ListOriginEntityMembershipsConfig["page"] = undefined> = | { success: true; data: InferListOriginEntityMembershipsResult<Fields, Page>; }
@@ -16329,8 +16329,8 @@ export async function validate_list_origin_entity_memberships(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16436,8 +16436,8 @@ export async function suspend_membership<Fields extends SuspendMembershipFields 
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SuspendMembershipResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -16465,8 +16465,8 @@ export async function validate_suspend_membership(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16574,8 +16574,8 @@ export async function update_origin_entity_membership<Fields extends UpdateOrigi
   input: UpdateOriginEntityMembershipInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateOriginEntityMembershipResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -16605,8 +16605,8 @@ export async function validate_update_origin_entity_membership(
   identity: UUID | string;
   input: UpdateOriginEntityMembershipInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16718,8 +16718,8 @@ export async function create_prompt_context<Fields extends CreatePromptContextFi
   input: CreatePromptContextInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreatePromptContextResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -16747,8 +16747,8 @@ export async function validate_create_prompt_context(
   tenant?: string;
   input: CreatePromptContextInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16836,8 +16836,8 @@ export async function delete_prompt_context(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeletePromptContextResult> {
   const payload = {
@@ -16864,8 +16864,8 @@ export async function validate_delete_prompt_context(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -16958,8 +16958,8 @@ export async function get_prompt_context_public_title(
   tenant?: string;
   input: GetPromptContextPublicTitleInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetPromptContextPublicTitleResult> {
   const payload = {
@@ -16986,8 +16986,8 @@ export async function validate_get_prompt_context_public_title(
   tenant?: string;
   input: GetPromptContextPublicTitleInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17085,8 +17085,8 @@ export async function list_prompt_contexts_for_origin<Fields extends ListPromptC
   filter?: PromptContextFilterInput;
   sort?: SortString<PromptContextSortField> | SortString<PromptContextSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListPromptContextsForOriginResult<Fields>> {
   const payload = {
@@ -17116,8 +17116,8 @@ export async function validate_list_prompt_contexts_for_origin(
   tenant?: string;
   input: ListPromptContextsForOriginInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17228,8 +17228,8 @@ export async function update_prompt_context<Fields extends UpdatePromptContextFi
   input: UpdatePromptContextInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdatePromptContextResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -17259,8 +17259,8 @@ export async function validate_update_prompt_context(
   identity: UUID | string;
   input: UpdatePromptContextInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17374,8 +17374,8 @@ export async function create_prompt_tool<Fields extends CreatePromptToolFields |
   input: CreatePromptToolInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreatePromptToolResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -17403,8 +17403,8 @@ export async function validate_create_prompt_tool(
   tenant?: string;
   input: CreatePromptToolInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17492,8 +17492,8 @@ export async function delete_prompt_tool(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeletePromptToolResult> {
   const payload = {
@@ -17520,8 +17520,8 @@ export async function validate_delete_prompt_tool(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17619,8 +17619,8 @@ export async function list_prompt_tools_for_origin<Fields extends ListPromptTool
   filter?: PromptToolFilterInput;
   sort?: SortString<PromptToolSortField> | SortString<PromptToolSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListPromptToolsForOriginResult<Fields>> {
   const payload = {
@@ -17650,8 +17650,8 @@ export async function validate_list_prompt_tools_for_origin(
   tenant?: string;
   input: ListPromptToolsForOriginInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17764,8 +17764,8 @@ export async function update_prompt_tool<Fields extends UpdatePromptToolFields |
   input: UpdatePromptToolInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdatePromptToolResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -17795,8 +17795,8 @@ export async function validate_update_prompt_tool(
   identity: UUID | string;
   input: UpdatePromptToolInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -17909,8 +17909,8 @@ export async function create_setup_progress<Fields extends CreateSetupProgressFi
   input: CreateSetupProgressInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateSetupProgressResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -17938,8 +17938,8 @@ export async function validate_create_setup_progress(
   tenant?: string;
   input: CreateSetupProgressInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18054,8 +18054,8 @@ export type ListSetupProgressConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListSetupProgressResult<Fields extends ListSetupProgressFields, Page extends ListSetupProgressConfig["page"] = undefined> = | { success: true; data: InferListSetupProgressResult<Fields, Page>; }
@@ -18097,8 +18097,8 @@ export async function validate_list_setup_progress(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18218,8 +18218,8 @@ export async function update_setup_progress<Fields extends UpdateSetupProgressFi
   input: UpdateSetupProgressInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateSetupProgressResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -18249,8 +18249,8 @@ export async function validate_update_setup_progress(
   identity: UUID | string;
   input: UpdateSetupProgressInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18365,8 +18365,8 @@ export async function create_soul_config<Fields extends CreateSoulConfigFields |
   input?: CreateSoulConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateSoulConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -18394,8 +18394,8 @@ export async function validate_create_soul_config(
   tenant?: string;
   input?: CreateSoulConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18493,8 +18493,8 @@ export async function generate_conversation_starters(
   tenant?: string;
   input?: GenerateConversationStartersInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GenerateConversationStartersResult> {
   const payload = {
@@ -18521,8 +18521,8 @@ export async function validate_generate_conversation_starters(
   tenant?: string;
   input?: GenerateConversationStartersInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18635,8 +18635,8 @@ export type ListSoulConfigsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListSoulConfigsResult<Fields extends ListSoulConfigsFields, Page extends ListSoulConfigsConfig["page"] = undefined> = | { success: true; data: InferListSoulConfigsResult<Fields, Page>; }
@@ -18678,8 +18678,8 @@ export async function validate_list_soul_configs(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18801,8 +18801,8 @@ export async function update_soul_config<Fields extends UpdateSoulConfigFields |
   input?: UpdateSoulConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateSoulConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -18832,8 +18832,8 @@ export async function validate_update_soul_config(
   identity: UUID | string;
   input?: UpdateSoulConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -18953,8 +18953,8 @@ export type ListUserProfilesConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListUserProfilesResult<Fields extends ListUserProfilesFields, Page extends ListUserProfilesConfig["page"] = undefined> = | { success: true; data: InferListUserProfilesResult<Fields, Page>; }
@@ -18996,8 +18996,8 @@ export async function validate_list_user_profiles(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19115,8 +19115,8 @@ export async function update_user_profile<Fields extends UpdateUserProfileFields
   input: UpdateUserProfileInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateUserProfileResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -19146,8 +19146,8 @@ export async function validate_update_user_profile(
   identity: { user_id: UUID | string };
   input: UpdateUserProfileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19267,8 +19267,8 @@ export type ListInterviewGeneratedContentsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListInterviewGeneratedContentsResult<Fields extends ListInterviewGeneratedContentsFields, Page extends ListInterviewGeneratedContentsConfig["page"] = undefined> = | { success: true; data: InferListInterviewGeneratedContentsResult<Fields, Page>; }
@@ -19310,8 +19310,8 @@ export async function validate_list_interview_generated_contents(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19427,8 +19427,8 @@ export async function update_interview_generated_content<Fields extends UpdateIn
   input: UpdateInterviewGeneratedContentInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateInterviewGeneratedContentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -19458,8 +19458,8 @@ export async function validate_update_interview_generated_content(
   identity: UUID | string;
   input: UpdateInterviewGeneratedContentInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19558,8 +19558,8 @@ export async function presign_recording_download_url(
   tenant?: string;
   input: PresignRecordingDownloadUrlInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<PresignRecordingDownloadUrlResult> {
   const payload = {
@@ -19586,8 +19586,8 @@ export async function validate_presign_recording_download_url(
   tenant?: string;
   input: PresignRecordingDownloadUrlInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19691,8 +19691,8 @@ export async function create_interview_session<Fields extends CreateInterviewSes
   input: CreateInterviewSessionInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateInterviewSessionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -19720,8 +19720,8 @@ export async function validate_create_interview_session(
   tenant?: string;
   input: CreateInterviewSessionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19816,8 +19816,8 @@ export async function finish_interview_session<Fields extends FinishInterviewSes
   identity: UUID;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<FinishInterviewSessionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -19845,8 +19845,8 @@ export async function validate_finish_interview_session(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -19940,8 +19940,8 @@ export async function generate_interview_question(
   tenant?: string;
   input: GenerateInterviewQuestionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GenerateInterviewQuestionResult> {
   const payload = {
@@ -19968,8 +19968,8 @@ export async function validate_generate_interview_question(
   tenant?: string;
   input: GenerateInterviewQuestionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20065,8 +20065,8 @@ export async function get_interview_session<Fields extends GetInterviewSessionFi
   input: GetInterviewSessionInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetInterviewSessionResult<Fields>> {
   const payload = {
@@ -20094,8 +20094,8 @@ export async function validate_get_interview_session(
   tenant?: string;
   input: GetInterviewSessionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20210,8 +20210,8 @@ export type ListInterviewSessionsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListInterviewSessionsResult<Fields extends ListInterviewSessionsFields, Page extends ListInterviewSessionsConfig["page"] = undefined> = | { success: true; data: InferListInterviewSessionsResult<Fields, Page>; }
@@ -20253,8 +20253,8 @@ export async function validate_list_interview_sessions(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20372,8 +20372,8 @@ export async function update_interview_session<Fields extends UpdateInterviewSes
   input: UpdateInterviewSessionInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateInterviewSessionResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -20403,8 +20403,8 @@ export async function validate_update_interview_session(
   identity: UUID | string;
   input: UpdateInterviewSessionInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20512,8 +20512,8 @@ export async function create_interview_turn<Fields extends CreateInterviewTurnFi
   input: CreateInterviewTurnInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateInterviewTurnResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -20541,8 +20541,8 @@ export async function validate_create_interview_turn(
   tenant?: string;
   input: CreateInterviewTurnInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20642,8 +20642,8 @@ export async function get_drive_connection_for_entity<Fields extends GetDriveCon
   filter?: DriveConnectionFilterInput;
   sort?: SortString<DriveConnectionSortField> | SortString<DriveConnectionSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetDriveConnectionForEntityResult<Fields>> {
   const payload = {
@@ -20673,8 +20673,8 @@ export async function validate_get_drive_connection_for_entity(
   tenant?: string;
   input: GetDriveConnectionForEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20773,8 +20773,8 @@ export async function initiate_drive_oauth(
   tenant?: string;
   input: InitiateDriveOauthInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<InitiateDriveOauthResult> {
   const payload = {
@@ -20801,8 +20801,8 @@ export async function validate_initiate_drive_oauth(
   tenant?: string;
   input: InitiateDriveOauthInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -20900,8 +20900,8 @@ export async function get_github_connection_for_entity<Fields extends GetGithubC
   filter?: GithubConnectionFilterInput;
   sort?: SortString<GithubConnectionSortField> | SortString<GithubConnectionSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetGithubConnectionForEntityResult<Fields>> {
   const payload = {
@@ -20931,8 +20931,8 @@ export async function validate_get_github_connection_for_entity(
   tenant?: string;
   input: GetGithubConnectionForEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21031,8 +21031,8 @@ export async function initiate_github_oauth(
   tenant?: string;
   input: InitiateGithubOauthInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<InitiateGithubOauthResult> {
   const payload = {
@@ -21059,8 +21059,8 @@ export async function validate_initiate_github_oauth(
   tenant?: string;
   input: InitiateGithubOauthInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21154,8 +21154,8 @@ export async function list_github_branches(
   tenant?: string;
   input: ListGithubBranchesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListGithubBranchesResult> {
   const payload = {
@@ -21182,8 +21182,8 @@ export async function validate_list_github_branches(
   tenant?: string;
   input: ListGithubBranchesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21275,8 +21275,8 @@ export async function list_github_repositories(
   tenant?: string;
   input: ListGithubRepositoriesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListGithubRepositoriesResult> {
   const payload = {
@@ -21303,8 +21303,8 @@ export async function validate_list_github_repositories(
   tenant?: string;
   input: ListGithubRepositoriesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21408,8 +21408,8 @@ export async function create_library<Fields extends CreateLibraryFields | undefi
   input: CreateLibraryInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateLibraryResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -21437,8 +21437,8 @@ export async function validate_create_library(
   tenant?: string;
   input: CreateLibraryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21526,8 +21526,8 @@ export async function delete_library(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteLibraryResult> {
   const payload = {
@@ -21554,8 +21554,8 @@ export async function validate_delete_library(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21651,8 +21651,8 @@ export async function get_library<Fields extends GetLibraryFields>(
   input: GetLibraryInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetLibraryResult<Fields>> {
   const payload = {
@@ -21680,8 +21680,8 @@ export async function validate_get_library(
   tenant?: string;
   input: GetLibraryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21776,8 +21776,8 @@ export async function library_shell_exec(
   tenant?: string;
   input: LibraryShellExecInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<LibraryShellExecResult> {
   const payload = {
@@ -21804,8 +21804,8 @@ export async function validate_library_shell_exec(
   tenant?: string;
   input: LibraryShellExecInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -21897,8 +21897,8 @@ export async function library_shell_list_tree(
   tenant?: string;
   input: LibraryShellListTreeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<LibraryShellListTreeResult> {
   const payload = {
@@ -21925,8 +21925,8 @@ export async function validate_library_shell_list_tree(
   tenant?: string;
   input: LibraryShellListTreeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22019,8 +22019,8 @@ export async function library_shell_read(
   tenant?: string;
   input: LibraryShellReadInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<LibraryShellReadResult> {
   const payload = {
@@ -22047,8 +22047,8 @@ export async function validate_library_shell_read(
   tenant?: string;
   input: LibraryShellReadInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22150,8 +22150,8 @@ export type ListLibrariesConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListLibrariesResult<Fields extends ListLibrariesFields, Page extends ListLibrariesConfig["page"] = undefined> = | { success: true; data: InferListLibrariesResult<Fields, Page>; }
@@ -22193,8 +22193,8 @@ export async function validate_list_libraries(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22310,8 +22310,8 @@ export type ListLibrariesForOriginConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListLibrariesForOriginResult<Fields extends ListLibrariesForOriginFields, Page extends ListLibrariesForOriginConfig["page"] = undefined> = | { success: true; data: InferListLibrariesForOriginResult<Fields, Page>; }
@@ -22355,8 +22355,8 @@ export async function validate_list_libraries_for_origin(
   tenant?: string;
   input: ListLibrariesForOriginInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22463,8 +22463,8 @@ export async function preview_library_sync_filter(
   tenant?: string;
   input: PreviewLibrarySyncFilterInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<PreviewLibrarySyncFilterResult> {
   const payload = {
@@ -22491,8 +22491,8 @@ export async function validate_preview_library_sync_filter(
   tenant?: string;
   input: PreviewLibrarySyncFilterInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22584,8 +22584,8 @@ export async function sync_library_now(
   tenant?: string;
   input: SyncLibraryNowInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SyncLibraryNowResult> {
   const payload = {
@@ -22612,8 +22612,8 @@ export async function validate_sync_library_now(
   tenant?: string;
   input: SyncLibraryNowInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22715,8 +22715,8 @@ export async function update_library<Fields extends UpdateLibraryFields | undefi
   input: UpdateLibraryInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateLibraryResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -22746,8 +22746,8 @@ export async function validate_update_library(
   identity: UUID | string;
   input: UpdateLibraryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22852,8 +22852,8 @@ export async function update_library_sync_filter<Fields extends UpdateLibrarySyn
   input: UpdateLibrarySyncFilterInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateLibrarySyncFilterResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -22883,8 +22883,8 @@ export async function validate_update_library_sync_filter(
   identity: UUID | string;
   input: UpdateLibrarySyncFilterInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -22989,8 +22989,8 @@ export async function create_library_access_grant<Fields extends CreateLibraryAc
   input: CreateLibraryAccessGrantInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateLibraryAccessGrantResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -23018,8 +23018,8 @@ export async function validate_create_library_access_grant(
   tenant?: string;
   input: CreateLibraryAccessGrantInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23107,8 +23107,8 @@ export async function delete_library_access_grant(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteLibraryAccessGrantResult> {
   const payload = {
@@ -23135,8 +23135,8 @@ export async function validate_delete_library_access_grant(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23249,8 +23249,8 @@ export type ListLibraryAccessGrantsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListLibraryAccessGrantsResult<Fields extends ListLibraryAccessGrantsFields, Page extends ListLibraryAccessGrantsConfig["page"] = undefined> = | { success: true; data: InferListLibraryAccessGrantsResult<Fields, Page>; }
@@ -23292,8 +23292,8 @@ export async function validate_list_library_access_grants(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23411,8 +23411,8 @@ export async function create_library_file<Fields extends CreateLibraryFileFields
   input: CreateLibraryFileInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateLibraryFileResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -23440,8 +23440,8 @@ export async function validate_create_library_file(
   tenant?: string;
   input: CreateLibraryFileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23545,8 +23545,8 @@ export async function create_library_file_inline<Fields extends CreateLibraryFil
   input: CreateLibraryFileInlineInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateLibraryFileInlineResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -23574,8 +23574,8 @@ export async function validate_create_library_file_inline(
   tenant?: string;
   input: CreateLibraryFileInlineInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23663,8 +23663,8 @@ export async function delete_library_file(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteLibraryFileResult> {
   const payload = {
@@ -23691,8 +23691,8 @@ export async function validate_delete_library_file(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23788,8 +23788,8 @@ export async function get_library_file<Fields extends GetLibraryFileFields>(
   input: GetLibraryFileInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetLibraryFileResult<Fields>> {
   const payload = {
@@ -23817,8 +23817,8 @@ export async function validate_get_library_file(
   tenant?: string;
   input: GetLibraryFileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -23922,8 +23922,8 @@ export type ListLibraryFilesConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListLibraryFilesResult<Fields extends ListLibraryFilesFields, Page extends ListLibraryFilesConfig["page"] = undefined> = | { success: true; data: InferListLibraryFilesResult<Fields, Page>; }
@@ -23965,8 +23965,8 @@ export async function validate_list_library_files(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24082,8 +24082,8 @@ export type ListLibraryFilesForLibraryConfig = {
     count?: never;
   };
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListLibraryFilesForLibraryResult<Fields extends ListLibraryFilesForLibraryFields, Page extends ListLibraryFilesForLibraryConfig["page"] = undefined> = | { success: true; data: InferListLibraryFilesForLibraryResult<Fields, Page>; }
@@ -24127,8 +24127,8 @@ export async function validate_list_library_files_for_library(
   tenant?: string;
   input: ListLibraryFilesForLibraryInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24248,8 +24248,8 @@ export async function update_library_file<Fields extends UpdateLibraryFileFields
   input: UpdateLibraryFileInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateLibraryFileResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -24279,8 +24279,8 @@ export async function validate_update_library_file(
   identity: UUID | string;
   input: UpdateLibraryFileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24388,8 +24388,8 @@ export async function upsert_website_scrape_library_file<Fields extends UpsertWe
   input: UpsertWebsiteScrapeLibraryFileInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpsertWebsiteScrapeLibraryFileResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -24417,8 +24417,8 @@ export async function validate_upsert_website_scrape_library_file(
   tenant?: string;
   input: UpsertWebsiteScrapeLibraryFileInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24506,8 +24506,8 @@ export async function destroy_chat_binding(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DestroyChatBindingResult> {
   const payload = {
@@ -24534,8 +24534,8 @@ export async function validate_destroy_chat_binding(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24627,8 +24627,8 @@ export async function get_binding_preview(
   tenant?: string;
   input: GetBindingPreviewInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetBindingPreviewResult> {
   const payload = {
@@ -24655,8 +24655,8 @@ export async function validate_get_binding_preview(
   tenant?: string;
   input: GetBindingPreviewInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24769,8 +24769,8 @@ export type ListAllChatBindingsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListAllChatBindingsResult<Fields extends ListAllChatBindingsFields, Page extends ListAllChatBindingsConfig["page"] = undefined> = | { success: true; data: InferListAllChatBindingsResult<Fields, Page>; }
@@ -24812,8 +24812,8 @@ export async function validate_list_all_chat_bindings(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -24924,8 +24924,8 @@ export async function list_chat_bindings_for_origin_entity<Fields extends ListCh
   filter?: ChatBindingFilterInput;
   sort?: SortString<ChatBindingSortField> | SortString<ChatBindingSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ListChatBindingsForOriginEntityResult<Fields>> {
   const payload = {
@@ -24955,8 +24955,8 @@ export async function validate_list_chat_bindings_for_origin_entity(
   tenant?: string;
   input: ListChatBindingsForOriginEntityInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25062,8 +25062,8 @@ export async function register_prospect<Fields extends RegisterProspectFields | 
   input: RegisterProspectInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<RegisterProspectResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -25091,8 +25091,8 @@ export async function validate_register_prospect(
   tenant?: string;
   input: RegisterProspectInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25186,8 +25186,8 @@ export async function resolve_messaging_line(
   tenant?: string;
   input: ResolveMessagingLineInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ResolveMessagingLineResult> {
   const payload = {
@@ -25214,8 +25214,8 @@ export async function validate_resolve_messaging_line(
   tenant?: string;
   input: ResolveMessagingLineInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25330,8 +25330,8 @@ export async function create_podcast_config<Fields extends CreatePodcastConfigFi
   input?: CreatePodcastConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreatePodcastConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -25359,8 +25359,8 @@ export async function validate_create_podcast_config(
   tenant?: string;
   input?: CreatePodcastConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25475,8 +25475,8 @@ export type ListPodcastConfigsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListPodcastConfigsResult<Fields extends ListPodcastConfigsFields, Page extends ListPodcastConfigsConfig["page"] = undefined> = | { success: true; data: InferListPodcastConfigsResult<Fields, Page>; }
@@ -25518,8 +25518,8 @@ export async function validate_list_podcast_configs(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25625,8 +25625,8 @@ export async function sync_podcast_episodes(
   tenant?: string;
   input: SyncPodcastEpisodesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<SyncPodcastEpisodesResult> {
   const payload = {
@@ -25653,8 +25653,8 @@ export async function validate_sync_podcast_episodes(
   tenant?: string;
   input: SyncPodcastEpisodesInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25770,8 +25770,8 @@ export async function update_podcast_config<Fields extends UpdatePodcastConfigFi
   input?: UpdatePodcastConfigInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdatePodcastConfigResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -25801,8 +25801,8 @@ export async function validate_update_podcast_config(
   identity: UUID | string;
   input?: UpdatePodcastConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -25907,8 +25907,8 @@ export async function get_podcast_episode_settings_for_character<Fields extends 
   filter?: PodcastEpisodeSettingsFilterInput;
   sort?: SortString<PodcastEpisodeSettingsSortField> | SortString<PodcastEpisodeSettingsSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetPodcastEpisodeSettingsForCharacterResult<Fields>> {
   const payload = {
@@ -25938,8 +25938,8 @@ export async function validate_get_podcast_episode_settings_for_character(
   tenant?: string;
   input: GetPodcastEpisodeSettingsForCharacterInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26043,8 +26043,8 @@ export async function get_podcast_episode_settings_for_podcast_config<Fields ext
   filter?: PodcastEpisodeSettingsFilterInput;
   sort?: SortString<PodcastEpisodeSettingsSortField> | SortString<PodcastEpisodeSettingsSortField>[];
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetPodcastEpisodeSettingsForPodcastConfigResult<Fields>> {
   const payload = {
@@ -26074,8 +26074,8 @@ export async function validate_get_podcast_episode_settings_for_podcast_config(
   tenant?: string;
   input: GetPodcastEpisodeSettingsForPodcastConfigInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26194,8 +26194,8 @@ export type ListPodcastEpisodeSettingsConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListPodcastEpisodeSettingsResult<Fields extends ListPodcastEpisodeSettingsFields, Page extends ListPodcastEpisodeSettingsConfig["page"] = undefined> = | { success: true; data: InferListPodcastEpisodeSettingsResult<Fields, Page>; }
@@ -26237,8 +26237,8 @@ export async function validate_list_podcast_episode_settings(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26353,8 +26353,8 @@ export async function upsert_podcast_episode_settings<Fields extends UpsertPodca
   input: UpsertPodcastEpisodeSettingsInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpsertPodcastEpisodeSettingsResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -26382,8 +26382,8 @@ export async function validate_upsert_podcast_episode_settings(
   tenant?: string;
   input: UpsertPodcastEpisodeSettingsInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26499,8 +26499,8 @@ export async function create_youtube_episode<Fields extends CreateYoutubeEpisode
   input: CreateYoutubeEpisodeInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<CreateYoutubeEpisodeResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -26528,8 +26528,8 @@ export async function validate_create_youtube_episode(
   tenant?: string;
   input: CreateYoutubeEpisodeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26617,8 +26617,8 @@ export async function delete_youtube_episode(
   tenant?: string;
   identity: UUID;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<DeleteYoutubeEpisodeResult> {
   const payload = {
@@ -26645,8 +26645,8 @@ export async function validate_delete_youtube_episode(
   tenant?: string;
   identity: UUID | string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26739,8 +26739,8 @@ export async function fetch_youtube_single_video(
   tenant?: string;
   input: FetchYoutubeSingleVideoInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<FetchYoutubeSingleVideoResult> {
   const payload = {
@@ -26767,8 +26767,8 @@ export async function validate_fetch_youtube_single_video(
   tenant?: string;
   input: FetchYoutubeSingleVideoInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26860,8 +26860,8 @@ export async function fetch_youtube_transcript(
   tenant?: string;
   input: FetchYoutubeTranscriptInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<FetchYoutubeTranscriptResult> {
   const payload = {
@@ -26888,8 +26888,8 @@ export async function validate_fetch_youtube_transcript(
   tenant?: string;
   input: FetchYoutubeTranscriptInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -26985,8 +26985,8 @@ export async function get_youtube_episode<Fields extends GetYoutubeEpisodeFields
   input: GetYoutubeEpisodeInput;
   fields: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<GetYoutubeEpisodeResult<Fields>> {
   const payload = {
@@ -27014,8 +27014,8 @@ export async function validate_get_youtube_episode(
   tenant?: string;
   input: GetYoutubeEpisodeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -27130,8 +27130,8 @@ export type ListYoutubeEpisodesConfig = {
     }
   );
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 };
 
 export type ListYoutubeEpisodesResult<Fields extends ListYoutubeEpisodesFields, Page extends ListYoutubeEpisodesConfig["page"] = undefined> = | { success: true; data: InferListYoutubeEpisodesResult<Fields, Page>; }
@@ -27173,8 +27173,8 @@ export async function validate_list_youtube_episodes(
   config: {
   tenant?: string;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -27302,8 +27302,8 @@ export async function update_youtube_episode<Fields extends UpdateYoutubeEpisode
   input: UpdateYoutubeEpisodeInput;
   fields?: Fields;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<UpdateYoutubeEpisodeResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
@@ -27333,8 +27333,8 @@ export async function validate_update_youtube_episode(
   identity: UUID | string;
   input: UpdateYoutubeEpisodeInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
@@ -27435,8 +27435,8 @@ export async function youtube_fetch_public_data(
   tenant?: string;
   input: YoutubeFetchPublicDataInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<YoutubeFetchPublicDataResult> {
   const payload = {
@@ -27463,8 +27463,8 @@ export async function validate_youtube_fetch_public_data(
   tenant?: string;
   input: YoutubeFetchPublicDataInput;
   headers?: Record<string, string>;
-  fetchOptions?: RequestInit;
-  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
