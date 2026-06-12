@@ -7302,12 +7302,16 @@
       "filename": "./ash_rpc.ts",
       "importPath": "./ash_rpc"
     },
+    "typedChannels": {
+      "filename": "../../source_of_origins/secrets-universe/ash_typed_channels.ts",
+      "importPath": "../../source_of_origins/secrets-universe/ash_typed_channels"
+    },
     "types": {
       "filename": "./ash_types.ts",
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-11",
+  "generatedAt": "2026-06-12",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

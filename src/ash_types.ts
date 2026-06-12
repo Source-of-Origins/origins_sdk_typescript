@@ -9599,3 +9599,37 @@ export type ValidationResult =
 
 
 
+
+export type ChatStreamBlockedPayload = {ref: number, text: string};
+export type ChatStreamChunkPayload = {ref: number, text: string};
+export type ChatStreamCompletePayload = {ref: number, text: string, conversation_id: UUID};
+export type ChatStreamErrorPayload = {ref: number, error: string};
+export type ChatStreamIntermediatePayload = {ref: number, text: string};
+export type ChatStreamStartPayload = {ref: number, conversation_id: UUID};
+export type ChatStreamStatusPayload = {ref: number, status: string, tool_name: string | null};
+
+// Channel types for OriginsWeb.StreamingChatTypedChannel
+
+export type StreamingChatTypedChannel = {
+  readonly __channelType: "StreamingChatTypedChannel";
+  on(event: string, callback: (payload: unknown) => void): number;
+  off(event: string, ref: number): void;
+};
+
+export type StreamingChatTypedChannelEvents = {
+  chat_stream_blocked: ChatStreamBlockedPayload;
+  chat_stream_chunk: ChatStreamChunkPayload;
+  chat_stream_complete: ChatStreamCompletePayload;
+  chat_stream_error: ChatStreamErrorPayload;
+  chat_stream_intermediate: ChatStreamIntermediatePayload;
+  chat_stream_start: ChatStreamStartPayload;
+  chat_stream_status: ChatStreamStatusPayload;
+};
+
+export type StreamingChatTypedChannelHandlers = {
+  [E in keyof StreamingChatTypedChannelEvents]?: (payload: StreamingChatTypedChannelEvents[E]) => void;
+};
+
+export type StreamingChatTypedChannelRefs = {
+  [E in keyof StreamingChatTypedChannelEvents]?: number;
+};
