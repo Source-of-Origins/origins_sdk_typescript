@@ -15461,7 +15461,7 @@ export async function activate_membership_channel<Fields extends ActivateMembers
 
 export type CreateOriginEntityMembershipInput = {
   user_id?: UUID | null;
-  role: "admin" | "member" | "owner" | "viewer";
+  role?: "admin" | "member" | "owner" | "viewer";
   status?: "active" | "pending" | "suspended";
   invitation_token?: UUID | null;
   invited_email?: string | null;
@@ -16512,7 +16512,7 @@ export async function get_pending_memberships_channel<Fields extends GetPendingM
 
 
 export type InviteToOriginInput = {
-  role: "admin" | "member" | "owner" | "viewer";
+  role?: "admin" | "member" | "owner" | "viewer";
   invited_email?: string | null;
   origin_entity_id: UUID;
 };

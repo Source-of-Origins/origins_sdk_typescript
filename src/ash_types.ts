@@ -745,26 +745,38 @@ export type GenerationHistoryEntryInputSchema = {
 // OriginsAppsNode Schema
 export type OriginsAppsNodeResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min";
+  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
   id: string;
   type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
   required: boolean | null;
   max: number | null;
   min: number | null;
+  title: string | null;
+  description: string | null;
+  subtitle: string | null;
+  highlight: string | null;
+  options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionResourceSchema; };
+  sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderResourceSchema; };
 };
 
 
 
 export type OriginsAppsNodeAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min";
+  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
   id: string;
   type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
   required: boolean | null;
   max: number | null;
   min: number | null;
+  title: string | null;
+  description: string | null;
+  subtitle: string | null;
+  highlight: string | null;
+  options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionAttributesOnlySchema; };
+  sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderAttributesOnlySchema; };
 };
 
 
@@ -775,6 +787,66 @@ export type OriginsAppsNodeInputSchema = {
   required?: boolean | null;
   max?: number | null;
   min?: number | null;
+  title?: string | null;
+  description?: string | null;
+  subtitle?: string | null;
+  highlight?: string | null;
+  options?: Array<OriginsAppsOptionInputSchema> | null;
+  sliders?: Array<OriginsAppsSliderInputSchema> | null;
+};
+
+
+// OriginsAppsOption Schema
+export type OriginsAppsOptionResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "value" | "label";
+  value: string;
+  label: string;
+};
+
+
+
+export type OriginsAppsOptionAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "value" | "label";
+  value: string;
+  label: string;
+};
+
+
+export type OriginsAppsOptionInputSchema = {
+  value: string;
+  label: string;
+};
+
+
+// OriginsAppsSlider Schema
+export type OriginsAppsSliderResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "label" | "min" | "max";
+  id: string;
+  label: string | null;
+  min: number | null;
+  max: number | null;
+};
+
+
+
+export type OriginsAppsSliderAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "label" | "min" | "max";
+  id: string;
+  label: string | null;
+  min: number | null;
+  max: number | null;
+};
+
+
+export type OriginsAppsSliderInputSchema = {
+  id: string;
+  label?: string | null;
+  min?: number | null;
+  max?: number | null;
 };
 
 
@@ -4394,6 +4466,111 @@ export type OriginsAppsNodeFilterInput = {
   };
 
   min?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  description?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  subtitle?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  highlight?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  options?: {
+    eq?: Array<OriginsAppsOptionResourceSchema>;
+    not_eq?: Array<OriginsAppsOptionResourceSchema>;
+    in?: Array<Array<OriginsAppsOptionResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  sliders?: {
+    eq?: Array<OriginsAppsSliderResourceSchema>;
+    not_eq?: Array<OriginsAppsSliderResourceSchema>;
+    in?: Array<Array<OriginsAppsSliderResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsOptionFilterInput = {
+  and?: Array<OriginsAppsOptionFilterInput>;
+  or?: Array<OriginsAppsOptionFilterInput>;
+  not?: Array<OriginsAppsOptionFilterInput>;
+
+  value?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+
+
+};
+export type OriginsAppsSliderFilterInput = {
+  and?: Array<OriginsAppsSliderFilterInput>;
+  or?: Array<OriginsAppsSliderFilterInput>;
+  not?: Array<OriginsAppsSliderFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  min?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  max?: {
     eq?: number;
     not_eq?: number;
     greater_than?: number;
@@ -8848,8 +9025,14 @@ export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[nu
 export const generationHistoryEntryFilterFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntryFilterField = (typeof generationHistoryEntryFilterFields)[number];
 
-export const originsAppsNodeFilterFields = ["id", "type", "kind", "required", "max", "min"] as const;
+export const originsAppsNodeFilterFields = ["id", "type", "kind", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
 export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[number];
+
+export const originsAppsOptionFilterFields = ["value", "label"] as const;
+export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
+
+export const originsAppsSliderFilterFields = ["id", "label", "min", "max"] as const;
+export type OriginsAppsSliderFilterField = (typeof originsAppsSliderFilterFields)[number];
 
 export const appTemplateFilterFields = ["id", "name", "description", "app_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
 export type AppTemplateFilterField = (typeof appTemplateFilterFields)[number];
@@ -9041,8 +9224,14 @@ export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number
 export const generationHistoryEntrySortFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntrySortField = (typeof generationHistoryEntrySortFields)[number];
 
-export const originsAppsNodeSortFields = ["id", "type", "kind", "required", "max", "min"] as const;
+export const originsAppsNodeSortFields = ["id", "type", "kind", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
 export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number];
+
+export const originsAppsOptionSortFields = ["value", "label"] as const;
+export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
+
+export const originsAppsSliderSortFields = ["id", "label", "min", "max"] as const;
+export type OriginsAppsSliderSortField = (typeof originsAppsSliderSortFields)[number];
 
 export const appTemplateSortFields = ["id", "name", "description", "app_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
 export type AppTemplateSortField = (typeof appTemplateSortFields)[number];
