@@ -1353,6 +1353,7 @@ export type RegisterWithPasswordInput = {
   email: string;
   password: string;
   password_confirmation: string;
+  confirm_redirect_path?: string | null;
 };
 
 export type RegisterWithPasswordFields = UnifiedFieldSelection<UserResourceSchema>[];
@@ -7158,6 +7159,285 @@ export async function list_libraries_for_app_channel<Fields extends ListLibrarie
 }
 
 
+export type CompleteAssessmentInput = {
+  completed_at?: UtcDateTime | null;
+  email?: string | null;
+};
+
+export type CompleteAssessmentFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+
+export type InferCompleteAssessmentResult<
+  Fields extends CompleteAssessmentFields | undefined,
+> = InferResult<AssessmentResponseResourceSchema, Fields>;
+
+export type CompleteAssessmentResult<Fields extends CompleteAssessmentFields | undefined = undefined> = | { success: true; data: InferCompleteAssessmentResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing AssessmentResponse
+ *
+ * @ashActionType :update
+ */
+export async function complete_assessment<Fields extends CompleteAssessmentFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input?: CompleteAssessmentInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CompleteAssessmentResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "complete_assessment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<CompleteAssessmentResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing AssessmentResponse
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_complete_assessment(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input?: CompleteAssessmentInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "complete_assessment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing AssessmentResponse
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_complete_assessment_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input?: CompleteAssessmentInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "complete_assessment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing AssessmentResponse
+ *
+ * @ashActionType :update
+ */
+export async function complete_assessment_channel<Fields extends CompleteAssessmentFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input?: CompleteAssessmentInput;
+  fields?: Fields;
+  result_handler: (result: CompleteAssessmentResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CompleteAssessmentResult<Fields>>(
+    config.channel,
+    {
+    action: "complete_assessment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type CreateAssessmentResponseInput = {
+  app_id: UUID;
+  user_id?: UUID | null;
+  email?: string | null;
+  graph_snapshot_nodes?: Array<OriginsAppsNodeInputSchema> | null;
+  graph_snapshot_edges?: Array<OriginsAppsEdgeInputSchema> | null;
+  result?: Record<string, any> | null;
+  attribution?: Record<string, any> | null;
+  full_name?: string | null;
+  phone?: string | null;
+  completed_at?: UtcDateTime | null;
+  answers?: Record<string, any> | null;
+  path_history?: Array<string> | null;
+  current_node?: string | null;
+};
+
+export type CreateAssessmentResponseFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+
+export type InferCreateAssessmentResponseResult<
+  Fields extends CreateAssessmentResponseFields | undefined,
+> = InferResult<AssessmentResponseResourceSchema, Fields>;
+
+export type CreateAssessmentResponseResult<Fields extends CreateAssessmentResponseFields | undefined = undefined> = | { success: true; data: InferCreateAssessmentResponseResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ */
+export async function create_assessment_response<Fields extends CreateAssessmentResponseFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: CreateAssessmentResponseInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CreateAssessmentResponseResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "create_assessment_response",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<CreateAssessmentResponseResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_assessment_response(
+  config: {
+  tenant?: string;
+  input: CreateAssessmentResponseInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "create_assessment_response",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_assessment_response_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateAssessmentResponseInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "create_assessment_response",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ */
+export async function create_assessment_response_channel<Fields extends CreateAssessmentResponseFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateAssessmentResponseInput;
+  fields?: Fields;
+  result_handler: (result: CreateAssessmentResponseResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CreateAssessmentResponseResult<Fields>>(
+    config.channel,
+    {
+    action: "create_assessment_response",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type GetMyAssessmentResponseInput = {
   app_id: UUID;
   user_id: UUID;
@@ -7295,52 +7575,48 @@ export async function get_my_assessment_response_channel<Fields extends GetMyAss
 }
 
 
-export type UpsertAssessmentResponseInput = {
-  app_id: UUID;
-  user_id?: UUID | null;
-  email?: string | null;
+export type SyncAssessmentProgressInput = {
   answers?: Record<string, any> | null;
   path_history?: Array<string> | null;
   current_node?: string | null;
-  graph_snapshot_nodes?: Array<OriginsAppsNodeInputSchema> | null;
-  graph_snapshot_edges?: Array<OriginsAppsEdgeInputSchema> | null;
-  completed_at?: UtcDateTime | null;
 };
 
-export type UpsertAssessmentResponseFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+export type SyncAssessmentProgressFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
 
-export type InferUpsertAssessmentResponseResult<
-  Fields extends UpsertAssessmentResponseFields | undefined,
+export type InferSyncAssessmentProgressResult<
+  Fields extends SyncAssessmentProgressFields | undefined,
 > = InferResult<AssessmentResponseResourceSchema, Fields>;
 
-export type UpsertAssessmentResponseResult<Fields extends UpsertAssessmentResponseFields | undefined = undefined> = | { success: true; data: InferUpsertAssessmentResponseResult<Fields>; }
+export type SyncAssessmentProgressResult<Fields extends SyncAssessmentProgressFields | undefined = undefined> = | { success: true; data: InferSyncAssessmentProgressResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
 
 /**
- * Create a new AssessmentResponse
+ * Update an existing AssessmentResponse
  *
- * @ashActionType :create
+ * @ashActionType :update
  */
-export async function upsert_assessment_response<Fields extends UpsertAssessmentResponseFields | undefined = undefined>(
+export async function sync_assessment_progress<Fields extends SyncAssessmentProgressFields | undefined = undefined>(
   config: {
   tenant?: string;
-  input: UpsertAssessmentResponseInput;
+  identity: UUID;
+  input?: SyncAssessmentProgressInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<UpsertAssessmentResponseResult<Fields extends undefined ? [] : Fields>> {
+): Promise<SyncAssessmentProgressResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
-    action: "upsert_assessment_response",
+    action: "sync_assessment_progress",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<UpsertAssessmentResponseResult<Fields extends undefined ? [] : Fields>>(
+  return executeActionRpcRequest<SyncAssessmentProgressResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -7348,23 +7624,25 @@ export async function upsert_assessment_response<Fields extends UpsertAssessment
 
 
 /**
- * Validate: Create a new AssessmentResponse
+ * Validate: Update an existing AssessmentResponse
  *
- * @ashActionType :create
+ * @ashActionType :update
  * @validation true
  */
-export async function validate_upsert_assessment_response(
+export async function validate_sync_assessment_progress(
   config: {
   tenant?: string;
-  input: UpsertAssessmentResponseInput;
+  identity: UUID | string;
+  input?: SyncAssessmentProgressInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "upsert_assessment_response",
+    action: "sync_assessment_progress",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input
   };
 
@@ -7376,15 +7654,16 @@ export async function validate_upsert_assessment_response(
 
 
 /**
- * Validate: Create a new AssessmentResponse
+ * Validate: Update an existing AssessmentResponse
  *
- * @ashActionType :create
+ * @ashActionType :update
  * @validation true
  */
-export async function validate_upsert_assessment_response_channel(config: {
+export async function validate_sync_assessment_progress_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: UpsertAssessmentResponseInput;
+  identity: UUID | string;
+  input?: SyncAssessmentProgressInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -7393,8 +7672,9 @@ export async function validate_upsert_assessment_response_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "upsert_assessment_response",
+    action: "sync_assessment_progress",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input
   },
     config.timeout,
@@ -7404,25 +7684,27 @@ export async function validate_upsert_assessment_response_channel(config: {
 
 
 /**
- * Create a new AssessmentResponse
+ * Update an existing AssessmentResponse
  *
- * @ashActionType :create
+ * @ashActionType :update
  */
-export async function upsert_assessment_response_channel<Fields extends UpsertAssessmentResponseFields | undefined = undefined>(config: {
+export async function sync_assessment_progress_channel<Fields extends SyncAssessmentProgressFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
-  input: UpsertAssessmentResponseInput;
+  identity: UUID;
+  input?: SyncAssessmentProgressInput;
   fields?: Fields;
-  result_handler: (result: UpsertAssessmentResponseResult<Fields>) => void;
+  result_handler: (result: SyncAssessmentProgressResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<UpsertAssessmentResponseResult<Fields>>(
+  executeActionChannelPush<SyncAssessmentProgressResult<Fields>>(
     config.channel,
     {
-    action: "upsert_assessment_response",
+    action: "sync_assessment_progress",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },

@@ -1843,6 +1843,78 @@
       }
     },
     {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing AssessmentResponse",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "complete_assessment",
+      "get": false,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "CompleteAssessmentFields",
+        "inferResult": "InferCompleteAssessmentResult",
+        "input": "CompleteAssessmentInput",
+        "result": "CompleteAssessmentResult"
+      },
+      "variantNames": {
+        "channel": "complete_assessment_channel",
+        "validation": "validate_complete_assessment"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new AssessmentResponse",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_assessment_response",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "CreateAssessmentResponseFields",
+        "inferResult": "InferCreateAssessmentResponseResult",
+        "input": "CreateAssessmentResponseInput",
+        "result": "CreateAssessmentResponseResult"
+      },
+      "variantNames": {
+        "channel": "create_assessment_response_channel",
+        "validation": "validate_create_assessment_response"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read AssessmentResponse records",
@@ -1880,14 +1952,14 @@
       }
     },
     {
-      "actionType": "create",
+      "actionType": "update",
       "deprecated": false,
-      "description": "Create a new AssessmentResponse",
+      "description": "Update an existing AssessmentResponse",
       "enableFilter": true,
       "enableSort": true,
-      "functionName": "upsert_assessment_response",
+      "functionName": "sync_assessment_progress",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -1899,14 +1971,14 @@
       "resource": "AssessmentResponse",
       "see": [],
       "types": {
-        "fields": "UpsertAssessmentResponseFields",
-        "inferResult": "InferUpsertAssessmentResponseResult",
-        "input": "UpsertAssessmentResponseInput",
-        "result": "UpsertAssessmentResponseResult"
+        "fields": "SyncAssessmentProgressFields",
+        "inferResult": "InferSyncAssessmentProgressResult",
+        "input": "SyncAssessmentProgressInput",
+        "result": "SyncAssessmentProgressResult"
       },
       "variantNames": {
-        "channel": "upsert_assessment_response_channel",
-        "validation": "validate_upsert_assessment_response"
+        "channel": "sync_assessment_progress_channel",
+        "validation": "validate_sync_assessment_progress"
       },
       "variants": {
         "channel": true,
@@ -7311,7 +7383,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-16",
+  "generatedAt": "2026-06-18",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

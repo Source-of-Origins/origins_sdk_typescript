@@ -544,13 +544,17 @@ export type AssessmentGraphInputSchema = {
 // AssessmentResponse Schema
 export type AssessmentResponseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "email" | "answers" | "path_history" | "current_node" | "completed_at" | "created_at" | "updated_at" | "app_id";
+  __primitiveFields: "id" | "user_id" | "email" | "answers" | "path_history" | "current_node" | "result" | "attribution" | "full_name" | "phone" | "completed_at" | "created_at" | "updated_at" | "app_id";
   id: UUID;
   user_id: UUID | null;
   email: string | null;
   answers: Record<string, any> | null;
   path_history: Array<string> | null;
   current_node: string | null;
+  result: Record<string, any> | null;
+  attribution: Record<string, any> | null;
+  full_name: string | null;
+  phone: string | null;
   completed_at: UtcDateTime | null;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
@@ -564,13 +568,17 @@ export type AssessmentResponseResourceSchema = {
 
 export type AssessmentResponseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "email" | "answers" | "path_history" | "current_node" | "completed_at" | "created_at" | "updated_at" | "app_id";
+  __primitiveFields: "id" | "user_id" | "email" | "answers" | "path_history" | "current_node" | "result" | "attribution" | "full_name" | "phone" | "completed_at" | "created_at" | "updated_at" | "app_id";
   id: UUID;
   user_id: UUID | null;
   email: string | null;
   answers: Record<string, any> | null;
   path_history: Array<string> | null;
   current_node: string | null;
+  result: Record<string, any> | null;
+  attribution: Record<string, any> | null;
+  full_name: string | null;
+  phone: string | null;
   completed_at: UtcDateTime | null;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
@@ -745,10 +753,11 @@ export type GenerationHistoryEntryInputSchema = {
 // OriginsAppsNode Schema
 export type OriginsAppsNodeResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
+  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
   id: string;
   type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
+  weight: number | null;
   required: boolean | null;
   max: number | null;
   min: number | null;
@@ -764,10 +773,11 @@ export type OriginsAppsNodeResourceSchema = {
 
 export type OriginsAppsNodeAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
+  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
   id: string;
   type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
+  weight: number | null;
   required: boolean | null;
   max: number | null;
   min: number | null;
@@ -784,6 +794,7 @@ export type OriginsAppsNodeInputSchema = {
   id: string;
   type?: "interstitial" | "question" | "terminal" | null;
   kind?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
+  weight?: number | null;
   required?: boolean | null;
   max?: number | null;
   min?: number | null;
@@ -799,24 +810,27 @@ export type OriginsAppsNodeInputSchema = {
 // OriginsAppsOption Schema
 export type OriginsAppsOptionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "value" | "label";
+  __primitiveFields: "value" | "label" | "segment";
   value: string;
   label: string;
+  segment: string | null;
 };
 
 
 
 export type OriginsAppsOptionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "value" | "label";
+  __primitiveFields: "value" | "label" | "segment";
   value: string;
   label: string;
+  segment: string | null;
 };
 
 
 export type OriginsAppsOptionInputSchema = {
   value: string;
   label: string;
+  segment?: string | null;
 };
 
 
@@ -4039,6 +4053,34 @@ export type AssessmentResponseFilterInput = {
     is_nil?: boolean;
   };
 
+  result?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+  attribution?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+  full_name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  phone?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
   completed_at?: {
     eq?: UtcDateTime;
     not_eq?: UtcDateTime;
@@ -4448,6 +4490,17 @@ export type OriginsAppsNodeFilterInput = {
     is_nil?: boolean;
   };
 
+  weight?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
   required?: {
     eq?: boolean;
     not_eq?: boolean;
@@ -4536,6 +4589,13 @@ export type OriginsAppsOptionFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+  };
+
+  segment?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
   };
 
 
@@ -9010,7 +9070,7 @@ export type AppLibraryFilterField = (typeof appLibraryFilterFields)[number];
 export const assessmentGraphFilterFields = ["start_node", "nodes", "edges"] as const;
 export type AssessmentGraphFilterField = (typeof assessmentGraphFilterFields)[number];
 
-export const assessmentResponseFilterFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "completed_at", "created_at", "updated_at", "app_id", "app"] as const;
+export const assessmentResponseFilterFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id", "app"] as const;
 export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFields)[number];
 
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
@@ -9025,10 +9085,10 @@ export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[nu
 export const generationHistoryEntryFilterFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntryFilterField = (typeof generationHistoryEntryFilterFields)[number];
 
-export const originsAppsNodeFilterFields = ["id", "type", "kind", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
+export const originsAppsNodeFilterFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
 export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[number];
 
-export const originsAppsOptionFilterFields = ["value", "label"] as const;
+export const originsAppsOptionFilterFields = ["value", "label", "segment"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
 export const originsAppsSliderFilterFields = ["id", "label", "min", "max"] as const;
@@ -9209,7 +9269,7 @@ export type AppLibrarySortField = (typeof appLibrarySortFields)[number];
 export const assessmentGraphSortFields = ["start_node", "nodes", "edges"] as const;
 export type AssessmentGraphSortField = (typeof assessmentGraphSortFields)[number];
 
-export const assessmentResponseSortFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "completed_at", "created_at", "updated_at", "app_id"] as const;
+export const assessmentResponseSortFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id"] as const;
 export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[number];
 
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
@@ -9224,10 +9284,10 @@ export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number
 export const generationHistoryEntrySortFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntrySortField = (typeof generationHistoryEntrySortFields)[number];
 
-export const originsAppsNodeSortFields = ["id", "type", "kind", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
+export const originsAppsNodeSortFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
 export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number];
 
-export const originsAppsOptionSortFields = ["value", "label"] as const;
+export const originsAppsOptionSortFields = ["value", "label", "segment"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
 
 export const originsAppsSliderSortFields = ["id", "label", "min", "max"] as const;
