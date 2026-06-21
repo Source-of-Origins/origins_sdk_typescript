@@ -2241,6 +2241,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on CourseEnrollment",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_enrollment_completions",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CourseEnrollment",
+      "see": [],
+      "types": {
+        "input": "GetEnrollmentCompletionsInput",
+        "result": "GetEnrollmentCompletionsResult"
+      },
+      "variantNames": {
+        "channel": "get_enrollment_completions_channel",
+        "validation": "validate_get_enrollment_completions"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "update",
       "deprecated": false,
       "description": "Update an existing CourseEnrollment",
@@ -7383,7 +7417,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-18",
+  "generatedAt": "2026-06-21",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

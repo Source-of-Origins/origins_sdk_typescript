@@ -73,7 +73,7 @@ export type TenantAttributesOnlySchema = {
 // User Schema
 export type UserResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tenant_id" | "instance_id" | "aud" | "role" | "email" | "email_confirmed_at" | "invited_at" | "confirmation_sent_at" | "recovery_sent_at" | "last_sign_in_at" | "raw_app_meta_data" | "raw_user_meta_data" | "is_super_admin" | "created_at" | "updated_at" | "phone" | "phone_confirmed_at" | "phone_change_sent_at" | "confirmed_at" | "deleted_at" | "reauthentication_sent_at" | "banned_until";
+  __primitiveFields: "id" | "tenant_id" | "instance_id" | "aud" | "role" | "email" | "email_confirmed_at" | "invited_at" | "confirmation_sent_at" | "recovery_sent_at" | "last_sign_in_at" | "raw_app_meta_data" | "raw_user_meta_data" | "is_super_admin" | "created_at" | "updated_at" | "phone" | "phone_confirmed_at" | "phone_change_sent_at" | "confirmed_at" | "deleted_at" | "reauthentication_sent_at" | "banned_until" | "is_creator";
   id: UUID;
   tenant_id: UUID;
   instance_id: UUID | null;
@@ -97,6 +97,7 @@ export type UserResourceSchema = {
   deleted_at: UtcDateTimeUsec | null;
   reauthentication_sent_at: UtcDateTimeUsec | null;
   banned_until: UtcDateTimeUsec | null;
+  is_creator: boolean;
   social_sign_in_response_type: { __type: "Relationship"; __resource: SocialSignInResponseResourceSchema | null; };
   tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
   staff_tenant_grants: { __type: "Relationship"; __array: true; __resource: StaffTenantGrantResourceSchema; };
@@ -644,6 +645,8 @@ export type CourseEnrollmentResourceSchema = {
   character_id: UUID;
   app_id: UUID;
   assessment_answers: Record<string, any> | null;
+  enrollment_completions_type_anchor: { __type: "Relationship"; __resource: EnrollmentCompletionsResourceSchema | null; };
+  activity_completion_summary_type_anchor: { __type: "Relationship"; __resource: ActivityCompletionSummaryResourceSchema | null; };
   user: { __type: "Relationship"; __resource: UserResourceSchema; };
   character: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   app: { __type: "Relationship"; __resource: AppResourceSchema; };
@@ -669,6 +672,72 @@ export type CourseEnrollmentAttributesOnlySchema = {
   user_id: UUID;
   character_id: UUID;
   app_id: UUID;
+};
+
+
+// ActivityCompletionSummary Schema
+export type ActivityCompletionSummaryResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "activity_id" | "step_id" | "completed_date" | "responses";
+  id: UUID;
+  activity_id: string;
+  step_id: string | null;
+  completed_date: AshDate;
+  responses: Record<string, any> | null;
+};
+
+
+
+export type ActivityCompletionSummaryAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "activity_id" | "step_id" | "completed_date" | "responses";
+  id: UUID;
+  activity_id: string;
+  step_id: string | null;
+  completed_date: AshDate;
+  responses: Record<string, any> | null;
+};
+
+
+export type ActivityCompletionSummaryInputSchema = {
+  id: UUID;
+  activity_id: string;
+  step_id?: string | null;
+  completed_date: AshDate;
+  responses?: Record<string, any> | null;
+};
+
+
+// EnrollmentCompletions Schema
+export type EnrollmentCompletionsResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id";
+  id: UUID;
+  status: string;
+  current_session_id: string | null;
+  current_phase_id: string | null;
+  activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryResourceSchema; };
+};
+
+
+
+export type EnrollmentCompletionsAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id";
+  id: UUID;
+  status: string;
+  current_session_id: string | null;
+  current_phase_id: string | null;
+  activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryAttributesOnlySchema; };
+};
+
+
+export type EnrollmentCompletionsInputSchema = {
+  id: UUID;
+  status: string;
+  current_session_id?: string | null;
+  current_phase_id?: string | null;
+  activity_completions?: Array<ActivityCompletionSummaryInputSchema> | null;
 };
 
 
@@ -2414,7 +2483,7 @@ export type LibraryResourceSchema = {
   id: UUID;
   name: string;
   slug: string;
-  adapter_kind: "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
+  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
   adapter_config: Record<string, any> | null;
   inherits_to_descendants: boolean;
   status: "error" | "pending" | "synced" | "syncing";
@@ -2441,7 +2510,7 @@ export type LibraryAttributesOnlySchema = {
   id: UUID;
   name: string;
   slug: string;
-  adapter_kind: "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
+  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
   adapter_config: Record<string, any> | null;
   inherits_to_descendants: boolean;
   status: "error" | "pending" | "synced" | "syncing";
@@ -3140,6 +3209,11 @@ export type UserFilterInput = {
     is_nil?: boolean;
   };
 
+  is_creator?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
 
   tenant?: TenantFilterInput;
 
@@ -4345,6 +4419,20 @@ export type CourseEnrollmentFilterInput = {
     is_nil?: boolean;
   };
 
+  enrollment_completions_type_anchor?: {
+    eq?: EnrollmentCompletionsResourceSchema;
+    not_eq?: EnrollmentCompletionsResourceSchema;
+    in?: Array<EnrollmentCompletionsResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  activity_completion_summary_type_anchor?: {
+    eq?: ActivityCompletionSummaryResourceSchema;
+    not_eq?: ActivityCompletionSummaryResourceSchema;
+    in?: Array<ActivityCompletionSummaryResourceSchema>;
+    is_nil?: boolean;
+  };
+
 
   user?: UserFilterInput;
 
@@ -4353,6 +4441,91 @@ export type CourseEnrollmentFilterInput = {
   app?: AppFilterInput;
 
   activity_completions?: CourseActivityCompletionFilterInput;
+
+};
+export type ActivityCompletionSummaryFilterInput = {
+  and?: Array<ActivityCompletionSummaryFilterInput>;
+  or?: Array<ActivityCompletionSummaryFilterInput>;
+  not?: Array<ActivityCompletionSummaryFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  activity_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  step_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  completed_date?: {
+    eq?: AshDate;
+    not_eq?: AshDate;
+    greater_than?: AshDate;
+    greater_than_or_equal?: AshDate;
+    less_than?: AshDate;
+    less_than_or_equal?: AshDate;
+    in?: Array<AshDate>;
+  };
+
+  responses?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type EnrollmentCompletionsFilterInput = {
+  and?: Array<EnrollmentCompletionsFilterInput>;
+  or?: Array<EnrollmentCompletionsFilterInput>;
+  not?: Array<EnrollmentCompletionsFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  status?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  current_session_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  current_phase_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  activity_completions?: {
+    eq?: Array<ActivityCompletionSummaryResourceSchema>;
+    not_eq?: Array<ActivityCompletionSummaryResourceSchema>;
+    in?: Array<Array<ActivityCompletionSummaryResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
 
 };
 export type OriginsAppsEdgeFilterInput = {
@@ -8127,9 +8300,9 @@ export type LibraryFilterInput = {
   };
 
   adapter_kind?: {
-    eq?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
-    not_eq?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
-    in?: Array<"curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube">;
+    eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
+    not_eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
+    in?: Array<"craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube">;
   };
 
   adapter_config?: {
@@ -9031,7 +9204,7 @@ export type StaffTenantGrantFilterField = (typeof staffTenantGrantFilterFields)[
 export const tenantFilterFields = ["id", "name", "slug", "status", "archived_at", "root_origin_entity_id", "created_at", "updated_at", "root_origin_entity"] as const;
 export type TenantFilterField = (typeof tenantFilterFields)[number];
 
-export const userFilterFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "tenant", "identities", "staff_tenant_grants", "profile", "origin_entity_memberships", "origin_entities"] as const;
+export const userFilterFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "is_creator", "tenant", "identities", "staff_tenant_grants", "profile", "origin_entity_memberships", "origin_entities"] as const;
 export type UserFilterField = (typeof userFilterFields)[number];
 
 export const socialSignInResponseFilterFields = ["id", "email", "token"] as const;
@@ -9076,8 +9249,14 @@ export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFiel
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
 
-export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers", "user", "character", "app", "activity_completions"] as const;
+export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor", "user", "character", "app", "activity_completions"] as const;
 export type CourseEnrollmentFilterField = (typeof courseEnrollmentFilterFields)[number];
+
+export const activityCompletionSummaryFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
+export type ActivityCompletionSummaryFilterField = (typeof activityCompletionSummaryFilterFields)[number];
+
+export const enrollmentCompletionsFilterFields = ["id", "status", "current_session_id", "current_phase_id", "activity_completions"] as const;
+export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilterFields)[number];
 
 export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
 export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[number];
@@ -9230,7 +9409,7 @@ export type StaffTenantGrantSortField = (typeof staffTenantGrantSortFields)[numb
 export const tenantSortFields = ["id", "name", "slug", "status", "archived_at", "root_origin_entity_id", "created_at", "updated_at"] as const;
 export type TenantSortField = (typeof tenantSortFields)[number];
 
-export const userSortFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type"] as const;
+export const userSortFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "is_creator"] as const;
 export type UserSortField = (typeof userSortFields)[number];
 
 export const socialSignInResponseSortFields = ["id", "email", "token"] as const;
@@ -9275,8 +9454,14 @@ export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];
 
-export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers"] as const;
+export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor"] as const;
 export type CourseEnrollmentSortField = (typeof courseEnrollmentSortFields)[number];
+
+export const activityCompletionSummarySortFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
+export type ActivityCompletionSummarySortField = (typeof activityCompletionSummarySortFields)[number];
+
+export const enrollmentCompletionsSortFields = ["id", "status", "current_session_id", "current_phase_id", "activity_completions"] as const;
+export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFields)[number];
 
 export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
 export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number];
