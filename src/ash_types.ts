@@ -2592,6 +2592,64 @@ export type LibraryFileAttributesOnlySchema = {
 };
 
 
+// Playlist Schema
+export type PlaylistResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "description" | "item_count" | "created_at" | "updated_at" | "user_id";
+  id: UUID;
+  title: string;
+  description: string | null;
+  item_count: number;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  user_id: UUID;
+  user: { __type: "Relationship"; __resource: UserResourceSchema; };
+  items: { __type: "Relationship"; __array: true; __resource: PlaylistItemResourceSchema; };
+};
+
+
+
+export type PlaylistAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "description" | "item_count" | "created_at" | "updated_at" | "user_id";
+  id: UUID;
+  title: string;
+  description: string | null;
+  item_count: number;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  user_id: UUID;
+};
+
+
+// PlaylistItem Schema
+export type PlaylistItemResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id";
+  id: UUID;
+  position: number;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  playlist_id: UUID;
+  library_file_id: UUID;
+  playlist: { __type: "Relationship"; __resource: PlaylistResourceSchema; };
+  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema; };
+};
+
+
+
+export type PlaylistItemAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id";
+  id: UUID;
+  position: number;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  playlist_id: UUID;
+  library_file_id: UUID;
+};
+
+
 // VideoAsset Schema
 export type VideoAssetResourceSchema = {
   __type: "Resource";
@@ -8556,6 +8614,131 @@ export type LibraryFileFilterInput = {
   video_asset?: VideoAssetFilterInput;
 
 };
+export type PlaylistFilterInput = {
+  and?: Array<PlaylistFilterInput>;
+  or?: Array<PlaylistFilterInput>;
+  not?: Array<PlaylistFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  description?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  item_count?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  user_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+
+  user?: UserFilterInput;
+
+  items?: PlaylistItemFilterInput;
+
+};
+export type PlaylistItemFilterInput = {
+  and?: Array<PlaylistItemFilterInput>;
+  or?: Array<PlaylistItemFilterInput>;
+  not?: Array<PlaylistItemFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  position?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  playlist_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  library_file_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+
+  playlist?: PlaylistFilterInput;
+
+  library_file?: LibraryFileFilterInput;
+
+};
 export type VideoAssetFilterInput = {
   and?: Array<VideoAssetFilterInput>;
   or?: Array<VideoAssetFilterInput>;
@@ -9384,6 +9567,12 @@ export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFiel
 export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
+export const playlistFilterFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id", "user", "items"] as const;
+export type PlaylistFilterField = (typeof playlistFilterFields)[number];
+
+export const playlistItemFilterFields = ["id", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "playlist", "library_file"] as const;
+export type PlaylistItemFilterField = (typeof playlistItemFilterFields)[number];
+
 export const videoAssetFilterFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "library_file"] as const;
 export type VideoAssetFilterField = (typeof videoAssetFilterFields)[number];
 
@@ -9588,6 +9777,12 @@ export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[
 
 export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
+
+export const playlistSortFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id"] as const;
+export type PlaylistSortField = (typeof playlistSortFields)[number];
+
+export const playlistItemSortFields = ["id", "position", "created_at", "updated_at", "playlist_id", "library_file_id"] as const;
+export type PlaylistItemSortField = (typeof playlistItemSortFields)[number];
 
 export const videoAssetSortFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type"] as const;
 export type VideoAssetSortField = (typeof videoAssetSortFields)[number];

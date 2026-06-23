@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AppFilterInput, AppLibraryFilterInput, AppLibraryResourceSchema, AppLibrarySortField, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AppFilterInput, AppLibraryFilterInput, AppLibraryResourceSchema, AppLibrarySortField, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -25283,6 +25283,1221 @@ export async function upsert_website_scrape_library_file_channel<Fields extends 
     {
     action: "upsert_website_scrape_library_file",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type CreateInput = {
+  title: string;
+  description?: string | null;
+};
+
+export type CreateFields = UnifiedFieldSelection<PlaylistResourceSchema>[];
+
+export type InferCreateResult<
+  Fields extends CreateFields | undefined,
+> = InferResult<PlaylistResourceSchema, Fields>;
+
+export type CreateResult<Fields extends CreateFields | undefined = undefined> = | { success: true; data: InferCreateResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new Playlist
+ *
+ * @ashActionType :create
+ */
+export async function create<Fields extends CreateFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: CreateInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CreateResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "create",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<CreateResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new Playlist
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create(
+  config: {
+  tenant?: string;
+  input: CreateInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "create",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new Playlist
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "create",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new Playlist
+ *
+ * @ashActionType :create
+ */
+export async function create_channel<Fields extends CreateFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateInput;
+  fields?: Fields;
+  result_handler: (result: CreateResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CreateResult<Fields>>(
+    config.channel,
+    {
+    action: "create",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type DestroyResult = | { success: true; data: {}; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Delete a Playlist
+ *
+ * @ashActionType :destroy
+ */
+export async function destroy(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<DestroyResult> {
+  const payload = {
+    action: "destroy",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeActionRpcRequest<DestroyResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Delete a Playlist
+ *
+ * @ashActionType :destroy
+ * @validation true
+ */
+export async function validate_destroy(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "destroy",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Delete a Playlist
+ *
+ * @ashActionType :destroy
+ * @validation true
+ */
+export async function validate_destroy_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "destroy",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Delete a Playlist
+ *
+ * @ashActionType :destroy
+ */
+export async function destroy_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  result_handler: (result: DestroyResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<DestroyResult>(
+    config.channel,
+    {
+    action: "destroy",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetByIdInput = {
+  id: UUID;
+};
+
+export type GetByIdFields = UnifiedFieldSelection<PlaylistResourceSchema>[];
+export type InferGetByIdResult<
+  Fields extends GetByIdFields,
+> = InferResult<PlaylistResourceSchema, Fields>;
+
+export type GetByIdResult<Fields extends GetByIdFields> = | { success: true; data: InferGetByIdResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read Playlist records
+ *
+ * @ashActionType :read
+ */
+export async function get_by_id<Fields extends GetByIdFields>(
+  config: {
+  tenant?: string;
+  input: GetByIdInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetByIdResult<Fields>> {
+  const payload = {
+    action: "get_by_id",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetByIdResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Playlist records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_by_id(
+  config: {
+  tenant?: string;
+  input: GetByIdInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_by_id",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Playlist records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_by_id_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetByIdInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_by_id",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read Playlist records
+ *
+ * @ashActionType :read
+ */
+export async function get_by_id_channel<Fields extends GetByIdFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetByIdInput;
+  fields: Fields;
+  result_handler: (result: GetByIdResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetByIdResult<Fields>>(
+    config.channel,
+    {
+    action: "get_by_id",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListForUserFields = UnifiedFieldSelection<PlaylistResourceSchema>[];
+
+
+export type InferListForUserResult<
+  Fields extends ListForUserFields | undefined,
+  Page extends ListForUserConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<PlaylistResourceSchema, Fields>>, {
+  results: Array<InferResult<PlaylistResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string;
+  next_page: string;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListForUserConfig = {
+  tenant?: string;
+  fields: ListForUserFields;
+  filter?: PlaylistFilterInput;
+  sort?: SortString<PlaylistSortField> | SortString<PlaylistSortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListForUserResult<Fields extends ListForUserFields, Page extends ListForUserConfig["page"] = undefined> = | { success: true; data: InferListForUserResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read Playlist records
+ *
+ * @ashActionType :read
+ */
+export async function list_for_user<Fields extends ListForUserFields, Config extends ListForUserConfig = ListForUserConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListForUserResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListForUserResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Playlist records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_for_user(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Playlist records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_for_user_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read Playlist records
+ *
+ * @ashActionType :read
+ */
+export async function list_for_user_channel<Fields extends ListForUserFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: PlaylistFilterInput;
+  sort?: SortString<PlaylistSortField> | SortString<PlaylistSortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  result_handler: (result: ListForUserResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListForUserResult<Fields>>(
+    config.channel,
+    {
+    action: "list_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type UpdateInput = {
+  title?: string;
+  description?: string | null;
+};
+
+export type UpdateFields = UnifiedFieldSelection<PlaylistResourceSchema>[];
+
+export type InferUpdateResult<
+  Fields extends UpdateFields | undefined,
+> = InferResult<PlaylistResourceSchema, Fields>;
+
+export type UpdateResult<Fields extends UpdateFields | undefined = undefined> = | { success: true; data: InferUpdateResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing Playlist
+ *
+ * @ashActionType :update
+ */
+export async function update<Fields extends UpdateFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input: UpdateInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<UpdateResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "update",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<UpdateResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing Playlist
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_update(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input: UpdateInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "update",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing Playlist
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_update_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input: UpdateInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "update",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing Playlist
+ *
+ * @ashActionType :update
+ */
+export async function update_channel<Fields extends UpdateFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input: UpdateInput;
+  fields?: Fields;
+  result_handler: (result: UpdateResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<UpdateResult<Fields>>(
+    config.channel,
+    {
+    action: "update",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type AddItemInput = {
+  playlist_id: UUID;
+  library_file_id: UUID;
+};
+
+export type AddItemFields = UnifiedFieldSelection<PlaylistItemResourceSchema>[];
+
+export type InferAddItemResult<
+  Fields extends AddItemFields | undefined,
+> = InferResult<PlaylistItemResourceSchema, Fields>;
+
+export type AddItemResult<Fields extends AddItemFields | undefined = undefined> = | { success: true; data: InferAddItemResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new PlaylistItem
+ *
+ * @ashActionType :create
+ */
+export async function add_item<Fields extends AddItemFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: AddItemInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<AddItemResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "add_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<AddItemResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new PlaylistItem
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_add_item(
+  config: {
+  tenant?: string;
+  input: AddItemInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "add_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new PlaylistItem
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_add_item_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: AddItemInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "add_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new PlaylistItem
+ *
+ * @ashActionType :create
+ */
+export async function add_item_channel<Fields extends AddItemFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: AddItemInput;
+  fields?: Fields;
+  result_handler: (result: AddItemResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<AddItemResult<Fields>>(
+    config.channel,
+    {
+    action: "add_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListForPlaylistInput = {
+  playlist_id: UUID;
+};
+
+export type ListForPlaylistFields = UnifiedFieldSelection<PlaylistItemResourceSchema>[];
+
+
+export type InferListForPlaylistResult<
+  Fields extends ListForPlaylistFields | undefined,
+  Page extends ListForPlaylistConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<PlaylistItemResourceSchema, Fields>>, {
+  results: Array<InferResult<PlaylistItemResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string;
+  next_page: string;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListForPlaylistConfig = {
+  tenant?: string;
+  input: ListForPlaylistInput;
+  fields: ListForPlaylistFields;
+  filter?: PlaylistItemFilterInput;
+  sort?: SortString<PlaylistItemSortField> | SortString<PlaylistItemSortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListForPlaylistResult<Fields extends ListForPlaylistFields, Page extends ListForPlaylistConfig["page"] = undefined> = | { success: true; data: InferListForPlaylistResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read PlaylistItem records
+ *
+ * @ashActionType :read
+ */
+export async function list_for_playlist<Fields extends ListForPlaylistFields, Config extends ListForPlaylistConfig = ListForPlaylistConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListForPlaylistResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_for_playlist",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListForPlaylistResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read PlaylistItem records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_for_playlist(
+  config: {
+  tenant?: string;
+  input: ListForPlaylistInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_for_playlist",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read PlaylistItem records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_for_playlist_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListForPlaylistInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_for_playlist",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read PlaylistItem records
+ *
+ * @ashActionType :read
+ */
+export async function list_for_playlist_channel<Fields extends ListForPlaylistFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListForPlaylistInput;
+  fields: Fields;
+  filter?: PlaylistItemFilterInput;
+  sort?: SortString<PlaylistItemSortField> | SortString<PlaylistItemSortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  result_handler: (result: ListForPlaylistResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListForPlaylistResult<Fields>>(
+    config.channel,
+    {
+    action: "list_for_playlist",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type RemoveItemResult = | { success: true; data: {}; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Delete a PlaylistItem
+ *
+ * @ashActionType :destroy
+ */
+export async function remove_item(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RemoveItemResult> {
+  const payload = {
+    action: "remove_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeActionRpcRequest<RemoveItemResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Delete a PlaylistItem
+ *
+ * @ashActionType :destroy
+ * @validation true
+ */
+export async function validate_remove_item(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "remove_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Delete a PlaylistItem
+ *
+ * @ashActionType :destroy
+ * @validation true
+ */
+export async function validate_remove_item_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "remove_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Delete a PlaylistItem
+ *
+ * @ashActionType :destroy
+ */
+export async function remove_item_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  result_handler: (result: RemoveItemResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<RemoveItemResult>(
+    config.channel,
+    {
+    action: "remove_item",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ReorderInput = {
+  position?: number;
+};
+
+export type ReorderFields = UnifiedFieldSelection<PlaylistItemResourceSchema>[];
+
+export type InferReorderResult<
+  Fields extends ReorderFields | undefined,
+> = InferResult<PlaylistItemResourceSchema, Fields>;
+
+export type ReorderResult<Fields extends ReorderFields | undefined = undefined> = | { success: true; data: InferReorderResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing PlaylistItem
+ *
+ * @ashActionType :update
+ */
+export async function reorder<Fields extends ReorderFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input: ReorderInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ReorderResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "reorder",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<ReorderResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing PlaylistItem
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_reorder(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input: ReorderInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "reorder",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing PlaylistItem
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_reorder_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input: ReorderInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "reorder",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing PlaylistItem
+ *
+ * @ashActionType :update
+ */
+export async function reorder_channel<Fields extends ReorderFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input: ReorderInput;
+  fields?: Fields;
+  result_handler: (result: ReorderResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ReorderResult<Fields>>(
+    config.channel,
+    {
+    action: "reorder",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },

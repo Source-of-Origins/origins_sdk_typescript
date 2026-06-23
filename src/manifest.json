@@ -6585,6 +6585,328 @@
       }
     },
     {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new Playlist",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Playlist",
+      "see": [],
+      "types": {
+        "fields": "CreateFields",
+        "inferResult": "InferCreateResult",
+        "input": "CreateInput",
+        "result": "CreateResult"
+      },
+      "variantNames": {
+        "channel": "create_channel",
+        "validation": "validate_create"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "destroy",
+      "deprecated": false,
+      "description": "Delete a Playlist",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "destroy",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Playlist",
+      "see": [],
+      "types": {
+        "result": "DestroyResult"
+      },
+      "variantNames": {
+        "channel": "destroy_channel",
+        "validation": "validate_destroy"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read Playlist records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_by_id",
+      "get": true,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": true,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Playlist",
+      "see": [],
+      "types": {
+        "fields": "GetByIdFields",
+        "filterInput": "PlaylistFilterInput",
+        "inferResult": "InferGetByIdResult",
+        "input": "GetByIdInput",
+        "result": "GetByIdResult"
+      },
+      "variantNames": {
+        "channel": "get_by_id_channel",
+        "validation": "validate_get_by_id"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "All playlists owned by the current user.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_for_user",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": true,
+        "offset": false,
+        "required": false,
+        "supported": true
+      },
+      "resource": "Playlist",
+      "see": [],
+      "types": {
+        "config": "ListForUserConfig",
+        "fields": "ListForUserFields",
+        "filterInput": "PlaylistFilterInput",
+        "inferResult": "InferListForUserResult",
+        "result": "ListForUserResult"
+      },
+      "variantNames": {
+        "channel": "list_for_user_channel",
+        "validation": "validate_list_for_user"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing Playlist",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "update",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Playlist",
+      "see": [],
+      "types": {
+        "fields": "UpdateFields",
+        "inferResult": "InferUpdateResult",
+        "input": "UpdateInput",
+        "result": "UpdateResult"
+      },
+      "variantNames": {
+        "channel": "update_channel",
+        "validation": "validate_update"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Add a LibraryFile to a playlist with auto-assigned position.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "add_item",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "PlaylistItem",
+      "see": [],
+      "types": {
+        "fields": "AddItemFields",
+        "inferResult": "InferAddItemResult",
+        "input": "AddItemInput",
+        "result": "AddItemResult"
+      },
+      "variantNames": {
+        "channel": "add_item_channel",
+        "validation": "validate_add_item"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "All items in a playlist, ordered by position.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_for_playlist",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": true,
+        "offset": false,
+        "required": false,
+        "supported": true
+      },
+      "resource": "PlaylistItem",
+      "see": [],
+      "types": {
+        "config": "ListForPlaylistConfig",
+        "fields": "ListForPlaylistFields",
+        "filterInput": "PlaylistItemFilterInput",
+        "inferResult": "InferListForPlaylistResult",
+        "input": "ListForPlaylistInput",
+        "result": "ListForPlaylistResult"
+      },
+      "variantNames": {
+        "channel": "list_for_playlist_channel",
+        "validation": "validate_list_for_playlist"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "destroy",
+      "deprecated": false,
+      "description": "Remove an item from a playlist.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "remove_item",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "PlaylistItem",
+      "see": [],
+      "types": {
+        "result": "RemoveItemResult"
+      },
+      "variantNames": {
+        "channel": "remove_item_channel",
+        "validation": "validate_remove_item"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update item position for drag-and-drop reordering.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "reorder",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "PlaylistItem",
+      "see": [],
+      "types": {
+        "fields": "ReorderFields",
+        "inferResult": "InferReorderResult",
+        "input": "ReorderInput",
+        "result": "ReorderResult"
+      },
+      "variantNames": {
+        "channel": "reorder_channel",
+        "validation": "validate_reorder"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "action",
       "deprecated": false,
       "description": "Resolve a VFS path to a playable HLS URL (read-only, zero side effects).",
@@ -7417,7 +7739,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-21",
+  "generatedAt": "2026-06-23",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
