@@ -2625,28 +2625,33 @@ export type PlaylistAttributesOnlySchema = {
 // PlaylistItem Schema
 export type PlaylistItemResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id";
+  __primitiveFields: "id" | "item_type" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id" | "library_id";
   id: UUID;
+  item_type: "library" | "video";
   position: number;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   playlist_id: UUID;
-  library_file_id: UUID;
+  library_file_id: UUID | null;
+  library_id: UUID | null;
   playlist: { __type: "Relationship"; __resource: PlaylistResourceSchema; };
-  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema; };
+  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
+  library: { __type: "Relationship"; __resource: LibraryResourceSchema | null; };
 };
 
 
 
 export type PlaylistItemAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id";
+  __primitiveFields: "id" | "item_type" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id" | "library_id";
   id: UUID;
+  item_type: "library" | "video";
   position: number;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   playlist_id: UUID;
-  library_file_id: UUID;
+  library_file_id: UUID | null;
+  library_id: UUID | null;
 };
 
 
@@ -8691,6 +8696,12 @@ export type PlaylistItemFilterInput = {
     in?: Array<UUID>;
   };
 
+  item_type?: {
+    eq?: "library" | "video";
+    not_eq?: "library" | "video";
+    in?: Array<"library" | "video">;
+  };
+
   position?: {
     eq?: number;
     not_eq?: number;
@@ -8731,12 +8742,22 @@ export type PlaylistItemFilterInput = {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+  library_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
   };
 
 
   playlist?: PlaylistFilterInput;
 
   library_file?: LibraryFileFilterInput;
+
+  library?: LibraryFilterInput;
 
 };
 export type VideoAssetFilterInput = {
@@ -9570,7 +9591,7 @@ export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 export const playlistFilterFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id", "user", "items"] as const;
 export type PlaylistFilterField = (typeof playlistFilterFields)[number];
 
-export const playlistItemFilterFields = ["id", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "playlist", "library_file"] as const;
+export const playlistItemFilterFields = ["id", "item_type", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "library_id", "playlist", "library_file", "library"] as const;
 export type PlaylistItemFilterField = (typeof playlistItemFilterFields)[number];
 
 export const videoAssetFilterFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "library_file"] as const;
@@ -9781,7 +9802,7 @@ export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
 export const playlistSortFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id"] as const;
 export type PlaylistSortField = (typeof playlistSortFields)[number];
 
-export const playlistItemSortFields = ["id", "position", "created_at", "updated_at", "playlist_id", "library_file_id"] as const;
+export const playlistItemSortFields = ["id", "item_type", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "library_id"] as const;
 export type PlaylistItemSortField = (typeof playlistItemSortFields)[number];
 
 export const videoAssetSortFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type"] as const;

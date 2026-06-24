@@ -25960,7 +25960,9 @@ export async function update_channel<Fields extends UpdateFields | undefined = u
 
 export type AddItemInput = {
   playlist_id: UUID;
-  library_file_id: UUID;
+  item_type: "library" | "video";
+  library_file_id?: UUID | null;
+  library_id?: UUID | null;
 };
 
 export type AddItemFields = UnifiedFieldSelection<PlaylistItemResourceSchema>[];

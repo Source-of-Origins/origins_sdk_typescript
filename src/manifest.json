@@ -6766,7 +6766,7 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Add a LibraryFile to a playlist with auto-assigned position.",
+      "description": "Add an item to a playlist. Set item_type to :video with library_file_id, or :library with library_id.",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "add_item",
@@ -7739,7 +7739,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-23",
+  "generatedAt": "2026-06-24",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
