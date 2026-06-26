@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AppFilterInput, AppLibraryFilterInput, AppLibraryResourceSchema, AppLibrarySortField, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AppFilterInput, AppLibraryFilterInput, AppLibraryResourceSchema, AppLibrarySortField, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -962,6 +962,130 @@ export async function list_my_tenants_channel<Fields extends ListMyTenantsFields
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ConfirmAnonymousAccountInput = {
+  email: string;
+  password: string;
+  password_confirmation: string;
+  claim_token: string;
+};
+
+export type InferConfirmAnonymousAccountResult = SocialSignInResponseResourceSchema;
+
+export type ConfirmAnonymousAccountResult = | { success: true; data: InferConfirmAnonymousAccountResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function confirm_anonymous_account(
+  config: {
+  tenant?: string;
+  input: ConfirmAnonymousAccountInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ConfirmAnonymousAccountResult> {
+  const payload = {
+    action: "confirm_anonymous_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<ConfirmAnonymousAccountResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_confirm_anonymous_account(
+  config: {
+  tenant?: string;
+  input: ConfirmAnonymousAccountInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "confirm_anonymous_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_confirm_anonymous_account_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ConfirmAnonymousAccountInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "confirm_anonymous_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function confirm_anonymous_account_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ConfirmAnonymousAccountInput;
+  result_handler: (result: ConfirmAnonymousAccountResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ConfirmAnonymousAccountResult>(
+    config.channel,
+    {
+    action: "confirm_anonymous_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
   },
     config.timeout,
     config
@@ -26500,6 +26624,258 @@ export async function reorder_channel<Fields extends ReorderFields | undefined =
     action: "reorder",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListVideoStaticRenditionsInput = {
+  library_file_id: UUID;
+};
+
+export type InferListVideoStaticRenditionsResult = Array<StaticRenditionResourceSchema>;
+
+export type ListVideoStaticRenditionsResult = | { success: true; data: InferListVideoStaticRenditionsResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ */
+export async function list_video_static_renditions(
+  config: {
+  tenant?: string;
+  input: ListVideoStaticRenditionsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListVideoStaticRenditionsResult> {
+  const payload = {
+    action: "list_video_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<ListVideoStaticRenditionsResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_list_video_static_renditions(
+  config: {
+  tenant?: string;
+  input: ListVideoStaticRenditionsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_video_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_list_video_static_renditions_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListVideoStaticRenditionsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_video_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ */
+export async function list_video_static_renditions_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListVideoStaticRenditionsInput;
+  result_handler: (result: ListVideoStaticRenditionsResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListVideoStaticRenditionsResult>(
+    config.channel,
+    {
+    action: "list_video_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type RequestStaticRenditionsInput = {
+  otterwake_asset_id: string;
+  source_storage_path: string;
+  resolutions?: Array<string>;
+};
+
+export type RequestStaticRenditionsFields = UnifiedFieldSelection<StaticRenditionRequestResultResourceSchema>[];
+
+export type InferRequestStaticRenditionsResult<
+  Fields extends RequestStaticRenditionsFields | undefined,
+> = InferResult<StaticRenditionRequestResultResourceSchema, Fields>;
+
+export type RequestStaticRenditionsResult<Fields extends RequestStaticRenditionsFields | undefined = undefined> = | { success: true; data: InferRequestStaticRenditionsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ */
+export async function request_static_renditions<Fields extends RequestStaticRenditionsFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: RequestStaticRenditionsInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RequestStaticRenditionsResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "request_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<RequestStaticRenditionsResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_request_static_renditions(
+  config: {
+  tenant?: string;
+  input: RequestStaticRenditionsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "request_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_request_static_renditions_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RequestStaticRenditionsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "request_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ */
+export async function request_static_renditions_channel<Fields extends RequestStaticRenditionsFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RequestStaticRenditionsInput;
+  fields: Fields;
+  result_handler: (result: RequestStaticRenditionsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<RequestStaticRenditionsResult<Fields>>(
+    config.channel,
+    {
+    action: "request_static_renditions",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },

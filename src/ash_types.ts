@@ -2673,6 +2673,8 @@ export type VideoAssetResourceSchema = {
   updated_at: UtcDateTimeUsec;
   library_file_id: UUID;
   resolved_playback_type: { __type: "Relationship"; __resource: ResolvedPlaybackResourceSchema | null; };
+  static_rendition_request_type: { __type: "Relationship"; __resource: StaticRenditionRequestResultResourceSchema | null; };
+  static_rendition_type: { __type: "Relationship"; __resource: StaticRenditionResourceSchema | null; };
   library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema; };
 };
 
@@ -2724,6 +2726,78 @@ export type ResolvedPlaybackInputSchema = {
   src?: string | null;
   poster?: string | null;
   library_file_id?: UUID | null;
+};
+
+
+// StaticRendition Schema
+export type StaticRenditionResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "name" | "url";
+  name: string;
+  url: string;
+};
+
+
+
+export type StaticRenditionAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "name" | "url";
+  name: string;
+  url: string;
+};
+
+
+export type StaticRenditionInputSchema = {
+  name: string;
+  url: string;
+};
+
+
+// StaticRenditionRequest Schema
+export type StaticRenditionRequestResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "resolution" | "status" | "error";
+  resolution: string;
+  status: string;
+  error: string | null;
+};
+
+
+
+export type StaticRenditionRequestAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "resolution" | "status" | "error";
+  resolution: string;
+  status: string;
+  error: string | null;
+};
+
+
+export type StaticRenditionRequestInputSchema = {
+  resolution: string;
+  status: string;
+  error?: string | null;
+};
+
+
+// StaticRenditionRequestResult Schema
+export type StaticRenditionRequestResultResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: never;
+  requested: { __type: "Relationship"; __array: true; __resource: StaticRenditionRequestResourceSchema; };
+};
+
+
+
+export type StaticRenditionRequestResultAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: never;
+  requested: { __type: "Relationship"; __array: true; __resource: StaticRenditionRequestAttributesOnlySchema; };
+};
+
+
+export type StaticRenditionRequestResultInputSchema = {
+  requested?: Array<StaticRenditionRequestInputSchema> | null;
 };
 
 
@@ -8873,6 +8947,20 @@ export type VideoAssetFilterInput = {
     is_nil?: boolean;
   };
 
+  static_rendition_request_type?: {
+    eq?: StaticRenditionRequestResultResourceSchema;
+    not_eq?: StaticRenditionRequestResultResourceSchema;
+    in?: Array<StaticRenditionRequestResultResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  static_rendition_type?: {
+    eq?: StaticRenditionResourceSchema;
+    not_eq?: StaticRenditionResourceSchema;
+    in?: Array<StaticRenditionResourceSchema>;
+    is_nil?: boolean;
+  };
+
 
   library_file?: LibraryFileFilterInput;
 
@@ -8906,6 +8994,68 @@ export type ResolvedPlaybackFilterInput = {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type StaticRenditionFilterInput = {
+  and?: Array<StaticRenditionFilterInput>;
+  or?: Array<StaticRenditionFilterInput>;
+  not?: Array<StaticRenditionFilterInput>;
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+
+
+};
+export type StaticRenditionRequestFilterInput = {
+  and?: Array<StaticRenditionRequestFilterInput>;
+  or?: Array<StaticRenditionRequestFilterInput>;
+  not?: Array<StaticRenditionRequestFilterInput>;
+
+  resolution?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  status?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  error?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type StaticRenditionRequestResultFilterInput = {
+  and?: Array<StaticRenditionRequestResultFilterInput>;
+  or?: Array<StaticRenditionRequestResultFilterInput>;
+  not?: Array<StaticRenditionRequestResultFilterInput>;
+
+  requested?: {
+    eq?: Array<StaticRenditionRequestResourceSchema>;
+    not_eq?: Array<StaticRenditionRequestResourceSchema>;
+    in?: Array<Array<StaticRenditionRequestResourceSchema>>;
     is_nil?: boolean;
   };
 
@@ -9594,11 +9744,20 @@ export type PlaylistFilterField = (typeof playlistFilterFields)[number];
 export const playlistItemFilterFields = ["id", "item_type", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "library_id", "playlist", "library_file", "library"] as const;
 export type PlaylistItemFilterField = (typeof playlistItemFilterFields)[number];
 
-export const videoAssetFilterFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "library_file"] as const;
+export const videoAssetFilterFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "static_rendition_request_type", "static_rendition_type", "library_file"] as const;
 export type VideoAssetFilterField = (typeof videoAssetFilterFields)[number];
 
 export const resolvedPlaybackFilterFields = ["status", "src", "poster", "library_file_id"] as const;
 export type ResolvedPlaybackFilterField = (typeof resolvedPlaybackFilterFields)[number];
+
+export const staticRenditionFilterFields = ["name", "url"] as const;
+export type StaticRenditionFilterField = (typeof staticRenditionFilterFields)[number];
+
+export const staticRenditionRequestFilterFields = ["resolution", "status", "error"] as const;
+export type StaticRenditionRequestFilterField = (typeof staticRenditionRequestFilterFields)[number];
+
+export const staticRenditionRequestResultFilterFields = ["requested"] as const;
+export type StaticRenditionRequestResultFilterField = (typeof staticRenditionRequestResultFilterFields)[number];
 
 export const chatBindingFilterFields = ["id", "chat_guid", "prospect_labels", "notes", "bound_at", "created_at", "updated_at", "origin_entity_id", "prospect_phones", "origin_entity"] as const;
 export type ChatBindingFilterField = (typeof chatBindingFilterFields)[number];
@@ -9805,11 +9964,20 @@ export type PlaylistSortField = (typeof playlistSortFields)[number];
 export const playlistItemSortFields = ["id", "item_type", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "library_id"] as const;
 export type PlaylistItemSortField = (typeof playlistItemSortFields)[number];
 
-export const videoAssetSortFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type"] as const;
+export const videoAssetSortFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "static_rendition_request_type", "static_rendition_type"] as const;
 export type VideoAssetSortField = (typeof videoAssetSortFields)[number];
 
 export const resolvedPlaybackSortFields = ["status", "src", "poster", "library_file_id"] as const;
 export type ResolvedPlaybackSortField = (typeof resolvedPlaybackSortFields)[number];
+
+export const staticRenditionSortFields = ["name", "url"] as const;
+export type StaticRenditionSortField = (typeof staticRenditionSortFields)[number];
+
+export const staticRenditionRequestSortFields = ["resolution", "status", "error"] as const;
+export type StaticRenditionRequestSortField = (typeof staticRenditionRequestSortFields)[number];
+
+export const staticRenditionRequestResultSortFields = ["requested"] as const;
+export type StaticRenditionRequestResultSortField = (typeof staticRenditionRequestResultSortFields)[number];
 
 export const chatBindingSortFields = ["id", "chat_guid", "prospect_labels", "notes", "bound_at", "created_at", "updated_at", "origin_entity_id", "prospect_phones"] as const;
 export type ChatBindingSortField = (typeof chatBindingSortFields)[number];

@@ -181,6 +181,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Set a password on an anonymous quiz account from an emailed claim link, and return a JWT.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "confirm_anonymous_account",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "input": "ConfirmAnonymousAccountInput",
+        "result": "ConfirmAnonymousAccountResult"
+      },
+      "variantNames": {
+        "channel": "confirm_anonymous_account_channel",
+        "validation": "validate_confirm_anonymous_account"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Get the current authenticated user",
@@ -6909,6 +6943,76 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "List downloadable static renditions for a library file (read-only, off the playback hot path).",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_video_static_renditions",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "VideoAsset",
+      "see": [],
+      "types": {
+        "input": "ListVideoStaticRenditionsInput",
+        "result": "ListVideoStaticRenditionsResult"
+      },
+      "variantNames": {
+        "channel": "list_video_static_renditions_channel",
+        "validation": "validate_list_video_static_renditions"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Ask Otterwake to mint downloadable static renditions (presigns the source server-side).",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "request_static_renditions",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "VideoAsset",
+      "see": [],
+      "types": {
+        "fields": "RequestStaticRenditionsFields",
+        "inferResult": "InferRequestStaticRenditionsResult",
+        "input": "RequestStaticRenditionsInput",
+        "result": "RequestStaticRenditionsResult"
+      },
+      "variantNames": {
+        "channel": "request_static_renditions_channel",
+        "validation": "validate_request_static_renditions"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Resolve a VFS path to a playable HLS URL (read-only, zero side effects).",
       "enableFilter": true,
       "enableSort": true,
@@ -7739,7 +7843,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-24",
+  "generatedAt": "2026-06-26",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
