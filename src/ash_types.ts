@@ -413,25 +413,26 @@ export type MessageAttachmentAttributesOnlySchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "app_type" | "title" | "slug" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "is_published" | "meta" | "created_at" | "updated_at" | "origin_entity_id" | "has_letta_agent";
+  __primitiveFields: "id" | "app_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id" | "has_letta_agent";
   id: UUID;
   app_type: string;
-  title: string | null;
   slug: string;
+  is_published: boolean | null;
+  meta: Record<string, any> | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  title: string | null;
   source: string;
   markdoc_content: string;
   generation_status: string;
   generation_error: string | null;
   generation_format: string | null;
   generation_prompt: string | null;
-  is_published: boolean | null;
-  meta: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   origin_entity_id: UUID;
   has_letta_agent: boolean | null;
   generation_history: { __type: "ComplexCalculation"; __returnType: Array<GenerationHistoryEntryResourceSchema> | null; __args: { limit?: number | null; before?: string | null }; };
   assessment_graph: { __type: "Relationship"; __resource: AssessmentGraphResourceSchema | null; };
+  example_briefing: { __type: "Relationship"; __resource: DailyBriefingResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   app_libraries: { __type: "Relationship"; __array: true; __resource: AppLibraryResourceSchema; };
   libraries: { __type: "Relationship"; __array: true; __resource: LibraryResourceSchema; };
@@ -441,21 +442,21 @@ export type AppResourceSchema = {
 
 export type AppAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "app_type" | "title" | "slug" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "is_published" | "meta" | "created_at" | "updated_at" | "origin_entity_id";
+  __primitiveFields: "id" | "app_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id";
   id: UUID;
   app_type: string;
-  title: string | null;
   slug: string;
+  is_published: boolean | null;
+  meta: Record<string, any> | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  title: string | null;
   source: string;
   markdoc_content: string;
   generation_status: string;
   generation_error: string | null;
   generation_format: string | null;
   generation_prompt: string | null;
-  is_published: boolean | null;
-  meta: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   origin_entity_id: UUID;
 };
 
@@ -586,6 +587,57 @@ export type AssessmentResponseAttributesOnlySchema = {
   app_id: UUID;
   graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema; };
   graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema; };
+};
+
+
+// BriefingPage Schema
+export type BriefingPageResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "body";
+  body: string;
+};
+
+
+
+export type BriefingPageAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "body";
+  body: string;
+};
+
+
+export type BriefingPageInputSchema = {
+  body: string;
+};
+
+
+// DailyBriefing Schema
+export type DailyBriefingResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "session_id" | "date" | "generated_at";
+  session_id: string;
+  date: AshDate | null;
+  generated_at: UtcDateTimeUsec | null;
+  pages: { __type: "Relationship"; __array: true; __resource: BriefingPageResourceSchema; };
+};
+
+
+
+export type DailyBriefingAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "session_id" | "date" | "generated_at";
+  session_id: string;
+  date: AshDate | null;
+  generated_at: UtcDateTimeUsec | null;
+  pages: { __type: "Relationship"; __array: true; __resource: BriefingPageAttributesOnlySchema; };
+};
+
+
+export type DailyBriefingInputSchema = {
+  session_id: string;
+  date?: AshDate | null;
+  pages?: Array<BriefingPageInputSchema> | null;
+  generated_at?: UtcDateTimeUsec | null;
 };
 
 
@@ -2483,7 +2535,7 @@ export type LibraryResourceSchema = {
   id: UUID;
   name: string;
   slug: string;
-  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
+  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
   adapter_config: Record<string, any> | null;
   inherits_to_descendants: boolean;
   status: "error" | "pending" | "synced" | "syncing";
@@ -2510,7 +2562,7 @@ export type LibraryAttributesOnlySchema = {
   id: UUID;
   name: string;
   slug: string;
-  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
+  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
   adapter_config: Record<string, any> | null;
   inherits_to_descendants: boolean;
   status: "error" | "pending" | "synced" | "syncing";
@@ -3947,17 +3999,50 @@ export type AppFilterInput = {
     in?: Array<string>;
   };
 
+  slug?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  is_published?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  meta?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
   title?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
     is_nil?: boolean;
-  };
-
-  slug?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
   };
 
   source?: {
@@ -3999,39 +4084,6 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
-  is_published?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  meta?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
@@ -4055,6 +4107,13 @@ export type AppFilterInput = {
   has_letta_agent?: {
     eq?: boolean;
     not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  example_briefing?: {
+    eq?: DailyBriefingResourceSchema;
+    not_eq?: DailyBriefingResourceSchema;
+    in?: Array<DailyBriefingResourceSchema>;
     is_nil?: boolean;
   };
 
@@ -4331,6 +4390,63 @@ export type AssessmentResponseFilterInput = {
 
 
   app?: AppFilterInput;
+
+};
+export type BriefingPageFilterInput = {
+  and?: Array<BriefingPageFilterInput>;
+  or?: Array<BriefingPageFilterInput>;
+  not?: Array<BriefingPageFilterInput>;
+
+  body?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+
+
+};
+export type DailyBriefingFilterInput = {
+  and?: Array<DailyBriefingFilterInput>;
+  or?: Array<DailyBriefingFilterInput>;
+  not?: Array<DailyBriefingFilterInput>;
+
+  session_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  date?: {
+    eq?: AshDate;
+    not_eq?: AshDate;
+    greater_than?: AshDate;
+    greater_than_or_equal?: AshDate;
+    less_than?: AshDate;
+    less_than_or_equal?: AshDate;
+    in?: Array<AshDate>;
+    is_nil?: boolean;
+  };
+
+  pages?: {
+    eq?: Array<BriefingPageResourceSchema>;
+    not_eq?: Array<BriefingPageResourceSchema>;
+    in?: Array<Array<BriefingPageResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  generated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
+  };
+
+
 
 };
 export type CourseActivityCompletionFilterInput = {
@@ -8437,9 +8553,9 @@ export type LibraryFilterInput = {
   };
 
   adapter_kind?: {
-    eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
-    not_eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube";
-    in?: Array<"craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "youtube">;
+    eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    not_eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    in?: Array<"craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube">;
   };
 
   adapter_config?: {
@@ -9585,7 +9701,7 @@ export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number
 export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
-export const appFilterFields = ["id", "app_type", "title", "slug", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "is_published", "meta", "created_at", "updated_at", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "origin_entity", "app_libraries", "libraries"] as const;
+export const appFilterFields = ["id", "app_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing", "origin_entity", "app_libraries", "libraries"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
@@ -9599,6 +9715,12 @@ export type AssessmentGraphFilterField = (typeof assessmentGraphFilterFields)[nu
 
 export const assessmentResponseFilterFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id", "app"] as const;
 export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFields)[number];
+
+export const briefingPageFilterFields = ["body"] as const;
+export type BriefingPageFilterField = (typeof briefingPageFilterFields)[number];
+
+export const dailyBriefingFilterFields = ["session_id", "date", "pages", "generated_at"] as const;
+export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number];
 
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
@@ -9805,7 +9927,7 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
-export const appSortFields = ["id", "app_type", "title", "slug", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "is_published", "meta", "created_at", "updated_at", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent"] as const;
+export const appSortFields = ["id", "app_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
@@ -9819,6 +9941,12 @@ export type AssessmentGraphSortField = (typeof assessmentGraphSortFields)[number
 
 export const assessmentResponseSortFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id"] as const;
 export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[number];
+
+export const briefingPageSortFields = ["body"] as const;
+export type BriefingPageSortField = (typeof briefingPageSortFields)[number];
+
+export const dailyBriefingSortFields = ["session_id", "date", "pages", "generated_at"] as const;
+export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];

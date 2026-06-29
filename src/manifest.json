@@ -1204,6 +1204,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "daily_briefing",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "DailyBriefingInput",
+        "result": "DailyBriefingResult"
+      },
+      "variantNames": {
+        "channel": "daily_briefing_channel",
+        "validation": "validate_daily_briefing"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "destroy",
       "deprecated": false,
       "description": "Delete a App",
@@ -7843,7 +7877,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-26",
+  "generatedAt": "2026-06-29",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
