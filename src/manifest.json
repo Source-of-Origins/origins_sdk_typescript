@@ -1528,6 +1528,40 @@
       "description": "Execute generic action on App",
       "enableFilter": true,
       "enableSort": true,
+      "functionName": "mark_briefing_read",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "MarkBriefingReadInput",
+        "result": "MarkBriefingReadResult"
+      },
+      "variantNames": {
+        "channel": "mark_briefing_read_channel",
+        "validation": "validate_mark_briefing_read"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
       "functionName": "parse_assessment_blocks",
       "get": false,
       "input": "required",
@@ -7877,7 +7911,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-06-29",
+  "generatedAt": "2026-07-02",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

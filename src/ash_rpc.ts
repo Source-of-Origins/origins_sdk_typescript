@@ -5914,6 +5914,129 @@ export async function list_apps_for_origin_and_type_channel<Fields extends ListA
 }
 
 
+export type MarkBriefingReadInput = {
+  app_id: UUID;
+  user_id: UUID;
+  session_id: string;
+};
+
+export type InferMarkBriefingReadResult = DailyBriefingResourceSchema;
+
+export type MarkBriefingReadResult = | { success: true; data: InferMarkBriefingReadResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function mark_briefing_read(
+  config: {
+  tenant?: string;
+  input: MarkBriefingReadInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<MarkBriefingReadResult> {
+  const payload = {
+    action: "mark_briefing_read",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<MarkBriefingReadResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_mark_briefing_read(
+  config: {
+  tenant?: string;
+  input: MarkBriefingReadInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "mark_briefing_read",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_mark_briefing_read_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: MarkBriefingReadInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "mark_briefing_read",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function mark_briefing_read_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: MarkBriefingReadInput;
+  result_handler: (result: MarkBriefingReadResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<MarkBriefingReadResult>(
+    config.channel,
+    {
+    action: "mark_briefing_read",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ParseAssessmentBlocksInput = {
   content: string;
 };

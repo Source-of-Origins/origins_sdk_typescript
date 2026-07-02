@@ -614,10 +614,11 @@ export type BriefingPageInputSchema = {
 // DailyBriefing Schema
 export type DailyBriefingResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "session_id" | "date" | "generated_at";
+  __primitiveFields: "session_id" | "date" | "generated_at" | "read_at";
   session_id: string;
   date: AshDate | null;
   generated_at: UtcDateTimeUsec | null;
+  read_at: UtcDateTimeUsec | null;
   pages: { __type: "Relationship"; __array: true; __resource: BriefingPageResourceSchema; };
 };
 
@@ -625,10 +626,11 @@ export type DailyBriefingResourceSchema = {
 
 export type DailyBriefingAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "session_id" | "date" | "generated_at";
+  __primitiveFields: "session_id" | "date" | "generated_at" | "read_at";
   session_id: string;
   date: AshDate | null;
   generated_at: UtcDateTimeUsec | null;
+  read_at: UtcDateTimeUsec | null;
   pages: { __type: "Relationship"; __array: true; __resource: BriefingPageAttributesOnlySchema; };
 };
 
@@ -638,6 +640,7 @@ export type DailyBriefingInputSchema = {
   date?: AshDate | null;
   pages?: Array<BriefingPageInputSchema> | null;
   generated_at?: UtcDateTimeUsec | null;
+  read_at?: UtcDateTimeUsec | null;
 };
 
 
@@ -874,7 +877,7 @@ export type GenerationHistoryEntryInputSchema = {
 // OriginsAppsNode Schema
 export type OriginsAppsNodeResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
+  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight" | "summary_items" | "loading_bars";
   id: string;
   type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
@@ -886,6 +889,8 @@ export type OriginsAppsNodeResourceSchema = {
   description: string | null;
   subtitle: string | null;
   highlight: string | null;
+  summary_items: Array<string> | null;
+  loading_bars: Array<string> | null;
   options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionResourceSchema; };
   sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderResourceSchema; };
 };
@@ -894,7 +899,7 @@ export type OriginsAppsNodeResourceSchema = {
 
 export type OriginsAppsNodeAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight";
+  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight" | "summary_items" | "loading_bars";
   id: string;
   type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
@@ -906,6 +911,8 @@ export type OriginsAppsNodeAttributesOnlySchema = {
   description: string | null;
   subtitle: string | null;
   highlight: string | null;
+  summary_items: Array<string> | null;
+  loading_bars: Array<string> | null;
   options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionAttributesOnlySchema; };
   sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderAttributesOnlySchema; };
 };
@@ -925,6 +932,8 @@ export type OriginsAppsNodeInputSchema = {
   highlight?: string | null;
   options?: Array<OriginsAppsOptionInputSchema> | null;
   sliders?: Array<OriginsAppsSliderInputSchema> | null;
+  summary_items?: Array<string> | null;
+  loading_bars?: Array<string> | null;
 };
 
 
@@ -4446,6 +4455,17 @@ export type DailyBriefingFilterInput = {
     is_nil?: boolean;
   };
 
+  read_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
+  };
+
 
 
 };
@@ -4994,6 +5014,20 @@ export type OriginsAppsNodeFilterInput = {
     eq?: Array<OriginsAppsSliderResourceSchema>;
     not_eq?: Array<OriginsAppsSliderResourceSchema>;
     in?: Array<Array<OriginsAppsSliderResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  summary_items?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    is_nil?: boolean;
+  };
+
+  loading_bars?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
     is_nil?: boolean;
   };
 
@@ -9719,7 +9753,7 @@ export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFiel
 export const briefingPageFilterFields = ["body"] as const;
 export type BriefingPageFilterField = (typeof briefingPageFilterFields)[number];
 
-export const dailyBriefingFilterFields = ["session_id", "date", "pages", "generated_at"] as const;
+export const dailyBriefingFilterFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
 export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number];
 
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
@@ -9740,7 +9774,7 @@ export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[nu
 export const generationHistoryEntryFilterFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntryFilterField = (typeof generationHistoryEntryFilterFields)[number];
 
-export const originsAppsNodeFilterFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
+export const originsAppsNodeFilterFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders", "summary_items", "loading_bars"] as const;
 export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[number];
 
 export const originsAppsOptionFilterFields = ["value", "label", "segment"] as const;
@@ -9945,7 +9979,7 @@ export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[
 export const briefingPageSortFields = ["body"] as const;
 export type BriefingPageSortField = (typeof briefingPageSortFields)[number];
 
-export const dailyBriefingSortFields = ["session_id", "date", "pages", "generated_at"] as const;
+export const dailyBriefingSortFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
 export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
@@ -9966,7 +10000,7 @@ export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number
 export const generationHistoryEntrySortFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
 export type GenerationHistoryEntrySortField = (typeof generationHistoryEntrySortFields)[number];
 
-export const originsAppsNodeSortFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders"] as const;
+export const originsAppsNodeSortFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders", "summary_items", "loading_bars"] as const;
 export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number];
 
 export const originsAppsOptionSortFields = ["value", "label", "segment"] as const;
