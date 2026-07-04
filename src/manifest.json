@@ -1449,6 +1449,74 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_program_assessment",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "GetProgramAssessmentInput",
+        "result": "GetProgramAssessmentResult"
+      },
+      "variantNames": {
+        "channel": "get_program_assessment_channel",
+        "validation": "validate_get_program_assessment"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "initialize_personalization",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "InitializePersonalizationInput",
+        "result": "InitializePersonalizationResult"
+      },
+      "variantNames": {
+        "channel": "initialize_personalization_channel",
+        "validation": "validate_initialize_personalization"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read App records",
@@ -1661,6 +1729,41 @@
     {
       "actionType": "update",
       "deprecated": false,
+      "description": "Update an existing App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "publish_app",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "fields": "PublishAppFields",
+        "inferResult": "InferPublishAppResult",
+        "result": "PublishAppResult"
+      },
+      "variantNames": {
+        "channel": "publish_app_channel",
+        "validation": "validate_publish_app"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
       "description": "Restore content from a paper trail version snapshot",
       "enableFilter": true,
       "enableSort": true,
@@ -1720,6 +1823,41 @@
       "variantNames": {
         "channel": "send_app_chat_message_channel",
         "validation": "validate_send_app_chat_message"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "unpublish_app",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "fields": "UnpublishAppFields",
+        "inferResult": "InferUnpublishAppResult",
+        "result": "UnpublishAppResult"
+      },
+      "variantNames": {
+        "channel": "unpublish_app_channel",
+        "validation": "validate_unpublish_app"
       },
       "variants": {
         "channel": true,
@@ -2508,6 +2646,180 @@
       "variantNames": {
         "channel": "start_enrollment_channel",
         "validation": "validate_start_enrollment"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new ProgramTest",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_program_test",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ProgramTest",
+      "see": [],
+      "types": {
+        "fields": "CreateProgramTestFields",
+        "inferResult": "InferCreateProgramTestResult",
+        "input": "CreateProgramTestInput",
+        "result": "CreateProgramTestResult"
+      },
+      "variantNames": {
+        "channel": "create_program_test_channel",
+        "validation": "validate_create_program_test"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "destroy",
+      "deprecated": false,
+      "description": "Delete a ProgramTest",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "destroy_program_test",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ProgramTest",
+      "see": [],
+      "types": {
+        "result": "DestroyProgramTestResult"
+      },
+      "variantNames": {
+        "channel": "destroy_program_test_channel",
+        "validation": "validate_destroy_program_test"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on ProgramTest",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_program_memory",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ProgramTest",
+      "see": [],
+      "types": {
+        "input": "GetProgramMemoryInput",
+        "result": "GetProgramMemoryResult"
+      },
+      "variantNames": {
+        "channel": "get_program_memory_channel",
+        "validation": "validate_get_program_memory"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read ProgramTest records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_program_tests",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ProgramTest",
+      "see": [],
+      "types": {
+        "fields": "ListProgramTestsFields",
+        "filterInput": "ProgramTestFilterInput",
+        "inferResult": "InferListProgramTestsResult",
+        "input": "ListProgramTestsInput",
+        "result": "ListProgramTestsResult"
+      },
+      "variantNames": {
+        "channel": "list_program_tests_channel",
+        "validation": "validate_list_program_tests"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on ProgramTest",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "start_program_test_run",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ProgramTest",
+      "see": [],
+      "types": {
+        "input": "StartProgramTestRunInput",
+        "result": "StartProgramTestRunResult"
+      },
+      "variantNames": {
+        "channel": "start_program_test_run_channel",
+        "validation": "validate_start_program_test_run"
       },
       "variants": {
         "channel": true,
@@ -7911,7 +8223,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-07-02",
+  "generatedAt": "2026-07-04",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

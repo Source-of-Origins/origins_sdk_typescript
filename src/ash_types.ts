@@ -413,9 +413,9 @@ export type MessageAttachmentAttributesOnlySchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "app_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id" | "has_letta_agent";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id" | "has_letta_agent";
   id: UUID;
-  app_type: string;
+  page_type: string;
   slug: string;
   is_published: boolean | null;
   meta: Record<string, any> | null;
@@ -442,9 +442,9 @@ export type AppResourceSchema = {
 
 export type AppAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "app_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id";
   id: UUID;
-  app_type: string;
+  page_type: string;
   slug: string;
   is_published: boolean | null;
   meta: Record<string, any> | null;
@@ -964,6 +964,36 @@ export type OriginsAppsOptionInputSchema = {
 };
 
 
+// ProgramTest Schema
+export type ProgramTestResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "name" | "coach_conversation_id" | "created_at" | "updated_at" | "program_id" | "test_user_id";
+  id: UUID;
+  name: string;
+  coach_conversation_id: UUID | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  program_id: UUID;
+  test_user_id: UUID | null;
+  program: { __type: "Relationship"; __resource: AppResourceSchema; };
+  test_user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
+};
+
+
+
+export type ProgramTestAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "name" | "coach_conversation_id" | "created_at" | "updated_at" | "program_id" | "test_user_id";
+  id: UUID;
+  name: string;
+  coach_conversation_id: UUID | null;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  program_id: UUID;
+  test_user_id: UUID | null;
+};
+
+
 // OriginsAppsSlider Schema
 export type OriginsAppsSliderResourceSchema = {
   __type: "Resource";
@@ -997,11 +1027,11 @@ export type OriginsAppsSliderInputSchema = {
 // AppTemplate Schema
 export type AppTemplateResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "app_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
+  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
   id: UUID;
   name: string;
   description: string;
-  app_type: string;
+  page_type: string;
   seed_markdoc_content: string;
   sort_order: number;
   created_at: UtcDateTimeUsec;
@@ -1012,11 +1042,11 @@ export type AppTemplateResourceSchema = {
 
 export type AppTemplateAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "app_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
+  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
   id: UUID;
   name: string;
   description: string;
-  app_type: string;
+  page_type: string;
   seed_markdoc_content: string;
   sort_order: number;
   created_at: UtcDateTimeUsec;
@@ -4002,7 +4032,7 @@ export type AppFilterInput = {
     in?: Array<UUID>;
   };
 
-  app_type?: {
+  page_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
@@ -5061,6 +5091,69 @@ export type OriginsAppsOptionFilterInput = {
 
 
 };
+export type ProgramTestFilterInput = {
+  and?: Array<ProgramTestFilterInput>;
+  or?: Array<ProgramTestFilterInput>;
+  not?: Array<ProgramTestFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  coach_conversation_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  program_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  test_user_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+
+  program?: AppFilterInput;
+
+  test_user?: UserFilterInput;
+
+};
 export type OriginsAppsSliderFilterInput = {
   and?: Array<OriginsAppsSliderFilterInput>;
   or?: Array<OriginsAppsSliderFilterInput>;
@@ -5127,7 +5220,7 @@ export type AppTemplateFilterInput = {
     in?: Array<string>;
   };
 
-  app_type?: {
+  page_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
@@ -9735,7 +9828,7 @@ export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number
 export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
-export const appFilterFields = ["id", "app_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing", "origin_entity", "app_libraries", "libraries"] as const;
+export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing", "origin_entity", "app_libraries", "libraries"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
@@ -9780,10 +9873,13 @@ export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[nu
 export const originsAppsOptionFilterFields = ["value", "label", "segment"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
+export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user"] as const;
+export type ProgramTestFilterField = (typeof programTestFilterFields)[number];
+
 export const originsAppsSliderFilterFields = ["id", "label", "min", "max"] as const;
 export type OriginsAppsSliderFilterField = (typeof originsAppsSliderFilterFields)[number];
 
-export const appTemplateFilterFields = ["id", "name", "description", "app_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
+export const appTemplateFilterFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
 export type AppTemplateFilterField = (typeof appTemplateFilterFields)[number];
 
 export const webhookDeliveryFilterFields = ["id", "event_type", "event_id", "assessment_response_id", "target_url", "payload", "status", "attempts", "last_status_code", "last_error", "delivered_at", "created_at", "updated_at", "subscription_id", "origin_entity_id", "subscription", "origin_entity"] as const;
@@ -9961,7 +10057,7 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
-export const appSortFields = ["id", "app_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing"] as const;
+export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
@@ -10006,10 +10102,13 @@ export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number
 export const originsAppsOptionSortFields = ["value", "label", "segment"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
 
+export const programTestSortFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id"] as const;
+export type ProgramTestSortField = (typeof programTestSortFields)[number];
+
 export const originsAppsSliderSortFields = ["id", "label", "min", "max"] as const;
 export type OriginsAppsSliderSortField = (typeof originsAppsSliderSortFields)[number];
 
-export const appTemplateSortFields = ["id", "name", "description", "app_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
+export const appTemplateSortFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
 export type AppTemplateSortField = (typeof appTemplateSortFields)[number];
 
 export const webhookDeliverySortFields = ["id", "event_type", "event_id", "assessment_response_id", "target_url", "payload", "status", "attempts", "last_status_code", "last_error", "delivered_at", "created_at", "updated_at", "subscription_id", "origin_entity_id"] as const;
