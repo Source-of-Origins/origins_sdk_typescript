@@ -1614,6 +1614,142 @@ export async function register_with_password_channel<Fields extends RegisterWith
 }
 
 
+export type RequestMagicLinkInput = {
+  email: string;
+};
+
+export type RequestMagicLinkFields = UnifiedFieldSelection<UserResourceSchema>[];
+export type InferRequestMagicLinkResult<
+  Fields extends RequestMagicLinkFields,
+> = Array<InferResult<UserResourceSchema, Fields>>;
+
+export type RequestMagicLinkResult<Fields extends RequestMagicLinkFields> = | { success: true; data: InferRequestMagicLinkResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function request_magic_link<Fields extends RequestMagicLinkFields>(
+  config: {
+  tenant?: string;
+  input: RequestMagicLinkInput;
+  fields: Fields;
+  filter?: UserFilterInput;
+  sort?: SortString<UserSortField> | SortString<UserSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RequestMagicLinkResult<Fields>> {
+  const payload = {
+    action: "request_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<RequestMagicLinkResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_request_magic_link(
+  config: {
+  tenant?: string;
+  input: RequestMagicLinkInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "request_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_request_magic_link_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RequestMagicLinkInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "request_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function request_magic_link_channel<Fields extends RequestMagicLinkFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RequestMagicLinkInput;
+  fields: Fields;
+  filter?: UserFilterInput;
+  sort?: SortString<UserSortField> | SortString<UserSortField>[];
+  result_handler: (result: RequestMagicLinkResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<RequestMagicLinkResult<Fields>>(
+    config.channel,
+    {
+    action: "request_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type SignInWithAppleTokenInput = {
   id_token: string;
 };
@@ -1849,6 +1985,144 @@ export async function sign_in_with_google_token_channel(config: {
     action: "sign_in_with_google_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type SignInWithMagicLinkInput = {
+  token: string;
+};
+
+export type SignInWithMagicLinkFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+export type SignInWithMagicLinkMetadata = {
+  token: string;
+};
+
+export type InferSignInWithMagicLinkResult<
+  Fields extends SignInWithMagicLinkFields,
+  MetadataFields extends ReadonlyArray<keyof SignInWithMagicLinkMetadata> = []
+> = (InferResult<UserResourceSchema, Fields> & Pick<SignInWithMagicLinkMetadata, MetadataFields[number]>);
+
+export type SignInWithMagicLinkResult<Fields extends SignInWithMagicLinkFields, MetadataFields extends ReadonlyArray<keyof SignInWithMagicLinkMetadata> = []> = | { success: true; data: InferSignInWithMagicLinkResult<Fields, MetadataFields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function sign_in_with_magic_link<Fields extends SignInWithMagicLinkFields, MetadataFields extends ReadonlyArray<keyof SignInWithMagicLinkMetadata> = []>(
+  config: {
+  tenant?: string;
+  input: SignInWithMagicLinkInput;
+  fields: Fields;
+  metadata_fields?: MetadataFields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<SignInWithMagicLinkResult<Fields, MetadataFields>> {
+  const payload = {
+    action: "sign_in_with_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.metadata_fields && { metadata_fields: config.metadata_fields })
+  };
+
+  return executeActionRpcRequest<SignInWithMagicLinkResult<Fields, MetadataFields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_sign_in_with_magic_link(
+  config: {
+  tenant?: string;
+  input: SignInWithMagicLinkInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "sign_in_with_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_sign_in_with_magic_link_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: SignInWithMagicLinkInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "sign_in_with_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function sign_in_with_magic_link_channel<Fields extends SignInWithMagicLinkFields, MetadataFields extends ReadonlyArray<keyof SignInWithMagicLinkMetadata> = []>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: SignInWithMagicLinkInput;
+  fields: Fields;
+  metadata_fields?: MetadataFields;
+  result_handler: (result: SignInWithMagicLinkResult<Fields, MetadataFields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<SignInWithMagicLinkResult<Fields, MetadataFields>>(
+    config.channel,
+    {
+    action: "sign_in_with_magic_link",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.metadata_fields && { metadata_fields: config.metadata_fields })
   },
     config.timeout,
     config
@@ -4504,6 +4778,123 @@ export async function upload_chat_attachment_channel(config: {
 }
 
 
+export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, personality: string | null, context: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, __type: "TypedMap", __primitiveFields: "key" | "label"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, season: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "season" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, min: number | null, max: number | null, track: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "min" | "max" | "track" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, icon: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "icon"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string, activity_pattern: string, label: string | null, __type: "TypedMap", __primitiveFields: "time" | "activity_pattern" | "label"}, activity_lookup_entry: {title: string, type: string, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "type" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
+
+export type InferCoachingTypesResult<
+  Fields extends CoachingTypesFields | undefined,
+> = InferResult<{coach: {greeting: string | null, personality: string | null, context: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, __type: "TypedMap", __primitiveFields: "key" | "label"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, season: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "season" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, min: number | null, max: number | null, track: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "min" | "max" | "track" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, icon: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "icon"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string, activity_pattern: string, label: string | null, __type: "TypedMap", __primitiveFields: "time" | "activity_pattern" | "label"}, activity_lookup_entry: {title: string, type: string, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "type" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
+
+export type CoachingTypesResult<Fields extends CoachingTypesFields | undefined = undefined> = | { success: true; data: InferCoachingTypesResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function coaching_types<Fields extends CoachingTypesFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CoachingTypesResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "coaching_types",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<CoachingTypesResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_coaching_types(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "coaching_types",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_coaching_types_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "coaching_types",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function coaching_types_channel<Fields extends CoachingTypesFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  result_handler: (result: CoachingTypesResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CoachingTypesResult<Fields>>(
+    config.channel,
+    {
+    action: "coaching_types",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type CreateAppInput = {
   page_type: string;
   title?: string | null;
@@ -6767,6 +7158,130 @@ export async function publish_app_channel<Fields extends PublishAppFields | unde
 }
 
 
+export type RegeneratePersonalizationInput = {
+  program_id: UUID;
+  mode?: "agent" | "copy";
+  reason?: "assessment_retake" | "enrollment" | "manual" | "weekly_lookahead" | null;
+  prompt?: string | null;
+};
+
+export type InferRegeneratePersonalizationResult = Record<string, any>;
+
+export type RegeneratePersonalizationResult = | { success: true; data: InferRegeneratePersonalizationResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function regenerate_personalization(
+  config: {
+  tenant?: string;
+  input: RegeneratePersonalizationInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RegeneratePersonalizationResult> {
+  const payload = {
+    action: "regenerate_personalization",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<RegeneratePersonalizationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_regenerate_personalization(
+  config: {
+  tenant?: string;
+  input: RegeneratePersonalizationInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "regenerate_personalization",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_regenerate_personalization_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RegeneratePersonalizationInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "regenerate_personalization",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function regenerate_personalization_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RegeneratePersonalizationInput;
+  result_handler: (result: RegeneratePersonalizationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<RegeneratePersonalizationResult>(
+    config.channel,
+    {
+    action: "regenerate_personalization",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type RestoreAppVersionInput = {
   version_id: UUID;
 };
@@ -8715,6 +9230,7 @@ export type CompleteActivityStepInput = {
   activity_id: string;
   step_id?: string | null;
   completed_date: AshDate;
+  responses?: Record<string, any> | null;
   notes?: string | null;
   duration_seconds?: number | null;
 };
@@ -8846,6 +9362,7 @@ export async function complete_activity_step_channel<Fields extends CompleteActi
 
 export type AdvanceEnrollmentSessionInput = {
   session_id?: string | null;
+  phase_id?: string | null;
 };
 
 export type AdvanceEnrollmentSessionFields = UnifiedFieldSelection<CourseEnrollmentResourceSchema>[];
@@ -9116,6 +9633,7 @@ export type CreateEnrollmentInput = {
   user_id: UUID;
   character_id: UUID;
   app_id: UUID;
+  current_personalization_id?: UUID | null;
 };
 
 export type CreateEnrollmentFields = UnifiedFieldSelection<CourseEnrollmentResourceSchema>[];
@@ -26636,6 +27154,139 @@ export async function update_library_file_channel<Fields extends UpdateLibraryFi
     action: "update_library_file",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type UploadLibraryAssetInput = {
+  file_data: string;
+  file_name: string;
+  file_type: string;
+  file_size: number;
+  origin_entity_id: UUID;
+};
+
+export type UploadLibraryAssetFields = UnifiedFieldSelection<{path: string, format: string, __type: "TypedMap", __primitiveFields: "path" | "format"}>[];
+
+export type InferUploadLibraryAssetResult<
+  Fields extends UploadLibraryAssetFields | undefined,
+> = InferResult<{path: string, format: string, __type: "TypedMap", __primitiveFields: "path" | "format"}, Fields>;
+
+export type UploadLibraryAssetResult<Fields extends UploadLibraryAssetFields | undefined = undefined> = | { success: true; data: InferUploadLibraryAssetResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function upload_library_asset<Fields extends UploadLibraryAssetFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: UploadLibraryAssetInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<UploadLibraryAssetResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "upload_library_asset",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<UploadLibraryAssetResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_upload_library_asset(
+  config: {
+  tenant?: string;
+  input: UploadLibraryAssetInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "upload_library_asset",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_upload_library_asset_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: UploadLibraryAssetInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "upload_library_asset",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function upload_library_asset_channel<Fields extends UploadLibraryAssetFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: UploadLibraryAssetInput;
+  fields: Fields;
+  result_handler: (result: UploadLibraryAssetResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<UploadLibraryAssetResult<Fields>>(
+    config.channel,
+    {
+    action: "upload_library_asset",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },

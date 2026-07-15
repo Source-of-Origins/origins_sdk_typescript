@@ -359,6 +359,43 @@
       }
     },
     {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Email a passwordless sign-in link to a user if one exists for the address.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "request_magic_link",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "fields": "RequestMagicLinkFields",
+        "filterInput": "UserFilterInput",
+        "inferResult": "InferRequestMagicLinkResult",
+        "input": "RequestMagicLinkInput",
+        "result": "RequestMagicLinkResult"
+      },
+      "variantNames": {
+        "channel": "request_magic_link_channel",
+        "validation": "validate_request_magic_link"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "action",
       "deprecated": false,
       "description": "Verify an Apple id_token, resolve/create the user, and return a JWT (SDK entrypoint).",
@@ -418,6 +455,43 @@
       "variantNames": {
         "channel": "sign_in_with_google_token_channel",
         "validation": "validate_sign_in_with_google_token"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Sign in by exchanging a single-use magic link token for a session JWT.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "sign_in_with_magic_link",
+      "get": true,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": true,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "fields": "SignInWithMagicLinkFields",
+        "filterInput": "UserFilterInput",
+        "inferResult": "InferSignInWithMagicLinkResult",
+        "input": "SignInWithMagicLinkInput",
+        "result": "SignInWithMagicLinkResult"
+      },
+      "variantNames": {
+        "channel": "sign_in_with_magic_link_channel",
+        "validation": "validate_sign_in_with_magic_link"
       },
       "variants": {
         "channel": true,
@@ -1132,6 +1206,41 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Type source for the coaching payload shapes the LiveView serializer sends\nto the Vue app. Nested lists and objects are declared inline in the field\nconstraints (`Origins.Apps.CoachingTypesShape`), so ash_typescript emits\nfully typed nested shapes and `assets/vue/coaching/types.ts` derives every\nexport by indexed access instead of hand-typing. The coaching app is served\nover LiveView, so this action is never invoked at runtime.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "coaching_types",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "fields": "CoachingTypesFields",
+        "inferResult": "InferCoachingTypesResult",
+        "result": "CoachingTypesResult"
+      },
+      "variantNames": {
+        "channel": "coaching_types_channel",
+        "validation": "validate_coaching_types"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "create",
       "deprecated": false,
       "description": "Create a new App",
@@ -1753,6 +1862,40 @@
       "variantNames": {
         "channel": "publish_app_channel",
         "validation": "validate_publish_app"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "regenerate_personalization",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "RegeneratePersonalizationInput",
+        "result": "RegeneratePersonalizationResult"
+      },
+      "variantNames": {
+        "channel": "regenerate_personalization_channel",
+        "validation": "validate_regenerate_personalization"
       },
       "variants": {
         "channel": true,
@@ -6965,6 +7108,42 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "Upload a file into the Origin's raw-upload \"Resources\" Library and return\nits canonical VFS path. Store the path in an `<app-content url=...>` markdoc\nattribute; `Structure.resolve_library_urls/3` re-signs it on every mount.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "upload_library_asset",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "LibraryFile",
+      "see": [],
+      "types": {
+        "fields": "UploadLibraryAssetFields",
+        "inferResult": "InferUploadLibraryAssetResult",
+        "input": "UploadLibraryAssetInput",
+        "result": "UploadLibraryAssetResult"
+      },
+      "variantNames": {
+        "channel": "upload_library_asset_channel",
+        "validation": "validate_upload_library_asset"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Create or update a website-scrape file in a Library, keyed by (library_id, source_metadata.url).",
       "enableFilter": true,
       "enableSort": true,
@@ -8223,7 +8402,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-07-04",
+  "generatedAt": "2026-07-15",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

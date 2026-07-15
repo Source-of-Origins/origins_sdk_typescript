@@ -684,7 +684,7 @@ export type CourseActivityCompletionAttributesOnlySchema = {
 // CourseEnrollment Schema
 export type CourseEnrollmentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "assessment_answers";
+  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id" | "assessment_answers";
   id: UUID;
   status: "active" | "completed" | "not_started" | "paused" | "reactivated";
   current_session_id: string | null;
@@ -699,6 +699,7 @@ export type CourseEnrollmentResourceSchema = {
   user_id: UUID;
   character_id: UUID;
   app_id: UUID;
+  current_personalization_id: UUID | null;
   assessment_answers: Record<string, any> | null;
   enrollment_completions_type_anchor: { __type: "Relationship"; __resource: EnrollmentCompletionsResourceSchema | null; };
   activity_completion_summary_type_anchor: { __type: "Relationship"; __resource: ActivityCompletionSummaryResourceSchema | null; };
@@ -712,7 +713,7 @@ export type CourseEnrollmentResourceSchema = {
 
 export type CourseEnrollmentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id";
+  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id";
   id: UUID;
   status: "active" | "completed" | "not_started" | "paused" | "reactivated";
   current_session_id: string | null;
@@ -727,6 +728,7 @@ export type CourseEnrollmentAttributesOnlySchema = {
   user_id: UUID;
   character_id: UUID;
   app_id: UUID;
+  current_personalization_id: UUID | null;
 };
 
 
@@ -940,20 +942,22 @@ export type OriginsAppsNodeInputSchema = {
 // OriginsAppsOption Schema
 export type OriginsAppsOptionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "value" | "label" | "segment";
+  __primitiveFields: "value" | "label" | "segment" | "route";
   value: string;
   label: string;
   segment: string | null;
+  route: string | null;
 };
 
 
 
 export type OriginsAppsOptionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "value" | "label" | "segment";
+  __primitiveFields: "value" | "label" | "segment" | "route";
   value: string;
   label: string;
   segment: string | null;
+  route: string | null;
 };
 
 
@@ -961,6 +965,7 @@ export type OriginsAppsOptionInputSchema = {
   value: string;
   label: string;
   segment?: string | null;
+  route?: string | null;
 };
 
 
@@ -2647,7 +2652,7 @@ export type LibraryAccessGrantAttributesOnlySchema = {
 // LibraryFile Schema
 export type LibraryFileResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "path" | "item_type" | "item_name" | "item_content" | "s3_key" | "sync_status" | "source_metadata" | "created_at" | "updated_at" | "library_id" | "signed_s3_url";
+  __primitiveFields: "id" | "path" | "item_type" | "item_name" | "item_content" | "s3_key" | "sync_status" | "source_metadata" | "created_at" | "updated_at" | "library_id" | "signed_s3_url" | "vfs_path" | "media_format";
   id: UUID;
   path: string;
   item_type: string;
@@ -2660,6 +2665,8 @@ export type LibraryFileResourceSchema = {
   updated_at: UtcDateTimeUsec;
   library_id: UUID;
   signed_s3_url: string | null;
+  vfs_path: string | null;
+  media_format: string | null;
   library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
   video_asset: { __type: "Relationship"; __resource: VideoAssetResourceSchema | null; };
 };
@@ -4715,6 +4722,13 @@ export type CourseEnrollmentFilterInput = {
     in?: Array<UUID>;
   };
 
+  current_personalization_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
   assessment_answers?: {
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
@@ -5082,6 +5096,13 @@ export type OriginsAppsOptionFilterInput = {
   };
 
   segment?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  route?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
@@ -8930,6 +8951,20 @@ export type LibraryFileFilterInput = {
     is_nil?: boolean;
   };
 
+  vfs_path?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  media_format?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
 
   library?: LibraryFilterInput;
 
@@ -9852,7 +9887,7 @@ export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
 
-export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor", "user", "character", "app", "activity_completions"] as const;
+export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor", "user", "character", "app", "activity_completions", "current_personalization"] as const;
 export type CourseEnrollmentFilterField = (typeof courseEnrollmentFilterFields)[number];
 
 export const activityCompletionSummaryFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
@@ -9870,7 +9905,7 @@ export type GenerationHistoryEntryFilterField = (typeof generationHistoryEntryFi
 export const originsAppsNodeFilterFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders", "summary_items", "loading_bars"] as const;
 export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[number];
 
-export const originsAppsOptionFilterFields = ["value", "label", "segment"] as const;
+export const originsAppsOptionFilterFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
 export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user"] as const;
@@ -9987,7 +10022,7 @@ export type LibraryFilterField = (typeof libraryFilterFields)[number];
 export const libraryAccessGrantFilterFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id", "library", "grantee_origin_entity"] as const;
 export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFields)[number];
 
-export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "library", "video_asset"] as const;
+export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "vfs_path", "media_format", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
 export const playlistFilterFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id", "user", "items"] as const;
@@ -10081,7 +10116,7 @@ export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];
 
-export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor"] as const;
+export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor"] as const;
 export type CourseEnrollmentSortField = (typeof courseEnrollmentSortFields)[number];
 
 export const activityCompletionSummarySortFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
@@ -10099,7 +10134,7 @@ export type GenerationHistoryEntrySortField = (typeof generationHistoryEntrySort
 export const originsAppsNodeSortFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders", "summary_items", "loading_bars"] as const;
 export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number];
 
-export const originsAppsOptionSortFields = ["value", "label", "segment"] as const;
+export const originsAppsOptionSortFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
 
 export const programTestSortFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id"] as const;
@@ -10216,7 +10251,7 @@ export type LibrarySortField = (typeof librarySortFields)[number];
 export const libraryAccessGrantSortFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id"] as const;
 export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[number];
 
-export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url"] as const;
+export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "vfs_path", "media_format"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
 
 export const playlistSortFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id"] as const;
