@@ -1093,6 +1093,144 @@ export async function confirm_anonymous_account_channel(config: {
 }
 
 
+export type CreateAnonymousUserInput = {
+  email: string;
+};
+
+export type CreateAnonymousUserFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+export type CreateAnonymousUserMetadata = {
+  token: string;
+};
+
+export type InferCreateAnonymousUserResult<
+  Fields extends CreateAnonymousUserFields | undefined,
+  MetadataFields extends ReadonlyArray<keyof CreateAnonymousUserMetadata> = []
+> = InferResult<UserResourceSchema, Fields>;
+
+export type CreateAnonymousUserResult<Fields extends CreateAnonymousUserFields | undefined = undefined, MetadataFields extends ReadonlyArray<keyof CreateAnonymousUserMetadata> = []> = | { success: true; data: InferCreateAnonymousUserResult<Fields>; metadata: Pick<CreateAnonymousUserMetadata, MetadataFields[number]>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new User
+ *
+ * @ashActionType :create
+ */
+export async function create_anonymous_user<Fields extends CreateAnonymousUserFields | undefined = undefined, MetadataFields extends ReadonlyArray<keyof CreateAnonymousUserMetadata> = []>(
+  config: {
+  tenant?: string;
+  input: CreateAnonymousUserInput;
+  fields?: Fields;
+  metadata_fields?: MetadataFields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CreateAnonymousUserResult<Fields extends undefined ? [] : Fields, MetadataFields>> {
+  const payload = {
+    action: "create_anonymous_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.metadata_fields && { metadata_fields: config.metadata_fields })
+  };
+
+  return executeActionRpcRequest<CreateAnonymousUserResult<Fields extends undefined ? [] : Fields, MetadataFields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new User
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_anonymous_user(
+  config: {
+  tenant?: string;
+  input: CreateAnonymousUserInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "create_anonymous_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new User
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_anonymous_user_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateAnonymousUserInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "create_anonymous_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new User
+ *
+ * @ashActionType :create
+ */
+export async function create_anonymous_user_channel<Fields extends CreateAnonymousUserFields | undefined = undefined, MetadataFields extends ReadonlyArray<keyof CreateAnonymousUserMetadata> = []>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateAnonymousUserInput;
+  fields?: Fields;
+  metadata_fields?: MetadataFields;
+  result_handler: (result: CreateAnonymousUserResult<Fields, MetadataFields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CreateAnonymousUserResult<Fields, MetadataFields>>(
+    config.channel,
+    {
+    action: "create_anonymous_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.metadata_fields && { metadata_fields: config.metadata_fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type GetCurrentUserFields = UnifiedFieldSelection<UserResourceSchema>[];
 export type InferGetCurrentUserResult<
   Fields extends GetCurrentUserFields,
