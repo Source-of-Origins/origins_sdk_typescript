@@ -351,14 +351,14 @@ export type PublicMessageResourceSchema = {
   __primitiveFields: "id" | "role" | "content" | "model_used" | "tokens_used" | "response_time_ms" | "metadata" | "created_at" | "conversation_id";
   id: UUID;
   role: string;
-  content: string;
+  content: string | null;
   model_used: string | null;
   tokens_used: number | null;
   response_time_ms: number | null;
   metadata: Record<string, any> | null;
   created_at: UtcDateTimeUsec;
-  conversation_id: UUID;
-  conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema; };
+  conversation_id: UUID | null;
+  conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
 };
 
 
@@ -368,13 +368,13 @@ export type PublicMessageAttributesOnlySchema = {
   __primitiveFields: "id" | "role" | "content" | "model_used" | "tokens_used" | "response_time_ms" | "metadata" | "created_at" | "conversation_id";
   id: UUID;
   role: string;
-  content: string;
+  content: string | null;
   model_used: string | null;
   tokens_used: number | null;
   response_time_ms: number | null;
   metadata: Record<string, any> | null;
   created_at: UtcDateTimeUsec;
-  conversation_id: UUID;
+  conversation_id: UUID | null;
 };
 
 
@@ -413,50 +413,53 @@ export type MessageAttachmentAttributesOnlySchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id" | "has_letta_agent";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "change_summary" | "change_source_message_id" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_format" | "generation_prompt" | "schema_version" | "origin_entity_id" | "has_letta_agent" | "generation_status" | "generation_error";
   id: UUID;
   page_type: string;
   slug: string;
   is_published: boolean | null;
   meta: Record<string, any> | null;
+  change_summary: string | null;
+  change_source_message_id: string | null;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   title: string | null;
   source: string;
   markdoc_content: string;
-  generation_status: string;
-  generation_error: string | null;
   generation_format: string | null;
   generation_prompt: string | null;
+  schema_version: number;
   origin_entity_id: UUID;
   has_letta_agent: boolean | null;
+  generation_status: string | null;
+  generation_error: string | null;
+  authoring_document: { __type: "Relationship"; __resource: AuthoringDocumentResourceSchema | null; };
   generation_history: { __type: "ComplexCalculation"; __returnType: Array<GenerationHistoryEntryResourceSchema> | null; __args: { limit?: number | null; before?: string | null }; };
   assessment_graph: { __type: "Relationship"; __resource: AssessmentGraphResourceSchema | null; };
   example_briefing: { __type: "Relationship"; __resource: DailyBriefingResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-  app_libraries: { __type: "Relationship"; __array: true; __resource: AppLibraryResourceSchema; };
-  libraries: { __type: "Relationship"; __array: true; __resource: LibraryResourceSchema; };
 };
 
 
 
 export type AppAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_status" | "generation_error" | "generation_format" | "generation_prompt" | "origin_entity_id";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "change_summary" | "change_source_message_id" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_format" | "generation_prompt" | "schema_version" | "origin_entity_id";
   id: UUID;
   page_type: string;
   slug: string;
   is_published: boolean | null;
   meta: Record<string, any> | null;
+  change_summary: string | null;
+  change_source_message_id: string | null;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   title: string | null;
   source: string;
   markdoc_content: string;
-  generation_status: string;
-  generation_error: string | null;
   generation_format: string | null;
   generation_prompt: string | null;
+  schema_version: number;
   origin_entity_id: UUID;
 };
 
@@ -464,10 +467,12 @@ export type AppAttributesOnlySchema = {
 // AppVersion Schema
 export type AppVersionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
+  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
   id: UUID;
   version_action_type: "create" | "destroy" | "update";
   version_action_name: string;
+  change_summary: string | null;
+  change_source_message_id: string | null;
   version_source_id: UUID;
   changes: Record<string, any> | null;
   version_inserted_at: UtcDateTimeUsec;
@@ -479,40 +484,16 @@ export type AppVersionResourceSchema = {
 
 export type AppVersionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
+  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
   id: UUID;
   version_action_type: "create" | "destroy" | "update";
   version_action_name: string;
+  change_summary: string | null;
+  change_source_message_id: string | null;
   version_source_id: UUID;
   changes: Record<string, any> | null;
   version_inserted_at: UtcDateTimeUsec;
   version_updated_at: UtcDateTimeUsec;
-};
-
-
-// AppLibrary Schema
-export type AppLibraryResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "id" | "created_at" | "updated_at" | "app_id" | "library_id";
-  id: UUID;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  app_id: UUID;
-  library_id: UUID;
-  app: { __type: "Relationship"; __resource: AppResourceSchema; };
-  library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
-};
-
-
-
-export type AppLibraryAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "id" | "created_at" | "updated_at" | "app_id" | "library_id";
-  id: UUID;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  app_id: UUID;
-  library_id: UUID;
 };
 
 
@@ -587,6 +568,36 @@ export type AssessmentResponseAttributesOnlySchema = {
   app_id: UUID;
   graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema; };
   graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema; };
+};
+
+
+// AuthoringDocument Schema
+export type AuthoringDocumentResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "page_type" | "blocks" | "config" | "errors";
+  page_type: string;
+  blocks: Array<Record<string, any>> | null;
+  config: Record<string, any> | null;
+  errors: Array<Record<string, any>> | null;
+};
+
+
+
+export type AuthoringDocumentAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "page_type" | "blocks" | "config" | "errors";
+  page_type: string;
+  blocks: Array<Record<string, any>> | null;
+  config: Record<string, any> | null;
+  errors: Array<Record<string, any>> | null;
+};
+
+
+export type AuthoringDocumentInputSchema = {
+  page_type: string;
+  blocks?: Array<Record<string, any>> | null;
+  config?: Record<string, any> | null;
+  errors?: Array<Record<string, any>> | null;
 };
 
 
@@ -1032,13 +1043,14 @@ export type OriginsAppsSliderInputSchema = {
 // AppTemplate Schema
 export type AppTemplateResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
+  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "schema_version" | "created_at" | "updated_at";
   id: UUID;
   name: string;
   description: string;
   page_type: string;
   seed_markdoc_content: string;
   sort_order: number;
+  schema_version: number;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
 };
@@ -1047,13 +1059,14 @@ export type AppTemplateResourceSchema = {
 
 export type AppTemplateAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
+  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "schema_version" | "created_at" | "updated_at";
   id: UUID;
   name: string;
   description: string;
   page_type: string;
   seed_markdoc_content: string;
   sort_order: number;
+  schema_version: number;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
 };
@@ -3897,6 +3910,7 @@ export type PublicMessageFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    is_nil?: boolean;
   };
 
   model_used?: {
@@ -3949,6 +3963,7 @@ export type PublicMessageFilterInput = {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    is_nil?: boolean;
   };
 
 
@@ -4064,6 +4079,20 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
+  change_summary?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  change_source_message_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
@@ -4103,19 +4132,6 @@ export type AppFilterInput = {
     in?: Array<string>;
   };
 
-  generation_status?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  generation_error?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   generation_format?: {
     eq?: string;
     not_eq?: string;
@@ -4130,10 +4146,27 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
+  schema_version?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+  };
+
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+  };
+
+  authoring_document?: {
+    eq?: AuthoringDocumentResourceSchema;
+    not_eq?: AuthoringDocumentResourceSchema;
+    in?: Array<AuthoringDocumentResourceSchema>;
+    is_nil?: boolean;
   };
 
   generation_history?: {
@@ -4156,6 +4189,20 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
+  generation_status?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  generation_error?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
   example_briefing?: {
     eq?: DailyBriefingResourceSchema;
     not_eq?: DailyBriefingResourceSchema;
@@ -4165,10 +4212,6 @@ export type AppFilterInput = {
 
 
   origin_entity?: OriginEntityFilterInput;
-
-  app_libraries?: AppLibraryFilterInput;
-
-  libraries?: LibraryFilterInput;
 
 };
 export type AppVersionFilterInput = {
@@ -4192,6 +4235,20 @@ export type AppVersionFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+  };
+
+  change_summary?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  change_source_message_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
   };
 
   version_source_id?: {
@@ -4229,55 +4286,6 @@ export type AppVersionFilterInput = {
 
 
   version_source?: AppFilterInput;
-
-};
-export type AppLibraryFilterInput = {
-  and?: Array<AppLibraryFilterInput>;
-  or?: Array<AppLibraryFilterInput>;
-  not?: Array<AppLibraryFilterInput>;
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  app_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  library_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-
-  app?: AppFilterInput;
-
-  library?: LibraryFilterInput;
 
 };
 export type AssessmentGraphFilterInput = {
@@ -4436,6 +4444,41 @@ export type AssessmentResponseFilterInput = {
 
 
   app?: AppFilterInput;
+
+};
+export type AuthoringDocumentFilterInput = {
+  and?: Array<AuthoringDocumentFilterInput>;
+  or?: Array<AuthoringDocumentFilterInput>;
+  not?: Array<AuthoringDocumentFilterInput>;
+
+  page_type?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  blocks?: {
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    is_nil?: boolean;
+  };
+
+  config?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+  errors?: {
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    is_nil?: boolean;
+  };
+
+
 
 };
 export type BriefingPageFilterInput = {
@@ -5254,6 +5297,16 @@ export type AppTemplateFilterInput = {
   };
 
   sort_order?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+  };
+
+  schema_version?: {
     eq?: number;
     not_eq?: number;
     greater_than?: number;
@@ -9863,20 +9916,20 @@ export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number
 export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
-export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing", "origin_entity", "app_libraries", "libraries"] as const;
+export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
-export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
+export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
 export type AppVersionFilterField = (typeof appVersionFilterFields)[number];
-
-export const appLibraryFilterFields = ["id", "created_at", "updated_at", "app_id", "library_id", "app", "library"] as const;
-export type AppLibraryFilterField = (typeof appLibraryFilterFields)[number];
 
 export const assessmentGraphFilterFields = ["start_node", "nodes", "edges"] as const;
 export type AssessmentGraphFilterField = (typeof assessmentGraphFilterFields)[number];
 
 export const assessmentResponseFilterFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id", "app"] as const;
 export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFields)[number];
+
+export const authoringDocumentFilterFields = ["page_type", "blocks", "config", "errors"] as const;
+export type AuthoringDocumentFilterField = (typeof authoringDocumentFilterFields)[number];
 
 export const briefingPageFilterFields = ["body"] as const;
 export type BriefingPageFilterField = (typeof briefingPageFilterFields)[number];
@@ -9914,7 +9967,7 @@ export type ProgramTestFilterField = (typeof programTestFilterFields)[number];
 export const originsAppsSliderFilterFields = ["id", "label", "min", "max"] as const;
 export type OriginsAppsSliderFilterField = (typeof originsAppsSliderFilterFields)[number];
 
-export const appTemplateFilterFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
+export const appTemplateFilterFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "schema_version", "created_at", "updated_at"] as const;
 export type AppTemplateFilterField = (typeof appTemplateFilterFields)[number];
 
 export const webhookDeliveryFilterFields = ["id", "event_type", "event_id", "assessment_response_id", "target_url", "payload", "status", "attempts", "last_status_code", "last_error", "delivered_at", "created_at", "updated_at", "subscription_id", "origin_entity_id", "subscription", "origin_entity"] as const;
@@ -10092,20 +10145,20 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
-export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_status", "generation_error", "generation_format", "generation_prompt", "origin_entity_id", "generation_history", "assessment_graph", "has_letta_agent", "example_briefing"] as const;
+export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
-export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
+export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
 export type AppVersionSortField = (typeof appVersionSortFields)[number];
-
-export const appLibrarySortFields = ["id", "created_at", "updated_at", "app_id", "library_id"] as const;
-export type AppLibrarySortField = (typeof appLibrarySortFields)[number];
 
 export const assessmentGraphSortFields = ["start_node", "nodes", "edges"] as const;
 export type AssessmentGraphSortField = (typeof assessmentGraphSortFields)[number];
 
 export const assessmentResponseSortFields = ["id", "user_id", "email", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id"] as const;
 export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[number];
+
+export const authoringDocumentSortFields = ["page_type", "blocks", "config", "errors"] as const;
+export type AuthoringDocumentSortField = (typeof authoringDocumentSortFields)[number];
 
 export const briefingPageSortFields = ["body"] as const;
 export type BriefingPageSortField = (typeof briefingPageSortFields)[number];
@@ -10143,7 +10196,7 @@ export type ProgramTestSortField = (typeof programTestSortFields)[number];
 export const originsAppsSliderSortFields = ["id", "label", "min", "max"] as const;
 export type OriginsAppsSliderSortField = (typeof originsAppsSliderSortFields)[number];
 
-export const appTemplateSortFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
+export const appTemplateSortFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "schema_version", "created_at", "updated_at"] as const;
 export type AppTemplateSortField = (typeof appTemplateSortFields)[number];
 
 export const webhookDeliverySortFields = ["id", "event_type", "event_id", "assessment_response_id", "target_url", "payload", "status", "attempts", "last_status_code", "last_error", "delivered_at", "created_at", "updated_at", "subscription_id", "origin_entity_id"] as const;

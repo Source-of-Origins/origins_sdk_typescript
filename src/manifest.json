@@ -1775,7 +1775,7 @@
       "description": "Execute generic action on App",
       "enableFilter": true,
       "enableSort": true,
-      "functionName": "parse_assessment_blocks",
+      "functionName": "parse_authoring_document",
       "get": false,
       "input": "required",
       "namespace": null,
@@ -1789,80 +1789,12 @@
       "resource": "App",
       "see": [],
       "types": {
-        "input": "ParseAssessmentBlocksInput",
-        "result": "ParseAssessmentBlocksResult"
+        "input": "ParseAuthoringDocumentInput",
+        "result": "ParseAuthoringDocumentResult"
       },
       "variantNames": {
-        "channel": "parse_assessment_blocks_channel",
-        "validation": "validate_parse_assessment_blocks"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Execute generic action on App",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "parse_course_blocks",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "App",
-      "see": [],
-      "types": {
-        "input": "ParseCourseBlocksInput",
-        "result": "ParseCourseBlocksResult"
-      },
-      "variantNames": {
-        "channel": "parse_course_blocks_channel",
-        "validation": "validate_parse_course_blocks"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Execute generic action on App",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "parse_landing_blocks",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "App",
-      "see": [],
-      "types": {
-        "input": "ParseLandingBlocksInput",
-        "result": "ParseLandingBlocksResult"
-      },
-      "variantNames": {
-        "channel": "parse_landing_blocks_channel",
-        "validation": "validate_parse_landing_blocks"
+        "channel": "parse_authoring_document_channel",
+        "validation": "validate_parse_authoring_document"
       },
       "variants": {
         "channel": true,
@@ -2089,170 +2021,27 @@
       "enableSort": true,
       "functionName": "list_app_versions",
       "get": false,
-      "input": "none",
+      "input": "required",
       "namespace": null,
       "pagination": {
         "get": false,
-        "keyset": true,
-        "offset": true,
+        "keyset": false,
+        "offset": false,
         "required": false,
-        "supported": true
+        "supported": false
       },
       "resource": "Version",
       "see": [],
       "types": {
-        "config": "ListAppVersionsConfig",
         "fields": "ListAppVersionsFields",
         "filterInput": "AppVersionFilterInput",
         "inferResult": "InferListAppVersionsResult",
+        "input": "ListAppVersionsInput",
         "result": "ListAppVersionsResult"
       },
       "variantNames": {
         "channel": "list_app_versions_channel",
         "validation": "validate_list_app_versions"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new AppLibrary",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "attach_library_to_app",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "AppLibrary",
-      "see": [],
-      "types": {
-        "fields": "AttachLibraryToAppFields",
-        "inferResult": "InferAttachLibraryToAppResult",
-        "input": "AttachLibraryToAppInput",
-        "result": "AttachLibraryToAppResult"
-      },
-      "variantNames": {
-        "channel": "attach_library_to_app_channel",
-        "validation": "validate_attach_library_to_app"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "destroy",
-      "deprecated": false,
-      "description": "Delete a AppLibrary",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "detach_library_from_app",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "AppLibrary",
-      "see": [],
-      "types": {
-        "result": "DetachLibraryFromAppResult"
-      },
-      "variantNames": {
-        "channel": "detach_library_from_app_channel",
-        "validation": "validate_detach_library_from_app"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read AppLibrary records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_app_libraries",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "AppLibrary",
-      "see": [],
-      "types": {
-        "config": "ListAppLibrariesConfig",
-        "fields": "ListAppLibrariesFields",
-        "filterInput": "AppLibraryFilterInput",
-        "inferResult": "InferListAppLibrariesResult",
-        "result": "ListAppLibrariesResult"
-      },
-      "variantNames": {
-        "channel": "list_app_libraries_channel",
-        "validation": "validate_list_app_libraries"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "All libraries attached to a given expert page.",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_libraries_for_app",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "AppLibrary",
-      "see": [],
-      "types": {
-        "fields": "ListLibrariesForAppFields",
-        "filterInput": "AppLibraryFilterInput",
-        "inferResult": "InferListLibrariesForAppResult",
-        "input": "ListLibrariesForAppInput",
-        "result": "ListLibrariesForAppResult"
-      },
-      "variantNames": {
-        "channel": "list_libraries_for_app_channel",
-        "validation": "validate_list_libraries_for_app"
       },
       "variants": {
         "channel": true,
@@ -8438,7 +8227,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-07-16",
+  "generatedAt": "2026-07-23",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

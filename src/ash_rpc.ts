@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AppFilterInput, AppLibraryFilterInput, AppLibraryResourceSchema, AppLibrarySortField, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -4916,11 +4916,11 @@ export async function upload_chat_attachment_channel(config: {
 }
 
 
-export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, personality: string | null, context: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, __type: "TypedMap", __primitiveFields: "key" | "label"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, season: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "season" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, min: number | null, max: number | null, track: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "min" | "max" | "track" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, icon: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "icon"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string, activity_pattern: string, label: string | null, __type: "TypedMap", __primitiveFields: "time" | "activity_pattern" | "label"}, activity_lookup_entry: {title: string, type: string, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "type" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
+export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, personality: string | null, context: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, season: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "season" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, min: number | null, max: number | null, track: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "min" | "max" | "track" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, icon: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "icon"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string | null, kind: string | null, label: string | null, __type: "TypedMap", __primitiveFields: "time" | "kind" | "label"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
 
 export type InferCoachingTypesResult<
   Fields extends CoachingTypesFields | undefined,
-> = InferResult<{coach: {greeting: string | null, personality: string | null, context: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, __type: "TypedMap", __primitiveFields: "key" | "label"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, season: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "season" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, min: number | null, max: number | null, track: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "min" | "max" | "track" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, icon: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "icon"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string, activity_pattern: string, label: string | null, __type: "TypedMap", __primitiveFields: "time" | "activity_pattern" | "label"}, activity_lookup_entry: {title: string, type: string, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "type" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, type: string, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{title: string, duration: number | null, content: string | null, __type: "TypedMap", __primitiveFields: "title" | "duration" | "content"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required"}>, __type: "TypedMap", __primitiveFields: "id" | "type" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
+> = InferResult<{coach: {greeting: string | null, personality: string | null, context: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, season: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "season" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, min: number | null, max: number | null, track: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "min" | "max" | "track" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, icon: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "icon"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string | null, kind: string | null, label: string | null, __type: "TypedMap", __primitiveFields: "time" | "kind" | "label"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, video: {title: string | null, src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "title" | "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
 
 export type CoachingTypesResult<Fields extends CoachingTypesFields | undefined = undefined> = | { success: true; data: InferCoachingTypesResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -5039,9 +5039,6 @@ export type CreateAppInput = {
   slug: string;
   source?: string;
   markdoc_content?: string;
-  generation_status?: string;
-  generation_error?: string | null;
-  generation_format?: string | null;
   generation_prompt?: string | null;
   is_published?: boolean | null;
   meta?: Record<string, any> | null;
@@ -6808,13 +6805,14 @@ export async function mark_briefing_read_channel(config: {
 }
 
 
-export type ParseAssessmentBlocksInput = {
+export type ParseAuthoringDocumentInput = {
+  page_type: string;
   content: string;
 };
 
-export type InferParseAssessmentBlocksResult = Record<string, any>;
+export type InferParseAuthoringDocumentResult = AuthoringDocumentResourceSchema;
 
-export type ParseAssessmentBlocksResult = | { success: true; data: InferParseAssessmentBlocksResult; }
+export type ParseAuthoringDocumentResult = | { success: true; data: InferParseAuthoringDocumentResult; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -6824,22 +6822,22 @@ export type ParseAssessmentBlocksResult = | { success: true; data: InferParseAss
  *
  * @ashActionType :action
  */
-export async function parse_assessment_blocks(
+export async function parse_authoring_document(
   config: {
   tenant?: string;
-  input: ParseAssessmentBlocksInput;
+  input: ParseAuthoringDocumentInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ParseAssessmentBlocksResult> {
+): Promise<ParseAuthoringDocumentResult> {
   const payload = {
-    action: "parse_assessment_blocks",
+    action: "parse_authoring_document",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
 
-  return executeActionRpcRequest<ParseAssessmentBlocksResult>(
+  return executeActionRpcRequest<ParseAuthoringDocumentResult>(
     payload,
     config
   );
@@ -6852,17 +6850,17 @@ export async function parse_assessment_blocks(
  * @ashActionType :action
  * @validation true
  */
-export async function validate_parse_assessment_blocks(
+export async function validate_parse_authoring_document(
   config: {
   tenant?: string;
-  input: ParseAssessmentBlocksInput;
+  input: ParseAuthoringDocumentInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "parse_assessment_blocks",
+    action: "parse_authoring_document",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
@@ -6880,10 +6878,10 @@ export async function validate_parse_assessment_blocks(
  * @ashActionType :action
  * @validation true
  */
-export async function validate_parse_assessment_blocks_channel(config: {
+export async function validate_parse_authoring_document_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: ParseAssessmentBlocksInput;
+  input: ParseAuthoringDocumentInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -6892,7 +6890,7 @@ export async function validate_parse_assessment_blocks_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "parse_assessment_blocks",
+    action: "parse_authoring_document",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -6907,261 +6905,19 @@ export async function validate_parse_assessment_blocks_channel(config: {
  *
  * @ashActionType :action
  */
-export async function parse_assessment_blocks_channel(config: {
+export async function parse_authoring_document_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: ParseAssessmentBlocksInput;
-  result_handler: (result: ParseAssessmentBlocksResult) => void;
+  input: ParseAuthoringDocumentInput;
+  result_handler: (result: ParseAuthoringDocumentResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ParseAssessmentBlocksResult>(
+  executeActionChannelPush<ParseAuthoringDocumentResult>(
     config.channel,
     {
-    action: "parse_assessment_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ParseCourseBlocksInput = {
-  content: string;
-};
-
-export type InferParseCourseBlocksResult = Record<string, any>;
-
-export type ParseCourseBlocksResult = | { success: true; data: InferParseCourseBlocksResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function parse_course_blocks(
-  config: {
-  tenant?: string;
-  input: ParseCourseBlocksInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ParseCourseBlocksResult> {
-  const payload = {
-    action: "parse_course_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<ParseCourseBlocksResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_parse_course_blocks(
-  config: {
-  tenant?: string;
-  input: ParseCourseBlocksInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "parse_course_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_parse_course_blocks_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ParseCourseBlocksInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "parse_course_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function parse_course_blocks_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ParseCourseBlocksInput;
-  result_handler: (result: ParseCourseBlocksResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ParseCourseBlocksResult>(
-    config.channel,
-    {
-    action: "parse_course_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ParseLandingBlocksInput = {
-  content: string;
-};
-
-export type InferParseLandingBlocksResult = Record<string, any>;
-
-export type ParseLandingBlocksResult = | { success: true; data: InferParseLandingBlocksResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function parse_landing_blocks(
-  config: {
-  tenant?: string;
-  input: ParseLandingBlocksInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ParseLandingBlocksResult> {
-  const payload = {
-    action: "parse_landing_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<ParseLandingBlocksResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_parse_landing_blocks(
-  config: {
-  tenant?: string;
-  input: ParseLandingBlocksInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "parse_landing_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_parse_landing_blocks_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ParseLandingBlocksInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "parse_landing_blocks",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function parse_landing_blocks_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ParseLandingBlocksInput;
-  result_handler: (result: ParseLandingBlocksResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ParseLandingBlocksResult>(
-    config.channel,
-    {
-    action: "parse_landing_blocks",
+    action: "parse_authoring_document",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -7806,18 +7562,11 @@ export async function unpublish_app_channel<Fields extends UnpublishAppFields | 
 
 
 export type UpdateAppInput = {
-  page_type?: string;
   title?: string | null;
   slug?: string;
-  source?: string;
   markdoc_content?: string;
-  generation_status?: string;
-  generation_error?: string | null;
-  generation_format?: string | null;
   generation_prompt?: string | null;
-  is_published?: boolean | null;
   meta?: Record<string, any> | null;
-  origin_entity_id?: UUID;
 };
 
 export type UpdateAppFields = UnifiedFieldSelection<AppResourceSchema>[];
@@ -7953,53 +7702,16 @@ export async function update_app_channel<Fields extends UpdateAppFields | undefi
 }
 
 
-export type ListAppVersionsFields = UnifiedFieldSelection<AppVersionResourceSchema>[];
-
-
-export type InferListAppVersionsResult<
-  Fields extends ListAppVersionsFields | undefined,
-  Page extends ListAppVersionsConfig["page"] = undefined
-> = ConditionalPaginatedResultMixed<Page, Array<InferResult<AppVersionResourceSchema, Fields>>, {
-  results: Array<InferResult<AppVersionResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  offset: number;
-  count?: number | null;
-  type: "offset";
-}, {
-  results: Array<InferResult<AppVersionResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListAppVersionsConfig = {
-  tenant?: string;
-  fields: ListAppVersionsFields;
-  filter?: AppVersionFilterInput;
-  sort?: SortString<AppVersionSortField> | SortString<AppVersionSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+export type ListAppVersionsInput = {
+  app_id: UUID;
 };
 
-export type ListAppVersionsResult<Fields extends ListAppVersionsFields, Page extends ListAppVersionsConfig["page"] = undefined> = | { success: true; data: InferListAppVersionsResult<Fields, Page>; }
+export type ListAppVersionsFields = UnifiedFieldSelection<AppVersionResourceSchema>[];
+export type InferListAppVersionsResult<
+  Fields extends ListAppVersionsFields,
+> = Array<InferResult<AppVersionResourceSchema, Fields>>;
+
+export type ListAppVersionsResult<Fields extends ListAppVersionsFields> = | { success: true; data: InferListAppVersionsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -8009,19 +7721,28 @@ export type ListAppVersionsResult<Fields extends ListAppVersionsFields, Page ext
  *
  * @ashActionType :read
  */
-export async function list_app_versions<Fields extends ListAppVersionsFields, Config extends ListAppVersionsConfig = ListAppVersionsConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListAppVersionsResult<Fields, Config["page"]>> {
+export async function list_app_versions<Fields extends ListAppVersionsFields>(
+  config: {
+  tenant?: string;
+  input: ListAppVersionsInput;
+  fields: Fields;
+  filter?: AppVersionFilterInput;
+  sort?: SortString<AppVersionSortField> | SortString<AppVersionSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListAppVersionsResult<Fields>> {
   const payload = {
     action: "list_app_versions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
   };
 
-  return executeActionRpcRequest<ListAppVersionsResult<Fields, Config["page"]>>(
+  return executeActionRpcRequest<ListAppVersionsResult<Fields>>(
     payload,
     config
   );
@@ -8037,6 +7758,7 @@ export async function list_app_versions<Fields extends ListAppVersionsFields, Co
 export async function validate_list_app_versions(
   config: {
   tenant?: string;
+  input: ListAppVersionsInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -8044,7 +7766,8 @@ export async function validate_list_app_versions(
 ): Promise<ValidationResult> {
   const payload = {
     action: "list_app_versions",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
   };
 
   return executeValidationRpcRequest<ValidationResult>(
@@ -8063,6 +7786,7 @@ export async function validate_list_app_versions(
 export async function validate_list_app_versions_channel(config: {
   channel: Channel;
   tenant?: string;
+  input: ListAppVersionsInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -8072,7 +7796,8 @@ export async function validate_list_app_versions_channel(config: {
     config.channel,
     {
     action: "list_app_versions",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
   },
     config.timeout,
     config
@@ -8088,20 +7813,10 @@ export async function validate_list_app_versions_channel(config: {
 export async function list_app_versions_channel<Fields extends ListAppVersionsFields>(config: {
   channel: Channel;
   tenant?: string;
+  input: ListAppVersionsInput;
   fields: Fields;
   filter?: AppVersionFilterInput;
   sort?: SortString<AppVersionSortField> | SortString<AppVersionSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
   result_handler: (result: ListAppVersionsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -8111,557 +7826,6 @@ export async function list_app_versions_channel<Fields extends ListAppVersionsFi
     config.channel,
     {
     action: "list_app_versions",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type AttachLibraryToAppInput = {
-  app_id: UUID;
-  library_id: UUID;
-};
-
-export type AttachLibraryToAppFields = UnifiedFieldSelection<AppLibraryResourceSchema>[];
-
-export type InferAttachLibraryToAppResult<
-  Fields extends AttachLibraryToAppFields | undefined,
-> = InferResult<AppLibraryResourceSchema, Fields>;
-
-export type AttachLibraryToAppResult<Fields extends AttachLibraryToAppFields | undefined = undefined> = | { success: true; data: InferAttachLibraryToAppResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Create a new AppLibrary
- *
- * @ashActionType :create
- */
-export async function attach_library_to_app<Fields extends AttachLibraryToAppFields | undefined = undefined>(
-  config: {
-  tenant?: string;
-  input: AttachLibraryToAppInput;
-  fields?: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<AttachLibraryToAppResult<Fields extends undefined ? [] : Fields>> {
-  const payload = {
-    action: "attach_library_to_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<AttachLibraryToAppResult<Fields extends undefined ? [] : Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Create a new AppLibrary
- *
- * @ashActionType :create
- * @validation true
- */
-export async function validate_attach_library_to_app(
-  config: {
-  tenant?: string;
-  input: AttachLibraryToAppInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "attach_library_to_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Create a new AppLibrary
- *
- * @ashActionType :create
- * @validation true
- */
-export async function validate_attach_library_to_app_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: AttachLibraryToAppInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "attach_library_to_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Create a new AppLibrary
- *
- * @ashActionType :create
- */
-export async function attach_library_to_app_channel<Fields extends AttachLibraryToAppFields | undefined = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: AttachLibraryToAppInput;
-  fields?: Fields;
-  result_handler: (result: AttachLibraryToAppResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<AttachLibraryToAppResult<Fields>>(
-    config.channel,
-    {
-    action: "attach_library_to_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type DetachLibraryFromAppResult = | { success: true; data: {}; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Delete a AppLibrary
- *
- * @ashActionType :destroy
- */
-export async function detach_library_from_app(
-  config: {
-  tenant?: string;
-  identity: UUID;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<DetachLibraryFromAppResult> {
-  const payload = {
-    action: "detach_library_from_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity
-  };
-
-  return executeActionRpcRequest<DetachLibraryFromAppResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Delete a AppLibrary
- *
- * @ashActionType :destroy
- * @validation true
- */
-export async function validate_detach_library_from_app(
-  config: {
-  tenant?: string;
-  identity: UUID | string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "detach_library_from_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Delete a AppLibrary
- *
- * @ashActionType :destroy
- * @validation true
- */
-export async function validate_detach_library_from_app_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  identity: UUID | string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "detach_library_from_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Delete a AppLibrary
- *
- * @ashActionType :destroy
- */
-export async function detach_library_from_app_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  identity: UUID;
-  result_handler: (result: DetachLibraryFromAppResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<DetachLibraryFromAppResult>(
-    config.channel,
-    {
-    action: "detach_library_from_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ListAppLibrariesFields = UnifiedFieldSelection<AppLibraryResourceSchema>[];
-
-
-export type InferListAppLibrariesResult<
-  Fields extends ListAppLibrariesFields | undefined,
-  Page extends ListAppLibrariesConfig["page"] = undefined
-> = ConditionalPaginatedResultMixed<Page, Array<InferResult<AppLibraryResourceSchema, Fields>>, {
-  results: Array<InferResult<AppLibraryResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  offset: number;
-  count?: number | null;
-  type: "offset";
-}, {
-  results: Array<InferResult<AppLibraryResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListAppLibrariesConfig = {
-  tenant?: string;
-  fields: ListAppLibrariesFields;
-  filter?: AppLibraryFilterInput;
-  sort?: SortString<AppLibrarySortField> | SortString<AppLibrarySortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListAppLibrariesResult<Fields extends ListAppLibrariesFields, Page extends ListAppLibrariesConfig["page"] = undefined> = | { success: true; data: InferListAppLibrariesResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read AppLibrary records
- *
- * @ashActionType :read
- */
-export async function list_app_libraries<Fields extends ListAppLibrariesFields, Config extends ListAppLibrariesConfig = ListAppLibrariesConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListAppLibrariesResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_app_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListAppLibrariesResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read AppLibrary records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_app_libraries(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_app_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read AppLibrary records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_app_libraries_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_app_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read AppLibrary records
- *
- * @ashActionType :read
- */
-export async function list_app_libraries_channel<Fields extends ListAppLibrariesFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: AppLibraryFilterInput;
-  sort?: SortString<AppLibrarySortField> | SortString<AppLibrarySortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListAppLibrariesResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListAppLibrariesResult<Fields>>(
-    config.channel,
-    {
-    action: "list_app_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ListLibrariesForAppInput = {
-  app_id: UUID;
-};
-
-export type ListLibrariesForAppFields = UnifiedFieldSelection<AppLibraryResourceSchema>[];
-export type InferListLibrariesForAppResult<
-  Fields extends ListLibrariesForAppFields,
-> = Array<InferResult<AppLibraryResourceSchema, Fields>>;
-
-export type ListLibrariesForAppResult<Fields extends ListLibrariesForAppFields> = | { success: true; data: InferListLibrariesForAppResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read AppLibrary records
- *
- * @ashActionType :read
- */
-export async function list_libraries_for_app<Fields extends ListLibrariesForAppFields>(
-  config: {
-  tenant?: string;
-  input: ListLibrariesForAppInput;
-  fields: Fields;
-  filter?: AppLibraryFilterInput;
-  sort?: SortString<AppLibrarySortField> | SortString<AppLibrarySortField>[];
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ListLibrariesForAppResult<Fields>> {
-  const payload = {
-    action: "list_libraries_for_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
-  };
-
-  return executeActionRpcRequest<ListLibrariesForAppResult<Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read AppLibrary records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_libraries_for_app(
-  config: {
-  tenant?: string;
-  input: ListLibrariesForAppInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_libraries_for_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read AppLibrary records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_libraries_for_app_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListLibrariesForAppInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_libraries_for_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read AppLibrary records
- *
- * @ashActionType :read
- */
-export async function list_libraries_for_app_channel<Fields extends ListLibrariesForAppFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListLibrariesForAppInput;
-  fields: Fields;
-  filter?: AppLibraryFilterInput;
-  sort?: SortString<AppLibrarySortField> | SortString<AppLibrarySortField>[];
-  result_handler: (result: ListLibrariesForAppResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListLibrariesForAppResult<Fields>>(
-    config.channel,
-    {
-    action: "list_libraries_for_app",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
