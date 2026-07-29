@@ -434,6 +434,40 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "Deliver a passwordless sign-in link for an origin: through the origin's\nactive `magic_link.issued` webhook subscription when one exists (the\nbrand's consumer sends the email), the platform email otherwise. Always\nsucceeds so the action can't enumerate accounts.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "request_origin_magic_link",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "input": "RequestOriginMagicLinkInput",
+        "result": "RequestOriginMagicLinkResult"
+      },
+      "variantNames": {
+        "channel": "request_origin_magic_link_channel",
+        "validation": "validate_request_origin_magic_link"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Verify an Apple id_token, resolve/create the user, and return a JWT (SDK entrypoint).",
       "enableFilter": true,
       "enableSort": true,
@@ -502,7 +536,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Sign in by exchanging a single-use magic link token for a session JWT.",
+      "description": "Sign in by exchanging a short-lived magic link token for a session JWT.",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "sign_in_with_magic_link",
@@ -1653,6 +1687,40 @@
       "variantNames": {
         "channel": "initialize_personalization_channel",
         "validation": "validate_initialize_personalization"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_app_library_vfs_paths",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "ListAppLibraryVfsPathsInput",
+        "result": "ListAppLibraryVfsPathsResult"
+      },
+      "variantNames": {
+        "channel": "list_app_library_vfs_paths_channel",
+        "validation": "validate_list_app_library_vfs_paths"
       },
       "variants": {
         "channel": true,
@@ -8227,7 +8295,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-07-23",
+  "generatedAt": "2026-07-29",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
