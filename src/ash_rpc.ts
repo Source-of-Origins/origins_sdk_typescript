@@ -9178,7 +9178,6 @@ export type CreateEnrollmentInput = {
   streak_count?: number | null;
   streak_last_date?: AshDate | null;
   settings?: Record<string, any> | null;
-  timezone?: string;
   user_id: UUID;
   character_id: UUID;
   app_id: UUID;
