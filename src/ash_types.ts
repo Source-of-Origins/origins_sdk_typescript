@@ -700,11 +700,13 @@ export type CourseActivityCompletionAttributesOnlySchema = {
 // CourseEnrollment Schema
 export type CourseEnrollmentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id" | "assessment_answers";
+  __primitiveFields: "id" | "status" | "current_session_id" | "entered_session_ids" | "current_phase_id" | "current_phase_started_at" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id" | "assessment_answers";
   id: UUID;
   status: "active" | "completed" | "not_started" | "paused" | "reactivated";
   current_session_id: string | null;
+  entered_session_ids: Array<string>;
   current_phase_id: string | null;
+  current_phase_started_at: UtcDateTime | null;
   reactivated_at: UtcDateTime | null;
   enrolled_at: UtcDateTime | null;
   streak_count: number | null;
@@ -729,11 +731,13 @@ export type CourseEnrollmentResourceSchema = {
 
 export type CourseEnrollmentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id";
+  __primitiveFields: "id" | "status" | "current_session_id" | "entered_session_ids" | "current_phase_id" | "current_phase_started_at" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id";
   id: UUID;
   status: "active" | "completed" | "not_started" | "paused" | "reactivated";
   current_session_id: string | null;
+  entered_session_ids: Array<string>;
   current_phase_id: string | null;
+  current_phase_started_at: UtcDateTime | null;
   reactivated_at: UtcDateTime | null;
   enrolled_at: UtcDateTime | null;
   streak_count: number | null;
@@ -784,11 +788,12 @@ export type ActivityCompletionSummaryInputSchema = {
 // EnrollmentCompletions Schema
 export type EnrollmentCompletionsResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id";
+  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at";
   id: UUID;
   status: string;
   current_session_id: string | null;
   current_phase_id: string | null;
+  current_phase_started_at: UtcDateTime | null;
   activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryResourceSchema; };
 };
 
@@ -796,11 +801,12 @@ export type EnrollmentCompletionsResourceSchema = {
 
 export type EnrollmentCompletionsAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id";
+  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at";
   id: UUID;
   status: string;
   current_session_id: string | null;
   current_phase_id: string | null;
+  current_phase_started_at: UtcDateTime | null;
   activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryAttributesOnlySchema; };
 };
 
@@ -810,6 +816,7 @@ export type EnrollmentCompletionsInputSchema = {
   status: string;
   current_session_id?: string | null;
   current_phase_id?: string | null;
+  current_phase_started_at?: UtcDateTime | null;
   activity_completions?: Array<ActivityCompletionSummaryInputSchema> | null;
 };
 
@@ -4696,10 +4703,27 @@ export type CourseEnrollmentFilterInput = {
     is_nil?: boolean;
   };
 
+  entered_session_ids?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+  };
+
   current_phase_id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  current_phase_started_at?: {
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+    less_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    in?: Array<UtcDateTime>;
     is_nil?: boolean;
   };
 
@@ -4902,6 +4926,17 @@ export type EnrollmentCompletionsFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  current_phase_started_at?: {
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+    less_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    in?: Array<UtcDateTime>;
     is_nil?: boolean;
   };
 
@@ -9981,13 +10016,13 @@ export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
 
-export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor", "user", "character", "app", "activity_completions", "current_personalization"] as const;
+export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "entered_session_ids", "current_phase_id", "current_phase_started_at", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor", "user", "character", "app", "activity_completions", "current_personalization"] as const;
 export type CourseEnrollmentFilterField = (typeof courseEnrollmentFilterFields)[number];
 
 export const activityCompletionSummaryFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
 export type ActivityCompletionSummaryFilterField = (typeof activityCompletionSummaryFilterFields)[number];
 
-export const enrollmentCompletionsFilterFields = ["id", "status", "current_session_id", "current_phase_id", "activity_completions"] as const;
+export const enrollmentCompletionsFilterFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
 export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilterFields)[number];
 
 export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
@@ -10210,13 +10245,13 @@ export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];
 
-export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "current_phase_id", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor"] as const;
+export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "entered_session_ids", "current_phase_id", "current_phase_started_at", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor"] as const;
 export type CourseEnrollmentSortField = (typeof courseEnrollmentSortFields)[number];
 
 export const activityCompletionSummarySortFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
 export type ActivityCompletionSummarySortField = (typeof activityCompletionSummarySortFields)[number];
 
-export const enrollmentCompletionsSortFields = ["id", "status", "current_session_id", "current_phase_id", "activity_completions"] as const;
+export const enrollmentCompletionsSortFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
 export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFields)[number];
 
 export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;

@@ -5041,11 +5041,11 @@ export async function upload_chat_attachment_channel(config: {
 }
 
 
-export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, personality: string | null, context: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string | null, kind: string | null, __type: "TypedMap", __primitiveFields: "time" | "kind"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
+export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "content"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
 
 export type InferCoachingTypesResult<
   Fields extends CoachingTypesFields | undefined,
-> = InferResult<{coach: {greeting: string | null, personality: string | null, context: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "personality" | "context" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, position: string, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" | "position"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, schedule_slot: {time: string | null, kind: string | null, __type: "TypedMap", __primitiveFields: "time" | "kind"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
+> = InferResult<{coach: {greeting: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "content"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
 
 export type CoachingTypesResult<Fields extends CoachingTypesFields | undefined = undefined> = | { success: true; data: InferCoachingTypesResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -6283,6 +6283,127 @@ export async function get_assessment_graph_channel(config: {
     config.channel,
     {
     action: "get_assessment_graph",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetProgramInput = {
+  program_id: UUID;
+};
+
+export type InferGetProgramResult = Record<string, any>;
+
+export type GetProgramResult = | { success: true; data: InferGetProgramResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function get_program(
+  config: {
+  tenant?: string;
+  input: GetProgramInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetProgramResult> {
+  const payload = {
+    action: "get_program",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<GetProgramResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_program(
+  config: {
+  tenant?: string;
+  input: GetProgramInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_program",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_program_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetProgramInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_program",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function get_program_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetProgramInput;
+  result_handler: (result: GetProgramResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetProgramResult>(
+    config.channel,
+    {
+    action: "get_program",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -8363,6 +8484,286 @@ export async function create_assessment_response_channel<Fields extends CreateAs
 }
 
 
+export type CreateAssessmentResponseAtActivityInput = {
+  app_id: UUID;
+  enrollment_id?: UUID | null;
+  launch_activity_id?: string | null;
+  email?: string | null;
+  full_name?: string | null;
+  phone?: string | null;
+  attribution?: Record<string, any> | null;
+  graph_snapshot_nodes?: Array<OriginsAppsNodeInputSchema> | null;
+  graph_snapshot_edges?: Array<OriginsAppsEdgeInputSchema> | null;
+  result?: Record<string, any> | null;
+  completed_at?: UtcDateTime | null;
+  answers?: Record<string, any> | null;
+  path_history?: Array<string> | null;
+  current_node?: string | null;
+};
+
+export type CreateAssessmentResponseAtActivityFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+
+export type InferCreateAssessmentResponseAtActivityResult<
+  Fields extends CreateAssessmentResponseAtActivityFields | undefined,
+> = InferResult<AssessmentResponseResourceSchema, Fields>;
+
+export type CreateAssessmentResponseAtActivityResult<Fields extends CreateAssessmentResponseAtActivityFields | undefined = undefined> = | { success: true; data: InferCreateAssessmentResponseAtActivityResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ */
+export async function create_assessment_response_at_activity<Fields extends CreateAssessmentResponseAtActivityFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: CreateAssessmentResponseAtActivityInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CreateAssessmentResponseAtActivityResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "create_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<CreateAssessmentResponseAtActivityResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_assessment_response_at_activity(
+  config: {
+  tenant?: string;
+  input: CreateAssessmentResponseAtActivityInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "create_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_assessment_response_at_activity_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateAssessmentResponseAtActivityInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "create_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new AssessmentResponse
+ *
+ * @ashActionType :create
+ */
+export async function create_assessment_response_at_activity_channel<Fields extends CreateAssessmentResponseAtActivityFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateAssessmentResponseAtActivityInput;
+  fields?: Fields;
+  result_handler: (result: CreateAssessmentResponseAtActivityResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CreateAssessmentResponseAtActivityResult<Fields>>(
+    config.channel,
+    {
+    action: "create_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetAssessmentResponseAtActivityInput = {
+  app_id: UUID;
+  enrollment_id: UUID;
+  launch_activity_id: string;
+};
+
+export type GetAssessmentResponseAtActivityFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+export type InferGetAssessmentResponseAtActivityResult<
+  Fields extends GetAssessmentResponseAtActivityFields,
+> = Array<InferResult<AssessmentResponseResourceSchema, Fields>>;
+
+export type GetAssessmentResponseAtActivityResult<Fields extends GetAssessmentResponseAtActivityFields> = | { success: true; data: InferGetAssessmentResponseAtActivityResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ */
+export async function get_assessment_response_at_activity<Fields extends GetAssessmentResponseAtActivityFields>(
+  config: {
+  tenant?: string;
+  input: GetAssessmentResponseAtActivityInput;
+  fields: Fields;
+  filter?: AssessmentResponseFilterInput;
+  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetAssessmentResponseAtActivityResult<Fields>> {
+  const payload = {
+    action: "get_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<GetAssessmentResponseAtActivityResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_assessment_response_at_activity(
+  config: {
+  tenant?: string;
+  input: GetAssessmentResponseAtActivityInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_assessment_response_at_activity_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetAssessmentResponseAtActivityInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ */
+export async function get_assessment_response_at_activity_channel<Fields extends GetAssessmentResponseAtActivityFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetAssessmentResponseAtActivityInput;
+  fields: Fields;
+  filter?: AssessmentResponseFilterInput;
+  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  result_handler: (result: GetAssessmentResponseAtActivityResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetAssessmentResponseAtActivityResult<Fields>>(
+    config.channel,
+    {
+    action: "get_assessment_response_at_activity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type GetMyAssessmentResponseInput = {
   app_id: UUID;
   user_id: UUID;
@@ -8488,6 +8889,143 @@ export async function get_my_assessment_response_channel<Fields extends GetMyAss
     config.channel,
     {
     action: "get_my_assessment_response",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListAssessmentResponsesForEnrollmentInput = {
+  app_id: UUID;
+  enrollment_id: UUID;
+};
+
+export type ListAssessmentResponsesForEnrollmentFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+export type InferListAssessmentResponsesForEnrollmentResult<
+  Fields extends ListAssessmentResponsesForEnrollmentFields,
+> = Array<InferResult<AssessmentResponseResourceSchema, Fields>>;
+
+export type ListAssessmentResponsesForEnrollmentResult<Fields extends ListAssessmentResponsesForEnrollmentFields> = | { success: true; data: InferListAssessmentResponsesForEnrollmentResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ */
+export async function list_assessment_responses_for_enrollment<Fields extends ListAssessmentResponsesForEnrollmentFields>(
+  config: {
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  fields: Fields;
+  filter?: AssessmentResponseFilterInput;
+  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListAssessmentResponsesForEnrollmentResult<Fields>> {
+  const payload = {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<ListAssessmentResponsesForEnrollmentResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_assessment_responses_for_enrollment(
+  config: {
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_assessment_responses_for_enrollment_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ */
+export async function list_assessment_responses_for_enrollment_channel<Fields extends ListAssessmentResponsesForEnrollmentFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  fields: Fields;
+  filter?: AssessmentResponseFilterInput;
+  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  result_handler: (result: ListAssessmentResponsesForEnrollmentResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListAssessmentResponsesForEnrollmentResult<Fields>>(
+    config.channel,
+    {
+    action: "list_assessment_responses_for_enrollment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),

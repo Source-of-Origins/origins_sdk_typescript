@@ -1630,6 +1630,40 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "A program and the step apps its flow references, grouped by page type",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_program",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "GetProgramInput",
+        "result": "GetProgramResult"
+      },
+      "variantNames": {
+        "channel": "get_program_channel",
+        "validation": "validate_get_program"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Execute generic action on App",
       "enableFilter": true,
       "enableSort": true,
@@ -2191,6 +2225,79 @@
       }
     },
     {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new AssessmentResponse",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_assessment_response_at_activity",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "CreateAssessmentResponseAtActivityFields",
+        "inferResult": "InferCreateAssessmentResponseAtActivityResult",
+        "input": "CreateAssessmentResponseAtActivityInput",
+        "result": "CreateAssessmentResponseAtActivityResult"
+      },
+      "variantNames": {
+        "channel": "create_assessment_response_at_activity_channel",
+        "validation": "validate_create_assessment_response_at_activity"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read AssessmentResponse records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_assessment_response_at_activity",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "GetAssessmentResponseAtActivityFields",
+        "filterInput": "AssessmentResponseFilterInput",
+        "inferResult": "InferGetAssessmentResponseAtActivityResult",
+        "input": "GetAssessmentResponseAtActivityInput",
+        "result": "GetAssessmentResponseAtActivityResult"
+      },
+      "variantNames": {
+        "channel": "get_assessment_response_at_activity_channel",
+        "validation": "validate_get_assessment_response_at_activity"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read AssessmentResponse records",
@@ -2219,6 +2326,43 @@
       "variantNames": {
         "channel": "get_my_assessment_response_channel",
         "validation": "validate_get_my_assessment_response"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read AssessmentResponse records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_assessment_responses_for_enrollment",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "AssessmentResponse",
+      "see": [],
+      "types": {
+        "fields": "ListAssessmentResponsesForEnrollmentFields",
+        "filterInput": "AssessmentResponseFilterInput",
+        "inferResult": "InferListAssessmentResponsesForEnrollmentResult",
+        "input": "ListAssessmentResponsesForEnrollmentInput",
+        "result": "ListAssessmentResponsesForEnrollmentResult"
+      },
+      "variantNames": {
+        "channel": "list_assessment_responses_for_enrollment_channel",
+        "validation": "validate_list_assessment_responses_for_enrollment"
       },
       "variants": {
         "channel": true,
@@ -4109,7 +4253,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Fetch a single public Origin by id, regardless of the request's\npinned tenant. The `is_public == true` filter is the security\nboundary — any actor (signed-in or anonymous) may resolve a public\nOE in any tenant via this action.\n",
+      "description": "Fetch a single public Origin by id, regardless of the request's pinned\ntenant. The `is_public == true` filter is the security boundary — any\nactor (signed-in or anonymous) may resolve a public OE in any tenant.\n",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "get_public_origin_entity",
@@ -8295,7 +8439,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-01",
+  "generatedAt": "2026-08-12",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
