@@ -2698,6 +2698,8 @@ export type LibraryFileResourceSchema = {
   signed_s3_url: string | null;
   vfs_path: string | null;
   media_format: string | null;
+  metadata_contains: { __type: "ComplexCalculation"; __returnType: boolean | null; __args: { value?: Record<string, any> }; };
+  metadata_number: { __type: "ComplexCalculation"; __returnType: Decimal | null; __args: { key?: string }; };
   library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
   video_asset: { __type: "Relationship"; __resource: VideoAssetResourceSchema | null; };
 };
@@ -9073,6 +9075,23 @@ export type LibraryFileFilterInput = {
     in?: Array<UUID>;
   };
 
+  metadata_contains?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  metadata_number?: {
+    eq?: Decimal;
+    not_eq?: Decimal;
+    greater_than?: Decimal;
+    greater_than_or_equal?: Decimal;
+    less_than?: Decimal;
+    less_than_or_equal?: Decimal;
+    in?: Array<Decimal>;
+    is_nil?: boolean;
+  };
+
   signed_s3_url?: {
     eq?: string;
     not_eq?: string;
@@ -10151,7 +10170,7 @@ export type LibraryFilterField = (typeof libraryFilterFields)[number];
 export const libraryAccessGrantFilterFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id", "library", "grantee_origin_entity"] as const;
 export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFields)[number];
 
-export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "vfs_path", "media_format", "library", "video_asset"] as const;
+export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_number", "signed_s3_url", "vfs_path", "media_format", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
 export const playlistFilterFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id", "user", "items"] as const;
@@ -10380,7 +10399,7 @@ export type LibrarySortField = (typeof librarySortFields)[number];
 export const libraryAccessGrantSortFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id"] as const;
 export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[number];
 
-export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "signed_s3_url", "vfs_path", "media_format"] as const;
+export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_number", "signed_s3_url", "vfs_path", "media_format"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
 
 export const playlistSortFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id"] as const;

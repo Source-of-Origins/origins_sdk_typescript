@@ -7032,6 +7032,42 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "How often each value appears under the named metadata keys, so a search UI\ncan build its options — and their counts — from what is stored rather than\na hardcoded list. One entry per key and value.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_library_file_facets",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "LibraryFile",
+      "see": [],
+      "types": {
+        "fields": "ListLibraryFileFacetsFields",
+        "inferResult": "InferListLibraryFileFacetsResult",
+        "input": "ListLibraryFileFacetsInput",
+        "result": "ListLibraryFileFacetsResult"
+      },
+      "variantNames": {
+        "channel": "list_library_file_facets_channel",
+        "validation": "validate_list_library_file_facets"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read LibraryFile records",
@@ -8439,7 +8475,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-12",
+  "generatedAt": "2026-08-13",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

@@ -15419,6 +15419,7 @@ export async function delete_origin_entity_channel(config: {
 
 
 export type DiscoverAndExtractProfileInput = {
+  origin_entity_id?: UUID | null;
   entity_name: string;
   category_hint: string;
   website_url?: string | null;
@@ -15542,6 +15543,7 @@ export async function discover_and_extract_profile_channel(config: {
 
 
 export type DiscoverEntityLinksInput = {
+  origin_entity_id?: UUID | null;
   entity_name: string;
   category_hint: string;
 };
@@ -26772,6 +26774,137 @@ export async function get_library_file_channel<Fields extends GetLibraryFileFiel
     config.channel,
     {
     action: "get_library_file",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListLibraryFileFacetsInput = {
+  keys: Array<string>;
+  library_ids?: Array<UUID> | null;
+  item_types?: Array<string> | null;
+};
+
+export type ListLibraryFileFacetsFields = UnifiedFieldSelection<{key: string, value: string, count: number, __type: "TypedMap", __primitiveFields: "key" | "value" | "count"}>[];
+
+export type InferListLibraryFileFacetsResult<
+  Fields extends ListLibraryFileFacetsFields | undefined,
+> = Array<InferResult<{key: string, value: string, count: number, __type: "TypedMap", __primitiveFields: "key" | "value" | "count"}, Fields>>;
+
+export type ListLibraryFileFacetsResult<Fields extends ListLibraryFileFacetsFields | undefined = undefined> = | { success: true; data: InferListLibraryFileFacetsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function list_library_file_facets<Fields extends ListLibraryFileFacetsFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: ListLibraryFileFacetsInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListLibraryFileFacetsResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "list_library_file_facets",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<ListLibraryFileFacetsResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_list_library_file_facets(
+  config: {
+  tenant?: string;
+  input: ListLibraryFileFacetsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_library_file_facets",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_list_library_file_facets_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListLibraryFileFacetsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_library_file_facets",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function list_library_file_facets_channel<Fields extends ListLibraryFileFacetsFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListLibraryFileFacetsInput;
+  fields: Fields;
+  result_handler: (result: ListLibraryFileFacetsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListLibraryFileFacetsResult<Fields>>(
+    config.channel,
+    {
+    action: "list_library_file_facets",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
