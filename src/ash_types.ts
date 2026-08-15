@@ -99,6 +99,7 @@ export type UserResourceSchema = {
   banned_until: UtcDateTimeUsec | null;
   is_creator: boolean;
   social_sign_in_response_type: { __type: "Relationship"; __resource: SocialSignInResponseResourceSchema | null; };
+  sign_in_link_response_type: { __type: "Relationship"; __resource: SignInLinkResponseResourceSchema | null; };
   tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
   staff_tenant_grants: { __type: "Relationship"; __array: true; __resource: StaffTenantGrantResourceSchema; };
   profile: { __type: "Relationship"; __resource: UserProfileResourceSchema | null; };
@@ -134,6 +135,27 @@ export type UserAttributesOnlySchema = {
   deleted_at: UtcDateTimeUsec | null;
   reauthentication_sent_at: UtcDateTimeUsec | null;
   banned_until: UtcDateTimeUsec | null;
+};
+
+
+// SignInLinkResponse Schema
+export type SignInLinkResponseResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "status";
+  status: "no_account" | "sent" | "sent_unverified";
+};
+
+
+
+export type SignInLinkResponseAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "status";
+  status: "no_account" | "sent" | "sent_unverified";
+};
+
+
+export type SignInLinkResponseInputSchema = {
+  status: "no_account" | "sent" | "sent_unverified";
 };
 
 
@@ -3477,6 +3499,13 @@ export type UserFilterInput = {
     is_nil?: boolean;
   };
 
+  sign_in_link_response_type?: {
+    eq?: SignInLinkResponseResourceSchema;
+    not_eq?: SignInLinkResponseResourceSchema;
+    in?: Array<SignInLinkResponseResourceSchema>;
+    is_nil?: boolean;
+  };
+
   is_creator?: {
     eq?: boolean;
     not_eq?: boolean;
@@ -3492,6 +3521,20 @@ export type UserFilterInput = {
   origin_entity_memberships?: OriginEntityMembershipFilterInput;
 
   origin_entities?: OriginEntityFilterInput;
+
+};
+export type SignInLinkResponseFilterInput = {
+  and?: Array<SignInLinkResponseFilterInput>;
+  or?: Array<SignInLinkResponseFilterInput>;
+  not?: Array<SignInLinkResponseFilterInput>;
+
+  status?: {
+    eq?: "no_account" | "sent" | "sent_unverified";
+    not_eq?: "no_account" | "sent" | "sent_unverified";
+    in?: Array<"no_account" | "sent" | "sent_unverified">;
+  };
+
+
 
 };
 export type SocialSignInResponseFilterInput = {
@@ -9984,8 +10027,11 @@ export type StaffTenantGrantFilterField = (typeof staffTenantGrantFilterFields)[
 export const tenantFilterFields = ["id", "name", "slug", "status", "archived_at", "root_origin_entity_id", "created_at", "updated_at", "root_origin_entity"] as const;
 export type TenantFilterField = (typeof tenantFilterFields)[number];
 
-export const userFilterFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "is_creator", "tenant", "identities", "staff_tenant_grants", "profile", "origin_entity_memberships", "origin_entities"] as const;
+export const userFilterFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "sign_in_link_response_type", "is_creator", "tenant", "identities", "staff_tenant_grants", "profile", "origin_entity_memberships", "origin_entities"] as const;
 export type UserFilterField = (typeof userFilterFields)[number];
+
+export const signInLinkResponseFilterFields = ["status"] as const;
+export type SignInLinkResponseFilterField = (typeof signInLinkResponseFilterFields)[number];
 
 export const socialSignInResponseFilterFields = ["id", "email", "token"] as const;
 export type SocialSignInResponseFilterField = (typeof socialSignInResponseFilterFields)[number];
@@ -10213,8 +10259,11 @@ export type StaffTenantGrantSortField = (typeof staffTenantGrantSortFields)[numb
 export const tenantSortFields = ["id", "name", "slug", "status", "archived_at", "root_origin_entity_id", "created_at", "updated_at"] as const;
 export type TenantSortField = (typeof tenantSortFields)[number];
 
-export const userSortFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "is_creator"] as const;
+export const userSortFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "sign_in_link_response_type", "is_creator"] as const;
 export type UserSortField = (typeof userSortFields)[number];
+
+export const signInLinkResponseSortFields = ["status"] as const;
+export type SignInLinkResponseSortField = (typeof signInLinkResponseSortFields)[number];
 
 export const socialSignInResponseSortFields = ["id", "email", "token"] as const;
 export type SocialSignInResponseSortField = (typeof socialSignInResponseSortFields)[number];

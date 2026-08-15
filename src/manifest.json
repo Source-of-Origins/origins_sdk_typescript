@@ -434,7 +434,7 @@
     {
       "actionType": "action",
       "deprecated": false,
-      "description": "Deliver a passwordless sign-in link for an origin: through the origin's\nactive `magic_link.issued` webhook subscription when one exists (the\nbrand's consumer sends the email), the platform email otherwise. Always\nsucceeds so the action can't enumerate accounts.\n",
+      "description": "Deliver a passwordless sign-in link for an origin: through the origin's\nactive `magic_link.issued` webhook subscription when one exists (the\nbrand's consumer sends the email), the platform email otherwise.\nDelivers only to an account that already exists, reporting `:no_account`\notherwise — a signup screen creates one via `:create_anonymous_user`\nfirst.\n",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "request_origin_magic_link",
@@ -8475,7 +8475,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-13",
+  "generatedAt": "2026-08-15",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
