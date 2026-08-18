@@ -459,6 +459,7 @@ export type AppResourceSchema = {
   generation_history: { __type: "ComplexCalculation"; __returnType: Array<GenerationHistoryEntryResourceSchema> | null; __args: { limit?: number | null; before?: string | null }; };
   assessment_graph: { __type: "Relationship"; __resource: AssessmentGraphResourceSchema | null; };
   example_briefing: { __type: "Relationship"; __resource: DailyBriefingResourceSchema | null; };
+  gated_course_payload_type_anchor: { __type: "Relationship"; __resource: GatedCoursePayloadResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -628,6 +629,462 @@ export type AuthoringDocumentInputSchema = {
 };
 
 
+// OriginsAppsContentCourseActivity Schema
+export type OriginsAppsContentCourseActivityResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "kind" | "label" | "icon" | "source_course" | "phase" | "session" | "title" | "duration" | "recurrence" | "availability" | "mode" | "body" | "image" | "optional" | "content";
+  id: string;
+  kind: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+  label: string | null;
+  icon: string | null;
+  source_course: string | null;
+  phase: string | null;
+  session: string | null;
+  title: string;
+  duration: number | null;
+  recurrence: "daily" | "once" | "phase-start" | "weekly" | null;
+  availability: "anytime" | "scheduled" | null;
+  mode: "partner" | "solo" | null;
+  body: string | null;
+  image: string | null;
+  optional: boolean | null;
+  content: string | null;
+  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateResourceSchema | null; };
+  video: { __type: "Relationship"; __resource: OriginsAppsContentCourseVideoResourceSchema | null; };
+  assessment: { __type: "Relationship"; __resource: OriginsAppsContentCourseAssessmentResourceSchema | null; };
+  steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepResourceSchema; };
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema; };
+};
+
+
+
+export type OriginsAppsContentCourseActivityAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "kind" | "label" | "icon" | "source_course" | "phase" | "session" | "title" | "duration" | "recurrence" | "availability" | "mode" | "body" | "image" | "optional" | "content";
+  id: string;
+  kind: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+  label: string | null;
+  icon: string | null;
+  source_course: string | null;
+  phase: string | null;
+  session: string | null;
+  title: string;
+  duration: number | null;
+  recurrence: "daily" | "once" | "phase-start" | "weekly" | null;
+  availability: "anytime" | "scheduled" | null;
+  mode: "partner" | "solo" | null;
+  body: string | null;
+  image: string | null;
+  optional: boolean | null;
+  content: string | null;
+  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateAttributesOnlySchema | null; };
+  video: { __type: "Relationship"; __resource: OriginsAppsContentCourseVideoAttributesOnlySchema | null; };
+  assessment: { __type: "Relationship"; __resource: OriginsAppsContentCourseAssessmentAttributesOnlySchema | null; };
+  steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepAttributesOnlySchema; };
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema; };
+};
+
+
+export type OriginsAppsContentCourseActivityInputSchema = {
+  id: string;
+  kind: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+  label?: string | null;
+  icon?: string | null;
+  source_course?: string | null;
+  phase?: string | null;
+  session?: string | null;
+  title: string;
+  duration?: number | null;
+  recurrence?: "daily" | "once" | "phase-start" | "weekly" | null;
+  availability?: "anytime" | "scheduled" | null;
+  mode?: "partner" | "solo" | null;
+  body?: string | null;
+  image?: string | null;
+  opens?: OriginsAppsContentCourseGateInputSchema | null;
+  optional?: boolean | null;
+  content?: string | null;
+  video?: OriginsAppsContentCourseVideoInputSchema | null;
+  assessment?: OriginsAppsContentCourseAssessmentInputSchema | null;
+  steps?: Array<OriginsAppsContentCourseCourseStepInputSchema> | null;
+  prompts?: Array<OriginsAppsContentCoursePromptInputSchema> | null;
+};
+
+
+// OriginsAppsContentCourseAssessment Schema
+export type OriginsAppsContentCourseAssessmentResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "app";
+  app: string;
+};
+
+
+
+export type OriginsAppsContentCourseAssessmentAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "app";
+  app: string;
+};
+
+
+export type OriginsAppsContentCourseAssessmentInputSchema = {
+  app: string;
+};
+
+
+// OriginsAppsContentCourseContributor Schema
+export type OriginsAppsContentCourseContributorResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url";
+  ref: string | null;
+  name: string | null;
+  role: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+};
+
+
+
+export type OriginsAppsContentCourseContributorAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url";
+  ref: string | null;
+  name: string | null;
+  role: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+};
+
+
+export type OriginsAppsContentCourseContributorInputSchema = {
+  ref?: string | null;
+  name?: string | null;
+  role?: string | null;
+  bio?: string | null;
+  avatar_url?: string | null;
+};
+
+
+// OriginsAppsContentCourseCourse Schema
+export type OriginsAppsContentCourseCourseResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "name" | "logo" | "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "streaks" | "gated" | "segment" | "purchase_url" | "gated_default_tab" | "unit_label" | "head";
+  name: string | null;
+  logo: string | null;
+  background: string | null;
+  foreground: string | null;
+  card: string | null;
+  card_foreground: string | null;
+  primary: string | null;
+  primary_foreground: string | null;
+  accent: string | null;
+  accent_foreground: string | null;
+  border: string | null;
+  video_accent: string | null;
+  video_captions: boolean | null;
+  streaks: boolean | null;
+  gated: boolean | null;
+  segment: string | null;
+  purchase_url: string | null;
+  gated_default_tab: string | null;
+  unit_label: string | null;
+  head: string | null;
+};
+
+
+
+export type OriginsAppsContentCourseCourseAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "name" | "logo" | "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "streaks" | "gated" | "segment" | "purchase_url" | "gated_default_tab" | "unit_label" | "head";
+  name: string | null;
+  logo: string | null;
+  background: string | null;
+  foreground: string | null;
+  card: string | null;
+  card_foreground: string | null;
+  primary: string | null;
+  primary_foreground: string | null;
+  accent: string | null;
+  accent_foreground: string | null;
+  border: string | null;
+  video_accent: string | null;
+  video_captions: boolean | null;
+  streaks: boolean | null;
+  gated: boolean | null;
+  segment: string | null;
+  purchase_url: string | null;
+  gated_default_tab: string | null;
+  unit_label: string | null;
+  head: string | null;
+};
+
+
+export type OriginsAppsContentCourseCourseInputSchema = {
+  name?: string | null;
+  logo?: string | null;
+  background?: string | null;
+  foreground?: string | null;
+  card?: string | null;
+  card_foreground?: string | null;
+  primary?: string | null;
+  primary_foreground?: string | null;
+  accent?: string | null;
+  accent_foreground?: string | null;
+  border?: string | null;
+  video_accent?: string | null;
+  video_captions?: boolean | null;
+  streaks?: boolean | null;
+  gated?: boolean | null;
+  segment?: string | null;
+  purchase_url?: string | null;
+  gated_default_tab?: string | null;
+  unit_label?: string | null;
+  head?: string | null;
+};
+
+
+// OriginsAppsContentCourseCourseStep Schema
+export type OriginsAppsContentCourseCourseStepResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "duration" | "body" | "required" | "content" | "order";
+  id: string | null;
+  title: string | null;
+  duration: number | null;
+  body: string | null;
+  required: boolean | null;
+  content: string | null;
+  order: number | null;
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema; };
+};
+
+
+
+export type OriginsAppsContentCourseCourseStepAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "duration" | "body" | "required" | "content" | "order";
+  id: string | null;
+  title: string | null;
+  duration: number | null;
+  body: string | null;
+  required: boolean | null;
+  content: string | null;
+  order: number | null;
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema; };
+};
+
+
+export type OriginsAppsContentCourseCourseStepInputSchema = {
+  id?: string | null;
+  title?: string | null;
+  duration?: number | null;
+  body?: string | null;
+  required?: boolean | null;
+  content?: string | null;
+  order?: number | null;
+  prompts?: Array<OriginsAppsContentCoursePromptInputSchema> | null;
+};
+
+
+// OriginsAppsContentCourseGate Schema
+export type OriginsAppsContentCourseGateResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "after" | "any_of" | "at_least" | "delay" | "every";
+  after: string | null;
+  any_of: string | null;
+  at_least: string | null;
+  delay: string | null;
+  every: string | null;
+};
+
+
+
+export type OriginsAppsContentCourseGateAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "after" | "any_of" | "at_least" | "delay" | "every";
+  after: string | null;
+  any_of: string | null;
+  at_least: string | null;
+  delay: string | null;
+  every: string | null;
+};
+
+
+export type OriginsAppsContentCourseGateInputSchema = {
+  after?: string | null;
+  any_of?: string | null;
+  at_least?: string | null;
+  delay?: string | null;
+  every?: string | null;
+};
+
+
+// OriginsAppsContentCoursePhase Schema
+export type OriginsAppsContentCoursePhaseResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "weeks" | "description";
+  id: string;
+  title: string;
+  weeks: string | null;
+  description: string | null;
+};
+
+
+
+export type OriginsAppsContentCoursePhaseAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "weeks" | "description";
+  id: string;
+  title: string;
+  weeks: string | null;
+  description: string | null;
+};
+
+
+export type OriginsAppsContentCoursePhaseInputSchema = {
+  id: string;
+  title: string;
+  weeks?: string | null;
+  description?: string | null;
+};
+
+
+// OriginsAppsContentCoursePrompt Schema
+export type OriginsAppsContentCoursePromptResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order";
+  id: string | null;
+  kind: "number" | "select" | "slider" | "text" | null;
+  label: string | null;
+  min: number | null;
+  max: number | null;
+  options: string | null;
+  required: boolean | null;
+  order: number | null;
+};
+
+
+
+export type OriginsAppsContentCoursePromptAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order";
+  id: string | null;
+  kind: "number" | "select" | "slider" | "text" | null;
+  label: string | null;
+  min: number | null;
+  max: number | null;
+  options: string | null;
+  required: boolean | null;
+  order: number | null;
+};
+
+
+export type OriginsAppsContentCoursePromptInputSchema = {
+  id?: string | null;
+  kind?: "number" | "select" | "slider" | "text" | null;
+  label?: string | null;
+  min?: number | null;
+  max?: number | null;
+  options?: string | null;
+  required?: boolean | null;
+  order?: number | null;
+};
+
+
+// OriginsAppsContentCourseSession Schema
+export type OriginsAppsContentCourseSessionResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "description" | "optional" | "phase_id" | "index";
+  id: string;
+  title: string | null;
+  description: string | null;
+  optional: boolean | null;
+  phase_id: string | null;
+  index: number | null;
+  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateResourceSchema | null; };
+};
+
+
+
+export type OriginsAppsContentCourseSessionAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "description" | "optional" | "phase_id" | "index";
+  id: string;
+  title: string | null;
+  description: string | null;
+  optional: boolean | null;
+  phase_id: string | null;
+  index: number | null;
+  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateAttributesOnlySchema | null; };
+};
+
+
+export type OriginsAppsContentCourseSessionInputSchema = {
+  id: string;
+  title?: string | null;
+  description?: string | null;
+  opens?: OriginsAppsContentCourseGateInputSchema | null;
+  optional?: boolean | null;
+  phase_id?: string | null;
+  index?: number | null;
+};
+
+
+// OriginsAppsContentCourseTransition Schema
+export type OriginsAppsContentCourseTransitionResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "body" | "between" | "at";
+  id: string | null;
+  title: string | null;
+  body: string | null;
+  between: string | null;
+  at: string | null;
+};
+
+
+
+export type OriginsAppsContentCourseTransitionAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "title" | "body" | "between" | "at";
+  id: string | null;
+  title: string | null;
+  body: string | null;
+  between: string | null;
+  at: string | null;
+};
+
+
+export type OriginsAppsContentCourseTransitionInputSchema = {
+  id?: string | null;
+  title?: string | null;
+  body?: string | null;
+  between?: string | null;
+  at?: string | null;
+};
+
+
+// OriginsAppsContentCourseVideo Schema
+export type OriginsAppsContentCourseVideoResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "path" | "caption";
+  path: string;
+  caption: string | null;
+};
+
+
+
+export type OriginsAppsContentCourseVideoAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "path" | "caption";
+  path: string;
+  caption: string | null;
+};
+
+
+export type OriginsAppsContentCourseVideoInputSchema = {
+  path: string;
+  caption?: string | null;
+};
+
+
 // BriefingPage Schema
 export type BriefingPageResourceSchema = {
   __type: "Resource";
@@ -679,6 +1136,78 @@ export type DailyBriefingInputSchema = {
   pages?: Array<BriefingPageInputSchema> | null;
   generated_at?: UtcDateTimeUsec | null;
   read_at?: UtcDateTimeUsec | null;
+};
+
+
+// GatedCourse Schema
+export type GatedCourseResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes";
+  briefing_enabled: boolean | null;
+  unit_label: string | null;
+  outcomes: Array<string> | null;
+  config: { __type: "Relationship"; __resource: OriginsAppsContentCourseCourseResourceSchema | null; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema; };
+  phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseResourceSchema; };
+  transitions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseTransitionResourceSchema; };
+  sessions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseSessionResourceSchema; };
+  activities: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseActivityResourceSchema; };
+};
+
+
+
+export type GatedCourseAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes";
+  briefing_enabled: boolean | null;
+  unit_label: string | null;
+  outcomes: Array<string> | null;
+  config: { __type: "Relationship"; __resource: OriginsAppsContentCourseCourseAttributesOnlySchema | null; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema; };
+  phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseAttributesOnlySchema; };
+  transitions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseTransitionAttributesOnlySchema; };
+  sessions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseSessionAttributesOnlySchema; };
+  activities: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseActivityAttributesOnlySchema; };
+};
+
+
+export type GatedCourseInputSchema = {
+  config?: OriginsAppsContentCourseCourseInputSchema | null;
+  briefing_enabled?: boolean | null;
+  unit_label?: string | null;
+  outcomes?: Array<string> | null;
+  contributors?: Array<OriginsAppsContentCourseContributorInputSchema> | null;
+  phases?: Array<OriginsAppsContentCoursePhaseInputSchema> | null;
+  transitions?: Array<OriginsAppsContentCourseTransitionInputSchema> | null;
+  sessions?: Array<OriginsAppsContentCourseSessionInputSchema> | null;
+  activities?: Array<OriginsAppsContentCourseActivityInputSchema> | null;
+};
+
+
+// GatedCoursePayload Schema
+export type GatedCoursePayloadResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "state";
+  state: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }> | null;
+  gated_course: { __type: "Relationship"; __resource: GatedCourseResourceSchema; };
+  enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
+};
+
+
+
+export type GatedCoursePayloadAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "state";
+  state: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }> | null;
+  gated_course: { __type: "Relationship"; __resource: GatedCourseAttributesOnlySchema; };
+  enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
+};
+
+
+export type GatedCoursePayloadInputSchema = {
+  gated_course: GatedCourseInputSchema;
+  enrollment?: {id?: UUID | null, status?: string | null, current_session_id?: string | null, current_phase_id?: string | null, current_phase_started_at?: UtcDateTime | null, entered_session_ids?: Array<string> | null, enrolled_at?: UtcDateTime | null, streak_count?: number | null, streak_last_date?: AshDate | null, settings?: Record<string, any> | null} | null;
+  state?: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }> | null;
 };
 
 
@@ -4273,6 +4802,13 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
+  gated_course_payload_type_anchor?: {
+    eq?: GatedCoursePayloadResourceSchema;
+    not_eq?: GatedCoursePayloadResourceSchema;
+    in?: Array<GatedCoursePayloadResourceSchema>;
+    is_nil?: boolean;
+  };
+
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -4560,6 +5096,709 @@ export type AuthoringDocumentFilterInput = {
 
 
 };
+export type OriginsAppsContentCourseActivityFilterInput = {
+  and?: Array<OriginsAppsContentCourseActivityFilterInput>;
+  or?: Array<OriginsAppsContentCourseActivityFilterInput>;
+  not?: Array<OriginsAppsContentCourseActivityFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  kind?: {
+    eq?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+    not_eq?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+    in?: Array<"check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video">;
+  };
+
+  label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  icon?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  source_course?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  phase?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  session?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  duration?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  recurrence?: {
+    eq?: "daily" | "once" | "phase-start" | "weekly";
+    not_eq?: "daily" | "once" | "phase-start" | "weekly";
+    in?: Array<"daily" | "once" | "phase-start" | "weekly">;
+    is_nil?: boolean;
+  };
+
+  availability?: {
+    eq?: "anytime" | "scheduled";
+    not_eq?: "anytime" | "scheduled";
+    in?: Array<"anytime" | "scheduled">;
+    is_nil?: boolean;
+  };
+
+  mode?: {
+    eq?: "partner" | "solo";
+    not_eq?: "partner" | "solo";
+    in?: Array<"partner" | "solo">;
+    is_nil?: boolean;
+  };
+
+  body?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  image?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  opens?: {
+    eq?: OriginsAppsContentCourseGateResourceSchema;
+    not_eq?: OriginsAppsContentCourseGateResourceSchema;
+    in?: Array<OriginsAppsContentCourseGateResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  optional?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  content?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  video?: {
+    eq?: OriginsAppsContentCourseVideoResourceSchema;
+    not_eq?: OriginsAppsContentCourseVideoResourceSchema;
+    in?: Array<OriginsAppsContentCourseVideoResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  assessment?: {
+    eq?: OriginsAppsContentCourseAssessmentResourceSchema;
+    not_eq?: OriginsAppsContentCourseAssessmentResourceSchema;
+    in?: Array<OriginsAppsContentCourseAssessmentResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  steps?: {
+    eq?: Array<OriginsAppsContentCourseCourseStepResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseCourseStepResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseCourseStepResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  prompts?: {
+    eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCoursePromptResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseAssessmentFilterInput = {
+  and?: Array<OriginsAppsContentCourseAssessmentFilterInput>;
+  or?: Array<OriginsAppsContentCourseAssessmentFilterInput>;
+  not?: Array<OriginsAppsContentCourseAssessmentFilterInput>;
+
+  app?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseContributorFilterInput = {
+  and?: Array<OriginsAppsContentCourseContributorFilterInput>;
+  or?: Array<OriginsAppsContentCourseContributorFilterInput>;
+  not?: Array<OriginsAppsContentCourseContributorFilterInput>;
+
+  ref?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  role?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  bio?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  avatar_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseCourseFilterInput = {
+  and?: Array<OriginsAppsContentCourseCourseFilterInput>;
+  or?: Array<OriginsAppsContentCourseCourseFilterInput>;
+  not?: Array<OriginsAppsContentCourseCourseFilterInput>;
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  logo?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  background?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  foreground?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  card?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  card_foreground?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  primary?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  primary_foreground?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  accent?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  accent_foreground?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  border?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  video_accent?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  video_captions?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  streaks?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  gated?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  segment?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  purchase_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  gated_default_tab?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  unit_label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  head?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseCourseStepFilterInput = {
+  and?: Array<OriginsAppsContentCourseCourseStepFilterInput>;
+  or?: Array<OriginsAppsContentCourseCourseStepFilterInput>;
+  not?: Array<OriginsAppsContentCourseCourseStepFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  duration?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  body?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  required?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  content?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  order?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  prompts?: {
+    eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCoursePromptResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseGateFilterInput = {
+  and?: Array<OriginsAppsContentCourseGateFilterInput>;
+  or?: Array<OriginsAppsContentCourseGateFilterInput>;
+  not?: Array<OriginsAppsContentCourseGateFilterInput>;
+
+  after?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  any_of?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  at_least?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  delay?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  every?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCoursePhaseFilterInput = {
+  and?: Array<OriginsAppsContentCoursePhaseFilterInput>;
+  or?: Array<OriginsAppsContentCoursePhaseFilterInput>;
+  not?: Array<OriginsAppsContentCoursePhaseFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  weeks?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  description?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCoursePromptFilterInput = {
+  and?: Array<OriginsAppsContentCoursePromptFilterInput>;
+  or?: Array<OriginsAppsContentCoursePromptFilterInput>;
+  not?: Array<OriginsAppsContentCoursePromptFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  kind?: {
+    eq?: "number" | "select" | "slider" | "text";
+    not_eq?: "number" | "select" | "slider" | "text";
+    in?: Array<"number" | "select" | "slider" | "text">;
+    is_nil?: boolean;
+  };
+
+  label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  min?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  max?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+  options?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  required?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  order?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseSessionFilterInput = {
+  and?: Array<OriginsAppsContentCourseSessionFilterInput>;
+  or?: Array<OriginsAppsContentCourseSessionFilterInput>;
+  not?: Array<OriginsAppsContentCourseSessionFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  description?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  opens?: {
+    eq?: OriginsAppsContentCourseGateResourceSchema;
+    not_eq?: OriginsAppsContentCourseGateResourceSchema;
+    in?: Array<OriginsAppsContentCourseGateResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  optional?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  phase_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  index?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseTransitionFilterInput = {
+  and?: Array<OriginsAppsContentCourseTransitionFilterInput>;
+  or?: Array<OriginsAppsContentCourseTransitionFilterInput>;
+  not?: Array<OriginsAppsContentCourseTransitionFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  body?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  between?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  at?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type OriginsAppsContentCourseVideoFilterInput = {
+  and?: Array<OriginsAppsContentCourseVideoFilterInput>;
+  or?: Array<OriginsAppsContentCourseVideoFilterInput>;
+  not?: Array<OriginsAppsContentCourseVideoFilterInput>;
+
+  path?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  caption?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
 export type BriefingPageFilterInput = {
   and?: Array<BriefingPageFilterInput>;
   or?: Array<BriefingPageFilterInput>;
@@ -4622,6 +5861,104 @@ export type DailyBriefingFilterInput = {
     less_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type GatedCourseFilterInput = {
+  and?: Array<GatedCourseFilterInput>;
+  or?: Array<GatedCourseFilterInput>;
+  not?: Array<GatedCourseFilterInput>;
+
+  config?: {
+    eq?: OriginsAppsContentCourseCourseResourceSchema;
+    not_eq?: OriginsAppsContentCourseCourseResourceSchema;
+    in?: Array<OriginsAppsContentCourseCourseResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  briefing_enabled?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    is_nil?: boolean;
+  };
+
+  unit_label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  outcomes?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    is_nil?: boolean;
+  };
+
+  contributors?: {
+    eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseContributorResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  phases?: {
+    eq?: Array<OriginsAppsContentCoursePhaseResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCoursePhaseResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCoursePhaseResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  transitions?: {
+    eq?: Array<OriginsAppsContentCourseTransitionResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseTransitionResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseTransitionResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  sessions?: {
+    eq?: Array<OriginsAppsContentCourseSessionResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseSessionResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseSessionResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  activities?: {
+    eq?: Array<OriginsAppsContentCourseActivityResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseActivityResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseActivityResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type GatedCoursePayloadFilterInput = {
+  and?: Array<GatedCoursePayloadFilterInput>;
+  or?: Array<GatedCoursePayloadFilterInput>;
+  not?: Array<GatedCoursePayloadFilterInput>;
+
+  gated_course?: {
+    eq?: GatedCourseResourceSchema;
+    not_eq?: GatedCourseResourceSchema;
+    in?: Array<GatedCourseResourceSchema>;
+  };
+
+  enrollment?: {
+    eq?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    not_eq?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    in?: Array<{id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"}>;
+    is_nil?: boolean;
+  };
+
+  state?: {
+    eq?: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }>;
+    not_eq?: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }>;
+    in?: Array<Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }>>;
     is_nil?: boolean;
   };
 
@@ -10057,7 +11394,7 @@ export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number
 export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
-export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "origin_entity"] as const;
+export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
@@ -10072,11 +11409,50 @@ export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFiel
 export const authoringDocumentFilterFields = ["page_type", "blocks", "config", "errors"] as const;
 export type AuthoringDocumentFilterField = (typeof authoringDocumentFilterFields)[number];
 
+export const originsAppsContentCourseActivityFilterFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts"] as const;
+export type OriginsAppsContentCourseActivityFilterField = (typeof originsAppsContentCourseActivityFilterFields)[number];
+
+export const originsAppsContentCourseAssessmentFilterFields = ["app"] as const;
+export type OriginsAppsContentCourseAssessmentFilterField = (typeof originsAppsContentCourseAssessmentFilterFields)[number];
+
+export const originsAppsContentCourseContributorFilterFields = ["ref", "name", "role", "bio", "avatar_url"] as const;
+export type OriginsAppsContentCourseContributorFilterField = (typeof originsAppsContentCourseContributorFilterFields)[number];
+
+export const originsAppsContentCourseCourseFilterFields = ["name", "logo", "background", "foreground", "card", "card_foreground", "primary", "primary_foreground", "accent", "accent_foreground", "border", "video_accent", "video_captions", "streaks", "gated", "segment", "purchase_url", "gated_default_tab", "unit_label", "head"] as const;
+export type OriginsAppsContentCourseCourseFilterField = (typeof originsAppsContentCourseCourseFilterFields)[number];
+
+export const originsAppsContentCourseCourseStepFilterFields = ["id", "title", "duration", "body", "required", "content", "order", "prompts"] as const;
+export type OriginsAppsContentCourseCourseStepFilterField = (typeof originsAppsContentCourseCourseStepFilterFields)[number];
+
+export const originsAppsContentCourseGateFilterFields = ["after", "any_of", "at_least", "delay", "every"] as const;
+export type OriginsAppsContentCourseGateFilterField = (typeof originsAppsContentCourseGateFilterFields)[number];
+
+export const originsAppsContentCoursePhaseFilterFields = ["id", "title", "weeks", "description"] as const;
+export type OriginsAppsContentCoursePhaseFilterField = (typeof originsAppsContentCoursePhaseFilterFields)[number];
+
+export const originsAppsContentCoursePromptFilterFields = ["id", "kind", "label", "min", "max", "options", "required", "order"] as const;
+export type OriginsAppsContentCoursePromptFilterField = (typeof originsAppsContentCoursePromptFilterFields)[number];
+
+export const originsAppsContentCourseSessionFilterFields = ["id", "title", "description", "opens", "optional", "phase_id", "index"] as const;
+export type OriginsAppsContentCourseSessionFilterField = (typeof originsAppsContentCourseSessionFilterFields)[number];
+
+export const originsAppsContentCourseTransitionFilterFields = ["id", "title", "body", "between", "at"] as const;
+export type OriginsAppsContentCourseTransitionFilterField = (typeof originsAppsContentCourseTransitionFilterFields)[number];
+
+export const originsAppsContentCourseVideoFilterFields = ["path", "caption"] as const;
+export type OriginsAppsContentCourseVideoFilterField = (typeof originsAppsContentCourseVideoFilterFields)[number];
+
 export const briefingPageFilterFields = ["body"] as const;
 export type BriefingPageFilterField = (typeof briefingPageFilterFields)[number];
 
 export const dailyBriefingFilterFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
 export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number];
+
+export const gatedCourseFilterFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities"] as const;
+export type GatedCourseFilterField = (typeof gatedCourseFilterFields)[number];
+
+export const gatedCoursePayloadFilterFields = ["gated_course", "enrollment", "state"] as const;
+export type GatedCoursePayloadFilterField = (typeof gatedCoursePayloadFilterFields)[number];
 
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
@@ -10289,7 +11665,7 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
-export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing"] as const;
+export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
@@ -10304,11 +11680,50 @@ export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[
 export const authoringDocumentSortFields = ["page_type", "blocks", "config", "errors"] as const;
 export type AuthoringDocumentSortField = (typeof authoringDocumentSortFields)[number];
 
+export const originsAppsContentCourseActivitySortFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts"] as const;
+export type OriginsAppsContentCourseActivitySortField = (typeof originsAppsContentCourseActivitySortFields)[number];
+
+export const originsAppsContentCourseAssessmentSortFields = ["app"] as const;
+export type OriginsAppsContentCourseAssessmentSortField = (typeof originsAppsContentCourseAssessmentSortFields)[number];
+
+export const originsAppsContentCourseContributorSortFields = ["ref", "name", "role", "bio", "avatar_url"] as const;
+export type OriginsAppsContentCourseContributorSortField = (typeof originsAppsContentCourseContributorSortFields)[number];
+
+export const originsAppsContentCourseCourseSortFields = ["name", "logo", "background", "foreground", "card", "card_foreground", "primary", "primary_foreground", "accent", "accent_foreground", "border", "video_accent", "video_captions", "streaks", "gated", "segment", "purchase_url", "gated_default_tab", "unit_label", "head"] as const;
+export type OriginsAppsContentCourseCourseSortField = (typeof originsAppsContentCourseCourseSortFields)[number];
+
+export const originsAppsContentCourseCourseStepSortFields = ["id", "title", "duration", "body", "required", "content", "order", "prompts"] as const;
+export type OriginsAppsContentCourseCourseStepSortField = (typeof originsAppsContentCourseCourseStepSortFields)[number];
+
+export const originsAppsContentCourseGateSortFields = ["after", "any_of", "at_least", "delay", "every"] as const;
+export type OriginsAppsContentCourseGateSortField = (typeof originsAppsContentCourseGateSortFields)[number];
+
+export const originsAppsContentCoursePhaseSortFields = ["id", "title", "weeks", "description"] as const;
+export type OriginsAppsContentCoursePhaseSortField = (typeof originsAppsContentCoursePhaseSortFields)[number];
+
+export const originsAppsContentCoursePromptSortFields = ["id", "kind", "label", "min", "max", "options", "required", "order"] as const;
+export type OriginsAppsContentCoursePromptSortField = (typeof originsAppsContentCoursePromptSortFields)[number];
+
+export const originsAppsContentCourseSessionSortFields = ["id", "title", "description", "opens", "optional", "phase_id", "index"] as const;
+export type OriginsAppsContentCourseSessionSortField = (typeof originsAppsContentCourseSessionSortFields)[number];
+
+export const originsAppsContentCourseTransitionSortFields = ["id", "title", "body", "between", "at"] as const;
+export type OriginsAppsContentCourseTransitionSortField = (typeof originsAppsContentCourseTransitionSortFields)[number];
+
+export const originsAppsContentCourseVideoSortFields = ["path", "caption"] as const;
+export type OriginsAppsContentCourseVideoSortField = (typeof originsAppsContentCourseVideoSortFields)[number];
+
 export const briefingPageSortFields = ["body"] as const;
 export type BriefingPageSortField = (typeof briefingPageSortFields)[number];
 
 export const dailyBriefingSortFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
 export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
+
+export const gatedCourseSortFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities"] as const;
+export type GatedCourseSortField = (typeof gatedCourseSortFields)[number];
+
+export const gatedCoursePayloadSortFields = ["gated_course", "enrollment", "state"] as const;
+export type GatedCoursePayloadSortField = (typeof gatedCoursePayloadSortFields)[number];
 
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];

@@ -1520,6 +1520,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on App",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "gated_personalized_course_for_user",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "input": "GatedPersonalizedCourseForUserInput",
+        "result": "GatedPersonalizedCourseForUserResult"
+      },
+      "variantNames": {
+        "channel": "gated_personalized_course_for_user_channel",
+        "validation": "validate_gated_personalized_course_for_user"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read App records",
@@ -8475,7 +8509,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-15",
+  "generatedAt": "2026-08-18",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
