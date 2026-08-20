@@ -654,6 +654,7 @@ export type OriginsAppsContentCourseActivityResourceSchema = {
   assessment: { __type: "Relationship"; __resource: OriginsAppsContentCourseAssessmentResourceSchema | null; };
   steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepResourceSchema; };
   prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema; };
 };
 
 
@@ -682,6 +683,7 @@ export type OriginsAppsContentCourseActivityAttributesOnlySchema = {
   assessment: { __type: "Relationship"; __resource: OriginsAppsContentCourseAssessmentAttributesOnlySchema | null; };
   steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepAttributesOnlySchema; };
   prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema; };
 };
 
 
@@ -707,6 +709,7 @@ export type OriginsAppsContentCourseActivityInputSchema = {
   assessment?: OriginsAppsContentCourseAssessmentInputSchema | null;
   steps?: Array<OriginsAppsContentCourseCourseStepInputSchema> | null;
   prompts?: Array<OriginsAppsContentCoursePromptInputSchema> | null;
+  contributors?: Array<OriginsAppsContentCourseContributorInputSchema> | null;
 };
 
 
@@ -1187,27 +1190,90 @@ export type GatedCourseInputSchema = {
 // GatedCoursePayload Schema
 export type GatedCoursePayloadResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "state";
-  state: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }> | null;
+  __primitiveFields: never;
   gated_course: { __type: "Relationship"; __resource: GatedCourseResourceSchema; };
   enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
+  state: { __type: "Relationship"; __array: true; __resource: CourseItemStateResourceSchema; };
 };
 
 
 
 export type GatedCoursePayloadAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "state";
-  state: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }> | null;
+  __primitiveFields: never;
   gated_course: { __type: "Relationship"; __resource: GatedCourseAttributesOnlySchema; };
   enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
+  state: { __type: "Relationship"; __array: true; __resource: CourseItemStateAttributesOnlySchema; };
 };
 
 
 export type GatedCoursePayloadInputSchema = {
   gated_course: GatedCourseInputSchema;
   enrollment?: {id?: UUID | null, status?: string | null, current_session_id?: string | null, current_phase_id?: string | null, current_phase_started_at?: UtcDateTime | null, entered_session_ids?: Array<string> | null, enrolled_at?: UtcDateTime | null, streak_count?: number | null, streak_last_date?: AshDate | null, settings?: Record<string, any> | null} | null;
-  state?: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }> | null;
+  state?: Array<CourseItemStateInputSchema> | null;
+};
+
+
+// CourseItemState Schema
+export type CourseItemStateResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "item_id" | "available" | "complete" | "progress";
+  item_id: string;
+  available: boolean;
+  complete: boolean;
+  progress: number | null;
+  unlocks_when: { __type: "Relationship"; __resource: CourseUnlocksWhenResourceSchema | null; };
+};
+
+
+
+export type CourseItemStateAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "item_id" | "available" | "complete" | "progress";
+  item_id: string;
+  available: boolean;
+  complete: boolean;
+  progress: number | null;
+  unlocks_when: { __type: "Relationship"; __resource: CourseUnlocksWhenAttributesOnlySchema | null; };
+};
+
+
+export type CourseItemStateInputSchema = {
+  item_id: string;
+  available?: boolean;
+  unlocks_when?: CourseUnlocksWhenInputSchema | null;
+  complete?: boolean;
+  progress?: number | null;
+};
+
+
+// CourseUnlocksWhen Schema
+export type CourseUnlocksWhenResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "type" | "date" | "activity_ids" | "reason";
+  type: "after" | "after_any" | "at" | "locked_by";
+  date: string | null;
+  activity_ids: Array<string> | null;
+  reason: string | null;
+};
+
+
+
+export type CourseUnlocksWhenAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "type" | "date" | "activity_ids" | "reason";
+  type: "after" | "after_any" | "at" | "locked_by";
+  date: string | null;
+  activity_ids: Array<string> | null;
+  reason: string | null;
+};
+
+
+export type CourseUnlocksWhenInputSchema = {
+  type: "after" | "after_any" | "at" | "locked_by";
+  date?: string | null;
+  activity_ids?: Array<string> | null;
+  reason?: string | null;
 };
 
 
@@ -5248,6 +5314,13 @@ export type OriginsAppsContentCourseActivityFilterInput = {
     is_nil?: boolean;
   };
 
+  contributors?: {
+    eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseContributorResourceSchema>>;
+    is_nil?: boolean;
+  };
+
 
 
 };
@@ -5956,9 +6029,86 @@ export type GatedCoursePayloadFilterInput = {
   };
 
   state?: {
-    eq?: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }>;
-    not_eq?: Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }>;
-    in?: Array<Record<string, { available: boolean; unlocks_when: { type: "at"; date: string } | { type: "after"; activity_ids: Array<string> } | { type: "after_any"; activity_ids: Array<string> } | { type: "locked_by"; reason: string } | null; complete: boolean; progress: number | null }>>;
+    eq?: Array<CourseItemStateResourceSchema>;
+    not_eq?: Array<CourseItemStateResourceSchema>;
+    in?: Array<Array<CourseItemStateResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type CourseItemStateFilterInput = {
+  and?: Array<CourseItemStateFilterInput>;
+  or?: Array<CourseItemStateFilterInput>;
+  not?: Array<CourseItemStateFilterInput>;
+
+  item_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  available?: {
+    eq?: boolean;
+    not_eq?: boolean;
+  };
+
+  unlocks_when?: {
+    eq?: CourseUnlocksWhenResourceSchema;
+    not_eq?: CourseUnlocksWhenResourceSchema;
+    in?: Array<CourseUnlocksWhenResourceSchema>;
+    is_nil?: boolean;
+  };
+
+  complete?: {
+    eq?: boolean;
+    not_eq?: boolean;
+  };
+
+  progress?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type CourseUnlocksWhenFilterInput = {
+  and?: Array<CourseUnlocksWhenFilterInput>;
+  or?: Array<CourseUnlocksWhenFilterInput>;
+  not?: Array<CourseUnlocksWhenFilterInput>;
+
+  type?: {
+    eq?: "after" | "after_any" | "at" | "locked_by";
+    not_eq?: "after" | "after_any" | "at" | "locked_by";
+    in?: Array<"after" | "after_any" | "at" | "locked_by">;
+  };
+
+  date?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  activity_ids?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    is_nil?: boolean;
+  };
+
+  reason?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
     is_nil?: boolean;
   };
 
@@ -11409,7 +11559,7 @@ export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFiel
 export const authoringDocumentFilterFields = ["page_type", "blocks", "config", "errors"] as const;
 export type AuthoringDocumentFilterField = (typeof authoringDocumentFilterFields)[number];
 
-export const originsAppsContentCourseActivityFilterFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts"] as const;
+export const originsAppsContentCourseActivityFilterFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts", "contributors"] as const;
 export type OriginsAppsContentCourseActivityFilterField = (typeof originsAppsContentCourseActivityFilterFields)[number];
 
 export const originsAppsContentCourseAssessmentFilterFields = ["app"] as const;
@@ -11453,6 +11603,12 @@ export type GatedCourseFilterField = (typeof gatedCourseFilterFields)[number];
 
 export const gatedCoursePayloadFilterFields = ["gated_course", "enrollment", "state"] as const;
 export type GatedCoursePayloadFilterField = (typeof gatedCoursePayloadFilterFields)[number];
+
+export const courseItemStateFilterFields = ["item_id", "available", "unlocks_when", "complete", "progress"] as const;
+export type CourseItemStateFilterField = (typeof courseItemStateFilterFields)[number];
+
+export const courseUnlocksWhenFilterFields = ["type", "date", "activity_ids", "reason"] as const;
+export type CourseUnlocksWhenFilterField = (typeof courseUnlocksWhenFilterFields)[number];
 
 export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
@@ -11680,7 +11836,7 @@ export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[
 export const authoringDocumentSortFields = ["page_type", "blocks", "config", "errors"] as const;
 export type AuthoringDocumentSortField = (typeof authoringDocumentSortFields)[number];
 
-export const originsAppsContentCourseActivitySortFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts"] as const;
+export const originsAppsContentCourseActivitySortFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts", "contributors"] as const;
 export type OriginsAppsContentCourseActivitySortField = (typeof originsAppsContentCourseActivitySortFields)[number];
 
 export const originsAppsContentCourseAssessmentSortFields = ["app"] as const;
@@ -11724,6 +11880,12 @@ export type GatedCourseSortField = (typeof gatedCourseSortFields)[number];
 
 export const gatedCoursePayloadSortFields = ["gated_course", "enrollment", "state"] as const;
 export type GatedCoursePayloadSortField = (typeof gatedCoursePayloadSortFields)[number];
+
+export const courseItemStateSortFields = ["item_id", "available", "unlocks_when", "complete", "progress"] as const;
+export type CourseItemStateSortField = (typeof courseItemStateSortFields)[number];
+
+export const courseUnlocksWhenSortFields = ["type", "date", "activity_ids", "reason"] as const;
+export type CourseUnlocksWhenSortField = (typeof courseUnlocksWhenSortFields)[number];
 
 export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];

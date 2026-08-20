@@ -468,6 +468,76 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "Send password reset instructions to a user if they exist.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "request_password_reset_token",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "input": "RequestPasswordResetTokenInput",
+        "result": "RequestPasswordResetTokenResult"
+      },
+      "variantNames": {
+        "channel": "request_password_reset_token_channel",
+        "validation": "validate_request_password_reset_token"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing User",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "reset_password_with_token",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "fields": "ResetPasswordWithTokenFields",
+        "inferResult": "InferResetPasswordWithTokenResult",
+        "input": "ResetPasswordWithTokenInput",
+        "result": "ResetPasswordWithTokenResult"
+      },
+      "variantNames": {
+        "channel": "reset_password_with_token_channel",
+        "validation": "validate_reset_password_with_token"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Verify an Apple id_token, resolve/create the user, and return a JWT (SDK entrypoint).",
       "enableFilter": true,
       "enableSort": true,

@@ -2011,6 +2011,266 @@ export async function request_origin_magic_link_channel(config: {
 }
 
 
+export type RequestPasswordResetTokenInput = {
+  email: string;
+};
+
+export type InferRequestPasswordResetTokenResult = {};
+
+export type RequestPasswordResetTokenResult = | { success: true; data: InferRequestPasswordResetTokenResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function request_password_reset_token(
+  config: {
+  tenant?: string;
+  input: RequestPasswordResetTokenInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RequestPasswordResetTokenResult> {
+  const payload = {
+    action: "request_password_reset_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<RequestPasswordResetTokenResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_request_password_reset_token(
+  config: {
+  tenant?: string;
+  input: RequestPasswordResetTokenInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "request_password_reset_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_request_password_reset_token_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RequestPasswordResetTokenInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "request_password_reset_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function request_password_reset_token_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RequestPasswordResetTokenInput;
+  result_handler: (result: RequestPasswordResetTokenResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<RequestPasswordResetTokenResult>(
+    config.channel,
+    {
+    action: "request_password_reset_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ResetPasswordWithTokenInput = {
+  reset_token: string;
+  password: string;
+  password_confirmation: string;
+};
+
+export type ResetPasswordWithTokenFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+export type InferResetPasswordWithTokenResult<
+  Fields extends ResetPasswordWithTokenFields | undefined,
+> = InferResult<UserResourceSchema, Fields>;
+
+export type ResetPasswordWithTokenResult<Fields extends ResetPasswordWithTokenFields | undefined = undefined> = | { success: true; data: InferResetPasswordWithTokenResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing User
+ *
+ * @ashActionType :update
+ */
+export async function reset_password_with_token<Fields extends ResetPasswordWithTokenFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input: ResetPasswordWithTokenInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ResetPasswordWithTokenResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "reset_password_with_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<ResetPasswordWithTokenResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing User
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_reset_password_with_token(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input: ResetPasswordWithTokenInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "reset_password_with_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing User
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_reset_password_with_token_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input: ResetPasswordWithTokenInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "reset_password_with_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing User
+ *
+ * @ashActionType :update
+ */
+export async function reset_password_with_token_channel<Fields extends ResetPasswordWithTokenFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input: ResetPasswordWithTokenInput;
+  fields?: Fields;
+  result_handler: (result: ResetPasswordWithTokenResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ResetPasswordWithTokenResult<Fields>>(
+    config.channel,
+    {
+    action: "reset_password_with_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type SignInWithAppleTokenInput = {
   id_token: string;
   create_if_missing?: boolean;
