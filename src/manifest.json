@@ -7500,6 +7500,42 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Add many items to a playlist in one transaction. Items already in it are skipped, so retrying the same list is safe.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "add_many",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "PlaylistItem",
+      "see": [],
+      "types": {
+        "fields": "AddManyFields",
+        "inferResult": "InferAddManyResult",
+        "input": "AddManyInput",
+        "result": "AddManyResult"
+      },
+      "variantNames": {
+        "channel": "add_many_channel",
+        "validation": "validate_add_many"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "All items in a playlist, ordered by position.",
@@ -8509,7 +8545,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-18",
+  "generatedAt": "2026-08-20",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

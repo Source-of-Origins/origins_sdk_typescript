@@ -28568,6 +28568,136 @@ export async function add_item_channel<Fields extends AddItemFields | undefined 
 }
 
 
+export type AddManyInput = {
+  playlist_id: UUID;
+  items: Array<{item_type: "library" | "video", library_file_id?: UUID | null, library_id?: UUID | null}>;
+};
+
+export type AddManyFields = UnifiedFieldSelection<PlaylistItemResourceSchema>[];
+
+export type InferAddManyResult<
+  Fields extends AddManyFields | undefined,
+> = Array<InferResult<PlaylistItemResourceSchema, Fields>>;
+
+export type AddManyResult<Fields extends AddManyFields | undefined = undefined> = | { success: true; data: InferAddManyResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on PlaylistItem
+ *
+ * @ashActionType :action
+ */
+export async function add_many<Fields extends AddManyFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: AddManyInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<AddManyResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "add_many",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<AddManyResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on PlaylistItem
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_add_many(
+  config: {
+  tenant?: string;
+  input: AddManyInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "add_many",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on PlaylistItem
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_add_many_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: AddManyInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "add_many",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on PlaylistItem
+ *
+ * @ashActionType :action
+ */
+export async function add_many_channel<Fields extends AddManyFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: AddManyInput;
+  fields: Fields;
+  result_handler: (result: AddManyResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<AddManyResult<Fields>>(
+    config.channel,
+    {
+    action: "add_many",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListForPlaylistInput = {
   playlist_id: UUID;
 };
