@@ -1194,6 +1194,7 @@ export type GatedCoursePayloadResourceSchema = {
   gated_course: { __type: "Relationship"; __resource: GatedCourseResourceSchema; };
   enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
   state: { __type: "Relationship"; __array: true; __resource: CourseItemStateResourceSchema; };
+  assessment_launches: { __type: "Relationship"; __array: true; __resource: CourseAssessmentLaunchResourceSchema; };
 };
 
 
@@ -1204,6 +1205,7 @@ export type GatedCoursePayloadAttributesOnlySchema = {
   gated_course: { __type: "Relationship"; __resource: GatedCourseAttributesOnlySchema; };
   enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
   state: { __type: "Relationship"; __array: true; __resource: CourseItemStateAttributesOnlySchema; };
+  assessment_launches: { __type: "Relationship"; __array: true; __resource: CourseAssessmentLaunchAttributesOnlySchema; };
 };
 
 
@@ -1211,6 +1213,7 @@ export type GatedCoursePayloadInputSchema = {
   gated_course: GatedCourseInputSchema;
   enrollment?: {id?: UUID | null, status?: string | null, current_session_id?: string | null, current_phase_id?: string | null, current_phase_started_at?: UtcDateTime | null, entered_session_ids?: Array<string> | null, enrolled_at?: UtcDateTime | null, streak_count?: number | null, streak_last_date?: AshDate | null, settings?: Record<string, any> | null} | null;
   state?: Array<CourseItemStateInputSchema> | null;
+  assessment_launches?: Array<CourseAssessmentLaunchInputSchema> | null;
 };
 
 
@@ -1244,6 +1247,30 @@ export type CourseItemStateInputSchema = {
   unlocks_when?: CourseUnlocksWhenInputSchema | null;
   complete?: boolean;
   progress?: number | null;
+};
+
+
+// CourseAssessmentLaunch Schema
+export type CourseAssessmentLaunchResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "activity_id" | "app_id";
+  activity_id: string;
+  app_id: UUID | null;
+};
+
+
+
+export type CourseAssessmentLaunchAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "activity_id" | "app_id";
+  activity_id: string;
+  app_id: UUID | null;
+};
+
+
+export type CourseAssessmentLaunchInputSchema = {
+  activity_id: string;
+  app_id?: UUID | null;
 };
 
 
@@ -6035,6 +6062,13 @@ export type GatedCoursePayloadFilterInput = {
     is_nil?: boolean;
   };
 
+  assessment_launches?: {
+    eq?: Array<CourseAssessmentLaunchResourceSchema>;
+    not_eq?: Array<CourseAssessmentLaunchResourceSchema>;
+    in?: Array<Array<CourseAssessmentLaunchResourceSchema>>;
+    is_nil?: boolean;
+  };
+
 
 
 };
@@ -6074,6 +6108,27 @@ export type CourseItemStateFilterInput = {
     less_than?: number;
     less_than_or_equal?: number;
     in?: Array<number>;
+    is_nil?: boolean;
+  };
+
+
+
+};
+export type CourseAssessmentLaunchFilterInput = {
+  and?: Array<CourseAssessmentLaunchFilterInput>;
+  or?: Array<CourseAssessmentLaunchFilterInput>;
+  not?: Array<CourseAssessmentLaunchFilterInput>;
+
+  activity_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  app_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
     is_nil?: boolean;
   };
 
@@ -11601,11 +11656,14 @@ export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number
 export const gatedCourseFilterFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities"] as const;
 export type GatedCourseFilterField = (typeof gatedCourseFilterFields)[number];
 
-export const gatedCoursePayloadFilterFields = ["gated_course", "enrollment", "state"] as const;
+export const gatedCoursePayloadFilterFields = ["gated_course", "enrollment", "state", "assessment_launches"] as const;
 export type GatedCoursePayloadFilterField = (typeof gatedCoursePayloadFilterFields)[number];
 
 export const courseItemStateFilterFields = ["item_id", "available", "unlocks_when", "complete", "progress"] as const;
 export type CourseItemStateFilterField = (typeof courseItemStateFilterFields)[number];
+
+export const courseAssessmentLaunchFilterFields = ["activity_id", "app_id"] as const;
+export type CourseAssessmentLaunchFilterField = (typeof courseAssessmentLaunchFilterFields)[number];
 
 export const courseUnlocksWhenFilterFields = ["type", "date", "activity_ids", "reason"] as const;
 export type CourseUnlocksWhenFilterField = (typeof courseUnlocksWhenFilterFields)[number];
@@ -11878,11 +11936,14 @@ export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 export const gatedCourseSortFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities"] as const;
 export type GatedCourseSortField = (typeof gatedCourseSortFields)[number];
 
-export const gatedCoursePayloadSortFields = ["gated_course", "enrollment", "state"] as const;
+export const gatedCoursePayloadSortFields = ["gated_course", "enrollment", "state", "assessment_launches"] as const;
 export type GatedCoursePayloadSortField = (typeof gatedCoursePayloadSortFields)[number];
 
 export const courseItemStateSortFields = ["item_id", "available", "unlocks_when", "complete", "progress"] as const;
 export type CourseItemStateSortField = (typeof courseItemStateSortFields)[number];
+
+export const courseAssessmentLaunchSortFields = ["activity_id", "app_id"] as const;
+export type CourseAssessmentLaunchSortField = (typeof courseAssessmentLaunchSortFields)[number];
 
 export const courseUnlocksWhenSortFields = ["type", "date", "activity_ids", "reason"] as const;
 export type CourseUnlocksWhenSortField = (typeof courseUnlocksWhenSortFields)[number];

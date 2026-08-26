@@ -2271,6 +2271,127 @@ export async function reset_password_with_token_channel<Fields extends ResetPass
 }
 
 
+export type SetOwnPasswordInput = {
+  password: string;
+};
+
+export type InferSetOwnPasswordResult = SocialSignInResponseResourceSchema;
+
+export type SetOwnPasswordResult = | { success: true; data: InferSetOwnPasswordResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function set_own_password(
+  config: {
+  tenant?: string;
+  input: SetOwnPasswordInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<SetOwnPasswordResult> {
+  const payload = {
+    action: "set_own_password",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<SetOwnPasswordResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_set_own_password(
+  config: {
+  tenant?: string;
+  input: SetOwnPasswordInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "set_own_password",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_set_own_password_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: SetOwnPasswordInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "set_own_password",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function set_own_password_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: SetOwnPasswordInput;
+  result_handler: (result: SetOwnPasswordResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<SetOwnPasswordResult>(
+    config.channel,
+    {
+    action: "set_own_password",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type SignInWithAppleTokenInput = {
   id_token: string;
   create_if_missing?: boolean;

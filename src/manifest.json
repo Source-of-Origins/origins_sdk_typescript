@@ -538,6 +538,40 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "Set the caller's password and return a fresh JWT.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "set_own_password",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "input": "SetOwnPasswordInput",
+        "result": "SetOwnPasswordResult"
+      },
+      "variantNames": {
+        "channel": "set_own_password_channel",
+        "validation": "validate_set_own_password"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Verify an Apple id_token, resolve/create the user, and return a JWT (SDK entrypoint).",
       "enableFilter": true,
       "enableSort": true,
@@ -8615,7 +8649,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-20",
+  "generatedAt": "2026-08-26",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
