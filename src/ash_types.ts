@@ -1636,6 +1636,26 @@ export type OriginsAppsOptionInputSchema = {
 };
 
 
+// Plan Schema
+export type PlanResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "name" | "retired_at";
+  id: UUID;
+  name: string;
+  retired_at: UtcDateTimeUsec | null;
+};
+
+
+
+export type PlanAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "name" | "retired_at";
+  id: UUID;
+  name: string;
+  retired_at: UtcDateTimeUsec | null;
+};
+
+
 // ProgramTest Schema
 export type ProgramTestResourceSchema = {
   __type: "Resource";
@@ -6804,6 +6824,37 @@ export type OriginsAppsOptionFilterInput = {
 
 
 };
+export type PlanFilterInput = {
+  and?: Array<PlanFilterInput>;
+  or?: Array<PlanFilterInput>;
+  not?: Array<PlanFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  retired_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
+  };
+
+
+
+};
 export type ProgramTestFilterInput = {
   and?: Array<ProgramTestFilterInput>;
   or?: Array<ProgramTestFilterInput>;
@@ -11692,6 +11743,9 @@ export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[nu
 export const originsAppsOptionFilterFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
+export const planFilterFields = ["id", "name", "retired_at"] as const;
+export type PlanFilterField = (typeof planFilterFields)[number];
+
 export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user"] as const;
 export type ProgramTestFilterField = (typeof programTestFilterFields)[number];
 
@@ -11971,6 +12025,9 @@ export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number
 
 export const originsAppsOptionSortFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
+
+export const planSortFields = ["id", "name", "retired_at"] as const;
+export type PlanSortField = (typeof planSortFields)[number];
 
 export const programTestSortFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id"] as const;
 export type ProgramTestSortField = (typeof programTestSortFields)[number];

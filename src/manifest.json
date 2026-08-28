@@ -2973,6 +2973,43 @@
       }
     },
     {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "The plans still on sale that unlock a given app.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_sellable_plans_for_app",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Plan",
+      "see": [],
+      "types": {
+        "fields": "ListSellablePlansForAppFields",
+        "filterInput": "PlanFilterInput",
+        "inferResult": "InferListSellablePlansForAppResult",
+        "input": "ListSellablePlansForAppInput",
+        "result": "ListSellablePlansForAppResult"
+      },
+      "variantNames": {
+        "channel": "list_sellable_plans_for_app_channel",
+        "validation": "validate_list_sellable_plans_for_app"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "create",
       "deprecated": false,
       "description": "Create a new ProgramTest",
@@ -3067,6 +3104,40 @@
       "variantNames": {
         "channel": "get_program_memory_channel",
         "validation": "validate_get_program_memory"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Execute generic action on ProgramTest",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_program_test_credentials",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ProgramTest",
+      "see": [],
+      "types": {
+        "input": "GetProgramTestCredentialsInput",
+        "result": "GetProgramTestCredentialsResult"
+      },
+      "variantNames": {
+        "channel": "get_program_test_credentials_channel",
+        "validation": "validate_get_program_test_credentials"
       },
       "variants": {
         "channel": true,
@@ -8649,7 +8720,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-26",
+  "generatedAt": "2026-08-28",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
