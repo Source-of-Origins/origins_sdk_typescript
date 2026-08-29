@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -11230,6 +11230,130 @@ export async function start_enrollment_channel<Fields extends StartEnrollmentFie
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     identity: config.identity,
     ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListMyEntitlementsFields = UnifiedFieldSelection<CourseEntitlementResourceSchema>[];
+export type InferListMyEntitlementsResult<
+  Fields extends ListMyEntitlementsFields,
+> = Array<InferResult<CourseEntitlementResourceSchema, Fields>>;
+
+export type ListMyEntitlementsResult<Fields extends ListMyEntitlementsFields> = | { success: true; data: InferListMyEntitlementsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read CourseEntitlement records
+ *
+ * @ashActionType :read
+ */
+export async function list_my_entitlements<Fields extends ListMyEntitlementsFields>(
+  config: {
+  tenant?: string;
+  fields: Fields;
+  filter?: CourseEntitlementFilterInput;
+  sort?: SortString<CourseEntitlementSortField> | SortString<CourseEntitlementSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListMyEntitlementsResult<Fields>> {
+  const payload = {
+    action: "list_my_entitlements",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<ListMyEntitlementsResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read CourseEntitlement records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_my_entitlements(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_my_entitlements",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read CourseEntitlement records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_my_entitlements_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_my_entitlements",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read CourseEntitlement records
+ *
+ * @ashActionType :read
+ */
+export async function list_my_entitlements_channel<Fields extends ListMyEntitlementsFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: CourseEntitlementFilterInput;
+  sort?: SortString<CourseEntitlementSortField> | SortString<CourseEntitlementSortField>[];
+  result_handler: (result: ListMyEntitlementsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListMyEntitlementsResult<Fields>>(
+    config.channel,
+    {
+    action: "list_my_entitlements",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
   },
     config.timeout,
     config

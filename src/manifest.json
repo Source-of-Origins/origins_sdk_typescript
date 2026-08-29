@@ -2975,6 +2975,42 @@
     {
       "actionType": "read",
       "deprecated": false,
+      "description": "Every live entitlement the reading learner holds, app-level and plan-level.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_my_entitlements",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CourseEntitlement",
+      "see": [],
+      "types": {
+        "fields": "ListMyEntitlementsFields",
+        "filterInput": "CourseEntitlementFilterInput",
+        "inferResult": "InferListMyEntitlementsResult",
+        "result": "ListMyEntitlementsResult"
+      },
+      "variantNames": {
+        "channel": "list_my_entitlements_channel",
+        "validation": "validate_list_my_entitlements"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
       "description": "The plans still on sale that unlock a given app.",
       "enableFilter": true,
       "enableSort": true,
@@ -8720,7 +8756,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-28",
+  "generatedAt": "2026-08-29",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

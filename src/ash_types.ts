@@ -1465,6 +1465,33 @@ export type EnrollmentCompletionsInputSchema = {
 };
 
 
+// CourseEntitlement Schema
+export type CourseEntitlementResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "ended_at" | "plan_id";
+  id: UUID;
+  tier: string;
+  granted_at: UtcDateTimeUsec;
+  app_id: UUID | null;
+  ended_at: UtcDateTimeUsec | null;
+  plan_id: UUID | null;
+  plan: { __type: "Relationship"; __resource: PlanResourceSchema | null; };
+};
+
+
+
+export type CourseEntitlementAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "ended_at" | "plan_id";
+  id: UUID;
+  tier: string;
+  granted_at: UtcDateTimeUsec;
+  app_id: UUID | null;
+  ended_at: UtcDateTimeUsec | null;
+  plan_id: UUID | null;
+};
+
+
 // OriginsAppsEdge Schema
 export type OriginsAppsEdgeResourceSchema = {
   __type: "Resource";
@@ -6555,6 +6582,62 @@ export type EnrollmentCompletionsFilterInput = {
   };
 
 
+
+};
+export type CourseEntitlementFilterInput = {
+  and?: Array<CourseEntitlementFilterInput>;
+  or?: Array<CourseEntitlementFilterInput>;
+  not?: Array<CourseEntitlementFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  tier?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  granted_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  app_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+  ended_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
+  };
+
+  plan_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+
+  plan?: PlanFilterInput;
 
 };
 export type OriginsAppsEdgeFilterInput = {
@@ -11731,6 +11814,9 @@ export type ActivityCompletionSummaryFilterField = (typeof activityCompletionSum
 export const enrollmentCompletionsFilterFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
 export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilterFields)[number];
 
+export const courseEntitlementFilterFields = ["id", "tier", "granted_at", "app_id", "ended_at", "plan_id", "plan"] as const;
+export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
+
 export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
 export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[number];
 
@@ -12013,6 +12099,9 @@ export type ActivityCompletionSummarySortField = (typeof activityCompletionSumma
 
 export const enrollmentCompletionsSortFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
 export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFields)[number];
+
+export const courseEntitlementSortFields = ["id", "tier", "granted_at", "app_id", "ended_at", "plan_id"] as const;
+export type CourseEntitlementSortField = (typeof courseEntitlementSortFields)[number];
 
 export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
 export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number];
