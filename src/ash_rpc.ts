@@ -3960,6 +3960,130 @@ export async function avatar_public_chat_channel(config: {
 }
 
 
+export type CountUserMessagesInput = {
+  origin_entity_id: UUID;
+  user_id: UUID;
+  from: UtcDateTimeUsec;
+  to: UtcDateTimeUsec;
+};
+
+export type InferCountUserMessagesResult = number;
+
+export type CountUserMessagesResult = | { success: true; data: InferCountUserMessagesResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ */
+export async function count_user_messages(
+  config: {
+  tenant?: string;
+  input: CountUserMessagesInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CountUserMessagesResult> {
+  const payload = {
+    action: "count_user_messages",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<CountUserMessagesResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_count_user_messages(
+  config: {
+  tenant?: string;
+  input: CountUserMessagesInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "count_user_messages",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_count_user_messages_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CountUserMessagesInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "count_user_messages",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ */
+export async function count_user_messages_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CountUserMessagesInput;
+  result_handler: (result: CountUserMessagesResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CountUserMessagesResult>(
+    config.channel,
+    {
+    action: "count_user_messages",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type CreateConversationInput = {
   channel?: string | null;
   closed_at?: UtcDateTimeUsec | null;
@@ -7925,7 +8049,7 @@ export async function publish_app_channel<Fields extends PublishAppFields | unde
 
 export type RegeneratePersonalizationInput = {
   program_id: UUID;
-  mode?: "agent" | "copy";
+  mode?: "agent" | "copy" | "reorder";
   reason?: "assessment_retake" | "enrollment" | "manual" | "weekly_lookahead" | null;
   prompt?: string | null;
 };

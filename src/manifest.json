@@ -993,6 +993,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "How many messages a user sent an Origin between two instants",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "count_user_messages",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Conversation",
+      "see": [],
+      "types": {
+        "input": "CountUserMessagesInput",
+        "result": "CountUserMessagesResult"
+      },
+      "variantNames": {
+        "channel": "count_user_messages_channel",
+        "validation": "validate_count_user_messages"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "create",
       "deprecated": false,
       "description": "Create a new Conversation",
@@ -8756,7 +8790,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-08-29",
+  "generatedAt": "2026-09-02",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
