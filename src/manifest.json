@@ -7458,7 +7458,7 @@
     {
       "actionType": "action",
       "deprecated": false,
-      "description": "Passages matching `query` by meaning, ranked best first, each with the\nfile it came from. Scope is the Origin's reachable libraries, resolved\nserver-side — a caller cannot widen it.\n",
+      "description": "Passages matching `query` by meaning, ranked best first, each with the\nfile it came from. Scope is the Origin's reachable libraries, resolved\nserver-side — a caller cannot widen it.\n\n`limit` counts passages, not files: one file can supply several, and a\ncorpus mixes transcripts with course documents. A caller narrowing hits\ndown to distinct files of one kind should ask for far more than the\nnumber of files it wants, and how many it gets varies by query — measure\nagainst real queries rather than assuming a ratio.\n",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "semantic_search_library_files",
