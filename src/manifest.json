@@ -217,7 +217,7 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Provision an anonymous, passwordless user, minted a JWT the browser uses to\nact as a real — if anonymous — principal that owns whatever it creates.\nCreated in a caller-supplied tenant (pass `tenant:`), so ownership reads on\ntenant-scoped resources line up. Upserts on email so a repeat visit reuses\nthe row; a later `:register_with_password` with the same email upgrades it\nin place, carrying its data over.\n",
+      "description": "Provision an anonymous, passwordless user, minted a JWT the browser uses to\nact as a real — if anonymous — principal that owns whatever it creates.\nCreated in a caller-supplied tenant (pass `tenant:`), so ownership reads on\ntenant-scoped resources line up. Upserts on email so a repeat visit reuses\nthe row; a later `:register_with_password` with the same email upgrades it\nin place, carrying its data over. An optional `display_name` lands in\n`raw_user_meta_data`, where the `user_profiles` trigger reads it; omitting\nit leaves the stored name alone rather than clearing it.\n",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "create_anonymous_user",
@@ -325,7 +325,7 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Register a new user via waitlist invitation token.",
+      "description": "Register a new user via a waitlist or Origin membership invitation token.",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "register_with_invitation",
@@ -8790,7 +8790,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-02",
+  "generatedAt": "2026-09-03",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

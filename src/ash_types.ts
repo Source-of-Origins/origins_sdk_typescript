@@ -1145,10 +1145,11 @@ export type DailyBriefingInputSchema = {
 // GatedCourse Schema
 export type GatedCourseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes";
+  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes" | "source_libraries";
   briefing_enabled: boolean | null;
   unit_label: string | null;
   outcomes: Array<string> | null;
+  source_libraries: Array<string> | null;
   config: { __type: "Relationship"; __resource: OriginsAppsContentCourseCourseResourceSchema | null; };
   contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema; };
   phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseResourceSchema; };
@@ -1161,10 +1162,11 @@ export type GatedCourseResourceSchema = {
 
 export type GatedCourseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes";
+  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes" | "source_libraries";
   briefing_enabled: boolean | null;
   unit_label: string | null;
   outcomes: Array<string> | null;
+  source_libraries: Array<string> | null;
   config: { __type: "Relationship"; __resource: OriginsAppsContentCourseCourseAttributesOnlySchema | null; };
   contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema; };
   phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseAttributesOnlySchema; };
@@ -1184,6 +1186,7 @@ export type GatedCourseInputSchema = {
   transitions?: Array<OriginsAppsContentCourseTransitionInputSchema> | null;
   sessions?: Array<OriginsAppsContentCourseSessionInputSchema> | null;
   activities?: Array<OriginsAppsContentCourseActivityInputSchema> | null;
+  source_libraries?: Array<string> | null;
 };
 
 
@@ -6078,6 +6081,13 @@ export type GatedCourseFilterInput = {
     eq?: Array<OriginsAppsContentCourseActivityResourceSchema>;
     not_eq?: Array<OriginsAppsContentCourseActivityResourceSchema>;
     in?: Array<Array<OriginsAppsContentCourseActivityResourceSchema>>;
+    is_nil?: boolean;
+  };
+
+  source_libraries?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
     is_nil?: boolean;
   };
 
@@ -11787,7 +11797,7 @@ export type BriefingPageFilterField = (typeof briefingPageFilterFields)[number];
 export const dailyBriefingFilterFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
 export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number];
 
-export const gatedCourseFilterFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities"] as const;
+export const gatedCourseFilterFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities", "source_libraries"] as const;
 export type GatedCourseFilterField = (typeof gatedCourseFilterFields)[number];
 
 export const gatedCoursePayloadFilterFields = ["gated_course", "enrollment", "state", "assessment_launches"] as const;
@@ -12073,7 +12083,7 @@ export type BriefingPageSortField = (typeof briefingPageSortFields)[number];
 export const dailyBriefingSortFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
 export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 
-export const gatedCourseSortFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities"] as const;
+export const gatedCourseSortFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities", "source_libraries"] as const;
 export type GatedCourseSortField = (typeof gatedCourseSortFields)[number];
 
 export const gatedCoursePayloadSortFields = ["gated_course", "enrollment", "state", "assessment_launches"] as const;

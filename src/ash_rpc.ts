@@ -1095,6 +1095,7 @@ export async function confirm_anonymous_account_channel(config: {
 
 export type CreateAnonymousUserInput = {
   email: string;
+  display_name?: string | null;
 };
 
 export type CreateAnonymousUserFields = UnifiedFieldSelection<UserResourceSchema>[];
