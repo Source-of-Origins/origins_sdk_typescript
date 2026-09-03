@@ -4720,6 +4720,127 @@ export async function get_conversation_history_channel(config: {
 }
 
 
+export type GetTurnStateInput = {
+  conversation_id: UUID;
+};
+
+export type InferGetTurnStateResult = TurnStateResourceSchema;
+
+export type GetTurnStateResult = | { success: true; data: InferGetTurnStateResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ */
+export async function get_turn_state(
+  config: {
+  tenant?: string;
+  input: GetTurnStateInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetTurnStateResult> {
+  const payload = {
+    action: "get_turn_state",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<GetTurnStateResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_turn_state(
+  config: {
+  tenant?: string;
+  input: GetTurnStateInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_turn_state",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_turn_state_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetTurnStateInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_turn_state",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Conversation
+ *
+ * @ashActionType :action
+ */
+export async function get_turn_state_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetTurnStateInput;
+  result_handler: (result: GetTurnStateResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetTurnStateResult>(
+    config.channel,
+    {
+    action: "get_turn_state",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListConversationsFields = UnifiedFieldSelection<PublicConversationResourceSchema>[];
 
 
@@ -28240,6 +28361,137 @@ export async function list_library_files_for_library_channel<Fields extends List
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
     ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type SemanticSearchLibraryFilesInput = {
+  origin_entity_id: UUID;
+  query: string;
+  limit?: number | null;
+};
+
+export type SemanticSearchLibraryFilesFields = UnifiedFieldSelection<{text: string, score: number, library_file: {id: UUID, path: string, item_name: string, item_type: string, library_id: UUID, __type: "TypedMap", __primitiveFields: "id" | "path" | "item_name" | "item_type" | "library_id"}, __type: "TypedMap", __primitiveFields: "text" | "score"}>[];
+
+export type InferSemanticSearchLibraryFilesResult<
+  Fields extends SemanticSearchLibraryFilesFields | undefined,
+> = Array<InferResult<{text: string, score: number, library_file: {id: UUID, path: string, item_name: string, item_type: string, library_id: UUID, __type: "TypedMap", __primitiveFields: "id" | "path" | "item_name" | "item_type" | "library_id"}, __type: "TypedMap", __primitiveFields: "text" | "score"}, Fields>>;
+
+export type SemanticSearchLibraryFilesResult<Fields extends SemanticSearchLibraryFilesFields | undefined = undefined> = | { success: true; data: InferSemanticSearchLibraryFilesResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function semantic_search_library_files<Fields extends SemanticSearchLibraryFilesFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: SemanticSearchLibraryFilesInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<SemanticSearchLibraryFilesResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "semantic_search_library_files",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<SemanticSearchLibraryFilesResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_semantic_search_library_files(
+  config: {
+  tenant?: string;
+  input: SemanticSearchLibraryFilesInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "semantic_search_library_files",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_semantic_search_library_files_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: SemanticSearchLibraryFilesInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "semantic_search_library_files",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function semantic_search_library_files_channel<Fields extends SemanticSearchLibraryFilesFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: SemanticSearchLibraryFilesInput;
+  fields: Fields;
+  result_handler: (result: SemanticSearchLibraryFilesResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<SemanticSearchLibraryFilesResult<Fields>>(
+    config.channel,
+    {
+    action: "semantic_search_library_files",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config

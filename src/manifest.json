@@ -1202,6 +1202,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Whether a turn is running on a conversation, and when its claim lapses",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_turn_state",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Conversation",
+      "see": [],
+      "types": {
+        "input": "GetTurnStateInput",
+        "result": "GetTurnStateResult"
+      },
+      "variantNames": {
+        "channel": "get_turn_state_channel",
+        "validation": "validate_get_turn_state"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read Conversation records",
@@ -7413,6 +7447,42 @@
       "variantNames": {
         "channel": "list_library_files_for_library_channel",
         "validation": "validate_list_library_files_for_library"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Passages matching `query` by meaning, ranked best first, each with the\nfile it came from. Scope is the Origin's reachable libraries, resolved\nserver-side — a caller cannot widen it.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "semantic_search_library_files",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "LibraryFile",
+      "see": [],
+      "types": {
+        "fields": "SemanticSearchLibraryFilesFields",
+        "inferResult": "InferSemanticSearchLibraryFilesResult",
+        "input": "SemanticSearchLibraryFilesInput",
+        "result": "SemanticSearchLibraryFilesResult"
+      },
+      "variantNames": {
+        "channel": "semantic_search_library_files_channel",
+        "validation": "validate_semantic_search_library_files"
       },
       "variants": {
         "channel": true,
