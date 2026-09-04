@@ -4,6 +4,116 @@
     {
       "actionType": "read",
       "deprecated": false,
+      "description": "Read ConsentRecord records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_consent_history",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ConsentRecord",
+      "see": [],
+      "types": {
+        "fields": "ListConsentHistoryFields",
+        "filterInput": "ConsentRecordFilterInput",
+        "inferResult": "InferListConsentHistoryResult",
+        "input": "ListConsentHistoryInput",
+        "result": "ListConsentHistoryResult"
+      },
+      "variantNames": {
+        "channel": "list_consent_history_channel",
+        "validation": "validate_list_consent_history"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read ConsentRecord records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_current_consents",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ConsentRecord",
+      "see": [],
+      "types": {
+        "fields": "ListCurrentConsentsFields",
+        "filterInput": "ConsentRecordFilterInput",
+        "inferResult": "InferListCurrentConsentsResult",
+        "input": "ListCurrentConsentsInput",
+        "result": "ListCurrentConsentsResult"
+      },
+      "variantNames": {
+        "channel": "list_current_consents_channel",
+        "validation": "validate_list_current_consents"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new ConsentRecord",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "record_consent",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ConsentRecord",
+      "see": [],
+      "types": {
+        "fields": "RecordConsentFields",
+        "inferResult": "InferRecordConsentResult",
+        "input": "RecordConsentInput",
+        "result": "RecordConsentResult"
+      },
+      "variantNames": {
+        "channel": "record_consent_channel",
+        "validation": "validate_record_consent"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
       "description": "Active grants for the calling user. Used by the SPA tenant switcher.",
       "enableFilter": true,
       "enableSort": true,
@@ -8860,7 +8970,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-03",
+  "generatedAt": "2026-09-04",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

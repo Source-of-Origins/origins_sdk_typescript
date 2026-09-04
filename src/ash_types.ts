@@ -9,6 +9,38 @@ export type UUID = string;
 export type UtcDateTime = string;
 export type UtcDateTimeUsec = string;
 
+// ConsentRecord Schema
+export type ConsentRecordResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at";
+  id: UUID;
+  kind: "collect" | "improve" | "marketing" | "share" | "tos";
+  granted: boolean;
+  policy_version: string;
+  method: "checkbox" | "settings";
+  text_shown: string;
+  ip: string | null;
+  user_agent: string | null;
+  recorded_at: UtcDateTimeUsec;
+};
+
+
+
+export type ConsentRecordAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at";
+  id: UUID;
+  kind: "collect" | "improve" | "marketing" | "share" | "tos";
+  granted: boolean;
+  policy_version: string;
+  method: "checkbox" | "settings";
+  text_shown: string;
+  ip: string | null;
+  user_agent: string | null;
+  recorded_at: UtcDateTimeUsec;
+};
+
+
 // StaffTenantGrant Schema
 export type StaffTenantGrantResourceSchema = {
   __type: "Resource";
@@ -334,6 +366,7 @@ export type PublicConversationResourceSchema = {
   chat_reply_type: { __type: "Relationship"; __resource: ChatReplyResourceSchema | null; };
   chat_suggestions_type: { __type: "Relationship"; __resource: ChatSuggestionsResourceSchema | null; };
   chat_message_type: { __type: "Relationship"; __resource: ChatMessageResourceSchema | null; };
+  turn_state_type: { __type: "Relationship"; __resource: TurnStateResourceSchema | null; };
   user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   root_conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
@@ -429,6 +462,30 @@ export type MessageAttachmentAttributesOnlySchema = {
   parsed_content: string | null;
   pending_message_id: UUID | null;
   created_at: UtcDateTimeUsec;
+};
+
+
+// TurnState Schema
+export type TurnStateResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "running" | "stale_at";
+  running: boolean;
+  stale_at: UtcDateTimeUsec | null;
+};
+
+
+
+export type TurnStateAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "running" | "stale_at";
+  running: boolean;
+  stale_at: UtcDateTimeUsec | null;
+};
+
+
+export type TurnStateInputSchema = {
+  running: boolean;
+  stale_at?: UtcDateTimeUsec | null;
 };
 
 
@@ -3810,6 +3867,73 @@ export type YoutubeEpisodeAttributesOnlySchema = {
 };
 
 
+export type ConsentRecordFilterInput = {
+  and?: Array<ConsentRecordFilterInput>;
+  or?: Array<ConsentRecordFilterInput>;
+  not?: Array<ConsentRecordFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  kind?: {
+    eq?: "collect" | "improve" | "marketing" | "share" | "tos";
+    not_eq?: "collect" | "improve" | "marketing" | "share" | "tos";
+    in?: Array<"collect" | "improve" | "marketing" | "share" | "tos">;
+  };
+
+  granted?: {
+    eq?: boolean;
+    not_eq?: boolean;
+  };
+
+  policy_version?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  method?: {
+    eq?: "checkbox" | "settings";
+    not_eq?: "checkbox" | "settings";
+    in?: Array<"checkbox" | "settings">;
+  };
+
+  text_shown?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  ip?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  user_agent?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  recorded_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+
+
+};
 export type StaffTenantGrantFilterInput = {
   and?: Array<StaffTenantGrantFilterInput>;
   or?: Array<StaffTenantGrantFilterInput>;
@@ -4602,6 +4726,13 @@ export type PublicConversationFilterInput = {
     is_nil?: boolean;
   };
 
+  turn_state_type?: {
+    eq?: TurnStateResourceSchema;
+    not_eq?: TurnStateResourceSchema;
+    in?: Array<TurnStateResourceSchema>;
+    is_nil?: boolean;
+  };
+
   message_count?: {
     eq?: number;
     not_eq?: number;
@@ -4773,6 +4904,30 @@ export type MessageAttachmentFilterInput = {
     less_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+  };
+
+
+
+};
+export type TurnStateFilterInput = {
+  and?: Array<TurnStateFilterInput>;
+  or?: Array<TurnStateFilterInput>;
+  not?: Array<TurnStateFilterInput>;
+
+  running?: {
+    eq?: boolean;
+    not_eq?: boolean;
+  };
+
+  stale_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    is_nil?: boolean;
   };
 
 
@@ -11707,6 +11862,9 @@ export type YoutubeEpisodeFilterInput = {
 };
 
 
+export const consentRecordFilterFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at"] as const;
+export type ConsentRecordFilterField = (typeof consentRecordFilterFields)[number];
+
 export const staffTenantGrantFilterFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at", "user", "tenant"] as const;
 export type StaffTenantGrantFilterField = (typeof staffTenantGrantFilterFields)[number];
 
@@ -11734,7 +11892,7 @@ export type ChatReplyFilterField = (typeof chatReplyFilterFields)[number];
 export const chatSuggestionsFilterFields = ["suggestions"] as const;
 export type ChatSuggestionsFilterField = (typeof chatSuggestionsFilterFields)[number];
 
-export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages"] as const;
+export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "turn_state_type", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages"] as const;
 export type PublicConversationFilterField = (typeof publicConversationFilterFields)[number];
 
 export const publicMessageFilterFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id", "conversation"] as const;
@@ -11742,6 +11900,9 @@ export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number
 
 export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
+
+export const turnStateFilterFields = ["running", "stale_at"] as const;
+export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
 export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
@@ -11993,6 +12154,9 @@ export const youtubeEpisodeFilterFields = ["id", "video_id", "video_url", "title
 export type YoutubeEpisodeFilterField = (typeof youtubeEpisodeFilterFields)[number];
 
 
+export const consentRecordSortFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at"] as const;
+export type ConsentRecordSortField = (typeof consentRecordSortFields)[number];
+
 export const staffTenantGrantSortFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at"] as const;
 export type StaffTenantGrantSortField = (typeof staffTenantGrantSortFields)[number];
 
@@ -12020,7 +12184,7 @@ export type ChatReplySortField = (typeof chatReplySortFields)[number];
 export const chatSuggestionsSortFields = ["suggestions"] as const;
 export type ChatSuggestionsSortField = (typeof chatSuggestionsSortFields)[number];
 
-export const publicConversationSortFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "message_count"] as const;
+export const publicConversationSortFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "turn_state_type", "message_count"] as const;
 export type PublicConversationSortField = (typeof publicConversationSortFields)[number];
 
 export const publicMessageSortFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id"] as const;
@@ -12028,6 +12192,9 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 
 export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
+
+export const turnStateSortFields = ["running", "stale_at"] as const;
+export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
 export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "schema_version", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
 export type AppSortField = (typeof appSortFields)[number];
