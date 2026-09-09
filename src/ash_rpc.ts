@@ -618,7 +618,7 @@ export async function list_current_consents_channel<Fields extends ListCurrentCo
 
 
 export type RecordConsentInput = {
-  kind: "collect" | "improve" | "marketing" | "share" | "tos";
+  kind: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
   granted: boolean;
   policy_version: string;
   method: "checkbox" | "settings";
@@ -1632,6 +1632,115 @@ export async function create_anonymous_user_channel<Fields extends CreateAnonymo
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.metadata_fields && { metadata_fields: config.metadata_fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type InferDeleteOwnAccountResult = Record<string, any>;
+
+export type DeleteOwnAccountResult = | { success: true; data: InferDeleteOwnAccountResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function delete_own_account(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<DeleteOwnAccountResult> {
+  const payload = {
+    action: "delete_own_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeActionRpcRequest<DeleteOwnAccountResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_delete_own_account(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "delete_own_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on User
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_delete_own_account_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "delete_own_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on User
+ *
+ * @ashActionType :action
+ */
+export async function delete_own_account_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: DeleteOwnAccountResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<DeleteOwnAccountResult>(
+    config.channel,
+    {
+    action: "delete_own_account",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
   },
     config.timeout,
     config
@@ -4642,7 +4751,7 @@ export type FindRootConversationInput = {
 export type FindRootConversationFields = UnifiedFieldSelection<PublicConversationResourceSchema>[];
 export type InferFindRootConversationResult<
   Fields extends FindRootConversationFields,
-> = InferResult<PublicConversationResourceSchema, Fields>;
+> = InferResult<PublicConversationResourceSchema, Fields> | null;
 
 export type FindRootConversationResult<Fields extends FindRootConversationFields> = | { success: true; data: InferFindRootConversationResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }

@@ -12,9 +12,9 @@ export type UtcDateTimeUsec = string;
 // ConsentRecord Schema
 export type ConsentRecordResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at";
+  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
   id: UUID;
-  kind: "collect" | "improve" | "marketing" | "share" | "tos";
+  kind: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
   granted: boolean;
   policy_version: string;
   method: "checkbox" | "settings";
@@ -22,15 +22,16 @@ export type ConsentRecordResourceSchema = {
   ip: string | null;
   user_agent: string | null;
   recorded_at: UtcDateTimeUsec;
+  email: string | null;
 };
 
 
 
 export type ConsentRecordAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at";
+  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
   id: UUID;
-  kind: "collect" | "improve" | "marketing" | "share" | "tos";
+  kind: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
   granted: boolean;
   policy_version: string;
   method: "checkbox" | "settings";
@@ -38,6 +39,7 @@ export type ConsentRecordAttributesOnlySchema = {
   ip: string | null;
   user_agent: string | null;
   recorded_at: UtcDateTimeUsec;
+  email: string | null;
 };
 
 
@@ -1528,11 +1530,12 @@ export type EnrollmentCompletionsInputSchema = {
 // CourseEntitlement Schema
 export type CourseEntitlementResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "ended_at" | "plan_id";
+  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "scope" | "ended_at" | "plan_id";
   id: UUID;
   tier: string;
   granted_at: UtcDateTimeUsec;
   app_id: UUID | null;
+  scope: "every_app" | "one_app";
   ended_at: UtcDateTimeUsec | null;
   plan_id: UUID | null;
   plan: { __type: "Relationship"; __resource: PlanResourceSchema | null; };
@@ -1542,11 +1545,12 @@ export type CourseEntitlementResourceSchema = {
 
 export type CourseEntitlementAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "ended_at" | "plan_id";
+  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "scope" | "ended_at" | "plan_id";
   id: UUID;
   tier: string;
   granted_at: UtcDateTimeUsec;
   app_id: UUID | null;
+  scope: "every_app" | "one_app";
   ended_at: UtcDateTimeUsec | null;
   plan_id: UUID | null;
 };
@@ -1726,20 +1730,22 @@ export type OriginsAppsOptionInputSchema = {
 // Plan Schema
 export type PlanResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "retired_at";
+  __primitiveFields: "id" | "name" | "retired_at" | "scope";
   id: UUID;
   name: string;
   retired_at: UtcDateTimeUsec | null;
+  scope: "every_app" | "linked_apps";
 };
 
 
 
 export type PlanAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "retired_at";
+  __primitiveFields: "id" | "name" | "retired_at" | "scope";
   id: UUID;
   name: string;
   retired_at: UtcDateTimeUsec | null;
+  scope: "every_app" | "linked_apps";
 };
 
 
@@ -3879,9 +3885,9 @@ export type ConsentRecordFilterInput = {
   };
 
   kind?: {
-    eq?: "collect" | "improve" | "marketing" | "share" | "tos";
-    not_eq?: "collect" | "improve" | "marketing" | "share" | "tos";
-    in?: Array<"collect" | "improve" | "marketing" | "share" | "tos">;
+    eq?: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
+    not_eq?: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
+    in?: Array<"ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos">;
   };
 
   granted?: {
@@ -3929,6 +3935,13 @@ export type ConsentRecordFilterInput = {
     less_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+  };
+
+  email?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
   };
 
 
@@ -6783,6 +6796,12 @@ export type CourseEntitlementFilterInput = {
     is_nil?: boolean;
   };
 
+  scope?: {
+    eq?: "every_app" | "one_app";
+    not_eq?: "every_app" | "one_app";
+    in?: Array<"every_app" | "one_app">;
+  };
+
   ended_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
@@ -7098,6 +7117,12 @@ export type PlanFilterInput = {
     less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
     is_nil?: boolean;
+  };
+
+  scope?: {
+    eq?: "every_app" | "linked_apps";
+    not_eq?: "every_app" | "linked_apps";
+    in?: Array<"every_app" | "linked_apps">;
   };
 
 
@@ -11862,7 +11887,7 @@ export type YoutubeEpisodeFilterInput = {
 };
 
 
-export const consentRecordFilterFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at"] as const;
+export const consentRecordFilterFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
 export type ConsentRecordFilterField = (typeof consentRecordFilterFields)[number];
 
 export const staffTenantGrantFilterFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at", "user", "tenant"] as const;
@@ -11985,7 +12010,7 @@ export type ActivityCompletionSummaryFilterField = (typeof activityCompletionSum
 export const enrollmentCompletionsFilterFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
 export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilterFields)[number];
 
-export const courseEntitlementFilterFields = ["id", "tier", "granted_at", "app_id", "ended_at", "plan_id", "plan"] as const;
+export const courseEntitlementFilterFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id", "plan"] as const;
 export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
 
 export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
@@ -12000,7 +12025,7 @@ export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[nu
 export const originsAppsOptionFilterFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
-export const planFilterFields = ["id", "name", "retired_at"] as const;
+export const planFilterFields = ["id", "name", "retired_at", "scope"] as const;
 export type PlanFilterField = (typeof planFilterFields)[number];
 
 export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user"] as const;
@@ -12154,7 +12179,7 @@ export const youtubeEpisodeFilterFields = ["id", "video_id", "video_url", "title
 export type YoutubeEpisodeFilterField = (typeof youtubeEpisodeFilterFields)[number];
 
 
-export const consentRecordSortFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at"] as const;
+export const consentRecordSortFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
 export type ConsentRecordSortField = (typeof consentRecordSortFields)[number];
 
 export const staffTenantGrantSortFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at"] as const;
@@ -12277,7 +12302,7 @@ export type ActivityCompletionSummarySortField = (typeof activityCompletionSumma
 export const enrollmentCompletionsSortFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
 export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFields)[number];
 
-export const courseEntitlementSortFields = ["id", "tier", "granted_at", "app_id", "ended_at", "plan_id"] as const;
+export const courseEntitlementSortFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id"] as const;
 export type CourseEntitlementSortField = (typeof courseEntitlementSortFields)[number];
 
 export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
@@ -12292,7 +12317,7 @@ export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number
 export const originsAppsOptionSortFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
 
-export const planSortFields = ["id", "name", "retired_at"] as const;
+export const planSortFields = ["id", "name", "retired_at", "scope"] as const;
 export type PlanSortField = (typeof planSortFields)[number];
 
 export const programTestSortFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id"] as const;

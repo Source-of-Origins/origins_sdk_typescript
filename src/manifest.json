@@ -361,6 +361,39 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Mark the caller's own account for deletion and sign them out everywhere.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "delete_own_account",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "result": "DeleteOwnAccountResult"
+      },
+      "variantNames": {
+        "channel": "delete_own_account_channel",
+        "validation": "validate_delete_own_account"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Get the current authenticated user",
@@ -8970,7 +9003,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-04",
+  "generatedAt": "2026-09-09",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
