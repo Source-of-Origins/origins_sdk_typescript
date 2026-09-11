@@ -12,9 +12,10 @@ export type UtcDateTimeUsec = string;
 // ConsentRecord Schema
 export type ConsentRecordResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
+  __primitiveFields: "id" | "kind" | "custom_name" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
   id: UUID;
-  kind: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
+  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  custom_name: string | null;
   granted: boolean;
   policy_version: string;
   method: "checkbox" | "settings";
@@ -29,9 +30,10 @@ export type ConsentRecordResourceSchema = {
 
 export type ConsentRecordAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
+  __primitiveFields: "id" | "kind" | "custom_name" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
   id: UUID;
-  kind: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
+  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  custom_name: string | null;
   granted: boolean;
   policy_version: string;
   method: "checkbox" | "settings";
@@ -137,7 +139,7 @@ export type UserResourceSchema = {
   tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
   staff_tenant_grants: { __type: "Relationship"; __array: true; __resource: StaffTenantGrantResourceSchema; };
   profile: { __type: "Relationship"; __resource: UserProfileResourceSchema | null; };
-  origin_entity_memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityMembershipResourceSchema; };
+  origin_entity_memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; };
   origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; };
 };
 
@@ -2524,7 +2526,7 @@ export type OriginEntityResourceSchema = {
   setup_progress: { __type: "Relationship"; __resource: SetupProgressResourceSchema | null; };
   parent_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
   child_origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; };
-  memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityMembershipResourceSchema; };
+  memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; };
   soul_config: { __type: "Relationship"; __resource: SoulConfigResourceSchema | null; };
   chat_config: { __type: "Relationship"; __resource: ChatConfigResourceSchema | null; };
   podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
@@ -2693,8 +2695,8 @@ export type ScrapedWebsiteContentOpenGraphInputSchema = {
 };
 
 
-// OriginEntityMembership Schema
-export type OriginEntityMembershipResourceSchema = {
+// OriginEntityStaffMembership Schema
+export type OriginEntityStaffMembershipResourceSchema = {
   __type: "Resource";
   __primitiveFields: "id" | "user_id" | "role" | "status" | "invitation_token" | "invited_email" | "expires_at" | "invited_by" | "accepted_at" | "joined_at" | "created_at" | "updated_at" | "origin_entity_id";
   id: UUID;
@@ -2716,7 +2718,7 @@ export type OriginEntityMembershipResourceSchema = {
 
 
 
-export type OriginEntityMembershipAttributesOnlySchema = {
+export type OriginEntityStaffMembershipAttributesOnlySchema = {
   __type: "Resource";
   __primitiveFields: "id" | "user_id" | "role" | "status" | "invitation_token" | "invited_email" | "expires_at" | "invited_by" | "accepted_at" | "joined_at" | "created_at" | "updated_at" | "origin_entity_id";
   id: UUID;
@@ -3456,6 +3458,7 @@ export type LibraryFileResourceSchema = {
   vfs_path: string | null;
   media_format: string | null;
   metadata_contains: { __type: "ComplexCalculation"; __returnType: boolean | null; __args: { value?: Record<string, any> }; };
+  metadata_keys: { __type: "ComplexCalculation"; __returnType: Record<string, any> | null; __args: { keys?: Array<string> }; };
   metadata_number: { __type: "ComplexCalculation"; __returnType: Decimal | null; __args: { key?: string }; };
   library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
   video_asset: { __type: "Relationship"; __resource: VideoAssetResourceSchema | null; };
@@ -3885,9 +3888,16 @@ export type ConsentRecordFilterInput = {
   };
 
   kind?: {
-    eq?: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
-    not_eq?: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
-    in?: Array<"ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos">;
+    eq?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+    not_eq?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+    in?: Array<"ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos">;
+  };
+
+  custom_name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
   };
 
   granted?: {
@@ -4327,7 +4337,7 @@ export type UserFilterInput = {
 
   profile?: UserProfileFilterInput;
 
-  origin_entity_memberships?: OriginEntityMembershipFilterInput;
+  origin_entity_memberships?: OriginEntityStaffMembershipFilterInput;
 
   origin_entities?: OriginEntityFilterInput;
 
@@ -9155,7 +9165,7 @@ export type OriginEntityFilterInput = {
 
   child_origin_entities?: OriginEntityFilterInput;
 
-  memberships?: OriginEntityMembershipFilterInput;
+  memberships?: OriginEntityStaffMembershipFilterInput;
 
   soul_config?: SoulConfigFilterInput;
 
@@ -9304,10 +9314,10 @@ export type ScrapedWebsiteContentOpenGraphFilterInput = {
 
 
 };
-export type OriginEntityMembershipFilterInput = {
-  and?: Array<OriginEntityMembershipFilterInput>;
-  or?: Array<OriginEntityMembershipFilterInput>;
-  not?: Array<OriginEntityMembershipFilterInput>;
+export type OriginEntityStaffMembershipFilterInput = {
+  and?: Array<OriginEntityStaffMembershipFilterInput>;
+  or?: Array<OriginEntityStaffMembershipFilterInput>;
+  not?: Array<OriginEntityStaffMembershipFilterInput>;
 
   id?: {
     eq?: UUID;
@@ -10990,6 +11000,13 @@ export type LibraryFileFilterInput = {
     is_nil?: boolean;
   };
 
+  metadata_keys?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
   metadata_number?: {
     eq?: Decimal;
     not_eq?: Decimal;
@@ -11887,7 +11904,7 @@ export type YoutubeEpisodeFilterInput = {
 };
 
 
-export const consentRecordFilterFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
+export const consentRecordFilterFields = ["id", "kind", "custom_name", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
 export type ConsentRecordFilterField = (typeof consentRecordFilterFields)[number];
 
 export const staffTenantGrantFilterFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at", "user", "tenant"] as const;
@@ -12082,8 +12099,8 @@ export type ScrapedWebsiteContentHeadingFilterField = (typeof scrapedWebsiteCont
 export const scrapedWebsiteContentOpenGraphFilterFields = ["title", "description", "image"] as const;
 export type ScrapedWebsiteContentOpenGraphFilterField = (typeof scrapedWebsiteContentOpenGraphFilterFields)[number];
 
-export const originEntityMembershipFilterFields = ["id", "user_id", "role", "status", "invitation_token", "invited_email", "expires_at", "invited_by", "accepted_at", "joined_at", "created_at", "updated_at", "origin_entity_id", "origin_entity", "user"] as const;
-export type OriginEntityMembershipFilterField = (typeof originEntityMembershipFilterFields)[number];
+export const originEntityStaffMembershipFilterFields = ["id", "user_id", "role", "status", "invitation_token", "invited_email", "expires_at", "invited_by", "accepted_at", "joined_at", "created_at", "updated_at", "origin_entity_id", "origin_entity", "user"] as const;
+export type OriginEntityStaffMembershipFilterField = (typeof originEntityStaffMembershipFilterFields)[number];
 
 export const promptContextFilterFields = ["id", "name", "public_title", "public_description", "context_text", "prompt_tool_ids", "is_active", "is_default", "guardrail_config", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
 export type PromptContextFilterField = (typeof promptContextFilterFields)[number];
@@ -12142,7 +12159,7 @@ export type LibraryFilterField = (typeof libraryFilterFields)[number];
 export const libraryAccessGrantFilterFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id", "library", "grantee_origin_entity"] as const;
 export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFields)[number];
 
-export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_number", "signed_s3_url", "vfs_path", "media_format", "library", "video_asset"] as const;
+export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_keys", "metadata_number", "signed_s3_url", "vfs_path", "media_format", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
 export const playlistFilterFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id", "user", "items"] as const;
@@ -12179,7 +12196,7 @@ export const youtubeEpisodeFilterFields = ["id", "video_id", "video_url", "title
 export type YoutubeEpisodeFilterField = (typeof youtubeEpisodeFilterFields)[number];
 
 
-export const consentRecordSortFields = ["id", "kind", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
+export const consentRecordSortFields = ["id", "kind", "custom_name", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
 export type ConsentRecordSortField = (typeof consentRecordSortFields)[number];
 
 export const staffTenantGrantSortFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at"] as const;
@@ -12374,8 +12391,8 @@ export type ScrapedWebsiteContentHeadingSortField = (typeof scrapedWebsiteConten
 export const scrapedWebsiteContentOpenGraphSortFields = ["title", "description", "image"] as const;
 export type ScrapedWebsiteContentOpenGraphSortField = (typeof scrapedWebsiteContentOpenGraphSortFields)[number];
 
-export const originEntityMembershipSortFields = ["id", "user_id", "role", "status", "invitation_token", "invited_email", "expires_at", "invited_by", "accepted_at", "joined_at", "created_at", "updated_at", "origin_entity_id"] as const;
-export type OriginEntityMembershipSortField = (typeof originEntityMembershipSortFields)[number];
+export const originEntityStaffMembershipSortFields = ["id", "user_id", "role", "status", "invitation_token", "invited_email", "expires_at", "invited_by", "accepted_at", "joined_at", "created_at", "updated_at", "origin_entity_id"] as const;
+export type OriginEntityStaffMembershipSortField = (typeof originEntityStaffMembershipSortFields)[number];
 
 export const promptContextSortFields = ["id", "name", "public_title", "public_description", "context_text", "prompt_tool_ids", "is_active", "is_default", "guardrail_config", "created_at", "updated_at", "origin_entity_id"] as const;
 export type PromptContextSortField = (typeof promptContextSortFields)[number];
@@ -12434,7 +12451,7 @@ export type LibrarySortField = (typeof librarySortFields)[number];
 export const libraryAccessGrantSortFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id"] as const;
 export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[number];
 
-export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_number", "signed_s3_url", "vfs_path", "media_format"] as const;
+export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_keys", "metadata_number", "signed_s3_url", "vfs_path", "media_format"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
 
 export const playlistSortFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id"] as const;

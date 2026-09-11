@@ -5116,7 +5116,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "AcceptMembershipInvitationFields",
@@ -5152,7 +5152,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "ActivateMembershipFields",
@@ -5173,7 +5173,7 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Create a new OriginEntityMembership",
+      "description": "Create a new OriginEntityStaffMembership",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "create_origin_entity_membership",
@@ -5187,7 +5187,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "CreateOriginEntityMembershipFields",
@@ -5209,7 +5209,7 @@
     {
       "actionType": "destroy",
       "deprecated": false,
-      "description": "Delete a OriginEntityMembership",
+      "description": "Delete a OriginEntityStaffMembership",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "delete_origin_entity_membership",
@@ -5223,7 +5223,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "result": "DeleteOriginEntityMembershipResult"
@@ -5256,11 +5256,11 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "GetInheritedMembershipsFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferGetInheritedMembershipsResult",
         "input": "GetInheritedMembershipsInput",
         "result": "GetInheritedMembershipsResult"
@@ -5279,7 +5279,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Read OriginEntityMembership records",
+      "description": "Read OriginEntityStaffMembership records",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "get_membership_by_token",
@@ -5293,11 +5293,11 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "GetMembershipByTokenFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferGetMembershipByTokenResult",
         "input": "GetMembershipByTokenInput",
         "result": "GetMembershipByTokenResult"
@@ -5330,11 +5330,11 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "GetMembershipsForOriginFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferGetMembershipsForOriginResult",
         "input": "GetMembershipsForOriginInput",
         "result": "GetMembershipsForOriginResult"
@@ -5353,7 +5353,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Read OriginEntityMembership records",
+      "description": "Read OriginEntityStaffMembership records",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "get_memberships_for_user",
@@ -5367,11 +5367,11 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "GetMembershipsForUserFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferGetMembershipsForUserResult",
         "input": "GetMembershipsForUserInput",
         "result": "GetMembershipsForUserResult"
@@ -5390,7 +5390,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Read OriginEntityMembership records",
+      "description": "Read OriginEntityStaffMembership records",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "get_origin_entity_membership",
@@ -5404,11 +5404,11 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "GetOriginEntityMembershipFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferGetOriginEntityMembershipResult",
         "input": "GetOriginEntityMembershipInput",
         "result": "GetOriginEntityMembershipResult"
@@ -5427,7 +5427,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Read OriginEntityMembership records",
+      "description": "Read OriginEntityStaffMembership records",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "get_pending_memberships",
@@ -5441,11 +5441,11 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "GetPendingMembershipsFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferGetPendingMembershipsResult",
         "input": "GetPendingMembershipsInput",
         "result": "GetPendingMembershipsResult"
@@ -5478,7 +5478,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "InviteToOriginFields",
@@ -5500,7 +5500,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Read OriginEntityMembership records",
+      "description": "Read OriginEntityStaffMembership records",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "list_origin_entity_memberships",
@@ -5514,12 +5514,12 @@
         "required": false,
         "supported": true
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "config": "ListOriginEntityMembershipsConfig",
         "fields": "ListOriginEntityMembershipsFields",
-        "filterInput": "OriginEntityMembershipFilterInput",
+        "filterInput": "OriginEntityStaffMembershipFilterInput",
         "inferResult": "InferListOriginEntityMembershipsResult",
         "result": "ListOriginEntityMembershipsResult"
       },
@@ -5551,7 +5551,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "SuspendMembershipFields",
@@ -5572,7 +5572,7 @@
     {
       "actionType": "update",
       "deprecated": false,
-      "description": "Update an existing OriginEntityMembership",
+      "description": "Update an existing OriginEntityStaffMembership",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "update_origin_entity_membership",
@@ -5586,7 +5586,7 @@
         "required": false,
         "supported": false
       },
-      "resource": "OriginEntityMembership",
+      "resource": "OriginEntityStaffMembership",
       "see": [],
       "types": {
         "fields": "UpdateOriginEntityMembershipFields",
@@ -9003,7 +9003,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-09",
+  "generatedAt": "2026-09-11",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, ConsentRecordFilterInput, ConsentRecordResourceSchema, ConsentRecordSortField, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityMembershipFilterInput, OriginEntityMembershipResourceSchema, OriginEntityMembershipSortField, OriginEntityResourceSchema, OriginEntitySortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, TurnStateResourceSchema, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, ConsentRecordFilterInput, ConsentRecordResourceSchema, ConsentRecordSortField, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityResourceSchema, OriginEntitySortField, OriginEntityStaffMembershipFilterInput, OriginEntityStaffMembershipResourceSchema, OriginEntityStaffMembershipSortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, TurnStateResourceSchema, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -618,7 +618,8 @@ export async function list_current_consents_channel<Fields extends ListCurrentCo
 
 
 export type RecordConsentInput = {
-  kind: "ai_chat" | "collect" | "improve" | "marketing" | "share" | "tos";
+  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  custom_name?: string | null;
   granted: boolean;
   policy_version: string;
   method: "checkbox" | "settings";
@@ -19342,11 +19343,11 @@ export type AcceptMembershipInvitationInput = {
   user_id: UUID;
 };
 
-export type AcceptMembershipInvitationFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type AcceptMembershipInvitationFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 export type InferAcceptMembershipInvitationResult<
   Fields extends AcceptMembershipInvitationFields | undefined,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type AcceptMembershipInvitationResult<Fields extends AcceptMembershipInvitationFields | undefined = undefined> = | { success: true; data: InferAcceptMembershipInvitationResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -19354,7 +19355,7 @@ export type AcceptMembershipInvitationResult<Fields extends AcceptMembershipInvi
 ;
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -19385,7 +19386,7 @@ export async function accept_membership_invitation<Fields extends AcceptMembersh
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -19415,7 +19416,7 @@ export async function validate_accept_membership_invitation(
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -19445,7 +19446,7 @@ export async function validate_accept_membership_invitation_channel(config: {
 
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -19475,11 +19476,11 @@ export async function accept_membership_invitation_channel<Fields extends Accept
 }
 
 
-export type ActivateMembershipFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type ActivateMembershipFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 export type InferActivateMembershipResult<
   Fields extends ActivateMembershipFields | undefined,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type ActivateMembershipResult<Fields extends ActivateMembershipFields | undefined = undefined> = | { success: true; data: InferActivateMembershipResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -19487,7 +19488,7 @@ export type ActivateMembershipResult<Fields extends ActivateMembershipFields | u
 ;
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -19516,7 +19517,7 @@ export async function activate_membership<Fields extends ActivateMembershipField
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -19544,7 +19545,7 @@ export async function validate_activate_membership(
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -19572,7 +19573,7 @@ export async function validate_activate_membership_channel(config: {
 
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -19612,11 +19613,11 @@ export type CreateOriginEntityMembershipInput = {
   origin_entity_id: UUID;
 };
 
-export type CreateOriginEntityMembershipFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type CreateOriginEntityMembershipFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 export type InferCreateOriginEntityMembershipResult<
   Fields extends CreateOriginEntityMembershipFields | undefined,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type CreateOriginEntityMembershipResult<Fields extends CreateOriginEntityMembershipFields | undefined = undefined> = | { success: true; data: InferCreateOriginEntityMembershipResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -19624,7 +19625,7 @@ export type CreateOriginEntityMembershipResult<Fields extends CreateOriginEntity
 ;
 
 /**
- * Create a new OriginEntityMembership
+ * Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  */
@@ -19653,7 +19654,7 @@ export async function create_origin_entity_membership<Fields extends CreateOrigi
 
 
 /**
- * Validate: Create a new OriginEntityMembership
+ * Validate: Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  * @validation true
@@ -19681,7 +19682,7 @@ export async function validate_create_origin_entity_membership(
 
 
 /**
- * Validate: Create a new OriginEntityMembership
+ * Validate: Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  * @validation true
@@ -19709,7 +19710,7 @@ export async function validate_create_origin_entity_membership_channel(config: {
 
 
 /**
- * Create a new OriginEntityMembership
+ * Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  */
@@ -19743,7 +19744,7 @@ export type DeleteOriginEntityMembershipResult = | { success: true; data: {}; }
 ;
 
 /**
- * Delete a OriginEntityMembership
+ * Delete a OriginEntityStaffMembership
  *
  * @ashActionType :destroy
  */
@@ -19770,7 +19771,7 @@ export async function delete_origin_entity_membership(
 
 
 /**
- * Validate: Delete a OriginEntityMembership
+ * Validate: Delete a OriginEntityStaffMembership
  *
  * @ashActionType :destroy
  * @validation true
@@ -19798,7 +19799,7 @@ export async function validate_delete_origin_entity_membership(
 
 
 /**
- * Validate: Delete a OriginEntityMembership
+ * Validate: Delete a OriginEntityStaffMembership
  *
  * @ashActionType :destroy
  * @validation true
@@ -19826,7 +19827,7 @@ export async function validate_delete_origin_entity_membership_channel(config: {
 
 
 /**
- * Delete a OriginEntityMembership
+ * Delete a OriginEntityStaffMembership
  *
  * @ashActionType :destroy
  */
@@ -19856,10 +19857,10 @@ export type GetInheritedMembershipsInput = {
   origin_entity_id: UUID;
 };
 
-export type GetInheritedMembershipsFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type GetInheritedMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 export type InferGetInheritedMembershipsResult<
   Fields extends GetInheritedMembershipsFields,
-> = Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>;
+> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
 
 export type GetInheritedMembershipsResult<Fields extends GetInheritedMembershipsFields> = | { success: true; data: InferGetInheritedMembershipsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -19867,7 +19868,7 @@ export type GetInheritedMembershipsResult<Fields extends GetInheritedMemberships
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -19876,8 +19877,8 @@ export async function get_inherited_memberships<Fields extends GetInheritedMembe
   tenant?: string;
   input: GetInheritedMembershipsInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -19900,7 +19901,7 @@ export async function get_inherited_memberships<Fields extends GetInheritedMembe
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -19928,7 +19929,7 @@ export async function validate_get_inherited_memberships(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -19956,7 +19957,7 @@ export async function validate_get_inherited_memberships_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -19965,8 +19966,8 @@ export async function get_inherited_memberships_channel<Fields extends GetInheri
   tenant?: string;
   input: GetInheritedMembershipsInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   result_handler: (result: GetInheritedMembershipsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -19992,10 +19993,10 @@ export type GetMembershipByTokenInput = {
   invitation_token: UUID;
 };
 
-export type GetMembershipByTokenFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type GetMembershipByTokenFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 export type InferGetMembershipByTokenResult<
   Fields extends GetMembershipByTokenFields,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type GetMembershipByTokenResult<Fields extends GetMembershipByTokenFields> = | { success: true; data: InferGetMembershipByTokenResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20003,7 +20004,7 @@ export type GetMembershipByTokenResult<Fields extends GetMembershipByTokenFields
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20032,7 +20033,7 @@ export async function get_membership_by_token<Fields extends GetMembershipByToke
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20060,7 +20061,7 @@ export async function validate_get_membership_by_token(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20088,7 +20089,7 @@ export async function validate_get_membership_by_token_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20120,10 +20121,10 @@ export type GetMembershipsForOriginInput = {
   origin_entity_id: UUID;
 };
 
-export type GetMembershipsForOriginFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type GetMembershipsForOriginFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 export type InferGetMembershipsForOriginResult<
   Fields extends GetMembershipsForOriginFields,
-> = Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>;
+> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
 
 export type GetMembershipsForOriginResult<Fields extends GetMembershipsForOriginFields> = | { success: true; data: InferGetMembershipsForOriginResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20131,7 +20132,7 @@ export type GetMembershipsForOriginResult<Fields extends GetMembershipsForOrigin
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20140,8 +20141,8 @@ export async function get_memberships_for_origin<Fields extends GetMembershipsFo
   tenant?: string;
   input: GetMembershipsForOriginInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -20164,7 +20165,7 @@ export async function get_memberships_for_origin<Fields extends GetMembershipsFo
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20192,7 +20193,7 @@ export async function validate_get_memberships_for_origin(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20220,7 +20221,7 @@ export async function validate_get_memberships_for_origin_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20229,8 +20230,8 @@ export async function get_memberships_for_origin_channel<Fields extends GetMembe
   tenant?: string;
   input: GetMembershipsForOriginInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   result_handler: (result: GetMembershipsForOriginResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -20256,10 +20257,10 @@ export type GetMembershipsForUserInput = {
   user_id: UUID;
 };
 
-export type GetMembershipsForUserFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type GetMembershipsForUserFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 export type InferGetMembershipsForUserResult<
   Fields extends GetMembershipsForUserFields,
-> = Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>;
+> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
 
 export type GetMembershipsForUserResult<Fields extends GetMembershipsForUserFields> = | { success: true; data: InferGetMembershipsForUserResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20267,7 +20268,7 @@ export type GetMembershipsForUserResult<Fields extends GetMembershipsForUserFiel
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20276,8 +20277,8 @@ export async function get_memberships_for_user<Fields extends GetMembershipsForU
   tenant?: string;
   input: GetMembershipsForUserInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -20300,7 +20301,7 @@ export async function get_memberships_for_user<Fields extends GetMembershipsForU
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20328,7 +20329,7 @@ export async function validate_get_memberships_for_user(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20356,7 +20357,7 @@ export async function validate_get_memberships_for_user_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20365,8 +20366,8 @@ export async function get_memberships_for_user_channel<Fields extends GetMembers
   tenant?: string;
   input: GetMembershipsForUserInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   result_handler: (result: GetMembershipsForUserResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -20392,10 +20393,10 @@ export type GetOriginEntityMembershipInput = {
   id: UUID;
 };
 
-export type GetOriginEntityMembershipFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type GetOriginEntityMembershipFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 export type InferGetOriginEntityMembershipResult<
   Fields extends GetOriginEntityMembershipFields,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type GetOriginEntityMembershipResult<Fields extends GetOriginEntityMembershipFields> = | { success: true; data: InferGetOriginEntityMembershipResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20403,7 +20404,7 @@ export type GetOriginEntityMembershipResult<Fields extends GetOriginEntityMember
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20432,7 +20433,7 @@ export async function get_origin_entity_membership<Fields extends GetOriginEntit
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20460,7 +20461,7 @@ export async function validate_get_origin_entity_membership(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20488,7 +20489,7 @@ export async function validate_get_origin_entity_membership_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20520,10 +20521,10 @@ export type GetPendingMembershipsInput = {
   origin_entity_id: UUID;
 };
 
-export type GetPendingMembershipsFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type GetPendingMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 export type InferGetPendingMembershipsResult<
   Fields extends GetPendingMembershipsFields,
-> = Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>;
+> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
 
 export type GetPendingMembershipsResult<Fields extends GetPendingMembershipsFields> = | { success: true; data: InferGetPendingMembershipsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20531,7 +20532,7 @@ export type GetPendingMembershipsResult<Fields extends GetPendingMembershipsFiel
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20540,8 +20541,8 @@ export async function get_pending_memberships<Fields extends GetPendingMembershi
   tenant?: string;
   input: GetPendingMembershipsInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -20564,7 +20565,7 @@ export async function get_pending_memberships<Fields extends GetPendingMembershi
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20592,7 +20593,7 @@ export async function validate_get_pending_memberships(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20620,7 +20621,7 @@ export async function validate_get_pending_memberships_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20629,8 +20630,8 @@ export async function get_pending_memberships_channel<Fields extends GetPendingM
   tenant?: string;
   input: GetPendingMembershipsInput;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   result_handler: (result: GetPendingMembershipsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -20658,11 +20659,11 @@ export type InviteToOriginInput = {
   origin_entity_id: UUID;
 };
 
-export type InviteToOriginFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type InviteToOriginFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 export type InferInviteToOriginResult<
   Fields extends InviteToOriginFields | undefined,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type InviteToOriginResult<Fields extends InviteToOriginFields | undefined = undefined> = | { success: true; data: InferInviteToOriginResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20670,7 +20671,7 @@ export type InviteToOriginResult<Fields extends InviteToOriginFields | undefined
 ;
 
 /**
- * Create a new OriginEntityMembership
+ * Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  */
@@ -20699,7 +20700,7 @@ export async function invite_to_origin<Fields extends InviteToOriginFields | und
 
 
 /**
- * Validate: Create a new OriginEntityMembership
+ * Validate: Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  * @validation true
@@ -20727,7 +20728,7 @@ export async function validate_invite_to_origin(
 
 
 /**
- * Validate: Create a new OriginEntityMembership
+ * Validate: Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  * @validation true
@@ -20755,7 +20756,7 @@ export async function validate_invite_to_origin_channel(config: {
 
 
 /**
- * Create a new OriginEntityMembership
+ * Create a new OriginEntityStaffMembership
  *
  * @ashActionType :create
  */
@@ -20783,21 +20784,21 @@ export async function invite_to_origin_channel<Fields extends InviteToOriginFiel
 }
 
 
-export type ListOriginEntityMembershipsFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type ListOriginEntityMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 
 export type InferListOriginEntityMembershipsResult<
   Fields extends ListOriginEntityMembershipsFields | undefined,
   Page extends ListOriginEntityMembershipsConfig["page"] = undefined
-> = ConditionalPaginatedResultMixed<Page, Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>, {
-  results: Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>;
+> = ConditionalPaginatedResultMixed<Page, Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>, {
+  results: Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
   has_more: boolean;
   limit: number;
   offset: number;
   count?: number | null;
   type: "offset";
 }, {
-  results: Array<InferResult<OriginEntityMembershipResourceSchema, Fields>>;
+  results: Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
   has_more: boolean;
   limit: number;
   after: string | null;
@@ -20811,8 +20812,8 @@ export type InferListOriginEntityMembershipsResult<
 export type ListOriginEntityMembershipsConfig = {
   tenant?: string;
   fields: ListOriginEntityMembershipsFields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   page?: (
     {
       limit?: number;
@@ -20835,7 +20836,7 @@ export type ListOriginEntityMembershipsResult<Fields extends ListOriginEntityMem
 ;
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20859,7 +20860,7 @@ export async function list_origin_entity_memberships<Fields extends ListOriginEn
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20885,7 +20886,7 @@ export async function validate_list_origin_entity_memberships(
 
 
 /**
- * Validate: Read OriginEntityMembership records
+ * Validate: Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  * @validation true
@@ -20911,7 +20912,7 @@ export async function validate_list_origin_entity_memberships_channel(config: {
 
 
 /**
- * Read OriginEntityMembership records
+ * Read OriginEntityStaffMembership records
  *
  * @ashActionType :read
  */
@@ -20919,8 +20920,8 @@ export async function list_origin_entity_memberships_channel<Fields extends List
   channel: Channel;
   tenant?: string;
   fields: Fields;
-  filter?: OriginEntityMembershipFilterInput;
-  sort?: SortString<OriginEntityMembershipSortField> | SortString<OriginEntityMembershipSortField>[];
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   page?: (
     {
       limit?: number;
@@ -20953,11 +20954,11 @@ export async function list_origin_entity_memberships_channel<Fields extends List
 }
 
 
-export type SuspendMembershipFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type SuspendMembershipFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 export type InferSuspendMembershipResult<
   Fields extends SuspendMembershipFields | undefined,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type SuspendMembershipResult<Fields extends SuspendMembershipFields | undefined = undefined> = | { success: true; data: InferSuspendMembershipResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -20965,7 +20966,7 @@ export type SuspendMembershipResult<Fields extends SuspendMembershipFields | und
 ;
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -20994,7 +20995,7 @@ export async function suspend_membership<Fields extends SuspendMembershipFields 
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -21022,7 +21023,7 @@ export async function validate_suspend_membership(
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -21050,7 +21051,7 @@ export async function validate_suspend_membership_channel(config: {
 
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -21090,11 +21091,11 @@ export type UpdateOriginEntityMembershipInput = {
   origin_entity_id?: UUID;
 };
 
-export type UpdateOriginEntityMembershipFields = UnifiedFieldSelection<OriginEntityMembershipResourceSchema>[];
+export type UpdateOriginEntityMembershipFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 export type InferUpdateOriginEntityMembershipResult<
   Fields extends UpdateOriginEntityMembershipFields | undefined,
-> = InferResult<OriginEntityMembershipResourceSchema, Fields>;
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
 export type UpdateOriginEntityMembershipResult<Fields extends UpdateOriginEntityMembershipFields | undefined = undefined> = | { success: true; data: InferUpdateOriginEntityMembershipResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -21102,7 +21103,7 @@ export type UpdateOriginEntityMembershipResult<Fields extends UpdateOriginEntity
 ;
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
@@ -21133,7 +21134,7 @@ export async function update_origin_entity_membership<Fields extends UpdateOrigi
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -21163,7 +21164,7 @@ export async function validate_update_origin_entity_membership(
 
 
 /**
- * Validate: Update an existing OriginEntityMembership
+ * Validate: Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  * @validation true
@@ -21193,7 +21194,7 @@ export async function validate_update_origin_entity_membership_channel(config: {
 
 
 /**
- * Update an existing OriginEntityMembership
+ * Update an existing OriginEntityStaffMembership
  *
  * @ashActionType :update
  */
