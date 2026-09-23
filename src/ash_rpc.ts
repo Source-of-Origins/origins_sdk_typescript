@@ -2910,6 +2910,143 @@ export async function set_own_password_channel(config: {
 }
 
 
+export type SetOwnPhoneInput = {
+  phone?: string | null;
+};
+
+export type SetOwnPhoneFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+export type InferSetOwnPhoneResult<
+  Fields extends SetOwnPhoneFields | undefined,
+> = InferResult<UserResourceSchema, Fields>;
+
+export type SetOwnPhoneResult<Fields extends SetOwnPhoneFields | undefined = undefined> = | { success: true; data: InferSetOwnPhoneResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing User
+ *
+ * @ashActionType :update
+ */
+export async function set_own_phone<Fields extends SetOwnPhoneFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input?: SetOwnPhoneInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<SetOwnPhoneResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "set_own_phone",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<SetOwnPhoneResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing User
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_set_own_phone(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input?: SetOwnPhoneInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "set_own_phone",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing User
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_set_own_phone_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input?: SetOwnPhoneInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "set_own_phone",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing User
+ *
+ * @ashActionType :update
+ */
+export async function set_own_phone_channel<Fields extends SetOwnPhoneFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input?: SetOwnPhoneInput;
+  fields?: Fields;
+  result_handler: (result: SetOwnPhoneResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<SetOwnPhoneResult<Fields>>(
+    config.channel,
+    {
+    action: "set_own_phone",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type SignInWithAppleTokenInput = {
   id_token: string;
   create_if_missing?: boolean;
@@ -12000,6 +12137,127 @@ export async function start_enrollment_channel<Fields extends StartEnrollmentFie
 }
 
 
+export type CancelMyMembershipInput = {
+  entitlement_id: UUID;
+};
+
+export type InferCancelMyMembershipResult = Record<string, any>;
+
+export type CancelMyMembershipResult = | { success: true; data: InferCancelMyMembershipResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ */
+export async function cancel_my_membership(
+  config: {
+  tenant?: string;
+  input: CancelMyMembershipInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CancelMyMembershipResult> {
+  const payload = {
+    action: "cancel_my_membership",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<CancelMyMembershipResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_cancel_my_membership(
+  config: {
+  tenant?: string;
+  input: CancelMyMembershipInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "cancel_my_membership",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_cancel_my_membership_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CancelMyMembershipInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "cancel_my_membership",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ */
+export async function cancel_my_membership_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CancelMyMembershipInput;
+  result_handler: (result: CancelMyMembershipResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CancelMyMembershipResult>(
+    config.channel,
+    {
+    action: "cancel_my_membership",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListMyEntitlementsFields = UnifiedFieldSelection<CourseEntitlementResourceSchema>[];
 export type InferListMyEntitlementsResult<
   Fields extends ListMyEntitlementsFields,
@@ -12117,6 +12375,127 @@ export async function list_my_entitlements_channel<Fields extends ListMyEntitlem
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type MyMembershipCancellationInput = {
+  entitlement_id: UUID;
+};
+
+export type InferMyMembershipCancellationResult = Record<string, any>;
+
+export type MyMembershipCancellationResult = | { success: true; data: InferMyMembershipCancellationResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ */
+export async function my_membership_cancellation(
+  config: {
+  tenant?: string;
+  input: MyMembershipCancellationInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<MyMembershipCancellationResult> {
+  const payload = {
+    action: "my_membership_cancellation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<MyMembershipCancellationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_my_membership_cancellation(
+  config: {
+  tenant?: string;
+  input: MyMembershipCancellationInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "my_membership_cancellation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_my_membership_cancellation_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: MyMembershipCancellationInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "my_membership_cancellation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on CourseEntitlement
+ *
+ * @ashActionType :action
+ */
+export async function my_membership_cancellation_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: MyMembershipCancellationInput;
+  result_handler: (result: MyMembershipCancellationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<MyMembershipCancellationResult>(
+    config.channel,
+    {
+    action: "my_membership_cancellation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
   },
     config.timeout,
     config

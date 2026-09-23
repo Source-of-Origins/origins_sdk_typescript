@@ -713,6 +713,42 @@
       }
     },
     {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Set, replace or clear the phone number on the caller's own account.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "set_own_phone",
+      "get": false,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "fields": "SetOwnPhoneFields",
+        "inferResult": "InferSetOwnPhoneResult",
+        "input": "SetOwnPhoneInput",
+        "result": "SetOwnPhoneResult"
+      },
+      "variantNames": {
+        "channel": "set_own_phone_channel",
+        "validation": "validate_set_own_phone"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "action",
       "deprecated": false,
       "description": "Verify an Apple id_token, resolve/create the user, and return a JWT (SDK entrypoint).",
@@ -3184,6 +3220,40 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Stop the reading learner's membership from renewing; access runs to the end of the paid period.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "cancel_my_membership",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CourseEntitlement",
+      "see": [],
+      "types": {
+        "input": "CancelMyMembershipInput",
+        "result": "CancelMyMembershipResult"
+      },
+      "variantNames": {
+        "channel": "cancel_my_membership_channel",
+        "validation": "validate_cancel_my_membership"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Every live entitlement the reading learner holds, app-level and plan-level.",
@@ -3211,6 +3281,40 @@
       "variantNames": {
         "channel": "list_my_entitlements_channel",
         "validation": "validate_list_my_entitlements"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The day a cancelled membership closes, or nothing when it still renews.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "my_membership_cancellation",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CourseEntitlement",
+      "see": [],
+      "types": {
+        "input": "MyMembershipCancellationInput",
+        "result": "MyMembershipCancellationResult"
+      },
+      "variantNames": {
+        "channel": "my_membership_cancellation_channel",
+        "validation": "validate_my_membership_cancellation"
       },
       "variants": {
         "channel": true,
@@ -9003,7 +9107,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-23",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
