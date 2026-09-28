@@ -51,13 +51,14 @@
       "pagination": {
         "get": false,
         "keyset": false,
-        "offset": false,
+        "offset": true,
         "required": false,
-        "supported": false
+        "supported": true
       },
       "resource": "ConsentRecord",
       "see": [],
       "types": {
+        "config": "ListConsentsForKindConfig",
         "fields": "ListConsentsForKindFields",
         "filterInput": "ConsentRecordFilterInput",
         "inferResult": "InferListConsentsForKindResult",

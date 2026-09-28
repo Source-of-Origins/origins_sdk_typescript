@@ -484,14 +484,44 @@ export async function list_consent_history_channel<Fields extends ListConsentHis
 export type ListConsentsForKindInput = {
   kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
   custom_name?: string | null;
+  from?: UtcDateTimeUsec | null;
+  to?: UtcDateTimeUsec | null;
 };
 
 export type ListConsentsForKindFields = UnifiedFieldSelection<ConsentRecordResourceSchema>[];
-export type InferListConsentsForKindResult<
-  Fields extends ListConsentsForKindFields,
-> = Array<InferResult<ConsentRecordResourceSchema, Fields>>;
 
-export type ListConsentsForKindResult<Fields extends ListConsentsForKindFields> = | { success: true; data: InferListConsentsForKindResult<Fields>; }
+
+export type InferListConsentsForKindResult<
+  Fields extends ListConsentsForKindFields | undefined,
+  Page extends ListConsentsForKindConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<ConsentRecordResourceSchema, Fields>>, {
+  results: Array<InferResult<ConsentRecordResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  offset: number;
+  count?: number | null;
+  type: "offset";
+}>;
+
+export type ListConsentsForKindConfig = {
+  tenant?: string;
+  input: ListConsentsForKindInput;
+  fields: ListConsentsForKindFields;
+  filter?: ConsentRecordFilterInput;
+  sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
+  page?: {
+    limit?: number;
+    offset?: number;
+    after?: never;
+    before?: never;
+    count?: boolean;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListConsentsForKindResult<Fields extends ListConsentsForKindFields, Page extends ListConsentsForKindConfig["page"] = undefined> = | { success: true; data: InferListConsentsForKindResult<Fields, Page>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -501,28 +531,20 @@ export type ListConsentsForKindResult<Fields extends ListConsentsForKindFields> 
  *
  * @ashActionType :read
  */
-export async function list_consents_for_kind<Fields extends ListConsentsForKindFields>(
-  config: {
-  tenant?: string;
-  input: ListConsentsForKindInput;
-  fields: Fields;
-  filter?: ConsentRecordFilterInput;
-  sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ListConsentsForKindResult<Fields>> {
+export async function list_consents_for_kind<Fields extends ListConsentsForKindFields, Config extends ListConsentsForKindConfig = ListConsentsForKindConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListConsentsForKindResult<Fields, Config["page"]>> {
   const payload = {
     action: "list_consents_for_kind",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   };
 
-  return executeActionRpcRequest<ListConsentsForKindResult<Fields>>(
+  return executeActionRpcRequest<ListConsentsForKindResult<Fields, Config["page"]>>(
     payload,
     config
   );
@@ -597,6 +619,13 @@ export async function list_consents_for_kind_channel<Fields extends ListConsents
   fields: Fields;
   filter?: ConsentRecordFilterInput;
   sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
+  page?: {
+    limit?: number;
+    offset?: number;
+    after?: never;
+    before?: never;
+    count?: boolean;
+  };
   result_handler: (result: ListConsentsForKindResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -610,7 +639,8 @@ export async function list_consents_for_kind_channel<Fields extends ListConsents
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   },
     config.timeout,
     config
