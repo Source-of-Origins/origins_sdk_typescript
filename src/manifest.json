@@ -41,6 +41,43 @@
     {
       "actionType": "read",
       "deprecated": false,
+      "description": "Everyone's newest answer on one box, one row each. Read `granted`.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_consents_for_kind",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "ConsentRecord",
+      "see": [],
+      "types": {
+        "fields": "ListConsentsForKindFields",
+        "filterInput": "ConsentRecordFilterInput",
+        "inferResult": "InferListConsentsForKindResult",
+        "input": "ListConsentsForKindInput",
+        "result": "ListConsentsForKindResult"
+      },
+      "variantNames": {
+        "channel": "list_consents_for_kind_channel",
+        "validation": "validate_list_consents_for_kind"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
       "description": "Read ConsentRecord records",
       "enableFilter": true,
       "enableSort": true,
@@ -210,6 +247,77 @@
       "variantNames": {
         "channel": "get_tenant_channel",
         "validation": "validate_get_tenant"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The yearly value of the active subscriptions on the tenant's connected account.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_tenant_arr",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "GetTenantArrFields",
+        "inferResult": "InferGetTenantArrResult",
+        "result": "GetTenantArrResult"
+      },
+      "variantNames": {
+        "channel": "get_tenant_arr_channel",
+        "validation": "validate_get_tenant_arr"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Money settled on the tenant's connected Stripe account over the last `days`.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_tenant_net_revenue",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "GetTenantNetRevenueFields",
+        "inferResult": "InferGetTenantNetRevenueResult",
+        "input": "GetTenantNetRevenueInput",
+        "result": "GetTenantNetRevenueResult"
+      },
+      "variantNames": {
+        "channel": "get_tenant_net_revenue_channel",
+        "validation": "validate_get_tenant_net_revenue"
       },
       "variants": {
         "channel": true,
@@ -457,6 +565,43 @@
       "variantNames": {
         "channel": "list_all_users_channel",
         "validation": "validate_list_all_users"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "People with a proven address: confirmed and not anonymous.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_confirmed_users",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": true,
+        "required": false,
+        "supported": true
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "config": "ListConfirmedUsersConfig",
+        "fields": "ListConfirmedUsersFields",
+        "filterInput": "UserFilterInput",
+        "inferResult": "InferListConfirmedUsersResult",
+        "result": "ListConfirmedUsersResult"
+      },
+      "variantNames": {
+        "channel": "list_confirmed_users_channel",
+        "validation": "validate_list_confirmed_users"
       },
       "variants": {
         "channel": true,
@@ -9107,7 +9252,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-23",
+  "generatedAt": "2026-09-28",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

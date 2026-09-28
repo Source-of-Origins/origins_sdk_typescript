@@ -11936,7 +11936,7 @@ export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "resource_snapshot", "resource_snapshot_hash", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "assessment", "program", "landing"] as const;
+export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "resource_snapshot", "resource_snapshot_hash", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "assessment_document", "program_document", "landing_document", "course_document"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;

@@ -481,6 +481,143 @@ export async function list_consent_history_channel<Fields extends ListConsentHis
 }
 
 
+export type ListConsentsForKindInput = {
+  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  custom_name?: string | null;
+};
+
+export type ListConsentsForKindFields = UnifiedFieldSelection<ConsentRecordResourceSchema>[];
+export type InferListConsentsForKindResult<
+  Fields extends ListConsentsForKindFields,
+> = Array<InferResult<ConsentRecordResourceSchema, Fields>>;
+
+export type ListConsentsForKindResult<Fields extends ListConsentsForKindFields> = | { success: true; data: InferListConsentsForKindResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read ConsentRecord records
+ *
+ * @ashActionType :read
+ */
+export async function list_consents_for_kind<Fields extends ListConsentsForKindFields>(
+  config: {
+  tenant?: string;
+  input: ListConsentsForKindInput;
+  fields: Fields;
+  filter?: ConsentRecordFilterInput;
+  sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListConsentsForKindResult<Fields>> {
+  const payload = {
+    action: "list_consents_for_kind",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<ListConsentsForKindResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read ConsentRecord records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_consents_for_kind(
+  config: {
+  tenant?: string;
+  input: ListConsentsForKindInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_consents_for_kind",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read ConsentRecord records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_consents_for_kind_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListConsentsForKindInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_consents_for_kind",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read ConsentRecord records
+ *
+ * @ashActionType :read
+ */
+export async function list_consents_for_kind_channel<Fields extends ListConsentsForKindFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListConsentsForKindInput;
+  fields: Fields;
+  filter?: ConsentRecordFilterInput;
+  sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
+  result_handler: (result: ListConsentsForKindResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListConsentsForKindResult<Fields>>(
+    config.channel,
+    {
+    action: "list_consents_for_kind",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListCurrentConsentsInput = {
   user_id: UUID;
 };
@@ -1119,6 +1256,252 @@ export async function get_tenant_channel<Fields extends GetTenantFields>(config:
     config.channel,
     {
     action: "get_tenant",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetTenantArrFields = UnifiedFieldSelection<{arr_cents: number | null, subscription_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "arr_cents" | "subscription_count" | "currency"}>[];
+
+export type InferGetTenantArrResult<
+  Fields extends GetTenantArrFields | undefined,
+> = InferResult<{arr_cents: number | null, subscription_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "arr_cents" | "subscription_count" | "currency"}, Fields>;
+
+export type GetTenantArrResult<Fields extends GetTenantArrFields | undefined = undefined> = | { success: true; data: InferGetTenantArrResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_arr<Fields extends GetTenantArrFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetTenantArrResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetTenantArrResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_arr(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_arr_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_arr_channel<Fields extends GetTenantArrFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  result_handler: (result: GetTenantArrResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetTenantArrResult<Fields>>(
+    config.channel,
+    {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetTenantNetRevenueInput = {
+  days: number;
+};
+
+export type GetTenantNetRevenueFields = UnifiedFieldSelection<{gross_cents: number | null, net_cents: number | null, fee_cents: number | null, transaction_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "gross_cents" | "net_cents" | "fee_cents" | "transaction_count" | "currency"}>[];
+
+export type InferGetTenantNetRevenueResult<
+  Fields extends GetTenantNetRevenueFields | undefined,
+> = InferResult<{gross_cents: number | null, net_cents: number | null, fee_cents: number | null, transaction_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "gross_cents" | "net_cents" | "fee_cents" | "transaction_count" | "currency"}, Fields>;
+
+export type GetTenantNetRevenueResult<Fields extends GetTenantNetRevenueFields | undefined = undefined> = | { success: true; data: InferGetTenantNetRevenueResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_net_revenue<Fields extends GetTenantNetRevenueFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetTenantNetRevenueResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetTenantNetRevenueResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_net_revenue(
+  config: {
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_net_revenue_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_net_revenue_channel<Fields extends GetTenantNetRevenueFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  fields: Fields;
+  result_handler: (result: GetTenantNetRevenueResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetTenantNetRevenueResult<Fields>>(
+    config.channel,
+    {
+    action: "get_tenant_net_revenue",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
@@ -1982,6 +2365,158 @@ export async function list_all_users_channel<Fields extends ListAllUsersFields>(
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListConfirmedUsersFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+
+export type InferListConfirmedUsersResult<
+  Fields extends ListConfirmedUsersFields | undefined,
+  Page extends ListConfirmedUsersConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<UserResourceSchema, Fields>>, {
+  results: Array<InferResult<UserResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  offset: number;
+  count?: number | null;
+  type: "offset";
+}>;
+
+export type ListConfirmedUsersConfig = {
+  tenant?: string;
+  fields: ListConfirmedUsersFields;
+  filter?: UserFilterInput;
+  sort?: SortString<UserSortField> | SortString<UserSortField>[];
+  page?: {
+    limit?: number;
+    offset?: number;
+    after?: never;
+    before?: never;
+    count?: boolean;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListConfirmedUsersResult<Fields extends ListConfirmedUsersFields, Page extends ListConfirmedUsersConfig["page"] = undefined> = | { success: true; data: InferListConfirmedUsersResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function list_confirmed_users<Fields extends ListConfirmedUsersFields, Config extends ListConfirmedUsersConfig = ListConfirmedUsersConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListConfirmedUsersResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListConfirmedUsersResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_confirmed_users(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_confirmed_users_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function list_confirmed_users_channel<Fields extends ListConfirmedUsersFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: UserFilterInput;
+  sort?: SortString<UserSortField> | SortString<UserSortField>[];
+  page?: {
+    limit?: number;
+    offset?: number;
+    after?: never;
+    before?: never;
+    count?: boolean;
+  };
+  result_handler: (result: ListConfirmedUsersResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListConfirmedUsersResult<Fields>>(
+    config.channel,
+    {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   },
     config.timeout,
     config
