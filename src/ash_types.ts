@@ -496,24 +496,21 @@ export type TurnStateInputSchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "change_summary" | "change_source_message_id" | "resource_snapshot" | "resource_snapshot_hash" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_format" | "generation_prompt" | "origin_entity_id" | "has_letta_agent" | "generation_status" | "generation_error";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "generation_format" | "generation_prompt" | "origin_entity_id" | "markdoc_content" | "resource_snapshot_hash" | "has_letta_agent" | "generation_status" | "generation_error";
   id: UUID;
   page_type: string;
   slug: string;
   is_published: boolean | null;
   meta: Record<string, any> | null;
-  change_summary: string | null;
-  change_source_message_id: string | null;
-  resource_snapshot: Record<string, any> | null;
-  resource_snapshot_hash: string | null;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   title: string | null;
   source: string;
-  markdoc_content: string;
   generation_format: string | null;
   generation_prompt: string | null;
   origin_entity_id: UUID;
+  markdoc_content: string;
+  resource_snapshot_hash: string | null;
   has_letta_agent: boolean | null;
   generation_status: string | null;
   generation_error: string | null;
@@ -529,57 +526,19 @@ export type AppResourceSchema = {
 
 export type AppAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "change_summary" | "change_source_message_id" | "resource_snapshot" | "resource_snapshot_hash" | "created_at" | "updated_at" | "title" | "source" | "markdoc_content" | "generation_format" | "generation_prompt" | "origin_entity_id";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "generation_format" | "generation_prompt" | "origin_entity_id";
   id: UUID;
   page_type: string;
   slug: string;
   is_published: boolean | null;
   meta: Record<string, any> | null;
-  change_summary: string | null;
-  change_source_message_id: string | null;
-  resource_snapshot: Record<string, any> | null;
-  resource_snapshot_hash: string | null;
   created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   title: string | null;
   source: string;
-  markdoc_content: string;
   generation_format: string | null;
   generation_prompt: string | null;
   origin_entity_id: UUID;
-};
-
-
-// AppVersion Schema
-export type AppVersionResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
-  id: UUID;
-  version_action_type: "create" | "destroy" | "update";
-  version_action_name: string;
-  change_summary: string | null;
-  change_source_message_id: string | null;
-  version_source_id: UUID;
-  changes: Record<string, any> | null;
-  version_inserted_at: UtcDateTimeUsec;
-  version_updated_at: UtcDateTimeUsec;
-  version_source: { __type: "Relationship"; __resource: AppResourceSchema; };
-};
-
-
-
-export type AppVersionAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
-  id: UUID;
-  version_action_type: "create" | "destroy" | "update";
-  version_action_name: string;
-  change_summary: string | null;
-  change_source_message_id: string | null;
-  version_source_id: UUID;
-  changes: Record<string, any> | null;
-  version_inserted_at: UtcDateTimeUsec;
-  version_updated_at: UtcDateTimeUsec;
 };
 
 
@@ -1560,6 +1519,38 @@ export type CourseEntitlementAttributesOnlySchema = {
 };
 
 
+// AppVersion Schema
+export type AppVersionResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
+  id: UUID;
+  version_action_type: "create" | "destroy" | "update";
+  version_action_name: string;
+  change_summary: string | null;
+  change_source_message_id: string | null;
+  version_source_id: UUID;
+  changes: Record<string, any> | null;
+  version_inserted_at: UtcDateTimeUsec;
+  version_updated_at: UtcDateTimeUsec;
+};
+
+
+
+export type AppVersionAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
+  id: UUID;
+  version_action_type: "create" | "destroy" | "update";
+  version_action_name: string;
+  change_summary: string | null;
+  change_source_message_id: string | null;
+  version_source_id: UUID;
+  changes: Record<string, any> | null;
+  version_inserted_at: UtcDateTimeUsec;
+  version_updated_at: UtcDateTimeUsec;
+};
+
+
 // OriginsAppsEdge Schema
 export type OriginsAppsEdgeResourceSchema = {
   __type: "Resource";
@@ -1734,20 +1725,24 @@ export type OriginsAppsOptionInputSchema = {
 // Plan Schema
 export type PlanResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "retired_at" | "scope";
+  __primitiveFields: "id" | "name" | "stripe_price_id" | "retired_at" | "scope" | "sale_count";
   id: UUID;
   name: string;
+  stripe_price_id: string;
   retired_at: UtcDateTimeUsec | null;
   scope: "every_app" | "linked_apps";
+  sale_count: number;
+  apps: { __type: "Relationship"; __array: true; __resource: AppResourceSchema; };
 };
 
 
 
 export type PlanAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "retired_at" | "scope";
+  __primitiveFields: "id" | "name" | "stripe_price_id" | "retired_at" | "scope";
   id: UUID;
   name: string;
+  stripe_price_id: string;
   retired_at: UtcDateTimeUsec | null;
   scope: "every_app" | "linked_apps";
 };
@@ -4988,34 +4983,6 @@ export type AppFilterInput = {
     is_nil?: boolean;
   };
 
-  change_summary?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  change_source_message_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  resource_snapshot?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  resource_snapshot_hash?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
@@ -5049,12 +5016,6 @@ export type AppFilterInput = {
     in?: Array<string>;
   };
 
-  markdoc_content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
   generation_format?: {
     eq?: string;
     not_eq?: string;
@@ -5073,6 +5034,19 @@ export type AppFilterInput = {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+  };
+
+  markdoc_content?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  resource_snapshot_hash?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
   };
 
   authoring_document?: {
@@ -5132,80 +5106,6 @@ export type AppFilterInput = {
 
 
   origin_entity?: OriginEntityFilterInput;
-
-};
-export type AppVersionFilterInput = {
-  and?: Array<AppVersionFilterInput>;
-  or?: Array<AppVersionFilterInput>;
-  not?: Array<AppVersionFilterInput>;
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  version_action_type?: {
-    eq?: "create" | "destroy" | "update";
-    not_eq?: "create" | "destroy" | "update";
-    in?: Array<"create" | "destroy" | "update">;
-  };
-
-  version_action_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  change_summary?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  change_source_message_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  version_source_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  changes?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  version_inserted_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  version_updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-
-  version_source?: AppFilterInput;
 
 };
 export type AssessmentGraphFilterInput = {
@@ -6834,6 +6734,79 @@ export type CourseEntitlementFilterInput = {
   plan?: PlanFilterInput;
 
 };
+export type AppVersionFilterInput = {
+  and?: Array<AppVersionFilterInput>;
+  or?: Array<AppVersionFilterInput>;
+  not?: Array<AppVersionFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  version_action_type?: {
+    eq?: "create" | "destroy" | "update";
+    not_eq?: "create" | "destroy" | "update";
+    in?: Array<"create" | "destroy" | "update">;
+  };
+
+  version_action_name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  change_summary?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  change_source_message_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+  version_source_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  changes?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    is_nil?: boolean;
+  };
+
+  version_inserted_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  version_updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+
+
+};
 export type OriginsAppsEdgeFilterInput = {
   and?: Array<OriginsAppsEdgeFilterInput>;
   or?: Array<OriginsAppsEdgeFilterInput>;
@@ -7118,6 +7091,12 @@ export type PlanFilterInput = {
     in?: Array<string>;
   };
 
+  stripe_price_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
   retired_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
@@ -7135,7 +7114,18 @@ export type PlanFilterInput = {
     in?: Array<"every_app" | "linked_apps">;
   };
 
+  sale_count?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+    is_nil?: boolean;
+  };
 
+  apps?: AppFilterInput;
 
 };
 export type ProgramTestFilterInput = {
@@ -11936,11 +11926,8 @@ export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "resource_snapshot", "resource_snapshot_hash", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "assessment_document", "program_document", "landing_document", "course_document"] as const;
+export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "resource_snapshot_hash", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "document"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
-
-export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
-export type AppVersionFilterField = (typeof appVersionFilterFields)[number];
 
 export const assessmentGraphFilterFields = ["start_node", "nodes", "edges"] as const;
 export type AssessmentGraphFilterField = (typeof assessmentGraphFilterFields)[number];
@@ -12020,6 +12007,9 @@ export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilt
 export const courseEntitlementFilterFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id", "plan"] as const;
 export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
 
+export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
+export type AppVersionFilterField = (typeof appVersionFilterFields)[number];
+
 export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
 export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[number];
 
@@ -12032,7 +12022,7 @@ export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[nu
 export const originsAppsOptionFilterFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
-export const planFilterFields = ["id", "name", "retired_at", "scope"] as const;
+export const planFilterFields = ["id", "name", "stripe_price_id", "retired_at", "scope", "sale_count", "apps"] as const;
 export type PlanFilterField = (typeof planFilterFields)[number];
 
 export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user"] as const;
@@ -12228,11 +12218,8 @@ export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[nu
 export const turnStateSortFields = ["running", "stale_at"] as const;
 export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
-export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "change_summary", "change_source_message_id", "resource_snapshot", "resource_snapshot_hash", "created_at", "updated_at", "title", "source", "markdoc_content", "generation_format", "generation_prompt", "origin_entity_id", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
+export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "resource_snapshot_hash", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
 export type AppSortField = (typeof appSortFields)[number];
-
-export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
-export type AppVersionSortField = (typeof appVersionSortFields)[number];
 
 export const assessmentGraphSortFields = ["start_node", "nodes", "edges"] as const;
 export type AssessmentGraphSortField = (typeof assessmentGraphSortFields)[number];
@@ -12312,6 +12299,9 @@ export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFi
 export const courseEntitlementSortFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id"] as const;
 export type CourseEntitlementSortField = (typeof courseEntitlementSortFields)[number];
 
+export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
+export type AppVersionSortField = (typeof appVersionSortFields)[number];
+
 export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
 export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number];
 
@@ -12324,7 +12314,7 @@ export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number
 export const originsAppsOptionSortFields = ["value", "label", "segment", "route"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
 
-export const planSortFields = ["id", "name", "retired_at", "scope"] as const;
+export const planSortFields = ["id", "name", "stripe_price_id", "retired_at", "scope", "sale_count"] as const;
 export type PlanSortField = (typeof planSortFields)[number];
 
 export const programTestSortFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id"] as const;

@@ -220,6 +220,78 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Create a Price, and the Product it sells, on the tenant's connected Stripe\naccount. A nil `interval` makes a one-time price.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_tenant_stripe_price",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "CreateTenantStripePriceFields",
+        "inferResult": "InferCreateTenantStripePriceResult",
+        "input": "CreateTenantStripePriceInput",
+        "result": "CreateTenantStripePriceResult"
+      },
+      "variantNames": {
+        "channel": "create_tenant_stripe_price_channel",
+        "validation": "validate_create_tenant_stripe_price"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Minutes watched per lesson over a window, most-watched first, read from\nPostHog. A minute is one progress mark, which the apps raise once a minute\nwhile someone is watching.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_lesson_watch_time",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "GetLessonWatchTimeFields",
+        "inferResult": "InferGetLessonWatchTimeResult",
+        "input": "GetLessonWatchTimeInput",
+        "result": "GetLessonWatchTimeResult"
+      },
+      "variantNames": {
+        "channel": "get_lesson_watch_time_channel",
+        "validation": "validate_get_lesson_watch_time"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read Tenant records",
@@ -391,6 +463,41 @@
       "variantNames": {
         "channel": "list_my_tenants_channel",
         "validation": "validate_list_my_tenants"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The Prices on the tenant's connected Stripe account, newest first.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_tenant_stripe_prices",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "ListTenantStripePricesFields",
+        "inferResult": "InferListTenantStripePricesResult",
+        "result": "ListTenantStripePricesResult"
+      },
+      "variantNames": {
+        "channel": "list_tenant_stripe_prices_channel",
+        "validation": "validate_list_tenant_stripe_prices"
       },
       "variants": {
         "channel": true,
@@ -2508,7 +2615,7 @@
     {
       "actionType": "update",
       "deprecated": false,
-      "description": "Restore content from a paper trail version snapshot",
+      "description": "Restore content from a document version snapshot",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "restore_app_version",
@@ -2638,43 +2745,6 @@
       "variantNames": {
         "channel": "update_app_channel",
         "validation": "validate_update_app"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read Version records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_app_versions",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "Version",
-      "see": [],
-      "types": {
-        "fields": "ListAppVersionsFields",
-        "filterInput": "AppVersionFilterInput",
-        "inferResult": "InferListAppVersionsResult",
-        "input": "ListAppVersionsInput",
-        "result": "ListAppVersionsResult"
-      },
-      "variantNames": {
-        "channel": "list_app_versions_channel",
-        "validation": "validate_list_app_versions"
       },
       "variants": {
         "channel": true,
@@ -3472,6 +3542,149 @@
     {
       "actionType": "read",
       "deprecated": false,
+      "description": "Read Version records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_app_versions",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Version",
+      "see": [],
+      "types": {
+        "fields": "ListAppVersionsFields",
+        "filterInput": "AppVersionFilterInput",
+        "inferResult": "InferListAppVersionsResult",
+        "input": "ListAppVersionsInput",
+        "result": "ListAppVersionsResult"
+      },
+      "variantNames": {
+        "channel": "list_app_versions_channel",
+        "validation": "validate_list_app_versions"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a new Plan",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_plan",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Plan",
+      "see": [],
+      "types": {
+        "fields": "CreatePlanFields",
+        "inferResult": "InferCreatePlanResult",
+        "input": "CreatePlanInput",
+        "result": "CreatePlanResult"
+      },
+      "variantNames": {
+        "channel": "create_plan_channel",
+        "validation": "validate_create_plan"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "destroy",
+      "deprecated": false,
+      "description": "Delete an offer nobody has bought. A sold offer is retired instead.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "destroy_plan",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Plan",
+      "see": [],
+      "types": {
+        "result": "DestroyPlanResult"
+      },
+      "variantNames": {
+        "channel": "destroy_plan_channel",
+        "validation": "validate_destroy_plan"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read Plan records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_plans",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": true,
+        "offset": true,
+        "required": false,
+        "supported": true
+      },
+      "resource": "Plan",
+      "see": [],
+      "types": {
+        "config": "ListPlansConfig",
+        "fields": "ListPlansFields",
+        "filterInput": "PlanFilterInput",
+        "inferResult": "InferListPlansResult",
+        "result": "ListPlansResult"
+      },
+      "variantNames": {
+        "channel": "list_plans_channel",
+        "validation": "validate_list_plans"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
       "description": "The plans still on sale that unlock a given app.",
       "enableFilter": true,
       "enableSort": true,
@@ -3498,6 +3711,77 @@
       "variantNames": {
         "channel": "list_sellable_plans_for_app_channel",
         "validation": "validate_list_sellable_plans_for_app"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The programs and courses an offer in the pinned tenant can unlock.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_unlockable_apps",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Plan",
+      "see": [],
+      "types": {
+        "fields": "ListUnlockableAppsFields",
+        "inferResult": "InferListUnlockableAppsResult",
+        "result": "ListUnlockableAppsResult"
+      },
+      "variantNames": {
+        "channel": "list_unlockable_apps_channel",
+        "validation": "validate_list_unlockable_apps"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Edit the offer. People who already bought it keep what they were granted.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "update_plan",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Plan",
+      "see": [],
+      "types": {
+        "fields": "UpdatePlanFields",
+        "inferResult": "InferUpdatePlanResult",
+        "input": "UpdatePlanInput",
+        "result": "UpdatePlanResult"
+      },
+      "variantNames": {
+        "channel": "update_plan_channel",
+        "validation": "validate_update_plan"
       },
       "variants": {
         "channel": true,
@@ -9253,7 +9537,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-28",
+  "generatedAt": "2026-09-29",
   "typedControllerRoutes": [],
   "version": "1.0"
 }
