@@ -3542,6 +3542,43 @@
     {
       "actionType": "read",
       "deprecated": false,
+      "description": "Read Block records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_blocks",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Block",
+      "see": [],
+      "types": {
+        "fields": "ListBlocksFields",
+        "filterInput": "DocumentBlockFilterInput",
+        "inferResult": "InferListBlocksResult",
+        "input": "ListBlocksInput",
+        "result": "ListBlocksResult"
+      },
+      "variantNames": {
+        "channel": "list_blocks_channel",
+        "validation": "validate_list_blocks"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
       "description": "Read Version records",
       "enableFilter": true,
       "enableSort": true,
@@ -3860,17 +3897,17 @@
       }
     },
     {
-      "actionType": "action",
+      "actionType": "read",
       "deprecated": false,
-      "description": "Execute generic action on ProgramTest",
+      "description": "Read ProgramTest records",
       "enableFilter": true,
       "enableSort": true,
-      "functionName": "get_program_memory",
-      "get": false,
+      "functionName": "get_program_test",
+      "get": true,
       "input": "required",
       "namespace": null,
       "pagination": {
-        "get": false,
+        "get": true,
         "keyset": false,
         "offset": false,
         "required": false,
@@ -3879,12 +3916,15 @@
       "resource": "ProgramTest",
       "see": [],
       "types": {
-        "input": "GetProgramMemoryInput",
-        "result": "GetProgramMemoryResult"
+        "fields": "GetProgramTestFields",
+        "filterInput": "ProgramTestFilterInput",
+        "inferResult": "InferGetProgramTestResult",
+        "input": "GetProgramTestInput",
+        "result": "GetProgramTestResult"
       },
       "variantNames": {
-        "channel": "get_program_memory_channel",
-        "validation": "validate_get_program_memory"
+        "channel": "get_program_test_channel",
+        "validation": "validate_get_program_test"
       },
       "variants": {
         "channel": true,
@@ -7141,6 +7181,75 @@
       }
     },
     {
+      "actionType": "destroy",
+      "deprecated": false,
+      "description": "Delete a Block",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "forget_agent_memory",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Block",
+      "see": [],
+      "types": {
+        "result": "ForgetAgentMemoryResult"
+      },
+      "variantNames": {
+        "channel": "forget_agent_memory_channel",
+        "validation": "validate_forget_agent_memory"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing Block",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "update_agent_memory",
+      "get": false,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Block",
+      "see": [],
+      "types": {
+        "fields": "UpdateAgentMemoryFields",
+        "inferResult": "InferUpdateAgentMemoryResult",
+        "input": "UpdateAgentMemoryInput",
+        "result": "UpdateAgentMemoryResult"
+      },
+      "variantNames": {
+        "channel": "update_agent_memory_channel",
+        "validation": "validate_update_agent_memory"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read DriveConnection records",
@@ -9537,7 +9646,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-29",
+  "generatedAt": "2026-09-30",
   "typedControllerRoutes": [],
   "version": "1.0"
 }

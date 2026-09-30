@@ -376,6 +376,7 @@ export type PublicConversationResourceSchema = {
   root_conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
   threads: { __type: "Relationship"; __array: true; __resource: PublicConversationResourceSchema; };
   messages: { __type: "Relationship"; __array: true; __resource: PublicMessageResourceSchema; };
+  memories: { __type: "Relationship"; __array: true; __resource: AgentMemoryResourceSchema; };
 };
 
 
@@ -496,7 +497,7 @@ export type TurnStateInputSchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "generation_format" | "generation_prompt" | "origin_entity_id" | "markdoc_content" | "resource_snapshot_hash" | "has_letta_agent" | "generation_status" | "generation_error";
+  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "generation_format" | "generation_prompt" | "origin_entity_id" | "markdoc_content" | "has_letta_agent" | "generation_status" | "generation_error";
   id: UUID;
   page_type: string;
   slug: string;
@@ -510,7 +511,6 @@ export type AppResourceSchema = {
   generation_prompt: string | null;
   origin_entity_id: UUID;
   markdoc_content: string;
-  resource_snapshot_hash: string | null;
   has_letta_agent: boolean | null;
   generation_status: string | null;
   generation_error: string | null;
@@ -1519,6 +1519,38 @@ export type CourseEntitlementAttributesOnlySchema = {
 };
 
 
+// DocumentBlock Schema
+export type DocumentBlockResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "record_id" | "document_id" | "parent_record_id" | "position" | "block_type" | "payload" | "created_at" | "updated_at";
+  record_id: UUID;
+  document_id: UUID;
+  parent_record_id: UUID | null;
+  position: number;
+  block_type: string;
+  payload: Record<string, any>;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+  parent: { __type: "Relationship"; __resource: DocumentBlockResourceSchema | null; };
+  children: { __type: "Relationship"; __array: true; __resource: DocumentBlockResourceSchema; };
+};
+
+
+
+export type DocumentBlockAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "record_id" | "document_id" | "parent_record_id" | "position" | "block_type" | "payload" | "created_at" | "updated_at";
+  record_id: UUID;
+  document_id: UUID;
+  parent_record_id: UUID | null;
+  position: number;
+  block_type: string;
+  payload: Record<string, any>;
+  created_at: UtcDateTimeUsec;
+  updated_at: UtcDateTimeUsec;
+};
+
+
 // AppVersion Schema
 export type AppVersionResourceSchema = {
   __type: "Resource";
@@ -1761,6 +1793,7 @@ export type ProgramTestResourceSchema = {
   test_user_id: UUID | null;
   program: { __type: "Relationship"; __resource: AppResourceSchema; };
   test_user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
+  memories: { __type: "Relationship"; __array: true; __resource: AgentMemoryResourceSchema; };
 };
 
 
@@ -3293,6 +3326,26 @@ export type InterviewTurnAttributesOnlySchema = {
 };
 
 
+// AgentMemory Schema
+export type AgentMemoryResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "label" | "value";
+  id: string;
+  label: string;
+  value: string | null;
+};
+
+
+
+export type AgentMemoryAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "label" | "value";
+  id: string;
+  label: string;
+  value: string | null;
+};
+
+
 // DriveConnection Schema
 export type DriveConnectionResourceSchema = {
   __type: "Resource";
@@ -4768,6 +4821,8 @@ export type PublicConversationFilterInput = {
 
   messages?: PublicMessageFilterInput;
 
+  memories?: AgentMemoryFilterInput;
+
 };
 export type PublicMessageFilterInput = {
   and?: Array<PublicMessageFilterInput>;
@@ -5040,13 +5095,6 @@ export type AppFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  resource_snapshot_hash?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
   };
 
   authoring_document?: {
@@ -6734,6 +6782,78 @@ export type CourseEntitlementFilterInput = {
   plan?: PlanFilterInput;
 
 };
+export type DocumentBlockFilterInput = {
+  and?: Array<DocumentBlockFilterInput>;
+  or?: Array<DocumentBlockFilterInput>;
+  not?: Array<DocumentBlockFilterInput>;
+
+  record_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  document_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  parent_record_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    is_nil?: boolean;
+  };
+
+  position?: {
+    eq?: number;
+    not_eq?: number;
+    greater_than?: number;
+    greater_than_or_equal?: number;
+    less_than?: number;
+    less_than_or_equal?: number;
+    in?: Array<number>;
+  };
+
+  block_type?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  payload?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+    less_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+  };
+
+
+  parent?: DocumentBlockFilterInput;
+
+  children?: DocumentBlockFilterInput;
+
+};
 export type AppVersionFilterInput = {
   and?: Array<AppVersionFilterInput>;
   or?: Array<AppVersionFilterInput>;
@@ -7189,6 +7309,8 @@ export type ProgramTestFilterInput = {
   program?: AppFilterInput;
 
   test_user?: UserFilterInput;
+
+  memories?: AgentMemoryFilterInput;
 
 };
 export type OriginsAppsSliderFilterInput = {
@@ -10561,6 +10683,33 @@ export type InterviewTurnFilterInput = {
   interview_session?: InterviewSessionFilterInput;
 
 };
+export type AgentMemoryFilterInput = {
+  and?: Array<AgentMemoryFilterInput>;
+  or?: Array<AgentMemoryFilterInput>;
+  not?: Array<AgentMemoryFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+  };
+
+  value?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    is_nil?: boolean;
+  };
+
+
+
+};
 export type DriveConnectionFilterInput = {
   and?: Array<DriveConnectionFilterInput>;
   or?: Array<DriveConnectionFilterInput>;
@@ -11914,7 +12063,7 @@ export type ChatReplyFilterField = (typeof chatReplyFilterFields)[number];
 export const chatSuggestionsFilterFields = ["suggestions"] as const;
 export type ChatSuggestionsFilterField = (typeof chatSuggestionsFilterFields)[number];
 
-export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "turn_state_type", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages"] as const;
+export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "turn_state_type", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages", "memories"] as const;
 export type PublicConversationFilterField = (typeof publicConversationFilterFields)[number];
 
 export const publicMessageFilterFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id", "conversation"] as const;
@@ -11926,7 +12075,7 @@ export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "resource_snapshot_hash", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "document"] as const;
+export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "document"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const assessmentGraphFilterFields = ["start_node", "nodes", "edges"] as const;
@@ -12007,6 +12156,9 @@ export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilt
 export const courseEntitlementFilterFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id", "plan"] as const;
 export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
 
+export const documentBlockFilterFields = ["record_id", "document_id", "parent_record_id", "position", "block_type", "payload", "created_at", "updated_at", "document", "parent", "children"] as const;
+export type DocumentBlockFilterField = (typeof documentBlockFilterFields)[number];
+
 export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
 export type AppVersionFilterField = (typeof appVersionFilterFields)[number];
 
@@ -12025,7 +12177,7 @@ export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields
 export const planFilterFields = ["id", "name", "stripe_price_id", "retired_at", "scope", "sale_count", "apps"] as const;
 export type PlanFilterField = (typeof planFilterFields)[number];
 
-export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user"] as const;
+export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user", "memories"] as const;
 export type ProgramTestFilterField = (typeof programTestFilterFields)[number];
 
 export const originsAppsSliderFilterFields = ["id", "label", "min", "max", "low_label", "high_label"] as const;
@@ -12127,6 +12279,9 @@ export type InterviewSessionFilterField = (typeof interviewSessionFilterFields)[
 export const interviewTurnFilterFields = ["id", "turn_number", "question", "answer", "metadata", "created_at", "updated_at", "interview_session_id", "interview_session"] as const;
 export type InterviewTurnFilterField = (typeof interviewTurnFilterFields)[number];
 
+export const agentMemoryFilterFields = ["id", "label", "value"] as const;
+export type AgentMemoryFilterField = (typeof agentMemoryFilterFields)[number];
+
 export const driveConnectionFilterFields = ["id", "token_expires_at", "status", "connected_by_user_id", "google_email", "created_at", "updated_at", "entity_profile_id", "entity_profile"] as const;
 export type DriveConnectionFilterField = (typeof driveConnectionFilterFields)[number];
 
@@ -12218,7 +12373,7 @@ export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[nu
 export const turnStateSortFields = ["running", "stale_at"] as const;
 export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
-export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "resource_snapshot_hash", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
+export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const assessmentGraphSortFields = ["start_node", "nodes", "edges"] as const;
@@ -12298,6 +12453,9 @@ export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFi
 
 export const courseEntitlementSortFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id"] as const;
 export type CourseEntitlementSortField = (typeof courseEntitlementSortFields)[number];
+
+export const documentBlockSortFields = ["record_id", "document_id", "parent_record_id", "position", "block_type", "payload", "created_at", "updated_at"] as const;
+export type DocumentBlockSortField = (typeof documentBlockSortFields)[number];
 
 export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
 export type AppVersionSortField = (typeof appVersionSortFields)[number];
@@ -12418,6 +12576,9 @@ export type InterviewSessionSortField = (typeof interviewSessionSortFields)[numb
 
 export const interviewTurnSortFields = ["id", "turn_number", "question", "answer", "metadata", "created_at", "updated_at", "interview_session_id"] as const;
 export type InterviewTurnSortField = (typeof interviewTurnSortFields)[number];
+
+export const agentMemorySortFields = ["id", "label", "value"] as const;
+export type AgentMemorySortField = (typeof agentMemorySortFields)[number];
 
 export const driveConnectionSortFields = ["id", "token_expires_at", "status", "connected_by_user_id", "google_email", "created_at", "updated_at", "entity_profile_id"] as const;
 export type DriveConnectionSortField = (typeof driveConnectionSortFields)[number];

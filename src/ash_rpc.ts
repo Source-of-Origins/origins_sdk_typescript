@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, ConsentRecordFilterInput, ConsentRecordResourceSchema, ConsentRecordSortField, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityResourceSchema, OriginEntitySortField, OriginEntityStaffMembershipFilterInput, OriginEntityStaffMembershipResourceSchema, OriginEntityStaffMembershipSortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, TurnStateResourceSchema, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AgentMemoryResourceSchema, AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, ConsentRecordFilterInput, ConsentRecordResourceSchema, ConsentRecordSortField, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DocumentBlockFilterInput, DocumentBlockResourceSchema, DocumentBlockSortField, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityResourceSchema, OriginEntitySortField, OriginEntityStaffMembershipFilterInput, OriginEntityStaffMembershipResourceSchema, OriginEntityStaffMembershipSortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, TurnStateResourceSchema, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -13311,6 +13311,143 @@ export async function my_membership_cancellation_channel(config: {
 }
 
 
+export type ListBlocksInput = {
+  app_id: UUID;
+  block_type?: string | null;
+};
+
+export type ListBlocksFields = UnifiedFieldSelection<DocumentBlockResourceSchema>[];
+export type InferListBlocksResult<
+  Fields extends ListBlocksFields,
+> = Array<InferResult<DocumentBlockResourceSchema, Fields>>;
+
+export type ListBlocksResult<Fields extends ListBlocksFields> = | { success: true; data: InferListBlocksResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read Block records
+ *
+ * @ashActionType :read
+ */
+export async function list_blocks<Fields extends ListBlocksFields>(
+  config: {
+  tenant?: string;
+  input: ListBlocksInput;
+  fields: Fields;
+  filter?: DocumentBlockFilterInput;
+  sort?: SortString<DocumentBlockSortField> | SortString<DocumentBlockSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListBlocksResult<Fields>> {
+  const payload = {
+    action: "list_blocks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<ListBlocksResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Block records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_blocks(
+  config: {
+  tenant?: string;
+  input: ListBlocksInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_blocks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Block records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_blocks_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListBlocksInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_blocks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read Block records
+ *
+ * @ashActionType :read
+ */
+export async function list_blocks_channel<Fields extends ListBlocksFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListBlocksInput;
+  fields: Fields;
+  filter?: DocumentBlockFilterInput;
+  sort?: SortString<DocumentBlockSortField> | SortString<DocumentBlockSortField>[];
+  result_handler: (result: ListBlocksResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListBlocksResult<Fields>>(
+    config.channel,
+    {
+    action: "list_blocks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListAppVersionsInput = {
   app_id: UUID;
 };
@@ -14502,38 +14639,43 @@ export async function destroy_program_test_channel(config: {
 }
 
 
-export type GetProgramMemoryInput = {
-  test_id: UUID;
+export type GetProgramTestInput = {
+  id: UUID;
 };
 
-export type InferGetProgramMemoryResult = Record<string, any>;
+export type GetProgramTestFields = UnifiedFieldSelection<ProgramTestResourceSchema>[];
+export type InferGetProgramTestResult<
+  Fields extends GetProgramTestFields,
+> = InferResult<ProgramTestResourceSchema, Fields>;
 
-export type GetProgramMemoryResult = | { success: true; data: InferGetProgramMemoryResult; }
+export type GetProgramTestResult<Fields extends GetProgramTestFields> = | { success: true; data: InferGetProgramTestResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
 
 /**
- * Execute generic action on ProgramTest
+ * Read ProgramTest records
  *
- * @ashActionType :action
+ * @ashActionType :read
  */
-export async function get_program_memory(
+export async function get_program_test<Fields extends GetProgramTestFields>(
   config: {
   tenant?: string;
-  input: GetProgramMemoryInput;
+  input: GetProgramTestInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetProgramMemoryResult> {
+): Promise<GetProgramTestResult<Fields>> {
   const payload = {
-    action: "get_program_memory",
+    action: "get_program_test",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GetProgramMemoryResult>(
+  return executeActionRpcRequest<GetProgramTestResult<Fields>>(
     payload,
     config
   );
@@ -14541,22 +14683,22 @@ export async function get_program_memory(
 
 
 /**
- * Validate: Execute generic action on ProgramTest
+ * Validate: Read ProgramTest records
  *
- * @ashActionType :action
+ * @ashActionType :read
  * @validation true
  */
-export async function validate_get_program_memory(
+export async function validate_get_program_test(
   config: {
   tenant?: string;
-  input: GetProgramMemoryInput;
+  input: GetProgramTestInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "get_program_memory",
+    action: "get_program_test",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
@@ -14569,15 +14711,15 @@ export async function validate_get_program_memory(
 
 
 /**
- * Validate: Execute generic action on ProgramTest
+ * Validate: Read ProgramTest records
  *
- * @ashActionType :action
+ * @ashActionType :read
  * @validation true
  */
-export async function validate_get_program_memory_channel(config: {
+export async function validate_get_program_test_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: GetProgramMemoryInput;
+  input: GetProgramTestInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -14586,7 +14728,7 @@ export async function validate_get_program_memory_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "get_program_memory",
+    action: "get_program_test",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -14597,25 +14739,27 @@ export async function validate_get_program_memory_channel(config: {
 
 
 /**
- * Execute generic action on ProgramTest
+ * Read ProgramTest records
  *
- * @ashActionType :action
+ * @ashActionType :read
  */
-export async function get_program_memory_channel(config: {
+export async function get_program_test_channel<Fields extends GetProgramTestFields>(config: {
   channel: Channel;
   tenant?: string;
-  input: GetProgramMemoryInput;
-  result_handler: (result: GetProgramMemoryResult) => void;
+  input: GetProgramTestInput;
+  fields: Fields;
+  result_handler: (result: GetProgramTestResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetProgramMemoryResult>(
+  executeActionChannelPush<GetProgramTestResult<Fields>>(
     config.channel,
     {
-    action: "get_program_memory",
+    action: "get_program_test",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -27143,6 +27287,258 @@ export async function create_interview_turn_channel<Fields extends CreateIntervi
     {
     action: "create_interview_turn",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ForgetAgentMemoryResult = | { success: true; data: {}; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Delete a Block
+ *
+ * @ashActionType :destroy
+ */
+export async function forget_agent_memory(
+  config: {
+  tenant?: string;
+  identity: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ForgetAgentMemoryResult> {
+  const payload = {
+    action: "forget_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeActionRpcRequest<ForgetAgentMemoryResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Delete a Block
+ *
+ * @ashActionType :destroy
+ * @validation true
+ */
+export async function validate_forget_agent_memory(
+  config: {
+  tenant?: string;
+  identity: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "forget_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Delete a Block
+ *
+ * @ashActionType :destroy
+ * @validation true
+ */
+export async function validate_forget_agent_memory_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "forget_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Delete a Block
+ *
+ * @ashActionType :destroy
+ */
+export async function forget_agent_memory_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: string;
+  result_handler: (result: ForgetAgentMemoryResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ForgetAgentMemoryResult>(
+    config.channel,
+    {
+    action: "forget_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type UpdateAgentMemoryInput = {
+  value?: string | null;
+};
+
+export type UpdateAgentMemoryFields = UnifiedFieldSelection<AgentMemoryResourceSchema>[];
+
+export type InferUpdateAgentMemoryResult<
+  Fields extends UpdateAgentMemoryFields | undefined,
+> = InferResult<AgentMemoryResourceSchema, Fields>;
+
+export type UpdateAgentMemoryResult<Fields extends UpdateAgentMemoryFields | undefined = undefined> = | { success: true; data: InferUpdateAgentMemoryResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing Block
+ *
+ * @ashActionType :update
+ */
+export async function update_agent_memory<Fields extends UpdateAgentMemoryFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: string;
+  input?: UpdateAgentMemoryInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<UpdateAgentMemoryResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "update_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<UpdateAgentMemoryResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing Block
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_update_agent_memory(
+  config: {
+  tenant?: string;
+  identity: string;
+  input?: UpdateAgentMemoryInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "update_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing Block
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_update_agent_memory_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: string;
+  input?: UpdateAgentMemoryInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "update_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing Block
+ *
+ * @ashActionType :update
+ */
+export async function update_agent_memory_channel<Fields extends UpdateAgentMemoryFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: string;
+  input?: UpdateAgentMemoryInput;
+  fields?: Fields;
+  result_handler: (result: UpdateAgentMemoryResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<UpdateAgentMemoryResult<Fields>>(
+    config.channel,
+    {
+    action: "update_agent_memory",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },
