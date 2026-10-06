@@ -13,11 +13,11 @@ export type * from "./ash_types";
  */
 export interface ActionConfig {
   // Request data
-  input?: Record<string, any>;
+  input?: Record<string, any> | undefined;
   identity?: any;
-  fields?: Array<string | Record<string, any>>; // Field selection
-  filter?: Record<string, any>; // Filter options (for reads)
-  sort?: string | string[]; // Sort options
+  fields?: Array<string | Record<string, any>> | undefined; // Field selection
+  filter?: Record<string, any> | undefined; // Filter options (for reads)
+  sort?: string | string[] | undefined; // Sort options
   page?:
     | {
         // Offset-based pagination
@@ -30,24 +30,25 @@ export interface ActionConfig {
         limit?: number;
         after?: string;
         before?: string;
-      };
+      }
+    | undefined;
 
   // Metadata
-  metadata_fields?: ReadonlyArray<string>;
+  metadata_fields?: ReadonlyArray<string> | undefined;
 
   // HTTP customization
-  headers?: Record<string, string>; // Custom headers
-  fetch_options?: RequestInit; // Fetch options (signal, cache, etc.)
-  custom_fetch?: (
+  headers?: Record<string, string> | undefined; // Custom headers
+  fetch_options?: RequestInit | undefined; // Fetch options (signal, cache, etc.)
+  custom_fetch?: ((
     input: RequestInfo | URL,
     init?: RequestInit,
-  ) => Promise<Response>;
+  ) => Promise<Response>) | undefined;
 
   // Multitenancy
-  tenant?: string; // Tenant parameter
+  tenant?: string | undefined; // Tenant parameter
 
   // Hook context
-  hook_ctx?: Record<string, any>;
+  hook_ctx?: Record<string, any> | undefined;
 }
 
 /**
@@ -55,18 +56,18 @@ export interface ActionConfig {
  */
 export interface ValidationConfig {
   // Request data
-  input?: Record<string, any>;
+  input?: Record<string, any> | undefined;
 
   // HTTP customization
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (
+  headers?: Record<string, string> | undefined;
+  fetch_options?: RequestInit | undefined;
+  custom_fetch?: ((
     input: RequestInfo | URL,
     init?: RequestInit,
-  ) => Promise<Response>;
+  ) => Promise<Response>) | undefined;
 
   // Hook context
-  hook_ctx?: Record<string, any>;
+  hook_ctx?: Record<string, any> | undefined;
 }
 
 
@@ -75,11 +76,11 @@ export interface ValidationConfig {
  */
 export interface ActionChannelConfig {
   // Request data
-  input?: Record<string, any>;
+  input?: Record<string, any> | undefined;
   identity?: any;
-  fields?: ReadonlyArray<string | Record<string, any>>;
-  filter?: Record<string, any>;
-  sort?: string | string[];
+  fields?: ReadonlyArray<string | Record<string, any>> | undefined;
+  filter?: Record<string, any> | undefined;
+  sort?: string | string[] | undefined;
   page?:
     | {
         limit?: number;
@@ -90,23 +91,24 @@ export interface ActionChannelConfig {
         limit?: number;
         after?: string;
         before?: string;
-      };
+      }
+    | undefined;
 
   // Metadata
-  metadata_fields?: ReadonlyArray<string>;
+  metadata_fields?: ReadonlyArray<string> | undefined;
 
   // Channel-specific
   channel: any; // Phoenix Channel
   result_handler: (result: any) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
+  error_handler?: ((error: any) => void) | undefined;
+  timeout_handler?: (() => void) | undefined;
+  timeout?: number | undefined;
 
   // Multitenancy
-  tenant?: string;
+  tenant?: string | undefined;
 
   // Hook context
-  hook_ctx?: Record<string, any>;
+  hook_ctx?: Record<string, any> | undefined;
 }
 
 
@@ -115,21 +117,21 @@ export interface ActionChannelConfig {
  */
 export interface ValidationChannelConfig {
   // Request data
-  input?: Record<string, any>;
+  input?: Record<string, any> | undefined;
   identity?: any;
 
   // Channel-specific
   channel: any; // Phoenix Channel
   result_handler: (result: any) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
+  error_handler?: ((error: any) => void) | undefined;
+  timeout_handler?: (() => void) | undefined;
+  timeout?: number | undefined;
 
   // Multitenancy
-  tenant?: string;
+  tenant?: string | undefined;
 
   // Hook context
-  hook_ctx?: Record<string, any>;
+  hook_ctx?: Record<string, any> | undefined;
 }
 
 
@@ -345,16 +347,16 @@ export async function executeValidationChannelPush<T>(
 
 
 
-export type ListConsentHistoryInput = {
+export type ListCurrentConsentsInput = {
   user_id: UUID;
 };
 
-export type ListConsentHistoryFields = UnifiedFieldSelection<ConsentRecordResourceSchema>[];
-export type InferListConsentHistoryResult<
-  Fields extends ListConsentHistoryFields,
+export type ListCurrentConsentsFields = UnifiedFieldSelection<ConsentRecordResourceSchema>[];
+export type InferListCurrentConsentsResult<
+  Fields extends ListCurrentConsentsFields,
 > = Array<InferResult<ConsentRecordResourceSchema, Fields>>;
 
-export type ListConsentHistoryResult<Fields extends ListConsentHistoryFields> = | { success: true; data: InferListConsentHistoryResult<Fields>; }
+export type ListCurrentConsentsResult<Fields extends ListCurrentConsentsFields> = | { success: true; data: InferListCurrentConsentsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -364,10 +366,10 @@ export type ListConsentHistoryResult<Fields extends ListConsentHistoryFields> = 
  *
  * @ashActionType :read
  */
-export async function list_consent_history<Fields extends ListConsentHistoryFields>(
+export async function list_current_consents<Fields extends ListCurrentConsentsFields>(
   config: {
   tenant?: string;
-  input: ListConsentHistoryInput;
+  input: ListCurrentConsentsInput;
   fields: Fields;
   filter?: ConsentRecordFilterInput;
   sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
@@ -375,9 +377,9 @@ export async function list_consent_history<Fields extends ListConsentHistoryFiel
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ListConsentHistoryResult<Fields>> {
+): Promise<ListCurrentConsentsResult<Fields>> {
   const payload = {
-    action: "list_consent_history",
+    action: "list_current_consents",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
@@ -385,7 +387,7 @@ export async function list_consent_history<Fields extends ListConsentHistoryFiel
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
   };
 
-  return executeActionRpcRequest<ListConsentHistoryResult<Fields>>(
+  return executeActionRpcRequest<ListCurrentConsentsResult<Fields>>(
     payload,
     config
   );
@@ -398,17 +400,17 @@ export async function list_consent_history<Fields extends ListConsentHistoryFiel
  * @ashActionType :read
  * @validation true
  */
-export async function validate_list_consent_history(
+export async function validate_list_current_consents(
   config: {
   tenant?: string;
-  input: ListConsentHistoryInput;
+  input: ListCurrentConsentsInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "list_consent_history",
+    action: "list_current_consents",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
@@ -426,10 +428,10 @@ export async function validate_list_consent_history(
  * @ashActionType :read
  * @validation true
  */
-export async function validate_list_consent_history_channel(config: {
+export async function validate_list_current_consents_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: ListConsentHistoryInput;
+  input: ListCurrentConsentsInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -438,7 +440,7 @@ export async function validate_list_consent_history_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "list_consent_history",
+    action: "list_current_consents",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -453,22 +455,22 @@ export async function validate_list_consent_history_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_consent_history_channel<Fields extends ListConsentHistoryFields>(config: {
+export async function list_current_consents_channel<Fields extends ListCurrentConsentsFields>(config: {
   channel: Channel;
   tenant?: string;
-  input: ListConsentHistoryInput;
+  input: ListCurrentConsentsInput;
   fields: Fields;
   filter?: ConsentRecordFilterInput;
   sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
-  result_handler: (result: ListConsentHistoryResult<Fields>) => void;
+  result_handler: (result: ListCurrentConsentsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListConsentHistoryResult<Fields>>(
+  executeActionChannelPush<ListCurrentConsentsResult<Fields>>(
     config.channel,
     {
-    action: "list_consent_history",
+    action: "list_current_consents",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
@@ -612,26 +614,20 @@ export async function validate_list_consents_for_kind_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_consents_for_kind_channel<Fields extends ListConsentsForKindFields>(config: {
+export async function list_consents_for_kind_channel<Fields extends ListConsentsForKindFields, Page extends ListConsentsForKindConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: ListConsentsForKindInput;
   fields: Fields;
   filter?: ConsentRecordFilterInput;
   sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
-  page?: {
-    limit?: number;
-    offset?: number;
-    after?: never;
-    before?: never;
-    count?: boolean;
-  };
-  result_handler: (result: ListConsentsForKindResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListConsentsForKindResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListConsentsForKindResult<Fields>>(
+  executeActionChannelPush<ListConsentsForKindResult<Fields, Page>>(
     config.channel,
     {
     action: "list_consents_for_kind",
@@ -648,16 +644,16 @@ export async function list_consents_for_kind_channel<Fields extends ListConsents
 }
 
 
-export type ListCurrentConsentsInput = {
+export type ListConsentHistoryInput = {
   user_id: UUID;
 };
 
-export type ListCurrentConsentsFields = UnifiedFieldSelection<ConsentRecordResourceSchema>[];
-export type InferListCurrentConsentsResult<
-  Fields extends ListCurrentConsentsFields,
+export type ListConsentHistoryFields = UnifiedFieldSelection<ConsentRecordResourceSchema>[];
+export type InferListConsentHistoryResult<
+  Fields extends ListConsentHistoryFields,
 > = Array<InferResult<ConsentRecordResourceSchema, Fields>>;
 
-export type ListCurrentConsentsResult<Fields extends ListCurrentConsentsFields> = | { success: true; data: InferListCurrentConsentsResult<Fields>; }
+export type ListConsentHistoryResult<Fields extends ListConsentHistoryFields> = | { success: true; data: InferListConsentHistoryResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -667,10 +663,10 @@ export type ListCurrentConsentsResult<Fields extends ListCurrentConsentsFields> 
  *
  * @ashActionType :read
  */
-export async function list_current_consents<Fields extends ListCurrentConsentsFields>(
+export async function list_consent_history<Fields extends ListConsentHistoryFields>(
   config: {
   tenant?: string;
-  input: ListCurrentConsentsInput;
+  input: ListConsentHistoryInput;
   fields: Fields;
   filter?: ConsentRecordFilterInput;
   sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
@@ -678,9 +674,9 @@ export async function list_current_consents<Fields extends ListCurrentConsentsFi
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ListCurrentConsentsResult<Fields>> {
+): Promise<ListConsentHistoryResult<Fields>> {
   const payload = {
-    action: "list_current_consents",
+    action: "list_consent_history",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
@@ -688,7 +684,7 @@ export async function list_current_consents<Fields extends ListCurrentConsentsFi
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
   };
 
-  return executeActionRpcRequest<ListCurrentConsentsResult<Fields>>(
+  return executeActionRpcRequest<ListConsentHistoryResult<Fields>>(
     payload,
     config
   );
@@ -701,17 +697,17 @@ export async function list_current_consents<Fields extends ListCurrentConsentsFi
  * @ashActionType :read
  * @validation true
  */
-export async function validate_list_current_consents(
+export async function validate_list_consent_history(
   config: {
   tenant?: string;
-  input: ListCurrentConsentsInput;
+  input: ListConsentHistoryInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "list_current_consents",
+    action: "list_consent_history",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
@@ -729,10 +725,10 @@ export async function validate_list_current_consents(
  * @ashActionType :read
  * @validation true
  */
-export async function validate_list_current_consents_channel(config: {
+export async function validate_list_consent_history_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: ListCurrentConsentsInput;
+  input: ListConsentHistoryInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -741,7 +737,7 @@ export async function validate_list_current_consents_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "list_current_consents",
+    action: "list_consent_history",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -756,22 +752,22 @@ export async function validate_list_current_consents_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_current_consents_channel<Fields extends ListCurrentConsentsFields>(config: {
+export async function list_consent_history_channel<Fields extends ListConsentHistoryFields>(config: {
   channel: Channel;
   tenant?: string;
-  input: ListCurrentConsentsInput;
+  input: ListConsentHistoryInput;
   fields: Fields;
   filter?: ConsentRecordFilterInput;
   sort?: SortString<ConsentRecordSortField> | SortString<ConsentRecordSortField>[];
-  result_handler: (result: ListCurrentConsentsResult<Fields>) => void;
+  result_handler: (result: ListConsentHistoryResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListCurrentConsentsResult<Fields>>(
+  executeActionChannelPush<ListConsentHistoryResult<Fields>>(
     config.channel,
     {
-    action: "list_current_consents",
+    action: "list_consent_history",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
@@ -1300,136 +1296,6 @@ export async function create_tenant_stripe_price_channel<Fields extends CreateTe
 }
 
 
-export type GetLessonWatchTimeInput = {
-  from: AshDate;
-  to: AshDate;
-};
-
-export type GetLessonWatchTimeFields = UnifiedFieldSelection<{lesson_title: string | null, course_name: string | null, lesson_id: string | null, viewers: number | null, minutes_watched: number | null, avg_minutes_per_viewer: number | null, duration_minutes: number | null, avg_percent: number | null, completions: number | null, __type: "TypedMap", __primitiveFields: "lesson_title" | "course_name" | "lesson_id" | "viewers" | "minutes_watched" | "avg_minutes_per_viewer" | "duration_minutes" | "avg_percent" | "completions"}>[];
-
-export type InferGetLessonWatchTimeResult<
-  Fields extends GetLessonWatchTimeFields | undefined,
-> = Array<InferResult<{lesson_title: string | null, course_name: string | null, lesson_id: string | null, viewers: number | null, minutes_watched: number | null, avg_minutes_per_viewer: number | null, duration_minutes: number | null, avg_percent: number | null, completions: number | null, __type: "TypedMap", __primitiveFields: "lesson_title" | "course_name" | "lesson_id" | "viewers" | "minutes_watched" | "avg_minutes_per_viewer" | "duration_minutes" | "avg_percent" | "completions"}, Fields>>;
-
-export type GetLessonWatchTimeResult<Fields extends GetLessonWatchTimeFields | undefined = undefined> = | { success: true; data: InferGetLessonWatchTimeResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on Tenant
- *
- * @ashActionType :action
- */
-export async function get_lesson_watch_time<Fields extends GetLessonWatchTimeFields | undefined = undefined>(
-  config: {
-  tenant?: string;
-  input: GetLessonWatchTimeInput;
-  fields: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GetLessonWatchTimeResult<Fields extends undefined ? [] : Fields>> {
-  const payload = {
-    action: "get_lesson_watch_time",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<GetLessonWatchTimeResult<Fields extends undefined ? [] : Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on Tenant
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_get_lesson_watch_time(
-  config: {
-  tenant?: string;
-  input: GetLessonWatchTimeInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "get_lesson_watch_time",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on Tenant
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_get_lesson_watch_time_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetLessonWatchTimeInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "get_lesson_watch_time",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on Tenant
- *
- * @ashActionType :action
- */
-export async function get_lesson_watch_time_channel<Fields extends GetLessonWatchTimeFields | undefined = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetLessonWatchTimeInput;
-  fields: Fields;
-  result_handler: (result: GetLessonWatchTimeResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GetLessonWatchTimeResult<Fields>>(
-    config.channel,
-    {
-    action: "get_lesson_watch_time",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type GetTenantInput = {
   id: UUID;
 };
@@ -1558,134 +1424,18 @@ export async function get_tenant_channel<Fields extends GetTenantFields>(config:
 }
 
 
-export type GetTenantArrFields = UnifiedFieldSelection<{arr_cents: number | null, subscription_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "arr_cents" | "subscription_count" | "currency"}>[];
-
-export type InferGetTenantArrResult<
-  Fields extends GetTenantArrFields | undefined,
-> = InferResult<{arr_cents: number | null, subscription_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "arr_cents" | "subscription_count" | "currency"}, Fields>;
-
-export type GetTenantArrResult<Fields extends GetTenantArrFields | undefined = undefined> = | { success: true; data: InferGetTenantArrResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on Tenant
- *
- * @ashActionType :action
- */
-export async function get_tenant_arr<Fields extends GetTenantArrFields | undefined = undefined>(
-  config: {
-  tenant?: string;
-  fields: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GetTenantArrResult<Fields extends undefined ? [] : Fields>> {
-  const payload = {
-    action: "get_tenant_arr",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<GetTenantArrResult<Fields extends undefined ? [] : Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on Tenant
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_get_tenant_arr(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "get_tenant_arr",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on Tenant
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_get_tenant_arr_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "get_tenant_arr",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on Tenant
- *
- * @ashActionType :action
- */
-export async function get_tenant_arr_channel<Fields extends GetTenantArrFields | undefined = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  result_handler: (result: GetTenantArrResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GetTenantArrResult<Fields>>(
-    config.channel,
-    {
-    action: "get_tenant_arr",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type GetTenantNetRevenueInput = {
-  days: number;
+export type GetLessonWatchTimeInput = {
+  from: AshDate;
+  to: AshDate;
 };
 
-export type GetTenantNetRevenueFields = UnifiedFieldSelection<{gross_cents: number | null, net_cents: number | null, fee_cents: number | null, transaction_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "gross_cents" | "net_cents" | "fee_cents" | "transaction_count" | "currency"}>[];
+export type GetLessonWatchTimeFields = UnifiedFieldSelection<{lesson_title: string | null, course_name: string | null, lesson_id: string | null, viewers: number | null, minutes_watched: number | null, avg_minutes_per_viewer: number | null, duration_minutes: number | null, avg_percent: number | null, completions: number | null, __type: "TypedMap", __primitiveFields: "lesson_title" | "course_name" | "lesson_id" | "viewers" | "minutes_watched" | "avg_minutes_per_viewer" | "duration_minutes" | "avg_percent" | "completions"}>[];
 
-export type InferGetTenantNetRevenueResult<
-  Fields extends GetTenantNetRevenueFields | undefined,
-> = InferResult<{gross_cents: number | null, net_cents: number | null, fee_cents: number | null, transaction_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "gross_cents" | "net_cents" | "fee_cents" | "transaction_count" | "currency"}, Fields>;
+export type InferGetLessonWatchTimeResult<
+  Fields extends GetLessonWatchTimeFields | undefined,
+> = Array<InferResult<{lesson_title: string | null, course_name: string | null, lesson_id: string | null, viewers: number | null, minutes_watched: number | null, avg_minutes_per_viewer: number | null, duration_minutes: number | null, avg_percent: number | null, completions: number | null, __type: "TypedMap", __primitiveFields: "lesson_title" | "course_name" | "lesson_id" | "viewers" | "minutes_watched" | "avg_minutes_per_viewer" | "duration_minutes" | "avg_percent" | "completions"}, Fields>>;
 
-export type GetTenantNetRevenueResult<Fields extends GetTenantNetRevenueFields | undefined = undefined> = | { success: true; data: InferGetTenantNetRevenueResult<Fields>; }
+export type GetLessonWatchTimeResult<Fields extends GetLessonWatchTimeFields | undefined = undefined> = | { success: true; data: InferGetLessonWatchTimeResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -1695,24 +1445,24 @@ export type GetTenantNetRevenueResult<Fields extends GetTenantNetRevenueFields |
  *
  * @ashActionType :action
  */
-export async function get_tenant_net_revenue<Fields extends GetTenantNetRevenueFields | undefined = undefined>(
+export async function get_lesson_watch_time<Fields extends GetLessonWatchTimeFields | undefined = undefined>(
   config: {
   tenant?: string;
-  input: GetTenantNetRevenueInput;
+  input: GetLessonWatchTimeInput;
   fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetTenantNetRevenueResult<Fields extends undefined ? [] : Fields>> {
+): Promise<GetLessonWatchTimeResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
-    action: "get_tenant_net_revenue",
+    action: "get_lesson_watch_time",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GetTenantNetRevenueResult<Fields extends undefined ? [] : Fields>>(
+  return executeActionRpcRequest<GetLessonWatchTimeResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -1725,17 +1475,17 @@ export async function get_tenant_net_revenue<Fields extends GetTenantNetRevenueF
  * @ashActionType :action
  * @validation true
  */
-export async function validate_get_tenant_net_revenue(
+export async function validate_get_lesson_watch_time(
   config: {
   tenant?: string;
-  input: GetTenantNetRevenueInput;
+  input: GetLessonWatchTimeInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "get_tenant_net_revenue",
+    action: "get_lesson_watch_time",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
@@ -1753,10 +1503,10 @@ export async function validate_get_tenant_net_revenue(
  * @ashActionType :action
  * @validation true
  */
-export async function validate_get_tenant_net_revenue_channel(config: {
+export async function validate_get_lesson_watch_time_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: GetTenantNetRevenueInput;
+  input: GetLessonWatchTimeInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -1765,7 +1515,7 @@ export async function validate_get_tenant_net_revenue_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "get_tenant_net_revenue",
+    action: "get_lesson_watch_time",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -1780,20 +1530,20 @@ export async function validate_get_tenant_net_revenue_channel(config: {
  *
  * @ashActionType :action
  */
-export async function get_tenant_net_revenue_channel<Fields extends GetTenantNetRevenueFields | undefined = undefined>(config: {
+export async function get_lesson_watch_time_channel<Fields extends GetLessonWatchTimeFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
-  input: GetTenantNetRevenueInput;
+  input: GetLessonWatchTimeInput;
   fields: Fields;
-  result_handler: (result: GetTenantNetRevenueResult<Fields>) => void;
+  result_handler: (result: GetLessonWatchTimeResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetTenantNetRevenueResult<Fields>>(
+  executeActionChannelPush<GetLessonWatchTimeResult<Fields>>(
     config.channel,
     {
-    action: "get_tenant_net_revenue",
+    action: "get_lesson_watch_time",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
@@ -2052,6 +1802,252 @@ export async function list_my_tenants_channel<Fields extends ListMyTenantsFields
 }
 
 
+export type GetTenantArrFields = UnifiedFieldSelection<{arr_cents: number | null, subscription_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "arr_cents" | "subscription_count" | "currency"}>[];
+
+export type InferGetTenantArrResult<
+  Fields extends GetTenantArrFields | undefined,
+> = InferResult<{arr_cents: number | null, subscription_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "arr_cents" | "subscription_count" | "currency"}, Fields>;
+
+export type GetTenantArrResult<Fields extends GetTenantArrFields | undefined = undefined> = | { success: true; data: InferGetTenantArrResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_arr<Fields extends GetTenantArrFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetTenantArrResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetTenantArrResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_arr(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_arr_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_arr_channel<Fields extends GetTenantArrFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  result_handler: (result: GetTenantArrResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetTenantArrResult<Fields>>(
+    config.channel,
+    {
+    action: "get_tenant_arr",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetTenantNetRevenueInput = {
+  days: number;
+};
+
+export type GetTenantNetRevenueFields = UnifiedFieldSelection<{gross_cents: number | null, net_cents: number | null, fee_cents: number | null, transaction_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "gross_cents" | "net_cents" | "fee_cents" | "transaction_count" | "currency"}>[];
+
+export type InferGetTenantNetRevenueResult<
+  Fields extends GetTenantNetRevenueFields | undefined,
+> = InferResult<{gross_cents: number | null, net_cents: number | null, fee_cents: number | null, transaction_count: number | null, currency: string | null, __type: "TypedMap", __primitiveFields: "gross_cents" | "net_cents" | "fee_cents" | "transaction_count" | "currency"}, Fields>;
+
+export type GetTenantNetRevenueResult<Fields extends GetTenantNetRevenueFields | undefined = undefined> = | { success: true; data: InferGetTenantNetRevenueResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_net_revenue<Fields extends GetTenantNetRevenueFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetTenantNetRevenueResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetTenantNetRevenueResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_net_revenue(
+  config: {
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_tenant_net_revenue_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_tenant_net_revenue_channel<Fields extends GetTenantNetRevenueFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetTenantNetRevenueInput;
+  fields: Fields;
+  result_handler: (result: GetTenantNetRevenueResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetTenantNetRevenueResult<Fields>>(
+    config.channel,
+    {
+    action: "get_tenant_net_revenue",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListTenantStripePricesFields = UnifiedFieldSelection<{id: string, product_id: string | null, product_name: string | null, nickname: string | null, unit_amount: number | null, currency: string, interval: string | null, interval_count: number | null, active: boolean, dashboard_url: string, __type: "TypedMap", __primitiveFields: "id" | "product_id" | "product_name" | "nickname" | "unit_amount" | "currency" | "interval" | "interval_count" | "active" | "dashboard_url"}>[];
 
 export type InferListTenantStripePricesResult<
@@ -2176,9 +2172,13 @@ export type ConfirmAnonymousAccountInput = {
   claim_token: string;
 };
 
-export type InferConfirmAnonymousAccountResult = SocialSignInResponseResourceSchema;
+export type ConfirmAnonymousAccountFields = UnifiedFieldSelection<SocialSignInResponseResourceSchema>[];
 
-export type ConfirmAnonymousAccountResult = | { success: true; data: InferConfirmAnonymousAccountResult; }
+export type InferConfirmAnonymousAccountResult<
+  Fields extends ConfirmAnonymousAccountFields | undefined,
+> = InferResult<SocialSignInResponseResourceSchema, Fields>;
+
+export type ConfirmAnonymousAccountResult<Fields extends ConfirmAnonymousAccountFields | undefined = undefined> = | { success: true; data: InferConfirmAnonymousAccountResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -2188,22 +2188,24 @@ export type ConfirmAnonymousAccountResult = | { success: true; data: InferConfir
  *
  * @ashActionType :action
  */
-export async function confirm_anonymous_account(
+export async function confirm_anonymous_account<Fields extends ConfirmAnonymousAccountFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: ConfirmAnonymousAccountInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ConfirmAnonymousAccountResult> {
+): Promise<ConfirmAnonymousAccountResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "confirm_anonymous_account",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<ConfirmAnonymousAccountResult>(
+  return executeActionRpcRequest<ConfirmAnonymousAccountResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -2271,21 +2273,169 @@ export async function validate_confirm_anonymous_account_channel(config: {
  *
  * @ashActionType :action
  */
-export async function confirm_anonymous_account_channel(config: {
+export async function confirm_anonymous_account_channel<Fields extends ConfirmAnonymousAccountFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: ConfirmAnonymousAccountInput;
-  result_handler: (result: ConfirmAnonymousAccountResult) => void;
+  fields: Fields;
+  result_handler: (result: ConfirmAnonymousAccountResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ConfirmAnonymousAccountResult>(
+  executeActionChannelPush<ConfirmAnonymousAccountResult<Fields>>(
     config.channel,
     {
     action: "confirm_anonymous_account",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListConfirmedUsersFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+
+export type InferListConfirmedUsersResult<
+  Fields extends ListConfirmedUsersFields | undefined,
+  Page extends ListConfirmedUsersConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<UserResourceSchema, Fields>>, {
+  results: Array<InferResult<UserResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  offset: number;
+  count?: number | null;
+  type: "offset";
+}>;
+
+export type ListConfirmedUsersConfig = {
+  tenant?: string;
+  fields: ListConfirmedUsersFields;
+  filter?: UserFilterInput;
+  sort?: SortString<UserSortField> | SortString<UserSortField>[];
+  page?: {
+    limit?: number;
+    offset?: number;
+    after?: never;
+    before?: never;
+    count?: boolean;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListConfirmedUsersResult<Fields extends ListConfirmedUsersFields, Page extends ListConfirmedUsersConfig["page"] = undefined> = | { success: true; data: InferListConfirmedUsersResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function list_confirmed_users<Fields extends ListConfirmedUsersFields, Config extends ListConfirmedUsersConfig = ListConfirmedUsersConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListConfirmedUsersResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListConfirmedUsersResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_confirmed_users(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read User records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_confirmed_users_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read User records
+ *
+ * @ashActionType :read
+ */
+export async function list_confirmed_users_channel<Fields extends ListConfirmedUsersFields, Page extends ListConfirmedUsersConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: UserFilterInput;
+  sort?: SortString<UserSortField> | SortString<UserSortField>[];
+  page?: Page;
+  result_handler: (result: ListConfirmedUsersResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListConfirmedUsersResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_confirmed_users",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   },
     config.timeout,
     config
@@ -2781,158 +2931,6 @@ export async function list_all_users_channel<Fields extends ListAllUsersFields>(
 }
 
 
-export type ListConfirmedUsersFields = UnifiedFieldSelection<UserResourceSchema>[];
-
-
-export type InferListConfirmedUsersResult<
-  Fields extends ListConfirmedUsersFields | undefined,
-  Page extends ListConfirmedUsersConfig["page"] = undefined
-> = ConditionalPaginatedResult<Page, Array<InferResult<UserResourceSchema, Fields>>, {
-  results: Array<InferResult<UserResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  offset: number;
-  count?: number | null;
-  type: "offset";
-}>;
-
-export type ListConfirmedUsersConfig = {
-  tenant?: string;
-  fields: ListConfirmedUsersFields;
-  filter?: UserFilterInput;
-  sort?: SortString<UserSortField> | SortString<UserSortField>[];
-  page?: {
-    limit?: number;
-    offset?: number;
-    after?: never;
-    before?: never;
-    count?: boolean;
-  };
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListConfirmedUsersResult<Fields extends ListConfirmedUsersFields, Page extends ListConfirmedUsersConfig["page"] = undefined> = | { success: true; data: InferListConfirmedUsersResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read User records
- *
- * @ashActionType :read
- */
-export async function list_confirmed_users<Fields extends ListConfirmedUsersFields, Config extends ListConfirmedUsersConfig = ListConfirmedUsersConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListConfirmedUsersResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_confirmed_users",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListConfirmedUsersResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read User records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_confirmed_users(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_confirmed_users",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read User records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_confirmed_users_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_confirmed_users",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read User records
- *
- * @ashActionType :read
- */
-export async function list_confirmed_users_channel<Fields extends ListConfirmedUsersFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: UserFilterInput;
-  sort?: SortString<UserSortField> | SortString<UserSortField>[];
-  page?: {
-    limit?: number;
-    offset?: number;
-    after?: never;
-    before?: never;
-    count?: boolean;
-  };
-  result_handler: (result: ListConfirmedUsersResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListConfirmedUsersResult<Fields>>(
-    config.channel,
-    {
-    action: "list_confirmed_users",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type RegisterWithInvitationInput = {
   invitation_token: UUID;
   password: string;
@@ -3356,9 +3354,13 @@ export type RequestOriginMagicLinkInput = {
   return_to?: string | null;
 };
 
-export type InferRequestOriginMagicLinkResult = SignInLinkResponseResourceSchema;
+export type RequestOriginMagicLinkFields = UnifiedFieldSelection<SignInLinkResponseResourceSchema>[];
 
-export type RequestOriginMagicLinkResult = | { success: true; data: InferRequestOriginMagicLinkResult; }
+export type InferRequestOriginMagicLinkResult<
+  Fields extends RequestOriginMagicLinkFields | undefined,
+> = InferResult<SignInLinkResponseResourceSchema, Fields>;
+
+export type RequestOriginMagicLinkResult<Fields extends RequestOriginMagicLinkFields | undefined = undefined> = | { success: true; data: InferRequestOriginMagicLinkResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -3368,22 +3370,24 @@ export type RequestOriginMagicLinkResult = | { success: true; data: InferRequest
  *
  * @ashActionType :action
  */
-export async function request_origin_magic_link(
+export async function request_origin_magic_link<Fields extends RequestOriginMagicLinkFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: RequestOriginMagicLinkInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<RequestOriginMagicLinkResult> {
+): Promise<RequestOriginMagicLinkResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "request_origin_magic_link",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<RequestOriginMagicLinkResult>(
+  return executeActionRpcRequest<RequestOriginMagicLinkResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -3451,21 +3455,23 @@ export async function validate_request_origin_magic_link_channel(config: {
  *
  * @ashActionType :action
  */
-export async function request_origin_magic_link_channel(config: {
+export async function request_origin_magic_link_channel<Fields extends RequestOriginMagicLinkFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: RequestOriginMagicLinkInput;
-  result_handler: (result: RequestOriginMagicLinkResult) => void;
+  fields: Fields;
+  result_handler: (result: RequestOriginMagicLinkResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<RequestOriginMagicLinkResult>(
+  executeActionChannelPush<RequestOriginMagicLinkResult<Fields>>(
     config.channel,
     {
     action: "request_origin_magic_link",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -3737,9 +3743,13 @@ export type SetOwnPasswordInput = {
   password: string;
 };
 
-export type InferSetOwnPasswordResult = SocialSignInResponseResourceSchema;
+export type SetOwnPasswordFields = UnifiedFieldSelection<SocialSignInResponseResourceSchema>[];
 
-export type SetOwnPasswordResult = | { success: true; data: InferSetOwnPasswordResult; }
+export type InferSetOwnPasswordResult<
+  Fields extends SetOwnPasswordFields | undefined,
+> = InferResult<SocialSignInResponseResourceSchema, Fields>;
+
+export type SetOwnPasswordResult<Fields extends SetOwnPasswordFields | undefined = undefined> = | { success: true; data: InferSetOwnPasswordResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -3749,22 +3759,24 @@ export type SetOwnPasswordResult = | { success: true; data: InferSetOwnPasswordR
  *
  * @ashActionType :action
  */
-export async function set_own_password(
+export async function set_own_password<Fields extends SetOwnPasswordFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: SetOwnPasswordInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<SetOwnPasswordResult> {
+): Promise<SetOwnPasswordResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "set_own_password",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<SetOwnPasswordResult>(
+  return executeActionRpcRequest<SetOwnPasswordResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -3832,21 +3844,23 @@ export async function validate_set_own_password_channel(config: {
  *
  * @ashActionType :action
  */
-export async function set_own_password_channel(config: {
+export async function set_own_password_channel<Fields extends SetOwnPasswordFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: SetOwnPasswordInput;
-  result_handler: (result: SetOwnPasswordResult) => void;
+  fields: Fields;
+  result_handler: (result: SetOwnPasswordResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<SetOwnPasswordResult>(
+  executeActionChannelPush<SetOwnPasswordResult<Fields>>(
     config.channel,
     {
     action: "set_own_password",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -3996,9 +4010,13 @@ export type SignInWithAppleTokenInput = {
   create_if_missing?: boolean;
 };
 
-export type InferSignInWithAppleTokenResult = SocialSignInResponseResourceSchema;
+export type SignInWithAppleTokenFields = UnifiedFieldSelection<SocialSignInResponseResourceSchema>[];
 
-export type SignInWithAppleTokenResult = | { success: true; data: InferSignInWithAppleTokenResult; }
+export type InferSignInWithAppleTokenResult<
+  Fields extends SignInWithAppleTokenFields | undefined,
+> = InferResult<SocialSignInResponseResourceSchema, Fields>;
+
+export type SignInWithAppleTokenResult<Fields extends SignInWithAppleTokenFields | undefined = undefined> = | { success: true; data: InferSignInWithAppleTokenResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -4008,22 +4026,24 @@ export type SignInWithAppleTokenResult = | { success: true; data: InferSignInWit
  *
  * @ashActionType :action
  */
-export async function sign_in_with_apple_token(
+export async function sign_in_with_apple_token<Fields extends SignInWithAppleTokenFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: SignInWithAppleTokenInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<SignInWithAppleTokenResult> {
+): Promise<SignInWithAppleTokenResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "sign_in_with_apple_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<SignInWithAppleTokenResult>(
+  return executeActionRpcRequest<SignInWithAppleTokenResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -4091,21 +4111,23 @@ export async function validate_sign_in_with_apple_token_channel(config: {
  *
  * @ashActionType :action
  */
-export async function sign_in_with_apple_token_channel(config: {
+export async function sign_in_with_apple_token_channel<Fields extends SignInWithAppleTokenFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: SignInWithAppleTokenInput;
-  result_handler: (result: SignInWithAppleTokenResult) => void;
+  fields: Fields;
+  result_handler: (result: SignInWithAppleTokenResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<SignInWithAppleTokenResult>(
+  executeActionChannelPush<SignInWithAppleTokenResult<Fields>>(
     config.channel,
     {
     action: "sign_in_with_apple_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -4118,9 +4140,13 @@ export type SignInWithGoogleTokenInput = {
   create_if_missing?: boolean;
 };
 
-export type InferSignInWithGoogleTokenResult = SocialSignInResponseResourceSchema;
+export type SignInWithGoogleTokenFields = UnifiedFieldSelection<SocialSignInResponseResourceSchema>[];
 
-export type SignInWithGoogleTokenResult = | { success: true; data: InferSignInWithGoogleTokenResult; }
+export type InferSignInWithGoogleTokenResult<
+  Fields extends SignInWithGoogleTokenFields | undefined,
+> = InferResult<SocialSignInResponseResourceSchema, Fields>;
+
+export type SignInWithGoogleTokenResult<Fields extends SignInWithGoogleTokenFields | undefined = undefined> = | { success: true; data: InferSignInWithGoogleTokenResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -4130,22 +4156,24 @@ export type SignInWithGoogleTokenResult = | { success: true; data: InferSignInWi
  *
  * @ashActionType :action
  */
-export async function sign_in_with_google_token(
+export async function sign_in_with_google_token<Fields extends SignInWithGoogleTokenFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: SignInWithGoogleTokenInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<SignInWithGoogleTokenResult> {
+): Promise<SignInWithGoogleTokenResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "sign_in_with_google_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<SignInWithGoogleTokenResult>(
+  return executeActionRpcRequest<SignInWithGoogleTokenResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -4213,21 +4241,23 @@ export async function validate_sign_in_with_google_token_channel(config: {
  *
  * @ashActionType :action
  */
-export async function sign_in_with_google_token_channel(config: {
+export async function sign_in_with_google_token_channel<Fields extends SignInWithGoogleTokenFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: SignInWithGoogleTokenInput;
-  result_handler: (result: SignInWithGoogleTokenResult) => void;
+  fields: Fields;
+  result_handler: (result: SignInWithGoogleTokenResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<SignInWithGoogleTokenResult>(
+  executeActionChannelPush<SignInWithGoogleTokenResult<Fields>>(
     config.channel,
     {
     action: "sign_in_with_google_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -5020,8 +5050,8 @@ export type InferListWaitlistEntriesResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -5133,29 +5163,19 @@ export async function validate_list_waitlist_entries_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_waitlist_entries_channel<Fields extends ListWaitlistEntriesFields>(config: {
+export async function list_waitlist_entries_channel<Fields extends ListWaitlistEntriesFields, Page extends ListWaitlistEntriesConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: WaitlistEntryFilterInput;
   sort?: SortString<WaitlistEntrySortField> | SortString<WaitlistEntrySortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListWaitlistEntriesResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListWaitlistEntriesResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListWaitlistEntriesResult<Fields>>(
+  executeActionChannelPush<ListWaitlistEntriesResult<Fields, Page>>(
     config.channel,
     {
     action: "list_waitlist_entries",
@@ -5440,11 +5460,16 @@ export type AvatarPublicChatInput = {
   session_id?: string | null;
   ip_address?: string | null;
   conversation_history?: Array<Record<string, any>> | null;
+  response_schema?: Record<string, any> | null;
 };
 
-export type InferAvatarPublicChatResult = ChatReplyResourceSchema;
+export type AvatarPublicChatFields = UnifiedFieldSelection<ChatReplyResourceSchema>[];
 
-export type AvatarPublicChatResult = | { success: true; data: InferAvatarPublicChatResult; }
+export type InferAvatarPublicChatResult<
+  Fields extends AvatarPublicChatFields | undefined,
+> = InferResult<ChatReplyResourceSchema, Fields>;
+
+export type AvatarPublicChatResult<Fields extends AvatarPublicChatFields | undefined = undefined> = | { success: true; data: InferAvatarPublicChatResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -5454,22 +5479,24 @@ export type AvatarPublicChatResult = | { success: true; data: InferAvatarPublicC
  *
  * @ashActionType :action
  */
-export async function avatar_public_chat(
+export async function avatar_public_chat<Fields extends AvatarPublicChatFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: AvatarPublicChatInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<AvatarPublicChatResult> {
+): Promise<AvatarPublicChatResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "avatar_public_chat",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<AvatarPublicChatResult>(
+  return executeActionRpcRequest<AvatarPublicChatResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -5537,21 +5564,23 @@ export async function validate_avatar_public_chat_channel(config: {
  *
  * @ashActionType :action
  */
-export async function avatar_public_chat_channel(config: {
+export async function avatar_public_chat_channel<Fields extends AvatarPublicChatFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: AvatarPublicChatInput;
-  result_handler: (result: AvatarPublicChatResult) => void;
+  fields: Fields;
+  result_handler: (result: AvatarPublicChatResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<AvatarPublicChatResult>(
+  executeActionChannelPush<AvatarPublicChatResult<Fields>>(
     config.channel,
     {
     action: "avatar_public_chat",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -5959,9 +5988,13 @@ export type GenerateChatSuggestionsInput = {
   avatar_context: Record<string, any>;
 };
 
-export type InferGenerateChatSuggestionsResult = ChatSuggestionsResourceSchema;
+export type GenerateChatSuggestionsFields = UnifiedFieldSelection<ChatSuggestionsResourceSchema>[];
 
-export type GenerateChatSuggestionsResult = | { success: true; data: InferGenerateChatSuggestionsResult; }
+export type InferGenerateChatSuggestionsResult<
+  Fields extends GenerateChatSuggestionsFields | undefined,
+> = InferResult<ChatSuggestionsResourceSchema, Fields>;
+
+export type GenerateChatSuggestionsResult<Fields extends GenerateChatSuggestionsFields | undefined = undefined> = | { success: true; data: InferGenerateChatSuggestionsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -5971,22 +6004,24 @@ export type GenerateChatSuggestionsResult = | { success: true; data: InferGenera
  *
  * @ashActionType :action
  */
-export async function generate_chat_suggestions(
+export async function generate_chat_suggestions<Fields extends GenerateChatSuggestionsFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: GenerateChatSuggestionsInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GenerateChatSuggestionsResult> {
+): Promise<GenerateChatSuggestionsResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "generate_chat_suggestions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GenerateChatSuggestionsResult>(
+  return executeActionRpcRequest<GenerateChatSuggestionsResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -6054,21 +6089,23 @@ export async function validate_generate_chat_suggestions_channel(config: {
  *
  * @ashActionType :action
  */
-export async function generate_chat_suggestions_channel(config: {
+export async function generate_chat_suggestions_channel<Fields extends GenerateChatSuggestionsFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: GenerateChatSuggestionsInput;
-  result_handler: (result: GenerateChatSuggestionsResult) => void;
+  fields: Fields;
+  result_handler: (result: GenerateChatSuggestionsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GenerateChatSuggestionsResult>(
+  executeActionChannelPush<GenerateChatSuggestionsResult<Fields>>(
     config.channel,
     {
     action: "generate_chat_suggestions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -6201,9 +6238,13 @@ export type GetConversationHistoryInput = {
   conversation_id: UUID;
 };
 
-export type InferGetConversationHistoryResult = Array<ChatMessageResourceSchema>;
+export type GetConversationHistoryFields = UnifiedFieldSelection<ChatMessageResourceSchema>[];
 
-export type GetConversationHistoryResult = | { success: true; data: InferGetConversationHistoryResult; }
+export type InferGetConversationHistoryResult<
+  Fields extends GetConversationHistoryFields | undefined,
+> = Array<InferResult<ChatMessageResourceSchema, Fields>>;
+
+export type GetConversationHistoryResult<Fields extends GetConversationHistoryFields | undefined = undefined> = | { success: true; data: InferGetConversationHistoryResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -6213,22 +6254,24 @@ export type GetConversationHistoryResult = | { success: true; data: InferGetConv
  *
  * @ashActionType :action
  */
-export async function get_conversation_history(
+export async function get_conversation_history<Fields extends GetConversationHistoryFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: GetConversationHistoryInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetConversationHistoryResult> {
+): Promise<GetConversationHistoryResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "get_conversation_history",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GetConversationHistoryResult>(
+  return executeActionRpcRequest<GetConversationHistoryResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -6296,21 +6339,23 @@ export async function validate_get_conversation_history_channel(config: {
  *
  * @ashActionType :action
  */
-export async function get_conversation_history_channel(config: {
+export async function get_conversation_history_channel<Fields extends GetConversationHistoryFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: GetConversationHistoryInput;
-  result_handler: (result: GetConversationHistoryResult) => void;
+  fields: Fields;
+  result_handler: (result: GetConversationHistoryResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetConversationHistoryResult>(
+  executeActionChannelPush<GetConversationHistoryResult<Fields>>(
     config.channel,
     {
     action: "get_conversation_history",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -6322,9 +6367,13 @@ export type GetTurnStateInput = {
   conversation_id: UUID;
 };
 
-export type InferGetTurnStateResult = TurnStateResourceSchema;
+export type GetTurnStateFields = UnifiedFieldSelection<TurnStateResourceSchema>[];
 
-export type GetTurnStateResult = | { success: true; data: InferGetTurnStateResult; }
+export type InferGetTurnStateResult<
+  Fields extends GetTurnStateFields | undefined,
+> = InferResult<TurnStateResourceSchema, Fields>;
+
+export type GetTurnStateResult<Fields extends GetTurnStateFields | undefined = undefined> = | { success: true; data: InferGetTurnStateResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -6334,22 +6383,24 @@ export type GetTurnStateResult = | { success: true; data: InferGetTurnStateResul
  *
  * @ashActionType :action
  */
-export async function get_turn_state(
+export async function get_turn_state<Fields extends GetTurnStateFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: GetTurnStateInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetTurnStateResult> {
+): Promise<GetTurnStateResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "get_turn_state",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GetTurnStateResult>(
+  return executeActionRpcRequest<GetTurnStateResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -6417,191 +6468,23 @@ export async function validate_get_turn_state_channel(config: {
  *
  * @ashActionType :action
  */
-export async function get_turn_state_channel(config: {
+export async function get_turn_state_channel<Fields extends GetTurnStateFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: GetTurnStateInput;
-  result_handler: (result: GetTurnStateResult) => void;
+  fields: Fields;
+  result_handler: (result: GetTurnStateResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetTurnStateResult>(
+  executeActionChannelPush<GetTurnStateResult<Fields>>(
     config.channel,
     {
     action: "get_turn_state",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ListConversationsFields = UnifiedFieldSelection<PublicConversationResourceSchema>[];
-
-
-export type InferListConversationsResult<
-  Fields extends ListConversationsFields | undefined,
-  Page extends ListConversationsConfig["page"] = undefined
-> = ConditionalPaginatedResultMixed<Page, Array<InferResult<PublicConversationResourceSchema, Fields>>, {
-  results: Array<InferResult<PublicConversationResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  offset: number;
-  count?: number | null;
-  type: "offset";
-}, {
-  results: Array<InferResult<PublicConversationResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListConversationsConfig = {
-  tenant?: string;
-  fields: ListConversationsFields;
-  filter?: PublicConversationFilterInput;
-  sort?: SortString<PublicConversationSortField> | SortString<PublicConversationSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListConversationsResult<Fields extends ListConversationsFields, Page extends ListConversationsConfig["page"] = undefined> = | { success: true; data: InferListConversationsResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read Conversation records
- *
- * @ashActionType :read
- */
-export async function list_conversations<Fields extends ListConversationsFields, Config extends ListConversationsConfig = ListConversationsConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListConversationsResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_conversations",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListConversationsResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read Conversation records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_conversations(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_conversations",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read Conversation records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_conversations_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_conversations",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read Conversation records
- *
- * @ashActionType :read
- */
-export async function list_conversations_channel<Fields extends ListConversationsFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: PublicConversationFilterInput;
-  sort?: SortString<PublicConversationSortField> | SortString<PublicConversationSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListConversationsResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListConversationsResult<Fields>>(
-    config.channel,
-    {
-    action: "list_conversations",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -6754,9 +6637,13 @@ export type PreviewChatInput = {
   session_id?: string | null;
 };
 
-export type InferPreviewChatResult = ChatReplyResourceSchema;
+export type PreviewChatFields = UnifiedFieldSelection<ChatReplyResourceSchema>[];
 
-export type PreviewChatResult = | { success: true; data: InferPreviewChatResult; }
+export type InferPreviewChatResult<
+  Fields extends PreviewChatFields | undefined,
+> = InferResult<ChatReplyResourceSchema, Fields>;
+
+export type PreviewChatResult<Fields extends PreviewChatFields | undefined = undefined> = | { success: true; data: InferPreviewChatResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -6766,22 +6653,24 @@ export type PreviewChatResult = | { success: true; data: InferPreviewChatResult;
  *
  * @ashActionType :action
  */
-export async function preview_chat(
+export async function preview_chat<Fields extends PreviewChatFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: PreviewChatInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<PreviewChatResult> {
+): Promise<PreviewChatResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "preview_chat",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<PreviewChatResult>(
+  return executeActionRpcRequest<PreviewChatResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -6849,21 +6738,183 @@ export async function validate_preview_chat_channel(config: {
  *
  * @ashActionType :action
  */
-export async function preview_chat_channel(config: {
+export async function preview_chat_channel<Fields extends PreviewChatFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: PreviewChatInput;
-  result_handler: (result: PreviewChatResult) => void;
+  fields: Fields;
+  result_handler: (result: PreviewChatResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<PreviewChatResult>(
+  executeActionChannelPush<PreviewChatResult<Fields>>(
     config.channel,
     {
     action: "preview_chat",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListConversationsFields = UnifiedFieldSelection<PublicConversationResourceSchema>[];
+
+
+export type InferListConversationsResult<
+  Fields extends ListConversationsFields | undefined,
+  Page extends ListConversationsConfig["page"] = undefined
+> = ConditionalPaginatedResultMixed<Page, Array<InferResult<PublicConversationResourceSchema, Fields>>, {
+  results: Array<InferResult<PublicConversationResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  offset: number;
+  count?: number | null;
+  type: "offset";
+}, {
+  results: Array<InferResult<PublicConversationResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListConversationsConfig = {
+  tenant?: string;
+  fields: ListConversationsFields;
+  filter?: PublicConversationFilterInput;
+  sort?: SortString<PublicConversationSortField> | SortString<PublicConversationSortField>[];
+  page?: (
+    {
+      limit?: number;
+      offset?: number;
+      count?: boolean;
+    } | {
+      limit?: number;
+      after?: string;
+      before?: string;
+    }
+  );
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListConversationsResult<Fields extends ListConversationsFields, Page extends ListConversationsConfig["page"] = undefined> = | { success: true; data: InferListConversationsResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read Conversation records
+ *
+ * @ashActionType :read
+ */
+export async function list_conversations<Fields extends ListConversationsFields, Config extends ListConversationsConfig = ListConversationsConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListConversationsResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_conversations",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListConversationsResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Conversation records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_conversations(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_conversations",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Conversation records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_conversations_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_conversations",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read Conversation records
+ *
+ * @ashActionType :read
+ */
+export async function list_conversations_channel<Fields extends ListConversationsFields, Page extends ListConversationsConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: PublicConversationFilterInput;
+  sort?: SortString<PublicConversationSortField> | SortString<PublicConversationSortField>[];
+  page?: Page;
+  result_handler: (result: ListConversationsResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListConversationsResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_conversations",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   },
     config.timeout,
     config
@@ -6907,7 +6958,7 @@ export async function update_conversation<Fields extends UpdateConversationField
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateConversationInput;
+  input?: UpdateConversationInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -6939,7 +6990,7 @@ export async function validate_update_conversation(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateConversationInput;
+  input?: UpdateConversationInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -6969,7 +7020,7 @@ export async function validate_update_conversation_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateConversationInput;
+  input?: UpdateConversationInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -6998,7 +7049,7 @@ export async function update_conversation_channel<Fields extends UpdateConversat
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateConversationInput;
+  input?: UpdateConversationInput;
   fields?: Fields;
   result_handler: (result: UpdateConversationResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -7266,11 +7317,11 @@ export async function upload_chat_attachment_channel(config: {
 }
 
 
-export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "content"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
+export type CoachingTypesFields = UnifiedFieldSelection<{coach: {greeting: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: { __array: true; key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading" }, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: { __array: true; id: string, title: string, content: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: { __array: true; body: string, __type: "TypedMap", __primitiveFields: "body" }, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: { __array: true; id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed" }, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: { __array: true; activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed" }, anytime: { __array: true; activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed" }, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}>[];
 
 export type InferCoachingTypesResult<
   Fields extends CoachingTypesFields | undefined,
-> = InferResult<{coach: {greeting: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: Array<{key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading"}>, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: Array<{id: string, title: string, content: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "content"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: Array<{body: string, __type: "TypedMap", __primitiveFields: "body"}>, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: Array<{id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed"}>, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, anytime: Array<{activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: Array<{id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order"}>, prompts: Array<{id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order"}>, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed"}>, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
+> = InferResult<{coach: {greeting: string | null, disclaimer: string | null, __type: "TypedMap", __primitiveFields: "greeting" | "disclaimer"} | null, character: {slug: string, name: string, logo_url: string | null, website_url: string | null, __type: "TypedMap", __primitiveFields: "slug" | "name" | "logo_url" | "website_url"}, message: {role: "assistant" | "user", content: string, __type: "TypedMap", __primitiveFields: "role" | "content"}, config: {background: string, foreground: string, card: string, card_foreground: string, primary: string, primary_foreground: string, accent: string, accent_foreground: string, border: string, video_accent: string, video_captions: boolean, name: string, logo_url: string | null, streaks: boolean, unit: string | null, sub_unit: string, tabs: { __array: true; key: string, label: string, heading: string | null, __type: "TypedMap", __primitiveFields: "key" | "label" | "heading" }, __type: "TypedMap", __primitiveFields: "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "name" | "logo_url" | "streaks" | "unit" | "sub_unit"}, phase: {id: string, title: string, weeks: string | null, description: string | null, total_weeks: number | null, outcomes: Array<string>, milestones: { __array: true; id: string, title: string, content: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "content" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "weeks" | "description" | "total_weeks" | "outcomes"}, session: {id: string, phase_id: string | null, title: string, description: string | null, index: number, __type: "TypedMap", __primitiveFields: "id" | "phase_id" | "title" | "description" | "index"}, briefing: {session_id: string, read_at: string | null, pages: { __array: true; body: string, __type: "TypedMap", __primitiveFields: "body" }, __type: "TypedMap", __primitiveFields: "session_id" | "read_at"}, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, metric_data: {current: number | null, trend: Array<number>, count: number, total_seconds: number | null, metric: {id: string, label: string, kind: string, unit: string, __type: "TypedMap", __primitiveFields: "id" | "label" | "kind" | "unit"}, __type: "TypedMap", __primitiveFields: "current" | "trend" | "count" | "total_seconds"}, category: {id: string, title: string, items: { __array: true; id: string, title: string, format: string, url: string | null, thumbnail: string | null, duration: number | null, content: string | null, src: string | null, poster: string | null, status: string | null, library_file_id: string | null, completed: boolean | null, activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"} | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "format" | "url" | "thumbnail" | "duration" | "content" | "src" | "poster" | "status" | "library_file_id" | "completed" }, __type: "TypedMap", __primitiveFields: "id" | "title"}, contributor: {ref: string | null, name: string | null, role: string | null, bio: string | null, avatar_url: string | null, __type: "TypedMap", __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url"}, transition: {id: string, title: string | null, body: string | null, between: Array<string> | null, at: string | null, __type: "TypedMap", __primitiveFields: "id" | "title" | "body" | "between" | "at"}, phase_progress: {phase_id: string, title: string, total: number, completed: number, percentage: number, __type: "TypedMap", __primitiveFields: "phase_id" | "title" | "total" | "completed" | "percentage"}, enrollment: {streak_count: number, streak_last_date: string | null, current_phase_id: string | null, current_session_id: string | null, status: string, day_number: number, week_number: number, module_number: number, module_total: number, __type: "TypedMap", __primitiveFields: "streak_count" | "streak_last_date" | "current_phase_id" | "current_session_id" | "status" | "day_number" | "week_number" | "module_number" | "module_total"}, completion: {activity_id: string, completed_date: string, responses: Record<string, any>, duration_seconds: number | null, __type: "TypedMap", __primitiveFields: "activity_id" | "completed_date" | "responses" | "duration_seconds"}, user_info: {name: string, __type: "TypedMap", __primitiveFields: "name"}, activity_lookup_entry: {title: string, kind: string, label: string | null, phase: string | null, duration: string | null, recurrence: string, availability: string, order: number, __type: "TypedMap", __primitiveFields: "title" | "kind" | "label" | "phase" | "duration" | "recurrence" | "availability" | "order"}, todays_activities: {scheduled: { __array: true; activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed" }, anytime: { __array: true; activity: {id: string, kind: string, label: string | null, icon: string, phase: string | null, session: string | null, title: string, duration: number | null, content: string | null, image: string | null, recurrence: string, availability: string, mode: string, available: boolean | null, complete: boolean | null, assessment: {app: string, app_id: string | null, activity_id: string | null, launch_path: string | null, __type: "TypedMap", __primitiveFields: "app" | "app_id" | "activity_id" | "launch_path"} | null, video: {src: string | null, poster: string | null, status: string, __type: "TypedMap", __primitiveFields: "src" | "poster" | "status"} | null, unlocks_when: {type: string, date: string | null, activity_ids: Array<string> | null, phase_id: string | null, reason: string | null, __type: "TypedMap", __primitiveFields: "type" | "date" | "activity_ids" | "phase_id" | "reason"} | null, steps: { __array: true; id: string, title: string, duration: number | null, content: string | null, required: boolean, order: number | null, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "title" | "duration" | "content" | "required" | "order" }, prompts: { __array: true; id: string, kind: string, label: string, min: number | null, max: number | null, options: string | null, required: boolean, order: number | null, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order" }, __type: "TypedMap", __primitiveFields: "id" | "kind" | "label" | "icon" | "phase" | "session" | "title" | "duration" | "content" | "image" | "recurrence" | "availability" | "mode" | "available" | "complete"}, completed: boolean, __type: "TypedMap", __primitiveFields: "completed" }, __type: "TypedMap", __primitiveFields: never}, __type: "TypedMap", __primitiveFields: never}, Fields>;
 
 export type CoachingTypesResult<Fields extends CoachingTypesFields | undefined = undefined> = | { success: true; data: InferCoachingTypesResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -7655,9 +7706,13 @@ export type DailyBriefingInput = {
   user_id: UUID;
 };
 
-export type InferDailyBriefingResult = DailyBriefingResourceSchema;
+export type DailyBriefingFields = UnifiedFieldSelection<DailyBriefingResourceSchema>[];
 
-export type DailyBriefingResult = | { success: true; data: InferDailyBriefingResult; }
+export type InferDailyBriefingResult<
+  Fields extends DailyBriefingFields | undefined,
+> = InferResult<DailyBriefingResourceSchema, Fields>;
+
+export type DailyBriefingResult<Fields extends DailyBriefingFields | undefined = undefined> = | { success: true; data: InferDailyBriefingResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -7667,22 +7722,24 @@ export type DailyBriefingResult = | { success: true; data: InferDailyBriefingRes
  *
  * @ashActionType :action
  */
-export async function daily_briefing(
+export async function daily_briefing<Fields extends DailyBriefingFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: DailyBriefingInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<DailyBriefingResult> {
+): Promise<DailyBriefingResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "daily_briefing",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<DailyBriefingResult>(
+  return executeActionRpcRequest<DailyBriefingResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -7750,21 +7807,23 @@ export async function validate_daily_briefing_channel(config: {
  *
  * @ashActionType :action
  */
-export async function daily_briefing_channel(config: {
+export async function daily_briefing_channel<Fields extends DailyBriefingFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: DailyBriefingInput;
-  result_handler: (result: DailyBriefingResult) => void;
+  fields: Fields;
+  result_handler: (result: DailyBriefingResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<DailyBriefingResult>(
+  executeActionChannelPush<DailyBriefingResult<Fields>>(
     config.channel,
     {
     action: "daily_briefing",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -8016,378 +8075,6 @@ export async function duplicate_app_channel<Fields extends DuplicateAppFields | 
 }
 
 
-export type ForUserPersonalizedInput = {
-  app_id: UUID;
-  user_id: UUID;
-};
-
-export type InferForUserPersonalizedResult = Record<string, any>;
-
-export type ForUserPersonalizedResult = | { success: true; data: InferForUserPersonalizedResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function for_user_personalized(
-  config: {
-  tenant?: string;
-  input: ForUserPersonalizedInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ForUserPersonalizedResult> {
-  const payload = {
-    action: "for_user_personalized",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<ForUserPersonalizedResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_for_user_personalized(
-  config: {
-  tenant?: string;
-  input: ForUserPersonalizedInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "for_user_personalized",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_for_user_personalized_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ForUserPersonalizedInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "for_user_personalized",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function for_user_personalized_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ForUserPersonalizedInput;
-  result_handler: (result: ForUserPersonalizedResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ForUserPersonalizedResult>(
-    config.channel,
-    {
-    action: "for_user_personalized",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type GatedPersonalizedCourseForUserInput = {
-  app_id: UUID;
-  user_id: UUID;
-};
-
-export type InferGatedPersonalizedCourseForUserResult = GatedCoursePayloadResourceSchema;
-
-export type GatedPersonalizedCourseForUserResult = | { success: true; data: InferGatedPersonalizedCourseForUserResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function gated_personalized_course_for_user(
-  config: {
-  tenant?: string;
-  input: GatedPersonalizedCourseForUserInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GatedPersonalizedCourseForUserResult> {
-  const payload = {
-    action: "gated_personalized_course_for_user",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<GatedPersonalizedCourseForUserResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_gated_personalized_course_for_user(
-  config: {
-  tenant?: string;
-  input: GatedPersonalizedCourseForUserInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "gated_personalized_course_for_user",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_gated_personalized_course_for_user_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GatedPersonalizedCourseForUserInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "gated_personalized_course_for_user",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function gated_personalized_course_for_user_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GatedPersonalizedCourseForUserInput;
-  result_handler: (result: GatedPersonalizedCourseForUserResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GatedPersonalizedCourseForUserResult>(
-    config.channel,
-    {
-    action: "gated_personalized_course_for_user",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type GetAppInput = {
-  id: UUID;
-};
-
-export type GetAppFields = UnifiedFieldSelection<AppResourceSchema>[];
-export type InferGetAppResult<
-  Fields extends GetAppFields,
-> = InferResult<AppResourceSchema, Fields>;
-
-export type GetAppResult<Fields extends GetAppFields> = | { success: true; data: InferGetAppResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read App records
- *
- * @ashActionType :read
- */
-export async function get_app<Fields extends GetAppFields>(
-  config: {
-  tenant?: string;
-  input: GetAppInput;
-  fields: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GetAppResult<Fields>> {
-  const payload = {
-    action: "get_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<GetAppResult<Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read App records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_get_app(
-  config: {
-  tenant?: string;
-  input: GetAppInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "get_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read App records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_get_app_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetAppInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "get_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read App records
- *
- * @ashActionType :read
- */
-export async function get_app_channel<Fields extends GetAppFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetAppInput;
-  fields: Fields;
-  result_handler: (result: GetAppResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GetAppResult<Fields>>(
-    config.channel,
-    {
-    action: "get_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type GetAppForOriginTypeAndSlugInput = {
   origin_entity_id: UUID;
   page_type: string;
@@ -8518,13 +8205,14 @@ export async function get_app_for_origin_type_and_slug_channel<Fields extends Ge
 }
 
 
-export type GetAssessmentGraphInput = {
+export type ForUserPersonalizedInput = {
   app_id: UUID;
+  user_id: UUID;
 };
 
-export type InferGetAssessmentGraphResult = AssessmentGraphResourceSchema;
+export type InferForUserPersonalizedResult = Record<string, any>;
 
-export type GetAssessmentGraphResult = | { success: true; data: InferGetAssessmentGraphResult; }
+export type ForUserPersonalizedResult = | { success: true; data: InferForUserPersonalizedResult; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -8534,22 +8222,279 @@ export type GetAssessmentGraphResult = | { success: true; data: InferGetAssessme
  *
  * @ashActionType :action
  */
-export async function get_assessment_graph(
+export async function for_user_personalized(
   config: {
   tenant?: string;
-  input: GetAssessmentGraphInput;
+  input: ForUserPersonalizedInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetAssessmentGraphResult> {
+): Promise<ForUserPersonalizedResult> {
   const payload = {
-    action: "get_assessment_graph",
+    action: "for_user_personalized",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
 
-  return executeActionRpcRequest<GetAssessmentGraphResult>(
+  return executeActionRpcRequest<ForUserPersonalizedResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_for_user_personalized(
+  config: {
+  tenant?: string;
+  input: ForUserPersonalizedInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "for_user_personalized",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_for_user_personalized_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ForUserPersonalizedInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "for_user_personalized",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function for_user_personalized_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ForUserPersonalizedInput;
+  result_handler: (result: ForUserPersonalizedResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ForUserPersonalizedResult>(
+    config.channel,
+    {
+    action: "for_user_personalized",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GatedPersonalizedCourseForUserInput = {
+  app_id: UUID;
+  user_id: UUID;
+};
+
+export type GatedPersonalizedCourseForUserFields = UnifiedFieldSelection<GatedCoursePayloadResourceSchema>[];
+
+export type InferGatedPersonalizedCourseForUserResult<
+  Fields extends GatedPersonalizedCourseForUserFields | undefined,
+> = InferResult<GatedCoursePayloadResourceSchema, Fields>;
+
+export type GatedPersonalizedCourseForUserResult<Fields extends GatedPersonalizedCourseForUserFields | undefined = undefined> = | { success: true; data: InferGatedPersonalizedCourseForUserResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function gated_personalized_course_for_user<Fields extends GatedPersonalizedCourseForUserFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: GatedPersonalizedCourseForUserInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GatedPersonalizedCourseForUserResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "gated_personalized_course_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GatedPersonalizedCourseForUserResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_gated_personalized_course_for_user(
+  config: {
+  tenant?: string;
+  input: GatedPersonalizedCourseForUserInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "gated_personalized_course_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_gated_personalized_course_for_user_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GatedPersonalizedCourseForUserInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "gated_personalized_course_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function gated_personalized_course_for_user_channel<Fields extends GatedPersonalizedCourseForUserFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GatedPersonalizedCourseForUserInput;
+  fields: Fields;
+  result_handler: (result: GatedPersonalizedCourseForUserResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GatedPersonalizedCourseForUserResult<Fields>>(
+    config.channel,
+    {
+    action: "gated_personalized_course_for_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetAssessmentGraphInput = {
+  app_id: UUID;
+};
+
+export type GetAssessmentGraphFields = UnifiedFieldSelection<AssessmentGraphResourceSchema>[];
+
+export type InferGetAssessmentGraphResult<
+  Fields extends GetAssessmentGraphFields | undefined,
+> = InferResult<AssessmentGraphResourceSchema, Fields>;
+
+export type GetAssessmentGraphResult<Fields extends GetAssessmentGraphFields | undefined = undefined> = | { success: true; data: InferGetAssessmentGraphResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function get_assessment_graph<Fields extends GetAssessmentGraphFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: GetAssessmentGraphInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetAssessmentGraphResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "get_assessment_graph",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetAssessmentGraphResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -8617,21 +8562,151 @@ export async function validate_get_assessment_graph_channel(config: {
  *
  * @ashActionType :action
  */
-export async function get_assessment_graph_channel(config: {
+export async function get_assessment_graph_channel<Fields extends GetAssessmentGraphFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: GetAssessmentGraphInput;
-  result_handler: (result: GetAssessmentGraphResult) => void;
+  fields: Fields;
+  result_handler: (result: GetAssessmentGraphResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetAssessmentGraphResult>(
+  executeActionChannelPush<GetAssessmentGraphResult<Fields>>(
     config.channel,
     {
     action: "get_assessment_graph",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetAppInput = {
+  id: UUID;
+};
+
+export type GetAppFields = UnifiedFieldSelection<AppResourceSchema>[];
+export type InferGetAppResult<
+  Fields extends GetAppFields,
+> = InferResult<AppResourceSchema, Fields>;
+
+export type GetAppResult<Fields extends GetAppFields> = | { success: true; data: InferGetAppResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read App records
+ *
+ * @ashActionType :read
+ */
+export async function get_app<Fields extends GetAppFields>(
+  config: {
+  tenant?: string;
+  input: GetAppInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetAppResult<Fields>> {
+  const payload = {
+    action: "get_app",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetAppResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read App records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_app(
+  config: {
+  tenant?: string;
+  input: GetAppInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_app",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read App records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_app_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetAppInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_app",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read App records
+ *
+ * @ashActionType :read
+ */
+export async function get_app_channel<Fields extends GetAppFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetAppInput;
+  fields: Fields;
+  result_handler: (result: GetAppResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetAppResult<Fields>>(
+    config.channel,
+    {
+    action: "get_app",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -9003,127 +9078,6 @@ export async function initialize_personalization_channel(config: {
 }
 
 
-export type ListAppLibraryVfsPathsInput = {
-  app_id: UUID;
-};
-
-export type InferListAppLibraryVfsPathsResult = Array<string>;
-
-export type ListAppLibraryVfsPathsResult = | { success: true; data: InferListAppLibraryVfsPathsResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function list_app_library_vfs_paths(
-  config: {
-  tenant?: string;
-  input: ListAppLibraryVfsPathsInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ListAppLibraryVfsPathsResult> {
-  const payload = {
-    action: "list_app_library_vfs_paths",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<ListAppLibraryVfsPathsResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_list_app_library_vfs_paths(
-  config: {
-  tenant?: string;
-  input: ListAppLibraryVfsPathsInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_app_library_vfs_paths",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on App
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_list_app_library_vfs_paths_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListAppLibraryVfsPathsInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_app_library_vfs_paths",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on App
- *
- * @ashActionType :action
- */
-export async function list_app_library_vfs_paths_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListAppLibraryVfsPathsInput;
-  result_handler: (result: ListAppLibraryVfsPathsResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListAppLibraryVfsPathsResult>(
-    config.channel,
-    {
-    action: "list_app_library_vfs_paths",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type ListAppsForOriginInput = {
   origin_entity_id: UUID;
 };
@@ -9397,15 +9351,13 @@ export async function list_apps_for_origin_and_type_channel<Fields extends ListA
 }
 
 
-export type MarkBriefingReadInput = {
+export type ListAppLibraryVfsPathsInput = {
   app_id: UUID;
-  user_id: UUID;
-  session_id: string;
 };
 
-export type InferMarkBriefingReadResult = DailyBriefingResourceSchema;
+export type InferListAppLibraryVfsPathsResult = Array<string>;
 
-export type MarkBriefingReadResult = | { success: true; data: InferMarkBriefingReadResult; }
+export type ListAppLibraryVfsPathsResult = | { success: true; data: InferListAppLibraryVfsPathsResult; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -9415,22 +9367,151 @@ export type MarkBriefingReadResult = | { success: true; data: InferMarkBriefingR
  *
  * @ashActionType :action
  */
-export async function mark_briefing_read(
+export async function list_app_library_vfs_paths(
   config: {
   tenant?: string;
-  input: MarkBriefingReadInput;
+  input: ListAppLibraryVfsPathsInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<MarkBriefingReadResult> {
+): Promise<ListAppLibraryVfsPathsResult> {
   const payload = {
-    action: "mark_briefing_read",
+    action: "list_app_library_vfs_paths",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
 
-  return executeActionRpcRequest<MarkBriefingReadResult>(
+  return executeActionRpcRequest<ListAppLibraryVfsPathsResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_list_app_library_vfs_paths(
+  config: {
+  tenant?: string;
+  input: ListAppLibraryVfsPathsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_app_library_vfs_paths",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_list_app_library_vfs_paths_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListAppLibraryVfsPathsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_app_library_vfs_paths",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function list_app_library_vfs_paths_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListAppLibraryVfsPathsInput;
+  result_handler: (result: ListAppLibraryVfsPathsResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListAppLibraryVfsPathsResult>(
+    config.channel,
+    {
+    action: "list_app_library_vfs_paths",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type MarkBriefingReadInput = {
+  app_id: UUID;
+  user_id: UUID;
+  session_id: string;
+};
+
+export type MarkBriefingReadFields = UnifiedFieldSelection<DailyBriefingResourceSchema>[];
+
+export type InferMarkBriefingReadResult<
+  Fields extends MarkBriefingReadFields | undefined,
+> = InferResult<DailyBriefingResourceSchema, Fields>;
+
+export type MarkBriefingReadResult<Fields extends MarkBriefingReadFields | undefined = undefined> = | { success: true; data: InferMarkBriefingReadResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function mark_briefing_read<Fields extends MarkBriefingReadFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: MarkBriefingReadInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<MarkBriefingReadResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "mark_briefing_read",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<MarkBriefingReadResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -9498,21 +9579,23 @@ export async function validate_mark_briefing_read_channel(config: {
  *
  * @ashActionType :action
  */
-export async function mark_briefing_read_channel(config: {
+export async function mark_briefing_read_channel<Fields extends MarkBriefingReadFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: MarkBriefingReadInput;
-  result_handler: (result: MarkBriefingReadResult) => void;
+  fields: Fields;
+  result_handler: (result: MarkBriefingReadResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<MarkBriefingReadResult>(
+  executeActionChannelPush<MarkBriefingReadResult<Fields>>(
     config.channel,
     {
     action: "mark_briefing_read",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -9525,9 +9608,13 @@ export type ParseAuthoringDocumentInput = {
   content: string;
 };
 
-export type InferParseAuthoringDocumentResult = AuthoringDocumentResourceSchema;
+export type ParseAuthoringDocumentFields = UnifiedFieldSelection<AuthoringDocumentResourceSchema>[];
 
-export type ParseAuthoringDocumentResult = | { success: true; data: InferParseAuthoringDocumentResult; }
+export type InferParseAuthoringDocumentResult<
+  Fields extends ParseAuthoringDocumentFields | undefined,
+> = InferResult<AuthoringDocumentResourceSchema, Fields>;
+
+export type ParseAuthoringDocumentResult<Fields extends ParseAuthoringDocumentFields | undefined = undefined> = | { success: true; data: InferParseAuthoringDocumentResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -9537,22 +9624,24 @@ export type ParseAuthoringDocumentResult = | { success: true; data: InferParseAu
  *
  * @ashActionType :action
  */
-export async function parse_authoring_document(
+export async function parse_authoring_document<Fields extends ParseAuthoringDocumentFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: ParseAuthoringDocumentInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ParseAuthoringDocumentResult> {
+): Promise<ParseAuthoringDocumentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "parse_authoring_document",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<ParseAuthoringDocumentResult>(
+  return executeActionRpcRequest<ParseAuthoringDocumentResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -9620,21 +9709,23 @@ export async function validate_parse_authoring_document_channel(config: {
  *
  * @ashActionType :action
  */
-export async function parse_authoring_document_channel(config: {
+export async function parse_authoring_document_channel<Fields extends ParseAuthoringDocumentFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: ParseAuthoringDocumentInput;
-  result_handler: (result: ParseAuthoringDocumentResult) => void;
+  fields: Fields;
+  result_handler: (result: ParseAuthoringDocumentResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ParseAuthoringDocumentResult>(
+  executeActionChannelPush<ParseAuthoringDocumentResult<Fields>>(
     config.channel,
     {
     action: "parse_authoring_document",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -10304,7 +10395,7 @@ export async function update_app<Fields extends UpdateAppFields | undefined = un
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateAppInput;
+  input?: UpdateAppInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -10336,7 +10427,7 @@ export async function validate_update_app(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateAppInput;
+  input?: UpdateAppInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -10366,7 +10457,7 @@ export async function validate_update_app_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateAppInput;
+  input?: UpdateAppInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -10395,7 +10486,7 @@ export async function update_app_channel<Fields extends UpdateAppFields | undefi
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateAppInput;
+  input?: UpdateAppInput;
   fields?: Fields;
   result_handler: (result: UpdateAppResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -10406,144 +10497,6 @@ export async function update_app_channel<Fields extends UpdateAppFields | undefi
     config.channel,
     {
     action: "update_app",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type CompleteAssessmentInput = {
-  completed_at?: UtcDateTime | null;
-  email?: string | null;
-};
-
-export type CompleteAssessmentFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
-
-export type InferCompleteAssessmentResult<
-  Fields extends CompleteAssessmentFields | undefined,
-> = InferResult<AssessmentResponseResourceSchema, Fields>;
-
-export type CompleteAssessmentResult<Fields extends CompleteAssessmentFields | undefined = undefined> = | { success: true; data: InferCompleteAssessmentResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Update an existing AssessmentResponse
- *
- * @ashActionType :update
- */
-export async function complete_assessment<Fields extends CompleteAssessmentFields | undefined = undefined>(
-  config: {
-  tenant?: string;
-  identity: UUID;
-  input?: CompleteAssessmentInput;
-  fields?: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<CompleteAssessmentResult<Fields extends undefined ? [] : Fields>> {
-  const payload = {
-    action: "complete_assessment",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<CompleteAssessmentResult<Fields extends undefined ? [] : Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Update an existing AssessmentResponse
- *
- * @ashActionType :update
- * @validation true
- */
-export async function validate_complete_assessment(
-  config: {
-  tenant?: string;
-  identity: UUID | string;
-  input?: CompleteAssessmentInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "complete_assessment",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Update an existing AssessmentResponse
- *
- * @ashActionType :update
- * @validation true
- */
-export async function validate_complete_assessment_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  identity: UUID | string;
-  input?: CompleteAssessmentInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "complete_assessment",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Update an existing AssessmentResponse
- *
- * @ashActionType :update
- */
-export async function complete_assessment_channel<Fields extends CompleteAssessmentFields | undefined = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  identity: UUID;
-  input?: CompleteAssessmentInput;
-  fields?: Fields;
-  result_handler: (result: CompleteAssessmentResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<CompleteAssessmentResult<Fields>>(
-    config.channel,
-    {
-    action: "complete_assessment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     identity: config.identity,
     input: config.input,
@@ -10838,6 +10791,143 @@ export async function create_assessment_response_at_activity_channel<Fields exte
 }
 
 
+export type ListAssessmentResponsesForEnrollmentInput = {
+  app_id: UUID;
+  enrollment_id: UUID;
+};
+
+export type ListAssessmentResponsesForEnrollmentFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
+export type InferListAssessmentResponsesForEnrollmentResult<
+  Fields extends ListAssessmentResponsesForEnrollmentFields,
+> = Array<InferResult<AssessmentResponseResourceSchema, Fields>>;
+
+export type ListAssessmentResponsesForEnrollmentResult<Fields extends ListAssessmentResponsesForEnrollmentFields> = | { success: true; data: InferListAssessmentResponsesForEnrollmentResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ */
+export async function list_assessment_responses_for_enrollment<Fields extends ListAssessmentResponsesForEnrollmentFields>(
+  config: {
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  fields: Fields;
+  filter?: AssessmentResponseFilterInput;
+  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListAssessmentResponsesForEnrollmentResult<Fields>> {
+  const payload = {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<ListAssessmentResponsesForEnrollmentResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_assessment_responses_for_enrollment(
+  config: {
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_assessment_responses_for_enrollment_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read AssessmentResponse records
+ *
+ * @ashActionType :read
+ */
+export async function list_assessment_responses_for_enrollment_channel<Fields extends ListAssessmentResponsesForEnrollmentFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListAssessmentResponsesForEnrollmentInput;
+  fields: Fields;
+  filter?: AssessmentResponseFilterInput;
+  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  result_handler: (result: ListAssessmentResponsesForEnrollmentResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListAssessmentResponsesForEnrollmentResult<Fields>>(
+    config.channel,
+    {
+    action: "list_assessment_responses_for_enrollment",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type GetAssessmentResponseAtActivityInput = {
   app_id: UUID;
   enrollment_id: UUID;
@@ -11113,48 +11203,47 @@ export async function get_my_assessment_response_channel<Fields extends GetMyAss
 }
 
 
-export type ListAssessmentResponsesForEnrollmentInput = {
-  app_id: UUID;
-  enrollment_id: UUID;
+export type CompleteAssessmentInput = {
+  completed_at?: UtcDateTime | null;
+  email?: string | null;
 };
 
-export type ListAssessmentResponsesForEnrollmentFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
-export type InferListAssessmentResponsesForEnrollmentResult<
-  Fields extends ListAssessmentResponsesForEnrollmentFields,
-> = Array<InferResult<AssessmentResponseResourceSchema, Fields>>;
+export type CompleteAssessmentFields = UnifiedFieldSelection<AssessmentResponseResourceSchema>[];
 
-export type ListAssessmentResponsesForEnrollmentResult<Fields extends ListAssessmentResponsesForEnrollmentFields> = | { success: true; data: InferListAssessmentResponsesForEnrollmentResult<Fields>; }
+export type InferCompleteAssessmentResult<
+  Fields extends CompleteAssessmentFields | undefined,
+> = InferResult<AssessmentResponseResourceSchema, Fields>;
+
+export type CompleteAssessmentResult<Fields extends CompleteAssessmentFields | undefined = undefined> = | { success: true; data: InferCompleteAssessmentResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
 
 /**
- * Read AssessmentResponse records
+ * Update an existing AssessmentResponse
  *
- * @ashActionType :read
+ * @ashActionType :update
  */
-export async function list_assessment_responses_for_enrollment<Fields extends ListAssessmentResponsesForEnrollmentFields>(
+export async function complete_assessment<Fields extends CompleteAssessmentFields | undefined = undefined>(
   config: {
   tenant?: string;
-  input: ListAssessmentResponsesForEnrollmentInput;
-  fields: Fields;
-  filter?: AssessmentResponseFilterInput;
-  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
+  identity: UUID;
+  input?: CompleteAssessmentInput;
+  fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ListAssessmentResponsesForEnrollmentResult<Fields>> {
+): Promise<CompleteAssessmentResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
-    action: "list_assessment_responses_for_enrollment",
+    action: "complete_assessment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<ListAssessmentResponsesForEnrollmentResult<Fields>>(
+  return executeActionRpcRequest<CompleteAssessmentResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -11162,23 +11251,25 @@ export async function list_assessment_responses_for_enrollment<Fields extends Li
 
 
 /**
- * Validate: Read AssessmentResponse records
+ * Validate: Update an existing AssessmentResponse
  *
- * @ashActionType :read
+ * @ashActionType :update
  * @validation true
  */
-export async function validate_list_assessment_responses_for_enrollment(
+export async function validate_complete_assessment(
   config: {
   tenant?: string;
-  input: ListAssessmentResponsesForEnrollmentInput;
+  identity: UUID | string;
+  input?: CompleteAssessmentInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "list_assessment_responses_for_enrollment",
+    action: "complete_assessment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input
   };
 
@@ -11190,15 +11281,16 @@ export async function validate_list_assessment_responses_for_enrollment(
 
 
 /**
- * Validate: Read AssessmentResponse records
+ * Validate: Update an existing AssessmentResponse
  *
- * @ashActionType :read
+ * @ashActionType :update
  * @validation true
  */
-export async function validate_list_assessment_responses_for_enrollment_channel(config: {
+export async function validate_complete_assessment_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: ListAssessmentResponsesForEnrollmentInput;
+  identity: UUID | string;
+  input?: CompleteAssessmentInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -11207,8 +11299,9 @@ export async function validate_list_assessment_responses_for_enrollment_channel(
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "list_assessment_responses_for_enrollment",
+    action: "complete_assessment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input
   },
     config.timeout,
@@ -11218,31 +11311,29 @@ export async function validate_list_assessment_responses_for_enrollment_channel(
 
 
 /**
- * Read AssessmentResponse records
+ * Update an existing AssessmentResponse
  *
- * @ashActionType :read
+ * @ashActionType :update
  */
-export async function list_assessment_responses_for_enrollment_channel<Fields extends ListAssessmentResponsesForEnrollmentFields>(config: {
+export async function complete_assessment_channel<Fields extends CompleteAssessmentFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
-  input: ListAssessmentResponsesForEnrollmentInput;
-  fields: Fields;
-  filter?: AssessmentResponseFilterInput;
-  sort?: SortString<AssessmentResponseSortField> | SortString<AssessmentResponseSortField>[];
-  result_handler: (result: ListAssessmentResponsesForEnrollmentResult<Fields>) => void;
+  identity: UUID;
+  input?: CompleteAssessmentInput;
+  fields?: Fields;
+  result_handler: (result: CompleteAssessmentResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListAssessmentResponsesForEnrollmentResult<Fields>>(
+  executeActionChannelPush<CompleteAssessmentResult<Fields>>(
     config.channel,
     {
-    action: "list_assessment_responses_for_enrollment",
+    action: "complete_assessment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -12328,9 +12419,13 @@ export type GetEnrollmentCompletionsInput = {
   id: UUID;
 };
 
-export type InferGetEnrollmentCompletionsResult = EnrollmentCompletionsResourceSchema;
+export type GetEnrollmentCompletionsFields = UnifiedFieldSelection<EnrollmentCompletionsResourceSchema>[];
 
-export type GetEnrollmentCompletionsResult = | { success: true; data: InferGetEnrollmentCompletionsResult; }
+export type InferGetEnrollmentCompletionsResult<
+  Fields extends GetEnrollmentCompletionsFields | undefined,
+> = InferResult<EnrollmentCompletionsResourceSchema, Fields>;
+
+export type GetEnrollmentCompletionsResult<Fields extends GetEnrollmentCompletionsFields | undefined = undefined> = | { success: true; data: InferGetEnrollmentCompletionsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -12340,22 +12435,24 @@ export type GetEnrollmentCompletionsResult = | { success: true; data: InferGetEn
  *
  * @ashActionType :action
  */
-export async function get_enrollment_completions(
+export async function get_enrollment_completions<Fields extends GetEnrollmentCompletionsFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: GetEnrollmentCompletionsInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetEnrollmentCompletionsResult> {
+): Promise<GetEnrollmentCompletionsResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "get_enrollment_completions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GetEnrollmentCompletionsResult>(
+  return executeActionRpcRequest<GetEnrollmentCompletionsResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -12423,21 +12520,23 @@ export async function validate_get_enrollment_completions_channel(config: {
  *
  * @ashActionType :action
  */
-export async function get_enrollment_completions_channel(config: {
+export async function get_enrollment_completions_channel<Fields extends GetEnrollmentCompletionsFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: GetEnrollmentCompletionsInput;
-  result_handler: (result: GetEnrollmentCompletionsResult) => void;
+  fields: Fields;
+  result_handler: (result: GetEnrollmentCompletionsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetEnrollmentCompletionsResult>(
+  executeActionChannelPush<GetEnrollmentCompletionsResult<Fields>>(
     config.channel,
     {
     action: "get_enrollment_completions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -13850,8 +13949,8 @@ export type InferListPlansResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -13963,29 +14062,19 @@ export async function validate_list_plans_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_plans_channel<Fields extends ListPlansFields>(config: {
+export async function list_plans_channel<Fields extends ListPlansFields, Page extends ListPlansConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: PlanFilterInput;
   sort?: SortString<PlanSortField> | SortString<PlanSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListPlansResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListPlansResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListPlansResult<Fields>>(
+  executeActionChannelPush<ListPlansResult<Fields, Page>>(
     config.channel,
     {
     action: "list_plans",
@@ -14281,7 +14370,7 @@ export async function update_plan<Fields extends UpdatePlanFields | undefined = 
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdatePlanInput;
+  input?: UpdatePlanInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -14313,7 +14402,7 @@ export async function validate_update_plan(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdatePlanInput;
+  input?: UpdatePlanInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -14343,7 +14432,7 @@ export async function validate_update_plan_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdatePlanInput;
+  input?: UpdatePlanInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -14372,7 +14461,7 @@ export async function update_plan_channel<Fields extends UpdatePlanFields | unde
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdatePlanInput;
+  input?: UpdatePlanInput;
   fields?: Fields;
   result_handler: (result: UpdatePlanResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -14517,6 +14606,127 @@ export async function create_program_test_channel<Fields extends CreateProgramTe
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetProgramTestCredentialsInput = {
+  test_id: UUID;
+};
+
+export type InferGetProgramTestCredentialsResult = Record<string, any>;
+
+export type GetProgramTestCredentialsResult = | { success: true; data: InferGetProgramTestCredentialsResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on ProgramTest
+ *
+ * @ashActionType :action
+ */
+export async function get_program_test_credentials(
+  config: {
+  tenant?: string;
+  input: GetProgramTestCredentialsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetProgramTestCredentialsResult> {
+  const payload = {
+    action: "get_program_test_credentials",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<GetProgramTestCredentialsResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on ProgramTest
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_program_test_credentials(
+  config: {
+  tenant?: string;
+  input: GetProgramTestCredentialsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_program_test_credentials",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on ProgramTest
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_program_test_credentials_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetProgramTestCredentialsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_program_test_credentials",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on ProgramTest
+ *
+ * @ashActionType :action
+ */
+export async function get_program_test_credentials_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetProgramTestCredentialsInput;
+  result_handler: (result: GetProgramTestCredentialsResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetProgramTestCredentialsResult>(
+    config.channel,
+    {
+    action: "get_program_test_credentials",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
   },
     config.timeout,
     config
@@ -14760,127 +14970,6 @@ export async function get_program_test_channel<Fields extends GetProgramTestFiel
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type GetProgramTestCredentialsInput = {
-  test_id: UUID;
-};
-
-export type InferGetProgramTestCredentialsResult = Record<string, any>;
-
-export type GetProgramTestCredentialsResult = | { success: true; data: InferGetProgramTestCredentialsResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on ProgramTest
- *
- * @ashActionType :action
- */
-export async function get_program_test_credentials(
-  config: {
-  tenant?: string;
-  input: GetProgramTestCredentialsInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GetProgramTestCredentialsResult> {
-  const payload = {
-    action: "get_program_test_credentials",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<GetProgramTestCredentialsResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on ProgramTest
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_get_program_test_credentials(
-  config: {
-  tenant?: string;
-  input: GetProgramTestCredentialsInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "get_program_test_credentials",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on ProgramTest
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_get_program_test_credentials_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetProgramTestCredentialsInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "get_program_test_credentials",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on ProgramTest
- *
- * @ashActionType :action
- */
-export async function get_program_test_credentials_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetProgramTestCredentialsInput;
-  result_handler: (result: GetProgramTestCredentialsResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GetProgramTestCredentialsResult>(
-    config.channel,
-    {
-    action: "get_program_test_credentials",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
   },
     config.timeout,
     config
@@ -16075,7 +16164,7 @@ export async function update_webhook_subscription<Fields extends UpdateWebhookSu
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateWebhookSubscriptionInput;
+  input?: UpdateWebhookSubscriptionInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -16107,7 +16196,7 @@ export async function validate_update_webhook_subscription(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateWebhookSubscriptionInput;
+  input?: UpdateWebhookSubscriptionInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -16137,7 +16226,7 @@ export async function validate_update_webhook_subscription_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateWebhookSubscriptionInput;
+  input?: UpdateWebhookSubscriptionInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -16166,7 +16255,7 @@ export async function update_webhook_subscription_channel<Fields extends UpdateW
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateWebhookSubscriptionInput;
+  input?: UpdateWebhookSubscriptionInput;
   fields?: Fields;
   result_handler: (result: UpdateWebhookSubscriptionResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -16854,8 +16943,8 @@ export type InferListFeedbackResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -16967,29 +17056,19 @@ export async function validate_list_feedback_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_feedback_channel<Fields extends ListFeedbackFields>(config: {
+export async function list_feedback_channel<Fields extends ListFeedbackFields, Page extends ListFeedbackConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: FeedbackFilterInput;
   sort?: SortString<FeedbackSortField> | SortString<FeedbackSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListFeedbackResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListFeedbackResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListFeedbackResult<Fields>>(
+  executeActionChannelPush<ListFeedbackResult<Fields, Page>>(
     config.channel,
     {
     action: "list_feedback",
@@ -17040,7 +17119,7 @@ export async function update_feedback<Fields extends UpdateFeedbackFields | unde
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateFeedbackInput;
+  input?: UpdateFeedbackInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -17072,7 +17151,7 @@ export async function validate_update_feedback(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateFeedbackInput;
+  input?: UpdateFeedbackInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -17102,7 +17181,7 @@ export async function validate_update_feedback_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateFeedbackInput;
+  input?: UpdateFeedbackInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -17131,7 +17210,7 @@ export async function update_feedback_channel<Fields extends UpdateFeedbackField
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateFeedbackInput;
+  input?: UpdateFeedbackInput;
   fields?: Fields;
   result_handler: (result: UpdateFeedbackResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -17579,7 +17658,7 @@ export async function update_homepage_card<Fields extends UpdateHomepageCardFiel
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateHomepageCardInput;
+  input?: UpdateHomepageCardInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -17611,7 +17690,7 @@ export async function validate_update_homepage_card(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateHomepageCardInput;
+  input?: UpdateHomepageCardInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -17641,7 +17720,7 @@ export async function validate_update_homepage_card_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateHomepageCardInput;
+  input?: UpdateHomepageCardInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -17670,7 +17749,7 @@ export async function update_homepage_card_channel<Fields extends UpdateHomepage
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateHomepageCardInput;
+  input?: UpdateHomepageCardInput;
   fields?: Fields;
   result_handler: (result: UpdateHomepageCardResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -17891,8 +17970,8 @@ export type InferListChatConfigsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -18004,29 +18083,19 @@ export async function validate_list_chat_configs_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_chat_configs_channel<Fields extends ListChatConfigsFields>(config: {
+export async function list_chat_configs_channel<Fields extends ListChatConfigsFields, Page extends ListChatConfigsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: ChatConfigFilterInput;
   sort?: SortString<ChatConfigSortField> | SortString<ChatConfigSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListChatConfigsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListChatConfigsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListChatConfigsResult<Fields>>(
+  executeActionChannelPush<ListChatConfigsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_chat_configs",
@@ -18505,8 +18574,8 @@ export type InferListOriginAssetsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -18614,25 +18683,19 @@ export async function validate_list_origin_assets_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_origin_assets_channel<Fields extends ListOriginAssetsFields>(config: {
+export async function list_origin_assets_channel<Fields extends ListOriginAssetsFields, Page extends ListOriginAssetsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: OriginAssetFilterInput;
   sort?: SortString<OriginAssetSortField> | SortString<OriginAssetSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListOriginAssetsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListOriginAssetsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListOriginAssetsResult<Fields>>(
+  executeActionChannelPush<ListOriginAssetsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_origin_assets",
@@ -18680,7 +18743,7 @@ export async function update_origin_asset<Fields extends UpdateOriginAssetFields
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateOriginAssetInput;
+  input?: UpdateOriginAssetInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -18712,7 +18775,7 @@ export async function validate_update_origin_asset(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateOriginAssetInput;
+  input?: UpdateOriginAssetInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -18742,7 +18805,7 @@ export async function validate_update_origin_asset_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateOriginAssetInput;
+  input?: UpdateOriginAssetInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -18771,7 +18834,7 @@ export async function update_origin_asset_channel<Fields extends UpdateOriginAss
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateOriginAssetInput;
+  input?: UpdateOriginAssetInput;
   fields?: Fields;
   result_handler: (result: UpdateOriginAssetResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -20194,161 +20257,6 @@ export async function list_cartesia_voices_channel(config: {
 }
 
 
-export type ListOriginEntitiesFields = UnifiedFieldSelection<OriginEntityResourceSchema>[];
-
-
-export type InferListOriginEntitiesResult<
-  Fields extends ListOriginEntitiesFields | undefined,
-  Page extends ListOriginEntitiesConfig["page"] = undefined
-> = ConditionalPaginatedResult<Page, Array<InferResult<OriginEntityResourceSchema, Fields>>, {
-  results: Array<InferResult<OriginEntityResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListOriginEntitiesConfig = {
-  tenant?: string;
-  fields: ListOriginEntitiesFields;
-  filter?: OriginEntityFilterInput;
-  sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListOriginEntitiesResult<Fields extends ListOriginEntitiesFields, Page extends ListOriginEntitiesConfig["page"] = undefined> = | { success: true; data: InferListOriginEntitiesResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read OriginEntity records
- *
- * @ashActionType :read
- */
-export async function list_origin_entities<Fields extends ListOriginEntitiesFields, Config extends ListOriginEntitiesConfig = ListOriginEntitiesConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListOriginEntitiesResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_origin_entities",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListOriginEntitiesResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginEntity records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_origin_entities(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_origin_entities",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginEntity records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_origin_entities_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_origin_entities",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read OriginEntity records
- *
- * @ashActionType :read
- */
-export async function list_origin_entities_channel<Fields extends ListOriginEntitiesFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: OriginEntityFilterInput;
-  sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListOriginEntitiesResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListOriginEntitiesResult<Fields>>(
-    config.channel,
-    {
-    action: "list_origin_entities",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type ListOriginEntitiesForSwitcherFields = UnifiedFieldSelection<OriginEntityResourceSchema>[];
 export type InferListOriginEntitiesForSwitcherResult<
   Fields extends ListOriginEntitiesForSwitcherFields,
@@ -20485,8 +20393,8 @@ export type InferListOriginEntitiesForUserResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -20594,25 +20502,19 @@ export async function validate_list_origin_entities_for_user_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_origin_entities_for_user_channel<Fields extends ListOriginEntitiesForUserFields>(config: {
+export async function list_origin_entities_for_user_channel<Fields extends ListOriginEntitiesForUserFields, Page extends ListOriginEntitiesForUserConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: OriginEntityFilterInput;
   sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListOriginEntitiesForUserResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListOriginEntitiesForUserResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListOriginEntitiesForUserResult<Fields>>(
+  executeActionChannelPush<ListOriginEntitiesForUserResult<Fields, Page>>(
     config.channel,
     {
     action: "list_origin_entities_for_user",
@@ -20640,8 +20542,8 @@ export type InferListPublicOriginEntitiesResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -20749,10 +20651,55 @@ export async function validate_list_public_origin_entities_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_public_origin_entities_channel<Fields extends ListPublicOriginEntitiesFields>(config: {
+export async function list_public_origin_entities_channel<Fields extends ListPublicOriginEntitiesFields, Page extends ListPublicOriginEntitiesConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
+  filter?: OriginEntityFilterInput;
+  sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
+  page?: Page;
+  result_handler: (result: ListPublicOriginEntitiesResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListPublicOriginEntitiesResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_public_origin_entities",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListOriginEntitiesFields = UnifiedFieldSelection<OriginEntityResourceSchema>[];
+
+
+export type InferListOriginEntitiesResult<
+  Fields extends ListOriginEntitiesFields | undefined,
+  Page extends ListOriginEntitiesConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<OriginEntityResourceSchema, Fields>>, {
+  results: Array<InferResult<OriginEntityResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListOriginEntitiesConfig = {
+  tenant?: string;
+  fields: ListOriginEntitiesFields;
   filter?: OriginEntityFilterInput;
   sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
   page?: {
@@ -20762,15 +20709,113 @@ export async function list_public_origin_entities_channel<Fields extends ListPub
     offset?: never;
     count?: never;
   };
-  result_handler: (result: ListPublicOriginEntitiesResult<Fields>) => void;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListOriginEntitiesResult<Fields extends ListOriginEntitiesFields, Page extends ListOriginEntitiesConfig["page"] = undefined> = | { success: true; data: InferListOriginEntitiesResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read OriginEntity records
+ *
+ * @ashActionType :read
+ */
+export async function list_origin_entities<Fields extends ListOriginEntitiesFields, Config extends ListOriginEntitiesConfig = ListOriginEntitiesConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListOriginEntitiesResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_origin_entities",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListOriginEntitiesResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read OriginEntity records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_origin_entities(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_origin_entities",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read OriginEntity records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_origin_entities_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListPublicOriginEntitiesResult<Fields>>(
+  executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "list_public_origin_entities",
+    action: "list_origin_entities",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read OriginEntity records
+ *
+ * @ashActionType :read
+ */
+export async function list_origin_entities_channel<Fields extends ListOriginEntitiesFields, Page extends ListOriginEntitiesConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: OriginEntityFilterInput;
+  sort?: SortString<OriginEntitySortField> | SortString<OriginEntitySortField>[];
+  page?: Page;
+  result_handler: (result: ListOriginEntitiesResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListOriginEntitiesResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_origin_entities",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
@@ -21226,7 +21271,7 @@ export async function update_origin_entity<Fields extends UpdateOriginEntityFiel
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateOriginEntityInput;
+  input?: UpdateOriginEntityInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -21258,7 +21303,7 @@ export async function validate_update_origin_entity(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateOriginEntityInput;
+  input?: UpdateOriginEntityInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -21288,7 +21333,7 @@ export async function validate_update_origin_entity_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateOriginEntityInput;
+  input?: UpdateOriginEntityInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -21317,7 +21362,7 @@ export async function update_origin_entity_channel<Fields extends UpdateOriginEn
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateOriginEntityInput;
+  input?: UpdateOriginEntityInput;
   fields?: Fields;
   result_handler: (result: UpdateOriginEntityResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -21994,270 +22039,6 @@ export async function delete_origin_entity_membership_channel(config: {
 }
 
 
-export type GetInheritedMembershipsInput = {
-  origin_entity_id: UUID;
-};
-
-export type GetInheritedMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
-export type InferGetInheritedMembershipsResult<
-  Fields extends GetInheritedMembershipsFields,
-> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
-
-export type GetInheritedMembershipsResult<Fields extends GetInheritedMembershipsFields> = | { success: true; data: InferGetInheritedMembershipsResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- */
-export async function get_inherited_memberships<Fields extends GetInheritedMembershipsFields>(
-  config: {
-  tenant?: string;
-  input: GetInheritedMembershipsInput;
-  fields: Fields;
-  filter?: OriginEntityStaffMembershipFilterInput;
-  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GetInheritedMembershipsResult<Fields>> {
-  const payload = {
-    action: "get_inherited_memberships",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
-  };
-
-  return executeActionRpcRequest<GetInheritedMembershipsResult<Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_get_inherited_memberships(
-  config: {
-  tenant?: string;
-  input: GetInheritedMembershipsInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "get_inherited_memberships",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_get_inherited_memberships_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetInheritedMembershipsInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "get_inherited_memberships",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- */
-export async function get_inherited_memberships_channel<Fields extends GetInheritedMembershipsFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetInheritedMembershipsInput;
-  fields: Fields;
-  filter?: OriginEntityStaffMembershipFilterInput;
-  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
-  result_handler: (result: GetInheritedMembershipsResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GetInheritedMembershipsResult<Fields>>(
-    config.channel,
-    {
-    action: "get_inherited_memberships",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type GetMembershipByTokenInput = {
-  invitation_token: UUID;
-};
-
-export type GetMembershipByTokenFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
-export type InferGetMembershipByTokenResult<
-  Fields extends GetMembershipByTokenFields,
-> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
-
-export type GetMembershipByTokenResult<Fields extends GetMembershipByTokenFields> = | { success: true; data: InferGetMembershipByTokenResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- */
-export async function get_membership_by_token<Fields extends GetMembershipByTokenFields>(
-  config: {
-  tenant?: string;
-  input: GetMembershipByTokenInput;
-  fields: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<GetMembershipByTokenResult<Fields>> {
-  const payload = {
-    action: "get_membership_by_token",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<GetMembershipByTokenResult<Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_get_membership_by_token(
-  config: {
-  tenant?: string;
-  input: GetMembershipByTokenInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "get_membership_by_token",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_get_membership_by_token_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetMembershipByTokenInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "get_membership_by_token",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read OriginEntityStaffMembership records
- *
- * @ashActionType :read
- */
-export async function get_membership_by_token_channel<Fields extends GetMembershipByTokenFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: GetMembershipByTokenInput;
-  fields: Fields;
-  result_handler: (result: GetMembershipByTokenResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<GetMembershipByTokenResult<Fields>>(
-    config.channel,
-    {
-    action: "get_membership_by_token",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type GetMembershipsForOriginInput = {
   origin_entity_id: UUID;
 };
@@ -22658,16 +22439,16 @@ export async function get_origin_entity_membership_channel<Fields extends GetOri
 }
 
 
-export type GetPendingMembershipsInput = {
-  origin_entity_id: UUID;
+export type GetMembershipByTokenInput = {
+  invitation_token: UUID;
 };
 
-export type GetPendingMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
-export type InferGetPendingMembershipsResult<
-  Fields extends GetPendingMembershipsFields,
-> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
+export type GetMembershipByTokenFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
+export type InferGetMembershipByTokenResult<
+  Fields extends GetMembershipByTokenFields,
+> = InferResult<OriginEntityStaffMembershipResourceSchema, Fields>;
 
-export type GetPendingMembershipsResult<Fields extends GetPendingMembershipsFields> = | { success: true; data: InferGetPendingMembershipsResult<Fields>; }
+export type GetMembershipByTokenResult<Fields extends GetMembershipByTokenFields> = | { success: true; data: InferGetMembershipByTokenResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -22677,28 +22458,24 @@ export type GetPendingMembershipsResult<Fields extends GetPendingMembershipsFiel
  *
  * @ashActionType :read
  */
-export async function get_pending_memberships<Fields extends GetPendingMembershipsFields>(
+export async function get_membership_by_token<Fields extends GetMembershipByTokenFields>(
   config: {
   tenant?: string;
-  input: GetPendingMembershipsInput;
+  input: GetMembershipByTokenInput;
   fields: Fields;
-  filter?: OriginEntityStaffMembershipFilterInput;
-  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<GetPendingMembershipsResult<Fields>> {
+): Promise<GetMembershipByTokenResult<Fields>> {
   const payload = {
-    action: "get_pending_memberships",
+    action: "get_membership_by_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<GetPendingMembershipsResult<Fields>>(
+  return executeActionRpcRequest<GetMembershipByTokenResult<Fields>>(
     payload,
     config
   );
@@ -22711,17 +22488,17 @@ export async function get_pending_memberships<Fields extends GetPendingMembershi
  * @ashActionType :read
  * @validation true
  */
-export async function validate_get_pending_memberships(
+export async function validate_get_membership_by_token(
   config: {
   tenant?: string;
-  input: GetPendingMembershipsInput;
+  input: GetMembershipByTokenInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
 ): Promise<ValidationResult> {
   const payload = {
-    action: "get_pending_memberships",
+    action: "get_membership_by_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   };
@@ -22739,10 +22516,10 @@ export async function validate_get_pending_memberships(
  * @ashActionType :read
  * @validation true
  */
-export async function validate_get_pending_memberships_channel(config: {
+export async function validate_get_membership_by_token_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: GetPendingMembershipsInput;
+  input: GetMembershipByTokenInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -22751,7 +22528,7 @@ export async function validate_get_pending_memberships_channel(config: {
   executeValidationChannelPush<ValidationResult>(
     config.channel,
     {
-    action: "get_pending_memberships",
+    action: "get_membership_by_token",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -22766,22 +22543,154 @@ export async function validate_get_pending_memberships_channel(config: {
  *
  * @ashActionType :read
  */
-export async function get_pending_memberships_channel<Fields extends GetPendingMembershipsFields>(config: {
+export async function get_membership_by_token_channel<Fields extends GetMembershipByTokenFields>(config: {
   channel: Channel;
   tenant?: string;
-  input: GetPendingMembershipsInput;
+  input: GetMembershipByTokenInput;
   fields: Fields;
-  filter?: OriginEntityStaffMembershipFilterInput;
-  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
-  result_handler: (result: GetPendingMembershipsResult<Fields>) => void;
+  result_handler: (result: GetMembershipByTokenResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<GetPendingMembershipsResult<Fields>>(
+  executeActionChannelPush<GetMembershipByTokenResult<Fields>>(
     config.channel,
     {
-    action: "get_pending_memberships",
+    action: "get_membership_by_token",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetInheritedMembershipsInput = {
+  origin_entity_id: UUID;
+};
+
+export type GetInheritedMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
+export type InferGetInheritedMembershipsResult<
+  Fields extends GetInheritedMembershipsFields,
+> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
+
+export type GetInheritedMembershipsResult<Fields extends GetInheritedMembershipsFields> = | { success: true; data: InferGetInheritedMembershipsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ */
+export async function get_inherited_memberships<Fields extends GetInheritedMembershipsFields>(
+  config: {
+  tenant?: string;
+  input: GetInheritedMembershipsInput;
+  fields: Fields;
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetInheritedMembershipsResult<Fields>> {
+  const payload = {
+    action: "get_inherited_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<GetInheritedMembershipsResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_inherited_memberships(
+  config: {
+  tenant?: string;
+  input: GetInheritedMembershipsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_inherited_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_inherited_memberships_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetInheritedMembershipsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_inherited_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ */
+export async function get_inherited_memberships_channel<Fields extends GetInheritedMembershipsFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetInheritedMembershipsInput;
+  fields: Fields;
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
+  result_handler: (result: GetInheritedMembershipsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetInheritedMembershipsResult<Fields>>(
+    config.channel,
+    {
+    action: "get_inherited_memberships",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
@@ -22925,6 +22834,142 @@ export async function invite_to_origin_channel<Fields extends InviteToOriginFiel
 }
 
 
+export type GetPendingMembershipsInput = {
+  origin_entity_id: UUID;
+};
+
+export type GetPendingMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
+export type InferGetPendingMembershipsResult<
+  Fields extends GetPendingMembershipsFields,
+> = Array<InferResult<OriginEntityStaffMembershipResourceSchema, Fields>>;
+
+export type GetPendingMembershipsResult<Fields extends GetPendingMembershipsFields> = | { success: true; data: InferGetPendingMembershipsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ */
+export async function get_pending_memberships<Fields extends GetPendingMembershipsFields>(
+  config: {
+  tenant?: string;
+  input: GetPendingMembershipsInput;
+  fields: Fields;
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetPendingMembershipsResult<Fields>> {
+  const payload = {
+    action: "get_pending_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<GetPendingMembershipsResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_pending_memberships(
+  config: {
+  tenant?: string;
+  input: GetPendingMembershipsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_pending_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_get_pending_memberships_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetPendingMembershipsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_pending_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read OriginEntityStaffMembership records
+ *
+ * @ashActionType :read
+ */
+export async function get_pending_memberships_channel<Fields extends GetPendingMembershipsFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetPendingMembershipsInput;
+  fields: Fields;
+  filter?: OriginEntityStaffMembershipFilterInput;
+  sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
+  result_handler: (result: GetPendingMembershipsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetPendingMembershipsResult<Fields>>(
+    config.channel,
+    {
+    action: "get_pending_memberships",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListOriginEntityMembershipsFields = UnifiedFieldSelection<OriginEntityStaffMembershipResourceSchema>[];
 
 
@@ -22944,8 +22989,8 @@ export type InferListOriginEntityMembershipsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -23057,29 +23102,19 @@ export async function validate_list_origin_entity_memberships_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_origin_entity_memberships_channel<Fields extends ListOriginEntityMembershipsFields>(config: {
+export async function list_origin_entity_memberships_channel<Fields extends ListOriginEntityMembershipsFields, Page extends ListOriginEntityMembershipsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: OriginEntityStaffMembershipFilterInput;
   sort?: SortString<OriginEntityStaffMembershipSortField> | SortString<OriginEntityStaffMembershipSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListOriginEntityMembershipsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListOriginEntityMembershipsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListOriginEntityMembershipsResult<Fields>>(
+  executeActionChannelPush<ListOriginEntityMembershipsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_origin_entity_memberships",
@@ -23252,7 +23287,7 @@ export async function update_origin_entity_membership<Fields extends UpdateOrigi
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateOriginEntityMembershipInput;
+  input?: UpdateOriginEntityMembershipInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -23284,7 +23319,7 @@ export async function validate_update_origin_entity_membership(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateOriginEntityMembershipInput;
+  input?: UpdateOriginEntityMembershipInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -23314,7 +23349,7 @@ export async function validate_update_origin_entity_membership_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateOriginEntityMembershipInput;
+  input?: UpdateOriginEntityMembershipInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -23343,7 +23378,7 @@ export async function update_origin_entity_membership_channel<Fields extends Upd
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateOriginEntityMembershipInput;
+  input?: UpdateOriginEntityMembershipInput;
   fields?: Fields;
   result_handler: (result: UpdateOriginEntityMembershipResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -23906,7 +23941,7 @@ export async function update_prompt_context<Fields extends UpdatePromptContextFi
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdatePromptContextInput;
+  input?: UpdatePromptContextInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -23938,7 +23973,7 @@ export async function validate_update_prompt_context(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdatePromptContextInput;
+  input?: UpdatePromptContextInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -23968,7 +24003,7 @@ export async function validate_update_prompt_context_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdatePromptContextInput;
+  input?: UpdatePromptContextInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -23997,7 +24032,7 @@ export async function update_prompt_context_channel<Fields extends UpdatePromptC
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdatePromptContextInput;
+  input?: UpdatePromptContextInput;
   fields?: Fields;
   result_handler: (result: UpdatePromptContextResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -24442,7 +24477,7 @@ export async function update_prompt_tool<Fields extends UpdatePromptToolFields |
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdatePromptToolInput;
+  input?: UpdatePromptToolInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -24474,7 +24509,7 @@ export async function validate_update_prompt_tool(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdatePromptToolInput;
+  input?: UpdatePromptToolInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -24504,7 +24539,7 @@ export async function validate_update_prompt_tool_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdatePromptToolInput;
+  input?: UpdatePromptToolInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -24533,7 +24568,7 @@ export async function update_prompt_tool_channel<Fields extends UpdatePromptTool
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdatePromptToolInput;
+  input?: UpdatePromptToolInput;
   fields?: Fields;
   result_handler: (result: UpdatePromptToolResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -24712,8 +24747,8 @@ export type InferListSetupProgressResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -24825,29 +24860,19 @@ export async function validate_list_setup_progress_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_setup_progress_channel<Fields extends ListSetupProgressFields>(config: {
+export async function list_setup_progress_channel<Fields extends ListSetupProgressFields, Page extends ListSetupProgressConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: SetupProgressFilterInput;
   sort?: SortString<SetupProgressSortField> | SortString<SetupProgressSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListSetupProgressResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListSetupProgressResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListSetupProgressResult<Fields>>(
+  executeActionChannelPush<ListSetupProgressResult<Fields, Page>>(
     config.channel,
     {
     action: "list_setup_progress",
@@ -24896,7 +24921,7 @@ export async function update_setup_progress<Fields extends UpdateSetupProgressFi
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateSetupProgressInput;
+  input?: UpdateSetupProgressInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -24928,7 +24953,7 @@ export async function validate_update_setup_progress(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateSetupProgressInput;
+  input?: UpdateSetupProgressInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -24958,7 +24983,7 @@ export async function validate_update_setup_progress_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateSetupProgressInput;
+  input?: UpdateSetupProgressInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -24987,7 +25012,7 @@ export async function update_setup_progress_channel<Fields extends UpdateSetupPr
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateSetupProgressInput;
+  input?: UpdateSetupProgressInput;
   fields?: Fields;
   result_handler: (result: UpdateSetupProgressResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -25293,8 +25318,8 @@ export type InferListSoulConfigsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -25406,29 +25431,19 @@ export async function validate_list_soul_configs_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_soul_configs_channel<Fields extends ListSoulConfigsFields>(config: {
+export async function list_soul_configs_channel<Fields extends ListSoulConfigsFields, Page extends ListSoulConfigsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: SoulConfigFilterInput;
   sort?: SortString<SoulConfigSortField> | SortString<SoulConfigSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListSoulConfigsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListSoulConfigsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListSoulConfigsResult<Fields>>(
+  executeActionChannelPush<ListSoulConfigsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_soul_configs",
@@ -25611,8 +25626,8 @@ export type InferListUserProfilesResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -25724,29 +25739,19 @@ export async function validate_list_user_profiles_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_user_profiles_channel<Fields extends ListUserProfilesFields>(config: {
+export async function list_user_profiles_channel<Fields extends ListUserProfilesFields, Page extends ListUserProfilesConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: UserProfileFilterInput;
   sort?: SortString<UserProfileSortField> | SortString<UserProfileSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListUserProfilesResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListUserProfilesResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListUserProfilesResult<Fields>>(
+  executeActionChannelPush<ListUserProfilesResult<Fields, Page>>(
     config.channel,
     {
     action: "list_user_profiles",
@@ -25793,7 +25798,7 @@ export async function update_user_profile<Fields extends UpdateUserProfileFields
   config: {
   tenant?: string;
   identity: { user_id: UUID };
-  input: UpdateUserProfileInput;
+  input?: UpdateUserProfileInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -25825,7 +25830,7 @@ export async function validate_update_user_profile(
   config: {
   tenant?: string;
   identity: { user_id: UUID | string };
-  input: UpdateUserProfileInput;
+  input?: UpdateUserProfileInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -25855,7 +25860,7 @@ export async function validate_update_user_profile_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: { user_id: UUID | string };
-  input: UpdateUserProfileInput;
+  input?: UpdateUserProfileInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -25884,7 +25889,7 @@ export async function update_user_profile_channel<Fields extends UpdateUserProfi
   channel: Channel;
   tenant?: string;
   identity: { user_id: UUID };
-  input: UpdateUserProfileInput;
+  input?: UpdateUserProfileInput;
   fields?: Fields;
   result_handler: (result: UpdateUserProfileResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -25925,8 +25930,8 @@ export type InferListInterviewGeneratedContentsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -26038,29 +26043,19 @@ export async function validate_list_interview_generated_contents_channel(config:
  *
  * @ashActionType :read
  */
-export async function list_interview_generated_contents_channel<Fields extends ListInterviewGeneratedContentsFields>(config: {
+export async function list_interview_generated_contents_channel<Fields extends ListInterviewGeneratedContentsFields, Page extends ListInterviewGeneratedContentsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: InterviewGeneratedContentFilterInput;
   sort?: SortString<InterviewGeneratedContentSortField> | SortString<InterviewGeneratedContentSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListInterviewGeneratedContentsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListInterviewGeneratedContentsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListInterviewGeneratedContentsResult<Fields>>(
+  executeActionChannelPush<ListInterviewGeneratedContentsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_interview_generated_contents",
@@ -26105,7 +26100,7 @@ export async function update_interview_generated_content<Fields extends UpdateIn
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateInterviewGeneratedContentInput;
+  input?: UpdateInterviewGeneratedContentInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -26137,7 +26132,7 @@ export async function validate_update_interview_generated_content(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateInterviewGeneratedContentInput;
+  input?: UpdateInterviewGeneratedContentInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -26167,7 +26162,7 @@ export async function validate_update_interview_generated_content_channel(config
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateInterviewGeneratedContentInput;
+  input?: UpdateInterviewGeneratedContentInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -26196,7 +26191,7 @@ export async function update_interview_generated_content_channel<Fields extends 
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateInterviewGeneratedContentInput;
+  input?: UpdateInterviewGeneratedContentInput;
   fields?: Fields;
   result_handler: (result: UpdateInterviewGeneratedContentResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -26868,8 +26863,8 @@ export type InferListInterviewSessionsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -26981,29 +26976,19 @@ export async function validate_list_interview_sessions_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_interview_sessions_channel<Fields extends ListInterviewSessionsFields>(config: {
+export async function list_interview_sessions_channel<Fields extends ListInterviewSessionsFields, Page extends ListInterviewSessionsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: InterviewSessionFilterInput;
   sort?: SortString<InterviewSessionSortField> | SortString<InterviewSessionSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListInterviewSessionsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListInterviewSessionsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListInterviewSessionsResult<Fields>>(
+  executeActionChannelPush<ListInterviewSessionsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_interview_sessions",
@@ -27050,7 +27035,7 @@ export async function update_interview_session<Fields extends UpdateInterviewSes
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateInterviewSessionInput;
+  input?: UpdateInterviewSessionInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -27082,7 +27067,7 @@ export async function validate_update_interview_session(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateInterviewSessionInput;
+  input?: UpdateInterviewSessionInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -27112,7 +27097,7 @@ export async function validate_update_interview_session_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateInterviewSessionInput;
+  input?: UpdateInterviewSessionInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -27141,7 +27126,7 @@ export async function update_interview_session_channel<Fields extends UpdateInte
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateInterviewSessionInput;
+  input?: UpdateInterviewSessionInput;
   fields?: Fields;
   result_handler: (result: UpdateInterviewSessionResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -28688,6 +28673,438 @@ export async function get_library_channel<Fields extends GetLibraryFields>(confi
 }
 
 
+export type ListLibrariesForOriginInput = {
+  origin_entity_id: UUID;
+};
+
+export type ListLibrariesForOriginFields = UnifiedFieldSelection<LibraryResourceSchema>[];
+
+
+export type InferListLibrariesForOriginResult<
+  Fields extends ListLibrariesForOriginFields | undefined,
+  Page extends ListLibrariesForOriginConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<LibraryResourceSchema, Fields>>, {
+  results: Array<InferResult<LibraryResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListLibrariesForOriginConfig = {
+  tenant?: string;
+  input: ListLibrariesForOriginInput;
+  fields: ListLibrariesForOriginFields;
+  filter?: LibraryFilterInput;
+  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListLibrariesForOriginResult<Fields extends ListLibrariesForOriginFields, Page extends ListLibrariesForOriginConfig["page"] = undefined> = | { success: true; data: InferListLibrariesForOriginResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read Library records
+ *
+ * @ashActionType :read
+ */
+export async function list_libraries_for_origin<Fields extends ListLibrariesForOriginFields, Config extends ListLibrariesForOriginConfig = ListLibrariesForOriginConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListLibrariesForOriginResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_libraries_for_origin",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListLibrariesForOriginResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Library records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_libraries_for_origin(
+  config: {
+  tenant?: string;
+  input: ListLibrariesForOriginInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_libraries_for_origin",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Library records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_libraries_for_origin_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListLibrariesForOriginInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_libraries_for_origin",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read Library records
+ *
+ * @ashActionType :read
+ */
+export async function list_libraries_for_origin_channel<Fields extends ListLibrariesForOriginFields, Page extends ListLibrariesForOriginConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListLibrariesForOriginInput;
+  fields: Fields;
+  filter?: LibraryFilterInput;
+  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
+  page?: Page;
+  result_handler: (result: ListLibrariesForOriginResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListLibrariesForOriginResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_libraries_for_origin",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type PreviewLibrarySyncFilterInput = {
+  id: UUID;
+  filters: Record<string, any>;
+};
+
+export type InferPreviewLibrarySyncFilterResult = Record<string, any>;
+
+export type PreviewLibrarySyncFilterResult = | { success: true; data: InferPreviewLibrarySyncFilterResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Library
+ *
+ * @ashActionType :action
+ */
+export async function preview_library_sync_filter(
+  config: {
+  tenant?: string;
+  input: PreviewLibrarySyncFilterInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<PreviewLibrarySyncFilterResult> {
+  const payload = {
+    action: "preview_library_sync_filter",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<PreviewLibrarySyncFilterResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Library
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_preview_library_sync_filter(
+  config: {
+  tenant?: string;
+  input: PreviewLibrarySyncFilterInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "preview_library_sync_filter",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Library
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_preview_library_sync_filter_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: PreviewLibrarySyncFilterInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "preview_library_sync_filter",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Library
+ *
+ * @ashActionType :action
+ */
+export async function preview_library_sync_filter_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: PreviewLibrarySyncFilterInput;
+  result_handler: (result: PreviewLibrarySyncFilterResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<PreviewLibrarySyncFilterResult>(
+    config.channel,
+    {
+    action: "preview_library_sync_filter",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListLibrariesFields = UnifiedFieldSelection<LibraryResourceSchema>[];
+
+
+export type InferListLibrariesResult<
+  Fields extends ListLibrariesFields | undefined,
+  Page extends ListLibrariesConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<LibraryResourceSchema, Fields>>, {
+  results: Array<InferResult<LibraryResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListLibrariesConfig = {
+  tenant?: string;
+  fields: ListLibrariesFields;
+  filter?: LibraryFilterInput;
+  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListLibrariesResult<Fields extends ListLibrariesFields, Page extends ListLibrariesConfig["page"] = undefined> = | { success: true; data: InferListLibrariesResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read Library records
+ *
+ * @ashActionType :read
+ */
+export async function list_libraries<Fields extends ListLibrariesFields, Config extends ListLibrariesConfig = ListLibrariesConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListLibrariesResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_libraries",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListLibrariesResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Library records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_libraries(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_libraries",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read Library records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_libraries_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_libraries",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read Library records
+ *
+ * @ashActionType :read
+ */
+export async function list_libraries_channel<Fields extends ListLibrariesFields, Page extends ListLibrariesConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: LibraryFilterInput;
+  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
+  page?: Page;
+  result_handler: (result: ListLibrariesResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListLibrariesResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_libraries",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type LibraryShellExecInput = {
   library_ids: Array<UUID>;
   command: string;
@@ -29053,450 +29470,6 @@ export async function library_shell_read_channel(config: {
 }
 
 
-export type ListLibrariesFields = UnifiedFieldSelection<LibraryResourceSchema>[];
-
-
-export type InferListLibrariesResult<
-  Fields extends ListLibrariesFields | undefined,
-  Page extends ListLibrariesConfig["page"] = undefined
-> = ConditionalPaginatedResult<Page, Array<InferResult<LibraryResourceSchema, Fields>>, {
-  results: Array<InferResult<LibraryResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListLibrariesConfig = {
-  tenant?: string;
-  fields: ListLibrariesFields;
-  filter?: LibraryFilterInput;
-  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListLibrariesResult<Fields extends ListLibrariesFields, Page extends ListLibrariesConfig["page"] = undefined> = | { success: true; data: InferListLibrariesResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read Library records
- *
- * @ashActionType :read
- */
-export async function list_libraries<Fields extends ListLibrariesFields, Config extends ListLibrariesConfig = ListLibrariesConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListLibrariesResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListLibrariesResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read Library records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_libraries(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read Library records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_libraries_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read Library records
- *
- * @ashActionType :read
- */
-export async function list_libraries_channel<Fields extends ListLibrariesFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: LibraryFilterInput;
-  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListLibrariesResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListLibrariesResult<Fields>>(
-    config.channel,
-    {
-    action: "list_libraries",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ListLibrariesForOriginInput = {
-  origin_entity_id: UUID;
-};
-
-export type ListLibrariesForOriginFields = UnifiedFieldSelection<LibraryResourceSchema>[];
-
-
-export type InferListLibrariesForOriginResult<
-  Fields extends ListLibrariesForOriginFields | undefined,
-  Page extends ListLibrariesForOriginConfig["page"] = undefined
-> = ConditionalPaginatedResult<Page, Array<InferResult<LibraryResourceSchema, Fields>>, {
-  results: Array<InferResult<LibraryResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListLibrariesForOriginConfig = {
-  tenant?: string;
-  input: ListLibrariesForOriginInput;
-  fields: ListLibrariesForOriginFields;
-  filter?: LibraryFilterInput;
-  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListLibrariesForOriginResult<Fields extends ListLibrariesForOriginFields, Page extends ListLibrariesForOriginConfig["page"] = undefined> = | { success: true; data: InferListLibrariesForOriginResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read Library records
- *
- * @ashActionType :read
- */
-export async function list_libraries_for_origin<Fields extends ListLibrariesForOriginFields, Config extends ListLibrariesForOriginConfig = ListLibrariesForOriginConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListLibrariesForOriginResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_libraries_for_origin",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListLibrariesForOriginResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read Library records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_libraries_for_origin(
-  config: {
-  tenant?: string;
-  input: ListLibrariesForOriginInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_libraries_for_origin",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read Library records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_libraries_for_origin_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListLibrariesForOriginInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_libraries_for_origin",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read Library records
- *
- * @ashActionType :read
- */
-export async function list_libraries_for_origin_channel<Fields extends ListLibrariesForOriginFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListLibrariesForOriginInput;
-  fields: Fields;
-  filter?: LibraryFilterInput;
-  sort?: SortString<LibrarySortField> | SortString<LibrarySortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListLibrariesForOriginResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListLibrariesForOriginResult<Fields>>(
-    config.channel,
-    {
-    action: "list_libraries_for_origin",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type PreviewLibrarySyncFilterInput = {
-  id: UUID;
-  filters: Record<string, any>;
-};
-
-export type InferPreviewLibrarySyncFilterResult = Record<string, any>;
-
-export type PreviewLibrarySyncFilterResult = | { success: true; data: InferPreviewLibrarySyncFilterResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on Library
- *
- * @ashActionType :action
- */
-export async function preview_library_sync_filter(
-  config: {
-  tenant?: string;
-  input: PreviewLibrarySyncFilterInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<PreviewLibrarySyncFilterResult> {
-  const payload = {
-    action: "preview_library_sync_filter",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<PreviewLibrarySyncFilterResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on Library
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_preview_library_sync_filter(
-  config: {
-  tenant?: string;
-  input: PreviewLibrarySyncFilterInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "preview_library_sync_filter",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on Library
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_preview_library_sync_filter_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: PreviewLibrarySyncFilterInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "preview_library_sync_filter",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on Library
- *
- * @ashActionType :action
- */
-export async function preview_library_sync_filter_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: PreviewLibrarySyncFilterInput;
-  result_handler: (result: PreviewLibrarySyncFilterResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<PreviewLibrarySyncFilterResult>(
-    config.channel,
-    {
-    action: "preview_library_sync_filter",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type SyncLibraryNowInput = {
   id: UUID;
 };
@@ -29646,7 +29619,7 @@ export async function update_library<Fields extends UpdateLibraryFields | undefi
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateLibraryInput;
+  input?: UpdateLibraryInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -29678,7 +29651,7 @@ export async function validate_update_library(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateLibraryInput;
+  input?: UpdateLibraryInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -29708,7 +29681,7 @@ export async function validate_update_library_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateLibraryInput;
+  input?: UpdateLibraryInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -29737,7 +29710,7 @@ export async function update_library_channel<Fields extends UpdateLibraryFields 
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateLibraryInput;
+  input?: UpdateLibraryInput;
   fields?: Fields;
   result_handler: (result: UpdateLibraryResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -30160,8 +30133,8 @@ export type InferListLibraryAccessGrantsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -30273,29 +30246,19 @@ export async function validate_list_library_access_grants_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_library_access_grants_channel<Fields extends ListLibraryAccessGrantsFields>(config: {
+export async function list_library_access_grants_channel<Fields extends ListLibraryAccessGrantsFields, Page extends ListLibraryAccessGrantsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: LibraryAccessGrantFilterInput;
   sort?: SortString<LibraryAccessGrantSortField> | SortString<LibraryAccessGrantSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListLibraryAccessGrantsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListLibraryAccessGrantsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListLibraryAccessGrantsResult<Fields>>(
+  executeActionChannelPush<ListLibraryAccessGrantsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_library_access_grants",
@@ -30825,6 +30788,167 @@ export async function get_library_file_channel<Fields extends GetLibraryFileFiel
 }
 
 
+export type ListLibraryFilesForLibraryInput = {
+  library_id: UUID;
+};
+
+export type ListLibraryFilesForLibraryFields = UnifiedFieldSelection<LibraryFileResourceSchema>[];
+
+
+export type InferListLibraryFilesForLibraryResult<
+  Fields extends ListLibraryFilesForLibraryFields | undefined,
+  Page extends ListLibraryFilesForLibraryConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<LibraryFileResourceSchema, Fields>>, {
+  results: Array<InferResult<LibraryFileResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListLibraryFilesForLibraryConfig = {
+  tenant?: string;
+  input: ListLibraryFilesForLibraryInput;
+  fields: ListLibraryFilesForLibraryFields;
+  filter?: LibraryFileFilterInput;
+  sort?: SortString<LibraryFileSortField> | SortString<LibraryFileSortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListLibraryFilesForLibraryResult<Fields extends ListLibraryFilesForLibraryFields, Page extends ListLibraryFilesForLibraryConfig["page"] = undefined> = | { success: true; data: InferListLibraryFilesForLibraryResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read LibraryFile records
+ *
+ * @ashActionType :read
+ */
+export async function list_library_files_for_library<Fields extends ListLibraryFilesForLibraryFields, Config extends ListLibraryFilesForLibraryConfig = ListLibraryFilesForLibraryConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListLibraryFilesForLibraryResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_library_files_for_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListLibraryFilesForLibraryResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read LibraryFile records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_library_files_for_library(
+  config: {
+  tenant?: string;
+  input: ListLibraryFilesForLibraryInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_library_files_for_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read LibraryFile records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_library_files_for_library_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListLibraryFilesForLibraryInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_library_files_for_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read LibraryFile records
+ *
+ * @ashActionType :read
+ */
+export async function list_library_files_for_library_channel<Fields extends ListLibraryFilesForLibraryFields, Page extends ListLibraryFilesForLibraryConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListLibraryFilesForLibraryInput;
+  fields: Fields;
+  filter?: LibraryFileFilterInput;
+  sort?: SortString<LibraryFileSortField> | SortString<LibraryFileSortField>[];
+  page?: Page;
+  result_handler: (result: ListLibraryFilesForLibraryResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListLibraryFilesForLibraryResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_library_files_for_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListLibraryFileFacetsInput = {
   keys: Array<string>;
   library_ids?: Array<UUID> | null;
@@ -30968,8 +31092,8 @@ export type InferListLibraryFilesResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -31077,196 +31201,23 @@ export async function validate_list_library_files_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_library_files_channel<Fields extends ListLibraryFilesFields>(config: {
+export async function list_library_files_channel<Fields extends ListLibraryFilesFields, Page extends ListLibraryFilesConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: LibraryFileFilterInput;
   sort?: SortString<LibraryFileSortField> | SortString<LibraryFileSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListLibraryFilesResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListLibraryFilesResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListLibraryFilesResult<Fields>>(
+  executeActionChannelPush<ListLibraryFilesResult<Fields, Page>>(
     config.channel,
     {
     action: "list_library_files",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ListLibraryFilesForLibraryInput = {
-  library_id: UUID;
-};
-
-export type ListLibraryFilesForLibraryFields = UnifiedFieldSelection<LibraryFileResourceSchema>[];
-
-
-export type InferListLibraryFilesForLibraryResult<
-  Fields extends ListLibraryFilesForLibraryFields | undefined,
-  Page extends ListLibraryFilesForLibraryConfig["page"] = undefined
-> = ConditionalPaginatedResult<Page, Array<InferResult<LibraryFileResourceSchema, Fields>>, {
-  results: Array<InferResult<LibraryFileResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListLibraryFilesForLibraryConfig = {
-  tenant?: string;
-  input: ListLibraryFilesForLibraryInput;
-  fields: ListLibraryFilesForLibraryFields;
-  filter?: LibraryFileFilterInput;
-  sort?: SortString<LibraryFileSortField> | SortString<LibraryFileSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListLibraryFilesForLibraryResult<Fields extends ListLibraryFilesForLibraryFields, Page extends ListLibraryFilesForLibraryConfig["page"] = undefined> = | { success: true; data: InferListLibraryFilesForLibraryResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read LibraryFile records
- *
- * @ashActionType :read
- */
-export async function list_library_files_for_library<Fields extends ListLibraryFilesForLibraryFields, Config extends ListLibraryFilesForLibraryConfig = ListLibraryFilesForLibraryConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListLibraryFilesForLibraryResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_library_files_for_library",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListLibraryFilesForLibraryResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read LibraryFile records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_library_files_for_library(
-  config: {
-  tenant?: string;
-  input: ListLibraryFilesForLibraryInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_library_files_for_library",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read LibraryFile records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_library_files_for_library_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListLibraryFilesForLibraryInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_library_files_for_library",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read LibraryFile records
- *
- * @ashActionType :read
- */
-export async function list_library_files_for_library_channel<Fields extends ListLibraryFilesForLibraryFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: ListLibraryFilesForLibraryInput;
-  fields: Fields;
-  filter?: LibraryFileFilterInput;
-  sort?: SortString<LibraryFileSortField> | SortString<LibraryFileSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListLibraryFilesForLibraryResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListLibraryFilesForLibraryResult<Fields>>(
-    config.channel,
-    {
-    action: "list_library_files_for_library",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
@@ -31441,7 +31392,7 @@ export async function update_library_file<Fields extends UpdateLibraryFileFields
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateLibraryFileInput;
+  input?: UpdateLibraryFileInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -31473,7 +31424,7 @@ export async function validate_update_library_file(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateLibraryFileInput;
+  input?: UpdateLibraryFileInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -31503,7 +31454,7 @@ export async function validate_update_library_file_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateLibraryFileInput;
+  input?: UpdateLibraryFileInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -31532,7 +31483,7 @@ export async function update_library_file_channel<Fields extends UpdateLibraryFi
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateLibraryFileInput;
+  input?: UpdateLibraryFileInput;
   fields?: Fields;
   result_handler: (result: UpdateLibraryFileResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -32205,8 +32156,8 @@ export type InferListForUserResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -32314,25 +32265,19 @@ export async function validate_list_for_user_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_for_user_channel<Fields extends ListForUserFields>(config: {
+export async function list_for_user_channel<Fields extends ListForUserFields, Page extends ListForUserConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: PlaylistFilterInput;
   sort?: SortString<PlaylistSortField> | SortString<PlaylistSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListForUserResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListForUserResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListForUserResult<Fields>>(
+  executeActionChannelPush<ListForUserResult<Fields, Page>>(
     config.channel,
     {
     action: "list_for_user",
@@ -32373,7 +32318,7 @@ export async function update<Fields extends UpdateFields | undefined = undefined
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateInput;
+  input?: UpdateInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -32405,7 +32350,7 @@ export async function validate_update(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateInput;
+  input?: UpdateInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -32435,7 +32380,7 @@ export async function validate_update_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateInput;
+  input?: UpdateInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -32464,7 +32409,7 @@ export async function update_channel<Fields extends UpdateFields | undefined = u
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateInput;
+  input?: UpdateInput;
   fields?: Fields;
   result_handler: (result: UpdateResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -32764,8 +32709,8 @@ export type InferListForPlaylistResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -32879,26 +32824,20 @@ export async function validate_list_for_playlist_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_for_playlist_channel<Fields extends ListForPlaylistFields>(config: {
+export async function list_for_playlist_channel<Fields extends ListForPlaylistFields, Page extends ListForPlaylistConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: ListForPlaylistInput;
   fields: Fields;
   filter?: PlaylistItemFilterInput;
   sort?: SortString<PlaylistItemSortField> | SortString<PlaylistItemSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  result_handler: (result: ListForPlaylistResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListForPlaylistResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListForPlaylistResult<Fields>>(
+  executeActionChannelPush<ListForPlaylistResult<Fields, Page>>(
     config.channel,
     {
     action: "list_for_playlist",
@@ -33054,7 +32993,7 @@ export async function reorder<Fields extends ReorderFields | undefined = undefin
   config: {
   tenant?: string;
   identity: UUID;
-  input: ReorderInput;
+  input?: ReorderInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -33086,7 +33025,7 @@ export async function validate_reorder(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: ReorderInput;
+  input?: ReorderInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -33116,7 +33055,7 @@ export async function validate_reorder_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: ReorderInput;
+  input?: ReorderInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -33145,7 +33084,7 @@ export async function reorder_channel<Fields extends ReorderFields | undefined =
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: ReorderInput;
+  input?: ReorderInput;
   fields?: Fields;
   result_handler: (result: ReorderResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -33171,9 +33110,13 @@ export type ListVideoStaticRenditionsInput = {
   library_file_id: UUID;
 };
 
-export type InferListVideoStaticRenditionsResult = Array<StaticRenditionResourceSchema>;
+export type ListVideoStaticRenditionsFields = UnifiedFieldSelection<StaticRenditionResourceSchema>[];
 
-export type ListVideoStaticRenditionsResult = | { success: true; data: InferListVideoStaticRenditionsResult; }
+export type InferListVideoStaticRenditionsResult<
+  Fields extends ListVideoStaticRenditionsFields | undefined,
+> = Array<InferResult<StaticRenditionResourceSchema, Fields>>;
+
+export type ListVideoStaticRenditionsResult<Fields extends ListVideoStaticRenditionsFields | undefined = undefined> = | { success: true; data: InferListVideoStaticRenditionsResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -33183,22 +33126,24 @@ export type ListVideoStaticRenditionsResult = | { success: true; data: InferList
  *
  * @ashActionType :action
  */
-export async function list_video_static_renditions(
+export async function list_video_static_renditions<Fields extends ListVideoStaticRenditionsFields | undefined = undefined>(
   config: {
   tenant?: string;
   input: ListVideoStaticRenditionsInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 }
-): Promise<ListVideoStaticRenditionsResult> {
+): Promise<ListVideoStaticRenditionsResult<Fields extends undefined ? [] : Fields>> {
   const payload = {
     action: "list_video_static_renditions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   };
 
-  return executeActionRpcRequest<ListVideoStaticRenditionsResult>(
+  return executeActionRpcRequest<ListVideoStaticRenditionsResult<Fields extends undefined ? [] : Fields>>(
     payload,
     config
   );
@@ -33266,21 +33211,23 @@ export async function validate_list_video_static_renditions_channel(config: {
  *
  * @ashActionType :action
  */
-export async function list_video_static_renditions_channel(config: {
+export async function list_video_static_renditions_channel<Fields extends ListVideoStaticRenditionsFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
   input: ListVideoStaticRenditionsInput;
-  result_handler: (result: ListVideoStaticRenditionsResult) => void;
+  fields: Fields;
+  result_handler: (result: ListVideoStaticRenditionsResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListVideoStaticRenditionsResult>(
+  executeActionChannelPush<ListVideoStaticRenditionsResult<Fields>>(
     config.channel,
     {
     action: "list_video_static_renditions",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -33785,176 +33732,6 @@ export async function get_binding_preview_channel(config: {
 }
 
 
-export type ListAllChatBindingsFields = UnifiedFieldSelection<ChatBindingResourceSchema>[];
-
-
-export type InferListAllChatBindingsResult<
-  Fields extends ListAllChatBindingsFields | undefined,
-  Page extends ListAllChatBindingsConfig["page"] = undefined
-> = ConditionalPaginatedResultMixed<Page, Array<InferResult<ChatBindingResourceSchema, Fields>>, {
-  results: Array<InferResult<ChatBindingResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  offset: number;
-  count?: number | null;
-  type: "offset";
-}, {
-  results: Array<InferResult<ChatBindingResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string;
-  next_page: string;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListAllChatBindingsConfig = {
-  tenant?: string;
-  fields: ListAllChatBindingsFields;
-  filter?: ChatBindingFilterInput;
-  sort?: SortString<ChatBindingSortField> | SortString<ChatBindingSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListAllChatBindingsResult<Fields extends ListAllChatBindingsFields, Page extends ListAllChatBindingsConfig["page"] = undefined> = | { success: true; data: InferListAllChatBindingsResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read ChatBinding records
- *
- * @ashActionType :read
- */
-export async function list_all_chat_bindings<Fields extends ListAllChatBindingsFields, Config extends ListAllChatBindingsConfig = ListAllChatBindingsConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListAllChatBindingsResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_all_chat_bindings",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListAllChatBindingsResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read ChatBinding records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_all_chat_bindings(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_all_chat_bindings",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read ChatBinding records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_all_chat_bindings_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_all_chat_bindings",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read ChatBinding records
- *
- * @ashActionType :read
- */
-export async function list_all_chat_bindings_channel<Fields extends ListAllChatBindingsFields>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: ChatBindingFilterInput;
-  sort?: SortString<ChatBindingSortField> | SortString<ChatBindingSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListAllChatBindingsResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListAllChatBindingsResult<Fields>>(
-    config.channel,
-    {
-    action: "list_all_chat_bindings",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type ListChatBindingsForOriginEntityInput = {
   origin_entity_id: UUID;
 };
@@ -34084,6 +33861,166 @@ export async function list_chat_bindings_for_origin_entity_channel<Fields extend
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ListAllChatBindingsFields = UnifiedFieldSelection<ChatBindingResourceSchema>[];
+
+
+export type InferListAllChatBindingsResult<
+  Fields extends ListAllChatBindingsFields | undefined,
+  Page extends ListAllChatBindingsConfig["page"] = undefined
+> = ConditionalPaginatedResultMixed<Page, Array<InferResult<ChatBindingResourceSchema, Fields>>, {
+  results: Array<InferResult<ChatBindingResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  offset: number;
+  count?: number | null;
+  type: "offset";
+}, {
+  results: Array<InferResult<ChatBindingResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListAllChatBindingsConfig = {
+  tenant?: string;
+  fields: ListAllChatBindingsFields;
+  filter?: ChatBindingFilterInput;
+  sort?: SortString<ChatBindingSortField> | SortString<ChatBindingSortField>[];
+  page?: (
+    {
+      limit?: number;
+      offset?: number;
+      count?: boolean;
+    } | {
+      limit?: number;
+      after?: string;
+      before?: string;
+    }
+  );
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListAllChatBindingsResult<Fields extends ListAllChatBindingsFields, Page extends ListAllChatBindingsConfig["page"] = undefined> = | { success: true; data: InferListAllChatBindingsResult<Fields, Page>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read ChatBinding records
+ *
+ * @ashActionType :read
+ */
+export async function list_all_chat_bindings<Fields extends ListAllChatBindingsFields, Config extends ListAllChatBindingsConfig = ListAllChatBindingsConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListAllChatBindingsResult<Fields, Config["page"]>> {
+  const payload = {
+    action: "list_all_chat_bindings",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
+  };
+
+  return executeActionRpcRequest<ListAllChatBindingsResult<Fields, Config["page"]>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read ChatBinding records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_all_chat_bindings(
+  config: {
+  tenant?: string;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_all_chat_bindings",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read ChatBinding records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_all_chat_bindings_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_all_chat_bindings",
+    ...(config.tenant !== undefined && { tenant: config.tenant })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read ChatBinding records
+ *
+ * @ashActionType :read
+ */
+export async function list_all_chat_bindings_channel<Fields extends ListAllChatBindingsFields, Page extends ListAllChatBindingsConfig["page"] = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  fields: Fields;
+  filter?: ChatBindingFilterInput;
+  sort?: SortString<ChatBindingSortField> | SortString<ChatBindingSortField>[];
+  page?: Page;
+  result_handler: (result: ListAllChatBindingsResult<Fields, Page>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListAllChatBindingsResult<Fields, Page>>(
+    config.channel,
+    {
+    action: "list_all_chat_bindings",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   },
     config.timeout,
     config
@@ -34510,8 +34447,8 @@ export type InferListPodcastConfigsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -34623,29 +34560,19 @@ export async function validate_list_podcast_configs_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_podcast_configs_channel<Fields extends ListPodcastConfigsFields>(config: {
+export async function list_podcast_configs_channel<Fields extends ListPodcastConfigsFields, Page extends ListPodcastConfigsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: PodcastConfigFilterInput;
   sort?: SortString<PodcastConfigSortField> | SortString<PodcastConfigSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListPodcastConfigsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListPodcastConfigsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListPodcastConfigsResult<Fields>>(
+  executeActionChannelPush<ListPodcastConfigsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_podcast_configs",
@@ -35229,8 +35156,8 @@ export type InferListPodcastEpisodeSettingsResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -35342,29 +35269,19 @@ export async function validate_list_podcast_episode_settings_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_podcast_episode_settings_channel<Fields extends ListPodcastEpisodeSettingsFields>(config: {
+export async function list_podcast_episode_settings_channel<Fields extends ListPodcastEpisodeSettingsFields, Page extends ListPodcastEpisodeSettingsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: PodcastEpisodeSettingsFilterInput;
   sort?: SortString<PodcastEpisodeSettingsSortField> | SortString<PodcastEpisodeSettingsSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListPodcastEpisodeSettingsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListPodcastEpisodeSettingsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListPodcastEpisodeSettingsResult<Fields>>(
+  executeActionChannelPush<ListPodcastEpisodeSettingsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_podcast_episode_settings",
@@ -36165,8 +36082,8 @@ export type InferListYoutubeEpisodesResult<
   limit: number;
   after: string | null;
   before: string | null;
-  previous_page: string;
-  next_page: string;
+  previous_page: string | null;
+  next_page: string | null;
   count?: number | null;
   type: "keyset";
 }>;
@@ -36278,29 +36195,19 @@ export async function validate_list_youtube_episodes_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_youtube_episodes_channel<Fields extends ListYoutubeEpisodesFields>(config: {
+export async function list_youtube_episodes_channel<Fields extends ListYoutubeEpisodesFields, Page extends ListYoutubeEpisodesConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: YoutubeEpisodeFilterInput;
   sort?: SortString<YoutubeEpisodeSortField> | SortString<YoutubeEpisodeSortField>[];
-  page?: (
-    {
-      limit?: number;
-      offset?: number;
-      count?: boolean;
-    } | {
-      limit?: number;
-      after?: string;
-      before?: string;
-    }
-  );
-  result_handler: (result: ListYoutubeEpisodesResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListYoutubeEpisodesResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListYoutubeEpisodesResult<Fields>>(
+  executeActionChannelPush<ListYoutubeEpisodesResult<Fields, Page>>(
     config.channel,
     {
     action: "list_youtube_episodes",
@@ -36357,7 +36264,7 @@ export async function update_youtube_episode<Fields extends UpdateYoutubeEpisode
   config: {
   tenant?: string;
   identity: UUID;
-  input: UpdateYoutubeEpisodeInput;
+  input?: UpdateYoutubeEpisodeInput;
   fields?: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -36389,7 +36296,7 @@ export async function validate_update_youtube_episode(
   config: {
   tenant?: string;
   identity: UUID | string;
-  input: UpdateYoutubeEpisodeInput;
+  input?: UpdateYoutubeEpisodeInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -36419,7 +36326,7 @@ export async function validate_update_youtube_episode_channel(config: {
   channel: Channel;
   tenant?: string;
   identity: UUID | string;
-  input: UpdateYoutubeEpisodeInput;
+  input?: UpdateYoutubeEpisodeInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -36448,7 +36355,7 @@ export async function update_youtube_episode_channel<Fields extends UpdateYoutub
   channel: Channel;
   tenant?: string;
   identity: UUID;
-  input: UpdateYoutubeEpisodeInput;
+  input?: UpdateYoutubeEpisodeInput;
   fields?: Fields;
   result_handler: (result: UpdateYoutubeEpisodeResult<Fields>) => void;
   error_handler?: (error: any) => void;

@@ -12,80 +12,80 @@ export type UtcDateTimeUsec = string;
 // ConsentRecord Schema
 export type ConsentRecordResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "custom_name" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
-  id: UUID;
-  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  __primitiveFields: "custom_name" | "email" | "granted" | "id" | "ip" | "kind" | "method" | "policy_version" | "recorded_at" | "text_shown" | "user_agent";
   custom_name: string | null;
-  granted: boolean;
-  policy_version: string;
-  method: "checkbox" | "settings";
-  text_shown: string;
-  ip: string | null;
-  user_agent: string | null;
-  recorded_at: UtcDateTimeUsec;
   email: string | null;
+  granted: boolean;
+  id: UUID;
+  ip: string | null;
+  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  method: "checkbox" | "settings";
+  policy_version: string;
+  recorded_at: UtcDateTimeUsec;
+  text_shown: string;
+  user_agent: string | null;
 };
 
 
 
 export type ConsentRecordAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "custom_name" | "granted" | "policy_version" | "method" | "text_shown" | "ip" | "user_agent" | "recorded_at" | "email";
-  id: UUID;
-  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  __primitiveFields: "custom_name" | "email" | "granted" | "id" | "ip" | "kind" | "method" | "policy_version" | "recorded_at" | "text_shown" | "user_agent";
   custom_name: string | null;
-  granted: boolean;
-  policy_version: string;
-  method: "checkbox" | "settings";
-  text_shown: string;
-  ip: string | null;
-  user_agent: string | null;
-  recorded_at: UtcDateTimeUsec;
   email: string | null;
+  granted: boolean;
+  id: UUID;
+  ip: string | null;
+  kind: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+  method: "checkbox" | "settings";
+  policy_version: string;
+  recorded_at: UtcDateTimeUsec;
+  text_shown: string;
+  user_agent: string | null;
 };
 
 
 // StaffTenantGrant Schema
 export type StaffTenantGrantResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "tenant_id" | "granted_at" | "revoked_at" | "created_at" | "updated_at";
-  id: UUID;
-  user_id: UUID;
-  tenant_id: UUID;
-  granted_at: UtcDateTimeUsec;
-  revoked_at: UtcDateTimeUsec | null;
+  __primitiveFields: "created_at" | "granted_at" | "id" | "revoked_at" | "tenant_id" | "updated_at" | "user_id";
   created_at: UtcDateTimeUsec;
+  granted_at: UtcDateTimeUsec;
+  id: UUID;
+  revoked_at: UtcDateTimeUsec | null;
+  tenant_id: UUID;
   updated_at: UtcDateTimeUsec;
-  user: { __type: "Relationship"; __resource: UserResourceSchema; };
+  user_id: UUID;
   tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
+  user: { __type: "Relationship"; __resource: UserResourceSchema; };
 };
 
 
 
 export type StaffTenantGrantAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "tenant_id" | "granted_at" | "revoked_at" | "created_at" | "updated_at";
-  id: UUID;
-  user_id: UUID;
-  tenant_id: UUID;
-  granted_at: UtcDateTimeUsec;
-  revoked_at: UtcDateTimeUsec | null;
+  __primitiveFields: "created_at" | "granted_at" | "id" | "revoked_at" | "tenant_id" | "updated_at" | "user_id";
   created_at: UtcDateTimeUsec;
+  granted_at: UtcDateTimeUsec;
+  id: UUID;
+  revoked_at: UtcDateTimeUsec | null;
+  tenant_id: UUID;
   updated_at: UtcDateTimeUsec;
+  user_id: UUID;
 };
 
 
 // Tenant Schema
 export type TenantResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "slug" | "status" | "archived_at" | "root_origin_entity_id" | "created_at" | "updated_at";
+  __primitiveFields: "archived_at" | "created_at" | "id" | "name" | "root_origin_entity_id" | "slug" | "status" | "updated_at";
+  archived_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec;
   id: UUID;
   name: string;
+  root_origin_entity_id: UUID | null;
   slug: string;
   status: "active" | "archived";
-  archived_at: UtcDateTimeUsec | null;
-  root_origin_entity_id: UUID | null;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   root_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
@@ -94,14 +94,14 @@ export type TenantResourceSchema = {
 
 export type TenantAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "slug" | "status" | "archived_at" | "root_origin_entity_id" | "created_at" | "updated_at";
+  __primitiveFields: "archived_at" | "created_at" | "id" | "name" | "root_origin_entity_id" | "slug" | "status" | "updated_at";
+  archived_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec;
   id: UUID;
   name: string;
+  root_origin_entity_id: UUID | null;
   slug: string;
   status: "active" | "archived";
-  archived_at: UtcDateTimeUsec | null;
-  root_origin_entity_id: UUID | null;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
 };
 
@@ -109,68 +109,66 @@ export type TenantAttributesOnlySchema = {
 // User Schema
 export type UserResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tenant_id" | "instance_id" | "aud" | "role" | "email" | "email_confirmed_at" | "invited_at" | "confirmation_sent_at" | "recovery_sent_at" | "last_sign_in_at" | "raw_app_meta_data" | "raw_user_meta_data" | "is_super_admin" | "created_at" | "updated_at" | "phone" | "phone_confirmed_at" | "phone_change_sent_at" | "confirmed_at" | "deleted_at" | "reauthentication_sent_at" | "banned_until" | "is_creator";
-  id: UUID;
-  tenant_id: UUID;
-  instance_id: UUID | null;
+  __primitiveFields: "aud" | "banned_until" | "confirmation_sent_at" | "confirmed_at" | "created_at" | "deleted_at" | "email" | "email_confirmed_at" | "id" | "instance_id" | "invited_at" | "is_creator" | "is_super_admin" | "last_sign_in_at" | "phone" | "phone_change_sent_at" | "phone_confirmed_at" | "raw_app_meta_data" | "raw_user_meta_data" | "reauthentication_sent_at" | "recovery_sent_at" | "role" | "tenant_id" | "updated_at";
   aud: string | null;
-  role: string | null;
+  banned_until: UtcDateTimeUsec | null;
+  confirmation_sent_at: UtcDateTimeUsec | null;
+  confirmed_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec | null;
+  deleted_at: UtcDateTimeUsec | null;
   email: string;
   email_confirmed_at: UtcDateTimeUsec | null;
+  id: UUID;
+  instance_id: UUID | null;
   invited_at: UtcDateTimeUsec | null;
-  confirmation_sent_at: UtcDateTimeUsec | null;
-  recovery_sent_at: UtcDateTimeUsec | null;
+  is_creator: boolean;
+  is_super_admin: boolean | null;
   last_sign_in_at: UtcDateTimeUsec | null;
+  phone: string | null;
+  phone_change_sent_at: UtcDateTimeUsec | null;
+  phone_confirmed_at: UtcDateTimeUsec | null;
   raw_app_meta_data: Record<string, any> | null;
   raw_user_meta_data: Record<string, any> | null;
-  is_super_admin: boolean | null;
-  created_at: UtcDateTimeUsec | null;
-  updated_at: UtcDateTimeUsec;
-  phone: string | null;
-  phone_confirmed_at: UtcDateTimeUsec | null;
-  phone_change_sent_at: UtcDateTimeUsec | null;
-  confirmed_at: UtcDateTimeUsec | null;
-  deleted_at: UtcDateTimeUsec | null;
   reauthentication_sent_at: UtcDateTimeUsec | null;
-  banned_until: UtcDateTimeUsec | null;
-  is_creator: boolean;
-  social_sign_in_response_type: { __type: "Relationship"; __resource: SocialSignInResponseResourceSchema | null; };
-  sign_in_link_response_type: { __type: "Relationship"; __resource: SignInLinkResponseResourceSchema | null; };
-  tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
-  staff_tenant_grants: { __type: "Relationship"; __array: true; __resource: StaffTenantGrantResourceSchema; };
+  recovery_sent_at: UtcDateTimeUsec | null;
+  role: string | null;
+  tenant_id: UUID;
+  updated_at: UtcDateTimeUsec;
+  origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; __pagination: "keyset"; __filterInput: OriginEntityFilterInput; __sortField: OriginEntitySortField; };
+  origin_entity_memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; __pagination: "mixed"; __filterInput: OriginEntityStaffMembershipFilterInput; __sortField: OriginEntityStaffMembershipSortField; };
   profile: { __type: "Relationship"; __resource: UserProfileResourceSchema | null; };
-  origin_entity_memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; };
-  origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; };
+  staff_tenant_grants: { __type: "Relationship"; __array: true; __resource: StaffTenantGrantResourceSchema; __pagination: "mixed"; __filterInput: StaffTenantGrantFilterInput; __sortField: StaffTenantGrantSortField; };
+  tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
 };
 
 
 
 export type UserAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tenant_id" | "instance_id" | "aud" | "role" | "email" | "email_confirmed_at" | "invited_at" | "confirmation_sent_at" | "recovery_sent_at" | "last_sign_in_at" | "raw_app_meta_data" | "raw_user_meta_data" | "is_super_admin" | "created_at" | "updated_at" | "phone" | "phone_confirmed_at" | "phone_change_sent_at" | "confirmed_at" | "deleted_at" | "reauthentication_sent_at" | "banned_until";
-  id: UUID;
-  tenant_id: UUID;
-  instance_id: UUID | null;
+  __primitiveFields: "aud" | "banned_until" | "confirmation_sent_at" | "confirmed_at" | "created_at" | "deleted_at" | "email" | "email_confirmed_at" | "id" | "instance_id" | "invited_at" | "is_super_admin" | "last_sign_in_at" | "phone" | "phone_change_sent_at" | "phone_confirmed_at" | "raw_app_meta_data" | "raw_user_meta_data" | "reauthentication_sent_at" | "recovery_sent_at" | "role" | "tenant_id" | "updated_at";
   aud: string | null;
-  role: string | null;
+  banned_until: UtcDateTimeUsec | null;
+  confirmation_sent_at: UtcDateTimeUsec | null;
+  confirmed_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec | null;
+  deleted_at: UtcDateTimeUsec | null;
   email: string;
   email_confirmed_at: UtcDateTimeUsec | null;
+  id: UUID;
+  instance_id: UUID | null;
   invited_at: UtcDateTimeUsec | null;
-  confirmation_sent_at: UtcDateTimeUsec | null;
-  recovery_sent_at: UtcDateTimeUsec | null;
+  is_super_admin: boolean | null;
   last_sign_in_at: UtcDateTimeUsec | null;
+  phone: string | null;
+  phone_change_sent_at: UtcDateTimeUsec | null;
+  phone_confirmed_at: UtcDateTimeUsec | null;
   raw_app_meta_data: Record<string, any> | null;
   raw_user_meta_data: Record<string, any> | null;
-  is_super_admin: boolean | null;
-  created_at: UtcDateTimeUsec | null;
-  updated_at: UtcDateTimeUsec;
-  phone: string | null;
-  phone_confirmed_at: UtcDateTimeUsec | null;
-  phone_change_sent_at: UtcDateTimeUsec | null;
-  confirmed_at: UtcDateTimeUsec | null;
-  deleted_at: UtcDateTimeUsec | null;
   reauthentication_sent_at: UtcDateTimeUsec | null;
-  banned_until: UtcDateTimeUsec | null;
+  recovery_sent_at: UtcDateTimeUsec | null;
+  role: string | null;
+  tenant_id: UUID;
+  updated_at: UtcDateTimeUsec;
 };
 
 
@@ -198,9 +196,9 @@ export type SignInLinkResponseInputSchema = {
 // SocialSignInResponse Schema
 export type SocialSignInResponseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "email" | "token";
-  id: UUID;
+  __primitiveFields: "email" | "id" | "token";
   email: string;
+  id: UUID;
   token: string;
 };
 
@@ -208,16 +206,16 @@ export type SocialSignInResponseResourceSchema = {
 
 export type SocialSignInResponseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "email" | "token";
-  id: UUID;
+  __primitiveFields: "email" | "id" | "token";
   email: string;
+  id: UUID;
   token: string;
 };
 
 
 export type SocialSignInResponseInputSchema = {
-  id: UUID;
   email: string;
+  id: UUID;
   token: string;
 };
 
@@ -225,22 +223,22 @@ export type SocialSignInResponseInputSchema = {
 // WaitlistEntry Schema
 export type WaitlistEntryResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "email" | "full_name" | "company_name" | "role" | "interest_areas" | "message" | "source" | "metadata" | "status" | "invitation_token" | "expires_at" | "invited_at" | "approved_by" | "created_at" | "updated_at";
-  id: UUID;
-  email: string;
-  full_name: string;
-  company_name: string | null;
-  role: string | null;
-  interest_areas: Array<string> | null;
-  message: string | null;
-  source: string | null;
-  metadata: Record<string, any> | null;
-  status: "approved" | "pending" | "rejected";
-  invitation_token: UUID | null;
-  expires_at: UtcDateTimeUsec | null;
-  invited_at: UtcDateTimeUsec | null;
+  __primitiveFields: "approved_by" | "company_name" | "created_at" | "email" | "expires_at" | "full_name" | "id" | "interest_areas" | "invitation_token" | "invited_at" | "message" | "metadata" | "role" | "source" | "status" | "updated_at";
   approved_by: UUID | null;
+  company_name: string | null;
   created_at: UtcDateTimeUsec;
+  email: string;
+  expires_at: UtcDateTimeUsec | null;
+  full_name: string;
+  id: UUID;
+  interest_areas: Array<string> | null;
+  invitation_token: UUID | null;
+  invited_at: UtcDateTimeUsec | null;
+  message: string | null;
+  metadata: Record<string, any> | null;
+  role: string | null;
+  source: string | null;
+  status: "approved" | "pending" | "rejected";
   updated_at: UtcDateTimeUsec;
 };
 
@@ -248,22 +246,22 @@ export type WaitlistEntryResourceSchema = {
 
 export type WaitlistEntryAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "email" | "full_name" | "company_name" | "role" | "interest_areas" | "message" | "source" | "metadata" | "status" | "invitation_token" | "expires_at" | "invited_at" | "approved_by" | "created_at" | "updated_at";
-  id: UUID;
-  email: string;
-  full_name: string;
-  company_name: string | null;
-  role: string | null;
-  interest_areas: Array<string> | null;
-  message: string | null;
-  source: string | null;
-  metadata: Record<string, any> | null;
-  status: "approved" | "pending" | "rejected";
-  invitation_token: UUID | null;
-  expires_at: UtcDateTimeUsec | null;
-  invited_at: UtcDateTimeUsec | null;
+  __primitiveFields: "approved_by" | "company_name" | "created_at" | "email" | "expires_at" | "full_name" | "id" | "interest_areas" | "invitation_token" | "invited_at" | "message" | "metadata" | "role" | "source" | "status" | "updated_at";
   approved_by: UUID | null;
+  company_name: string | null;
   created_at: UtcDateTimeUsec;
+  email: string;
+  expires_at: UtcDateTimeUsec | null;
+  full_name: string;
+  id: UUID;
+  interest_areas: Array<string> | null;
+  invitation_token: UUID | null;
+  invited_at: UtcDateTimeUsec | null;
+  message: string | null;
+  metadata: Record<string, any> | null;
+  role: string | null;
+  source: string | null;
+  status: "approved" | "pending" | "rejected";
   updated_at: UtcDateTimeUsec;
 };
 
@@ -271,54 +269,57 @@ export type WaitlistEntryAttributesOnlySchema = {
 // ChatMessage Schema
 export type ChatMessageResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "role" | "content" | "created_at";
-  id: string;
-  role: string;
+  __primitiveFields: "content" | "created_at" | "id" | "role";
   content: string;
   created_at: string | null;
+  id: string;
+  role: string;
 };
 
 
 
 export type ChatMessageAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "role" | "content" | "created_at";
-  id: string;
-  role: string;
+  __primitiveFields: "content" | "created_at" | "id" | "role";
   content: string;
   created_at: string | null;
+  id: string;
+  role: string;
 };
 
 
 export type ChatMessageInputSchema = {
-  id: string;
-  role: string;
   content: string;
   created_at?: string | null;
+  id: string;
+  role: string;
 };
 
 
 // ChatReply Schema
 export type ChatReplyResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "response" | "conversation_id";
-  response: string;
+  __primitiveFields: "conversation_id" | "data" | "response";
   conversation_id: UUID;
+  data: Record<string, any> | null;
+  response: string;
 };
 
 
 
 export type ChatReplyAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "response" | "conversation_id";
-  response: string;
+  __primitiveFields: "conversation_id" | "data" | "response";
   conversation_id: UUID;
+  data: Record<string, any> | null;
+  response: string;
 };
 
 
 export type ChatReplyInputSchema = {
-  response: string;
   conversation_id: UUID;
+  data?: Record<string, any> | null;
+  response: string;
 };
 
 
@@ -346,78 +347,74 @@ export type ChatSuggestionsInputSchema = {
 // PublicConversation Schema
 export type PublicConversationResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "session_id" | "user_email" | "user_name" | "metadata" | "closed_at" | "phone_number" | "sms_opt_in" | "channel" | "status" | "is_root" | "root_conversation_id" | "started_at" | "last_message_at" | "created_at" | "updated_at" | "origin_entity_id" | "message_count" | "has_letta_agent";
-  id: UUID;
-  user_id: UUID | null;
-  session_id: string | null;
-  user_email: string | null;
-  user_name: string | null;
-  metadata: Record<string, any> | null;
-  closed_at: UtcDateTimeUsec | null;
-  phone_number: string | null;
-  sms_opt_in: boolean | null;
+  __primitiveFields: "channel" | "closed_at" | "created_at" | "has_letta_agent" | "id" | "is_root" | "last_message_at" | "message_count" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "session_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
   channel: string | null;
-  status: string | null;
-  is_root: boolean | null;
-  root_conversation_id: UUID | null;
-  started_at: UtcDateTimeUsec;
-  last_message_at: UtcDateTimeUsec;
+  closed_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
-  message_count: number;
   has_letta_agent: boolean | null;
-  chat_reply_type: { __type: "Relationship"; __resource: ChatReplyResourceSchema | null; };
-  chat_suggestions_type: { __type: "Relationship"; __resource: ChatSuggestionsResourceSchema | null; };
-  chat_message_type: { __type: "Relationship"; __resource: ChatMessageResourceSchema | null; };
-  turn_state_type: { __type: "Relationship"; __resource: TurnStateResourceSchema | null; };
-  user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
+  id: UUID;
+  is_root: boolean | null;
+  last_message_at: UtcDateTimeUsec;
+  message_count: number;
+  metadata: Record<string, any> | null;
+  origin_entity_id: UUID;
+  phone_number: string | null;
+  root_conversation_id: UUID | null;
+  session_id: string | null;
+  sms_opt_in: boolean | null;
+  started_at: UtcDateTimeUsec;
+  status: string | null;
+  updated_at: UtcDateTimeUsec;
+  user_email: string | null;
+  user_id: UUID | null;
+  user_name: string | null;
+  memories: { __type: "Relationship"; __array: true; __resource: AgentMemoryResourceSchema; __pagination: "mixed"; __filterInput: AgentMemoryFilterInput; __sortField: AgentMemorySortField; };
+  messages: { __type: "Relationship"; __array: true; __resource: PublicMessageResourceSchema; __pagination: "mixed"; __filterInput: PublicMessageFilterInput; __sortField: PublicMessageSortField; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   root_conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
-  threads: { __type: "Relationship"; __array: true; __resource: PublicConversationResourceSchema; };
-  messages: { __type: "Relationship"; __array: true; __resource: PublicMessageResourceSchema; };
-  memories: { __type: "Relationship"; __array: true; __resource: AgentMemoryResourceSchema; };
+  threads: { __type: "Relationship"; __array: true; __resource: PublicConversationResourceSchema; __pagination: "mixed"; __filterInput: PublicConversationFilterInput; __sortField: PublicConversationSortField; };
+  user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
 };
 
 
 
 export type PublicConversationAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "session_id" | "user_email" | "user_name" | "metadata" | "closed_at" | "phone_number" | "sms_opt_in" | "channel" | "status" | "is_root" | "root_conversation_id" | "started_at" | "last_message_at" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  user_id: UUID | null;
-  session_id: string | null;
-  user_email: string | null;
-  user_name: string | null;
-  metadata: Record<string, any> | null;
-  closed_at: UtcDateTimeUsec | null;
-  phone_number: string | null;
-  sms_opt_in: boolean | null;
+  __primitiveFields: "channel" | "closed_at" | "created_at" | "id" | "is_root" | "last_message_at" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "session_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
   channel: string | null;
-  status: string | null;
-  is_root: boolean | null;
-  root_conversation_id: UUID | null;
-  started_at: UtcDateTimeUsec;
-  last_message_at: UtcDateTimeUsec;
+  closed_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  is_root: boolean | null;
+  last_message_at: UtcDateTimeUsec;
+  metadata: Record<string, any> | null;
   origin_entity_id: UUID;
+  phone_number: string | null;
+  root_conversation_id: UUID | null;
+  session_id: string | null;
+  sms_opt_in: boolean | null;
+  started_at: UtcDateTimeUsec;
+  status: string | null;
+  updated_at: UtcDateTimeUsec;
+  user_email: string | null;
+  user_id: UUID | null;
+  user_name: string | null;
 };
 
 
 // PublicMessage Schema
 export type PublicMessageResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "role" | "content" | "model_used" | "tokens_used" | "response_time_ms" | "metadata" | "created_at" | "conversation_id";
-  id: UUID;
-  role: string;
+  __primitiveFields: "content" | "conversation_id" | "created_at" | "id" | "metadata" | "model_used" | "response_time_ms" | "role" | "tokens_used";
   content: string | null;
-  model_used: string | null;
-  tokens_used: number | null;
-  response_time_ms: number | null;
-  metadata: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
   conversation_id: UUID | null;
+  created_at: UtcDateTimeUsec;
+  id: UUID;
+  metadata: Record<string, any> | null;
+  model_used: string | null;
+  response_time_ms: number | null;
+  role: string;
+  tokens_used: number | null;
   conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
 };
 
@@ -425,48 +422,48 @@ export type PublicMessageResourceSchema = {
 
 export type PublicMessageAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "role" | "content" | "model_used" | "tokens_used" | "response_time_ms" | "metadata" | "created_at" | "conversation_id";
-  id: UUID;
-  role: string;
+  __primitiveFields: "content" | "conversation_id" | "created_at" | "id" | "metadata" | "model_used" | "response_time_ms" | "role" | "tokens_used";
   content: string | null;
-  model_used: string | null;
-  tokens_used: number | null;
-  response_time_ms: number | null;
-  metadata: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
   conversation_id: UUID | null;
+  created_at: UtcDateTimeUsec;
+  id: UUID;
+  metadata: Record<string, any> | null;
+  model_used: string | null;
+  response_time_ms: number | null;
+  role: string;
+  tokens_used: number | null;
 };
 
 
 // MessageAttachment Schema
 export type MessageAttachmentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "message_id" | "file_name" | "file_type" | "file_size" | "storage_path" | "parsed_content" | "pending_message_id" | "created_at";
+  __primitiveFields: "created_at" | "file_name" | "file_size" | "file_type" | "id" | "message_id" | "parsed_content" | "pending_message_id" | "storage_path";
+  created_at: UtcDateTimeUsec;
+  file_name: string;
+  file_size: number;
+  file_type: string;
   id: UUID;
   message_id: UUID | null;
-  file_name: string;
-  file_type: string;
-  file_size: number;
-  storage_path: string;
   parsed_content: string | null;
   pending_message_id: UUID | null;
-  created_at: UtcDateTimeUsec;
+  storage_path: string;
 };
 
 
 
 export type MessageAttachmentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "message_id" | "file_name" | "file_type" | "file_size" | "storage_path" | "parsed_content" | "pending_message_id" | "created_at";
+  __primitiveFields: "created_at" | "file_name" | "file_size" | "file_type" | "id" | "message_id" | "parsed_content" | "pending_message_id" | "storage_path";
+  created_at: UtcDateTimeUsec;
+  file_name: string;
+  file_size: number;
+  file_type: string;
   id: UUID;
   message_id: UUID | null;
-  file_name: string;
-  file_type: string;
-  file_size: number;
-  storage_path: string;
   parsed_content: string | null;
   pending_message_id: UUID | null;
-  created_at: UtcDateTimeUsec;
+  storage_path: string;
 };
 
 
@@ -497,28 +494,27 @@ export type TurnStateInputSchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "generation_format" | "generation_prompt" | "origin_entity_id" | "markdoc_content" | "has_letta_agent" | "generation_status" | "generation_error";
-  id: UUID;
-  page_type: string;
-  slug: string;
-  is_published: boolean | null;
-  meta: Record<string, any> | null;
+  __primitiveFields: "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_letta_agent" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  title: string | null;
-  source: string;
+  generation_error: string | null;
   generation_format: string | null;
   generation_prompt: string | null;
-  origin_entity_id: UUID;
-  markdoc_content: string;
-  has_letta_agent: boolean | null;
   generation_status: string | null;
-  generation_error: string | null;
-  authoring_document: { __type: "Relationship"; __resource: AuthoringDocumentResourceSchema | null; };
-  generation_history: { __type: "ComplexCalculation"; __returnType: Array<GenerationHistoryEntryResourceSchema> | null; __args: { limit?: number | null; before?: string | null }; };
+  has_letta_agent: boolean | null;
+  id: UUID;
+  is_published: boolean | null;
+  markdoc_content: string;
+  meta: Record<string, any> | null;
+  origin_entity_id: UUID;
+  page_type: string;
+  slug: string;
+  source: string;
+  title: string | null;
+  updated_at: UtcDateTimeUsec;
   assessment_graph: { __type: "Relationship"; __resource: AssessmentGraphResourceSchema | null; };
+  authoring_document: { __type: "Relationship"; __resource: AuthoringDocumentResourceSchema | null; };
   example_briefing: { __type: "Relationship"; __resource: DailyBriefingResourceSchema | null; };
-  gated_course_payload_type_anchor: { __type: "Relationship"; __resource: GatedCoursePayloadResourceSchema | null; };
+  generation_history: { __type: "ComplexCalculation"; __returnType: Array<GenerationHistoryEntryResourceSchema> | null; __args: { limit?: number | null; before?: string | null }; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -526,19 +522,19 @@ export type AppResourceSchema = {
 
 export type AppAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_type" | "slug" | "is_published" | "meta" | "created_at" | "updated_at" | "title" | "source" | "generation_format" | "generation_prompt" | "origin_entity_id";
-  id: UUID;
-  page_type: string;
-  slug: string;
-  is_published: boolean | null;
-  meta: Record<string, any> | null;
+  __primitiveFields: "created_at" | "generation_format" | "generation_prompt" | "id" | "is_published" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  title: string | null;
-  source: string;
   generation_format: string | null;
   generation_prompt: string | null;
+  id: UUID;
+  is_published: boolean | null;
+  meta: Record<string, any> | null;
   origin_entity_id: UUID;
+  page_type: string;
+  slug: string;
+  source: string;
+  title: string | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
@@ -547,8 +543,8 @@ export type AssessmentGraphResourceSchema = {
   __type: "Resource";
   __primitiveFields: "start_node";
   start_node: string | null;
-  nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeResourceSchema; };
-  edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeResourceSchema; };
+  edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeResourceSchema | null; };
+  nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeResourceSchema | null; };
 };
 
 
@@ -557,40 +553,40 @@ export type AssessmentGraphAttributesOnlySchema = {
   __type: "Resource";
   __primitiveFields: "start_node";
   start_node: string | null;
-  nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema; };
-  edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema; };
+  edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema | null; };
+  nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema | null; };
 };
 
 
 export type AssessmentGraphInputSchema = {
-  start_node?: string | null;
-  nodes?: Array<OriginsAppsNodeInputSchema> | null;
   edges?: Array<OriginsAppsEdgeInputSchema> | null;
+  nodes?: Array<OriginsAppsNodeInputSchema> | null;
+  start_node?: string | null;
 };
 
 
 // AssessmentResponse Schema
 export type AssessmentResponseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "email" | "launch_activity_id" | "answers" | "path_history" | "current_node" | "result" | "attribution" | "full_name" | "phone" | "completed_at" | "created_at" | "updated_at" | "app_id" | "enrollment_id";
-  id: UUID;
-  user_id: UUID | null;
-  email: string | null;
-  launch_activity_id: string | null;
+  __primitiveFields: "answers" | "app_id" | "attribution" | "completed_at" | "created_at" | "current_node" | "email" | "enrollment_id" | "full_name" | "id" | "launch_activity_id" | "path_history" | "phone" | "result" | "updated_at" | "user_id";
   answers: Record<string, any> | null;
-  path_history: Array<string> | null;
-  current_node: string | null;
-  result: Record<string, any> | null;
+  app_id: UUID;
   attribution: Record<string, any> | null;
-  full_name: string | null;
-  phone: string | null;
   completed_at: UtcDateTime | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  app_id: UUID;
+  current_node: string | null;
+  email: string | null;
   enrollment_id: UUID | null;
-  graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeResourceSchema; };
-  graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeResourceSchema; };
+  full_name: string | null;
+  id: UUID;
+  launch_activity_id: string | null;
+  path_history: Array<string> | null;
+  phone: string | null;
+  result: Record<string, any> | null;
+  updated_at: UtcDateTimeUsec;
+  user_id: UUID | null;
+  graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeResourceSchema | null; };
+  graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeResourceSchema | null; };
   app: { __type: "Relationship"; __resource: AppResourceSchema; };
   enrollment: { __type: "Relationship"; __resource: CourseEnrollmentResourceSchema | null; };
 };
@@ -599,139 +595,139 @@ export type AssessmentResponseResourceSchema = {
 
 export type AssessmentResponseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "email" | "launch_activity_id" | "answers" | "path_history" | "current_node" | "result" | "attribution" | "full_name" | "phone" | "completed_at" | "created_at" | "updated_at" | "app_id" | "enrollment_id";
-  id: UUID;
-  user_id: UUID | null;
-  email: string | null;
-  launch_activity_id: string | null;
+  __primitiveFields: "answers" | "app_id" | "attribution" | "completed_at" | "created_at" | "current_node" | "email" | "enrollment_id" | "full_name" | "id" | "launch_activity_id" | "path_history" | "phone" | "result" | "updated_at" | "user_id";
   answers: Record<string, any> | null;
-  path_history: Array<string> | null;
-  current_node: string | null;
-  result: Record<string, any> | null;
+  app_id: UUID;
   attribution: Record<string, any> | null;
-  full_name: string | null;
-  phone: string | null;
   completed_at: UtcDateTime | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  app_id: UUID;
+  current_node: string | null;
+  email: string | null;
   enrollment_id: UUID | null;
-  graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema; };
-  graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema; };
+  full_name: string | null;
+  id: UUID;
+  launch_activity_id: string | null;
+  path_history: Array<string> | null;
+  phone: string | null;
+  result: Record<string, any> | null;
+  updated_at: UtcDateTimeUsec;
+  user_id: UUID | null;
+  graph_snapshot_edges: { __type: "Relationship"; __array: true; __resource: OriginsAppsEdgeAttributesOnlySchema | null; };
+  graph_snapshot_nodes: { __type: "Relationship"; __array: true; __resource: OriginsAppsNodeAttributesOnlySchema | null; };
 };
 
 
 // AuthoringDocument Schema
 export type AuthoringDocumentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "page_type" | "blocks" | "config" | "errors";
-  page_type: string;
+  __primitiveFields: "blocks" | "config" | "errors" | "page_type";
   blocks: Array<Record<string, any>> | null;
   config: Record<string, any> | null;
   errors: Array<Record<string, any>> | null;
+  page_type: string;
 };
 
 
 
 export type AuthoringDocumentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "page_type" | "blocks" | "config" | "errors";
-  page_type: string;
+  __primitiveFields: "blocks" | "config" | "errors" | "page_type";
   blocks: Array<Record<string, any>> | null;
   config: Record<string, any> | null;
   errors: Array<Record<string, any>> | null;
+  page_type: string;
 };
 
 
 export type AuthoringDocumentInputSchema = {
-  page_type: string;
   blocks?: Array<Record<string, any>> | null;
   config?: Record<string, any> | null;
   errors?: Array<Record<string, any>> | null;
+  page_type: string;
 };
 
 
 // OriginsAppsContentCourseActivity Schema
 export type OriginsAppsContentCourseActivityResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "label" | "icon" | "source_course" | "phase" | "session" | "title" | "duration" | "recurrence" | "availability" | "mode" | "body" | "image" | "optional" | "content";
+  __primitiveFields: "availability" | "body" | "content" | "duration" | "icon" | "id" | "image" | "kind" | "label" | "mode" | "optional" | "phase" | "recurrence" | "session" | "source_course" | "title";
+  availability: "anytime" | "scheduled" | null;
+  body: string | null;
+  content: string | null;
+  duration: number | null;
+  icon: string | null;
   id: string;
+  image: string | null;
   kind: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
   label: string | null;
-  icon: string | null;
-  source_course: string | null;
-  phase: string | null;
-  session: string | null;
-  title: string;
-  duration: number | null;
-  recurrence: "daily" | "once" | "phase-start" | "weekly" | null;
-  availability: "anytime" | "scheduled" | null;
   mode: "partner" | "solo" | null;
-  body: string | null;
-  image: string | null;
   optional: boolean | null;
-  content: string | null;
-  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateResourceSchema | null; };
-  video: { __type: "Relationship"; __resource: OriginsAppsContentCourseVideoResourceSchema | null; };
+  phase: string | null;
+  recurrence: "daily" | "once" | "phase-start" | "weekly" | null;
+  session: string | null;
+  source_course: string | null;
+  title: string;
   assessment: { __type: "Relationship"; __resource: OriginsAppsContentCourseAssessmentResourceSchema | null; };
-  steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepResourceSchema; };
-  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema; };
-  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema | null; };
+  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateResourceSchema | null; };
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema | null; };
+  steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepResourceSchema | null; };
+  video: { __type: "Relationship"; __resource: OriginsAppsContentCourseVideoResourceSchema | null; };
 };
 
 
 
 export type OriginsAppsContentCourseActivityAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "label" | "icon" | "source_course" | "phase" | "session" | "title" | "duration" | "recurrence" | "availability" | "mode" | "body" | "image" | "optional" | "content";
+  __primitiveFields: "availability" | "body" | "content" | "duration" | "icon" | "id" | "image" | "kind" | "label" | "mode" | "optional" | "phase" | "recurrence" | "session" | "source_course" | "title";
+  availability: "anytime" | "scheduled" | null;
+  body: string | null;
+  content: string | null;
+  duration: number | null;
+  icon: string | null;
   id: string;
+  image: string | null;
   kind: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
   label: string | null;
-  icon: string | null;
-  source_course: string | null;
-  phase: string | null;
-  session: string | null;
-  title: string;
-  duration: number | null;
-  recurrence: "daily" | "once" | "phase-start" | "weekly" | null;
-  availability: "anytime" | "scheduled" | null;
   mode: "partner" | "solo" | null;
-  body: string | null;
-  image: string | null;
   optional: boolean | null;
-  content: string | null;
-  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateAttributesOnlySchema | null; };
-  video: { __type: "Relationship"; __resource: OriginsAppsContentCourseVideoAttributesOnlySchema | null; };
+  phase: string | null;
+  recurrence: "daily" | "once" | "phase-start" | "weekly" | null;
+  session: string | null;
+  source_course: string | null;
+  title: string;
   assessment: { __type: "Relationship"; __resource: OriginsAppsContentCourseAssessmentAttributesOnlySchema | null; };
-  steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepAttributesOnlySchema; };
-  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema; };
-  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema | null; };
+  opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateAttributesOnlySchema | null; };
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema | null; };
+  steps: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseCourseStepAttributesOnlySchema | null; };
+  video: { __type: "Relationship"; __resource: OriginsAppsContentCourseVideoAttributesOnlySchema | null; };
 };
 
 
 export type OriginsAppsContentCourseActivityInputSchema = {
+  assessment?: OriginsAppsContentCourseAssessmentInputSchema | null;
+  availability?: "anytime" | "scheduled" | null;
+  body?: string | null;
+  content?: string | null;
+  contributors?: Array<OriginsAppsContentCourseContributorInputSchema> | null;
+  duration?: number | null;
+  icon?: string | null;
   id: string;
+  image?: string | null;
   kind: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
   label?: string | null;
-  icon?: string | null;
-  source_course?: string | null;
-  phase?: string | null;
-  session?: string | null;
-  title: string;
-  duration?: number | null;
-  recurrence?: "daily" | "once" | "phase-start" | "weekly" | null;
-  availability?: "anytime" | "scheduled" | null;
   mode?: "partner" | "solo" | null;
-  body?: string | null;
-  image?: string | null;
   opens?: OriginsAppsContentCourseGateInputSchema | null;
   optional?: boolean | null;
-  content?: string | null;
-  video?: OriginsAppsContentCourseVideoInputSchema | null;
-  assessment?: OriginsAppsContentCourseAssessmentInputSchema | null;
-  steps?: Array<OriginsAppsContentCourseCourseStepInputSchema> | null;
+  phase?: string | null;
   prompts?: Array<OriginsAppsContentCoursePromptInputSchema> | null;
-  contributors?: Array<OriginsAppsContentCourseContributorInputSchema> | null;
+  recurrence?: "daily" | "once" | "phase-start" | "weekly" | null;
+  session?: string | null;
+  source_course?: string | null;
+  steps?: Array<OriginsAppsContentCourseCourseStepInputSchema> | null;
+  title: string;
+  video?: OriginsAppsContentCourseVideoInputSchema | null;
 };
 
 
@@ -759,153 +755,153 @@ export type OriginsAppsContentCourseAssessmentInputSchema = {
 // OriginsAppsContentCourseContributor Schema
 export type OriginsAppsContentCourseContributorResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url";
-  ref: string | null;
-  name: string | null;
-  role: string | null;
-  bio: string | null;
+  __primitiveFields: "avatar_url" | "bio" | "name" | "ref" | "role";
   avatar_url: string | null;
+  bio: string | null;
+  name: string | null;
+  ref: string | null;
+  role: string | null;
 };
 
 
 
 export type OriginsAppsContentCourseContributorAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "ref" | "name" | "role" | "bio" | "avatar_url";
-  ref: string | null;
-  name: string | null;
-  role: string | null;
-  bio: string | null;
+  __primitiveFields: "avatar_url" | "bio" | "name" | "ref" | "role";
   avatar_url: string | null;
+  bio: string | null;
+  name: string | null;
+  ref: string | null;
+  role: string | null;
 };
 
 
 export type OriginsAppsContentCourseContributorInputSchema = {
-  ref?: string | null;
-  name?: string | null;
-  role?: string | null;
-  bio?: string | null;
   avatar_url?: string | null;
+  bio?: string | null;
+  name?: string | null;
+  ref?: string | null;
+  role?: string | null;
 };
 
 
 // OriginsAppsContentCourseCourse Schema
 export type OriginsAppsContentCourseCourseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "name" | "logo" | "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "streaks" | "gated" | "segment" | "purchase_url" | "gated_default_tab" | "unit_label" | "head";
-  name: string | null;
-  logo: string | null;
-  background: string | null;
-  foreground: string | null;
-  card: string | null;
-  card_foreground: string | null;
-  primary: string | null;
-  primary_foreground: string | null;
+  __primitiveFields: "accent" | "accent_foreground" | "background" | "border" | "card" | "card_foreground" | "foreground" | "gated" | "gated_default_tab" | "head" | "logo" | "name" | "primary" | "primary_foreground" | "purchase_url" | "segment" | "streaks" | "unit_label" | "video_accent" | "video_captions";
   accent: string | null;
   accent_foreground: string | null;
+  background: string | null;
   border: string | null;
+  card: string | null;
+  card_foreground: string | null;
+  foreground: string | null;
+  gated: boolean | null;
+  gated_default_tab: string | null;
+  head: string | null;
+  logo: string | null;
+  name: string | null;
+  primary: string | null;
+  primary_foreground: string | null;
+  purchase_url: string | null;
+  segment: string | null;
+  streaks: boolean | null;
+  unit_label: string | null;
   video_accent: string | null;
   video_captions: boolean | null;
-  streaks: boolean | null;
-  gated: boolean | null;
-  segment: string | null;
-  purchase_url: string | null;
-  gated_default_tab: string | null;
-  unit_label: string | null;
-  head: string | null;
 };
 
 
 
 export type OriginsAppsContentCourseCourseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "name" | "logo" | "background" | "foreground" | "card" | "card_foreground" | "primary" | "primary_foreground" | "accent" | "accent_foreground" | "border" | "video_accent" | "video_captions" | "streaks" | "gated" | "segment" | "purchase_url" | "gated_default_tab" | "unit_label" | "head";
-  name: string | null;
-  logo: string | null;
-  background: string | null;
-  foreground: string | null;
-  card: string | null;
-  card_foreground: string | null;
-  primary: string | null;
-  primary_foreground: string | null;
+  __primitiveFields: "accent" | "accent_foreground" | "background" | "border" | "card" | "card_foreground" | "foreground" | "gated" | "gated_default_tab" | "head" | "logo" | "name" | "primary" | "primary_foreground" | "purchase_url" | "segment" | "streaks" | "unit_label" | "video_accent" | "video_captions";
   accent: string | null;
   accent_foreground: string | null;
+  background: string | null;
   border: string | null;
+  card: string | null;
+  card_foreground: string | null;
+  foreground: string | null;
+  gated: boolean | null;
+  gated_default_tab: string | null;
+  head: string | null;
+  logo: string | null;
+  name: string | null;
+  primary: string | null;
+  primary_foreground: string | null;
+  purchase_url: string | null;
+  segment: string | null;
+  streaks: boolean | null;
+  unit_label: string | null;
   video_accent: string | null;
   video_captions: boolean | null;
-  streaks: boolean | null;
-  gated: boolean | null;
-  segment: string | null;
-  purchase_url: string | null;
-  gated_default_tab: string | null;
-  unit_label: string | null;
-  head: string | null;
 };
 
 
 export type OriginsAppsContentCourseCourseInputSchema = {
-  name?: string | null;
-  logo?: string | null;
-  background?: string | null;
-  foreground?: string | null;
-  card?: string | null;
-  card_foreground?: string | null;
-  primary?: string | null;
-  primary_foreground?: string | null;
   accent?: string | null;
   accent_foreground?: string | null;
+  background?: string | null;
   border?: string | null;
+  card?: string | null;
+  card_foreground?: string | null;
+  foreground?: string | null;
+  gated?: boolean | null;
+  gated_default_tab?: string | null;
+  head?: string | null;
+  logo?: string | null;
+  name?: string | null;
+  primary?: string | null;
+  primary_foreground?: string | null;
+  purchase_url?: string | null;
+  segment?: string | null;
+  streaks?: boolean | null;
+  unit_label?: string | null;
   video_accent?: string | null;
   video_captions?: boolean | null;
-  streaks?: boolean | null;
-  gated?: boolean | null;
-  segment?: string | null;
-  purchase_url?: string | null;
-  gated_default_tab?: string | null;
-  unit_label?: string | null;
-  head?: string | null;
 };
 
 
 // OriginsAppsContentCourseCourseStep Schema
 export type OriginsAppsContentCourseCourseStepResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "duration" | "body" | "required" | "content" | "order";
-  id: string | null;
-  title: string | null;
-  duration: number | null;
+  __primitiveFields: "body" | "content" | "duration" | "id" | "order" | "required" | "title";
   body: string | null;
-  required: boolean | null;
   content: string | null;
+  duration: number | null;
+  id: string | null;
   order: number | null;
-  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema; };
+  required: boolean | null;
+  title: string | null;
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptResourceSchema | null; };
 };
 
 
 
 export type OriginsAppsContentCourseCourseStepAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "duration" | "body" | "required" | "content" | "order";
-  id: string | null;
-  title: string | null;
-  duration: number | null;
+  __primitiveFields: "body" | "content" | "duration" | "id" | "order" | "required" | "title";
   body: string | null;
-  required: boolean | null;
   content: string | null;
+  duration: number | null;
+  id: string | null;
   order: number | null;
-  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema; };
+  required: boolean | null;
+  title: string | null;
+  prompts: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePromptAttributesOnlySchema | null; };
 };
 
 
 export type OriginsAppsContentCourseCourseStepInputSchema = {
-  id?: string | null;
-  title?: string | null;
-  duration?: number | null;
   body?: string | null;
-  required?: boolean | null;
   content?: string | null;
+  duration?: number | null;
+  id?: string | null;
   order?: number | null;
   prompts?: Array<OriginsAppsContentCoursePromptInputSchema> | null;
+  required?: boolean | null;
+  title?: string | null;
 };
 
 
@@ -945,60 +941,60 @@ export type OriginsAppsContentCourseGateInputSchema = {
 // OriginsAppsContentCoursePhase Schema
 export type OriginsAppsContentCoursePhaseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "weeks" | "description";
+  __primitiveFields: "description" | "id" | "title" | "weeks";
+  description: string | null;
   id: string;
   title: string;
   weeks: string | null;
-  description: string | null;
 };
 
 
 
 export type OriginsAppsContentCoursePhaseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "weeks" | "description";
+  __primitiveFields: "description" | "id" | "title" | "weeks";
+  description: string | null;
   id: string;
   title: string;
   weeks: string | null;
-  description: string | null;
 };
 
 
 export type OriginsAppsContentCoursePhaseInputSchema = {
+  description?: string | null;
   id: string;
   title: string;
   weeks?: string | null;
-  description?: string | null;
 };
 
 
 // OriginsAppsContentCoursePrompt Schema
 export type OriginsAppsContentCoursePromptResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order";
+  __primitiveFields: "id" | "kind" | "label" | "max" | "min" | "options" | "order" | "required";
   id: string | null;
   kind: "number" | "select" | "slider" | "text" | null;
   label: string | null;
-  min: number | null;
   max: number | null;
+  min: number | null;
   options: string | null;
-  required: boolean | null;
   order: number | null;
+  required: boolean | null;
 };
 
 
 
 export type OriginsAppsContentCoursePromptAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "kind" | "label" | "min" | "max" | "options" | "required" | "order";
+  __primitiveFields: "id" | "kind" | "label" | "max" | "min" | "options" | "order" | "required";
   id: string | null;
   kind: "number" | "select" | "slider" | "text" | null;
   label: string | null;
-  min: number | null;
   max: number | null;
+  min: number | null;
   options: string | null;
-  required: boolean | null;
   order: number | null;
+  required: boolean | null;
 };
 
 
@@ -1006,24 +1002,24 @@ export type OriginsAppsContentCoursePromptInputSchema = {
   id?: string | null;
   kind?: "number" | "select" | "slider" | "text" | null;
   label?: string | null;
-  min?: number | null;
   max?: number | null;
+  min?: number | null;
   options?: string | null;
-  required?: boolean | null;
   order?: number | null;
+  required?: boolean | null;
 };
 
 
 // OriginsAppsContentCourseSession Schema
 export type OriginsAppsContentCourseSessionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "description" | "optional" | "phase_id" | "index";
-  id: string;
-  title: string | null;
+  __primitiveFields: "description" | "id" | "index" | "optional" | "phase_id" | "title";
   description: string | null;
+  id: string;
+  index: number | null;
   optional: boolean | null;
   phase_id: string | null;
-  index: number | null;
+  title: string | null;
   opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateResourceSchema | null; };
 };
 
@@ -1031,82 +1027,82 @@ export type OriginsAppsContentCourseSessionResourceSchema = {
 
 export type OriginsAppsContentCourseSessionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "description" | "optional" | "phase_id" | "index";
-  id: string;
-  title: string | null;
+  __primitiveFields: "description" | "id" | "index" | "optional" | "phase_id" | "title";
   description: string | null;
+  id: string;
+  index: number | null;
   optional: boolean | null;
   phase_id: string | null;
-  index: number | null;
+  title: string | null;
   opens: { __type: "Relationship"; __resource: OriginsAppsContentCourseGateAttributesOnlySchema | null; };
 };
 
 
 export type OriginsAppsContentCourseSessionInputSchema = {
-  id: string;
-  title?: string | null;
   description?: string | null;
+  id: string;
+  index?: number | null;
   opens?: OriginsAppsContentCourseGateInputSchema | null;
   optional?: boolean | null;
   phase_id?: string | null;
-  index?: number | null;
+  title?: string | null;
 };
 
 
 // OriginsAppsContentCourseTransition Schema
 export type OriginsAppsContentCourseTransitionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "body" | "between" | "at";
+  __primitiveFields: "at" | "between" | "body" | "id" | "title";
+  at: string | null;
+  between: string | null;
+  body: string | null;
   id: string | null;
   title: string | null;
-  body: string | null;
-  between: string | null;
-  at: string | null;
 };
 
 
 
 export type OriginsAppsContentCourseTransitionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "body" | "between" | "at";
+  __primitiveFields: "at" | "between" | "body" | "id" | "title";
+  at: string | null;
+  between: string | null;
+  body: string | null;
   id: string | null;
   title: string | null;
-  body: string | null;
-  between: string | null;
-  at: string | null;
 };
 
 
 export type OriginsAppsContentCourseTransitionInputSchema = {
+  at?: string | null;
+  between?: string | null;
+  body?: string | null;
   id?: string | null;
   title?: string | null;
-  body?: string | null;
-  between?: string | null;
-  at?: string | null;
 };
 
 
 // OriginsAppsContentCourseVideo Schema
 export type OriginsAppsContentCourseVideoResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "path" | "caption";
-  path: string;
+  __primitiveFields: "caption" | "path";
   caption: string | null;
+  path: string;
 };
 
 
 
 export type OriginsAppsContentCourseVideoAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "path" | "caption";
-  path: string;
+  __primitiveFields: "caption" | "path";
   caption: string | null;
+  path: string;
 };
 
 
 export type OriginsAppsContentCourseVideoInputSchema = {
-  path: string;
   caption?: string | null;
+  path: string;
 };
 
 
@@ -1134,81 +1130,81 @@ export type BriefingPageInputSchema = {
 // DailyBriefing Schema
 export type DailyBriefingResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "session_id" | "date" | "generated_at" | "read_at";
-  session_id: string;
+  __primitiveFields: "date" | "generated_at" | "read_at" | "session_id";
   date: AshDate | null;
   generated_at: UtcDateTimeUsec | null;
   read_at: UtcDateTimeUsec | null;
-  pages: { __type: "Relationship"; __array: true; __resource: BriefingPageResourceSchema; };
+  session_id: string;
+  pages: { __type: "Relationship"; __array: true; __resource: BriefingPageResourceSchema | null; };
 };
 
 
 
 export type DailyBriefingAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "session_id" | "date" | "generated_at" | "read_at";
-  session_id: string;
+  __primitiveFields: "date" | "generated_at" | "read_at" | "session_id";
   date: AshDate | null;
   generated_at: UtcDateTimeUsec | null;
   read_at: UtcDateTimeUsec | null;
-  pages: { __type: "Relationship"; __array: true; __resource: BriefingPageAttributesOnlySchema; };
+  session_id: string;
+  pages: { __type: "Relationship"; __array: true; __resource: BriefingPageAttributesOnlySchema | null; };
 };
 
 
 export type DailyBriefingInputSchema = {
-  session_id: string;
   date?: AshDate | null;
-  pages?: Array<BriefingPageInputSchema> | null;
   generated_at?: UtcDateTimeUsec | null;
+  pages?: Array<BriefingPageInputSchema> | null;
   read_at?: UtcDateTimeUsec | null;
+  session_id: string;
 };
 
 
 // GatedCourse Schema
 export type GatedCourseResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes" | "source_libraries";
+  __primitiveFields: "briefing_enabled" | "outcomes" | "source_libraries" | "unit_label";
   briefing_enabled: boolean | null;
-  unit_label: string | null;
   outcomes: Array<string> | null;
   source_libraries: Array<string> | null;
+  unit_label: string | null;
+  activities: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseActivityResourceSchema | null; };
   config: { __type: "Relationship"; __resource: OriginsAppsContentCourseCourseResourceSchema | null; };
-  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema; };
-  phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseResourceSchema; };
-  transitions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseTransitionResourceSchema; };
-  sessions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseSessionResourceSchema; };
-  activities: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseActivityResourceSchema; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorResourceSchema | null; };
+  phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseResourceSchema | null; };
+  sessions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseSessionResourceSchema | null; };
+  transitions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseTransitionResourceSchema | null; };
 };
 
 
 
 export type GatedCourseAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "briefing_enabled" | "unit_label" | "outcomes" | "source_libraries";
+  __primitiveFields: "briefing_enabled" | "outcomes" | "source_libraries" | "unit_label";
   briefing_enabled: boolean | null;
-  unit_label: string | null;
   outcomes: Array<string> | null;
   source_libraries: Array<string> | null;
+  unit_label: string | null;
+  activities: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseActivityAttributesOnlySchema | null; };
   config: { __type: "Relationship"; __resource: OriginsAppsContentCourseCourseAttributesOnlySchema | null; };
-  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema; };
-  phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseAttributesOnlySchema; };
-  transitions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseTransitionAttributesOnlySchema; };
-  sessions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseSessionAttributesOnlySchema; };
-  activities: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseActivityAttributesOnlySchema; };
+  contributors: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseContributorAttributesOnlySchema | null; };
+  phases: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCoursePhaseAttributesOnlySchema | null; };
+  sessions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseSessionAttributesOnlySchema | null; };
+  transitions: { __type: "Relationship"; __array: true; __resource: OriginsAppsContentCourseTransitionAttributesOnlySchema | null; };
 };
 
 
 export type GatedCourseInputSchema = {
-  config?: OriginsAppsContentCourseCourseInputSchema | null;
-  briefing_enabled?: boolean | null;
-  unit_label?: string | null;
-  outcomes?: Array<string> | null;
-  contributors?: Array<OriginsAppsContentCourseContributorInputSchema> | null;
-  phases?: Array<OriginsAppsContentCoursePhaseInputSchema> | null;
-  transitions?: Array<OriginsAppsContentCourseTransitionInputSchema> | null;
-  sessions?: Array<OriginsAppsContentCourseSessionInputSchema> | null;
   activities?: Array<OriginsAppsContentCourseActivityInputSchema> | null;
+  briefing_enabled?: boolean | null;
+  config?: OriginsAppsContentCourseCourseInputSchema | null;
+  contributors?: Array<OriginsAppsContentCourseContributorInputSchema> | null;
+  outcomes?: Array<string> | null;
+  phases?: Array<OriginsAppsContentCoursePhaseInputSchema> | null;
+  sessions?: Array<OriginsAppsContentCourseSessionInputSchema> | null;
   source_libraries?: Array<string> | null;
+  transitions?: Array<OriginsAppsContentCourseTransitionInputSchema> | null;
+  unit_label?: string | null;
 };
 
 
@@ -1216,10 +1212,10 @@ export type GatedCourseInputSchema = {
 export type GatedCoursePayloadResourceSchema = {
   __type: "Resource";
   __primitiveFields: never;
-  gated_course: { __type: "Relationship"; __resource: GatedCourseResourceSchema; };
+  assessment_launches: { __type: "Relationship"; __array: true; __resource: CourseAssessmentLaunchResourceSchema | null; };
   enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
-  state: { __type: "Relationship"; __array: true; __resource: CourseItemStateResourceSchema; };
-  assessment_launches: { __type: "Relationship"; __array: true; __resource: CourseAssessmentLaunchResourceSchema; };
+  gated_course: { __type: "Relationship"; __resource: GatedCourseResourceSchema; };
+  state: { __type: "Relationship"; __array: true; __resource: CourseItemStateResourceSchema | null; };
 };
 
 
@@ -1227,28 +1223,28 @@ export type GatedCoursePayloadResourceSchema = {
 export type GatedCoursePayloadAttributesOnlySchema = {
   __type: "Resource";
   __primitiveFields: never;
-  gated_course: { __type: "Relationship"; __resource: GatedCourseAttributesOnlySchema; };
+  assessment_launches: { __type: "Relationship"; __array: true; __resource: CourseAssessmentLaunchAttributesOnlySchema | null; };
   enrollment: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"} | null;
-  state: { __type: "Relationship"; __array: true; __resource: CourseItemStateAttributesOnlySchema; };
-  assessment_launches: { __type: "Relationship"; __array: true; __resource: CourseAssessmentLaunchAttributesOnlySchema; };
+  gated_course: { __type: "Relationship"; __resource: GatedCourseAttributesOnlySchema; };
+  state: { __type: "Relationship"; __array: true; __resource: CourseItemStateAttributesOnlySchema | null; };
 };
 
 
 export type GatedCoursePayloadInputSchema = {
-  gated_course: GatedCourseInputSchema;
-  enrollment?: {id?: UUID | null, status?: string | null, current_session_id?: string | null, current_phase_id?: string | null, current_phase_started_at?: UtcDateTime | null, entered_session_ids?: Array<string> | null, enrolled_at?: UtcDateTime | null, streak_count?: number | null, streak_last_date?: AshDate | null, settings?: Record<string, any> | null} | null;
-  state?: Array<CourseItemStateInputSchema> | null;
   assessment_launches?: Array<CourseAssessmentLaunchInputSchema> | null;
+  enrollment?: {id?: UUID | null, status?: string | null, current_session_id?: string | null, current_phase_id?: string | null, current_phase_started_at?: UtcDateTime | null, entered_session_ids?: Array<string> | null, enrolled_at?: UtcDateTime | null, streak_count?: number | null, streak_last_date?: AshDate | null, settings?: Record<string, any> | null} | null;
+  gated_course: GatedCourseInputSchema;
+  state?: Array<CourseItemStateInputSchema> | null;
 };
 
 
 // CourseItemState Schema
 export type CourseItemStateResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "item_id" | "available" | "complete" | "progress";
-  item_id: string;
+  __primitiveFields: "available" | "complete" | "item_id" | "progress";
   available: boolean;
   complete: boolean;
+  item_id: string;
   progress: number | null;
   unlocks_when: { __type: "Relationship"; __resource: CourseUnlocksWhenResourceSchema | null; };
 };
@@ -1257,21 +1253,21 @@ export type CourseItemStateResourceSchema = {
 
 export type CourseItemStateAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "item_id" | "available" | "complete" | "progress";
-  item_id: string;
+  __primitiveFields: "available" | "complete" | "item_id" | "progress";
   available: boolean;
   complete: boolean;
+  item_id: string;
   progress: number | null;
   unlocks_when: { __type: "Relationship"; __resource: CourseUnlocksWhenAttributesOnlySchema | null; };
 };
 
 
 export type CourseItemStateInputSchema = {
-  item_id: string;
   available?: boolean;
-  unlocks_when?: CourseUnlocksWhenInputSchema | null;
   complete?: boolean;
+  item_id: string;
   progress?: number | null;
+  unlocks_when?: CourseUnlocksWhenInputSchema | null;
 };
 
 
@@ -1302,48 +1298,48 @@ export type CourseAssessmentLaunchInputSchema = {
 // CourseUnlocksWhen Schema
 export type CourseUnlocksWhenResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "type" | "date" | "activity_ids" | "reason";
-  type: "after" | "after_any" | "at" | "locked_by";
-  date: string | null;
+  __primitiveFields: "activity_ids" | "date" | "reason" | "type";
   activity_ids: Array<string> | null;
+  date: string | null;
   reason: string | null;
+  type: "after" | "after_any" | "at" | "locked_by";
 };
 
 
 
 export type CourseUnlocksWhenAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "type" | "date" | "activity_ids" | "reason";
-  type: "after" | "after_any" | "at" | "locked_by";
-  date: string | null;
+  __primitiveFields: "activity_ids" | "date" | "reason" | "type";
   activity_ids: Array<string> | null;
+  date: string | null;
   reason: string | null;
+  type: "after" | "after_any" | "at" | "locked_by";
 };
 
 
 export type CourseUnlocksWhenInputSchema = {
-  type: "after" | "after_any" | "at" | "locked_by";
-  date?: string | null;
   activity_ids?: Array<string> | null;
+  date?: string | null;
   reason?: string | null;
+  type: "after" | "after_any" | "at" | "locked_by";
 };
 
 
 // CourseActivityCompletion Schema
 export type CourseActivityCompletionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "activity_id" | "step_id" | "completed_date" | "responses" | "notes" | "duration_seconds" | "attachments" | "created_at" | "updated_at" | "enrollment_id";
-  id: UUID;
+  __primitiveFields: "activity_id" | "attachments" | "completed_date" | "created_at" | "duration_seconds" | "enrollment_id" | "id" | "notes" | "responses" | "step_id" | "updated_at";
   activity_id: string;
-  step_id: string | null;
-  completed_date: AshDate;
-  responses: Record<string, any> | null;
-  notes: string | null;
-  duration_seconds: number | null;
   attachments: Array<Record<string, any>> | null;
+  completed_date: AshDate;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  duration_seconds: number | null;
   enrollment_id: UUID;
+  id: UUID;
+  notes: string | null;
+  responses: Record<string, any> | null;
+  step_id: string | null;
+  updated_at: UtcDateTimeUsec;
   enrollment: { __type: "Relationship"; __resource: CourseEnrollmentResourceSchema; };
 };
 
@@ -1351,156 +1347,154 @@ export type CourseActivityCompletionResourceSchema = {
 
 export type CourseActivityCompletionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "activity_id" | "step_id" | "completed_date" | "responses" | "notes" | "duration_seconds" | "attachments" | "created_at" | "updated_at" | "enrollment_id";
-  id: UUID;
+  __primitiveFields: "activity_id" | "attachments" | "completed_date" | "created_at" | "duration_seconds" | "enrollment_id" | "id" | "notes" | "responses" | "step_id" | "updated_at";
   activity_id: string;
-  step_id: string | null;
-  completed_date: AshDate;
-  responses: Record<string, any> | null;
-  notes: string | null;
-  duration_seconds: number | null;
   attachments: Array<Record<string, any>> | null;
+  completed_date: AshDate;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  duration_seconds: number | null;
   enrollment_id: UUID;
+  id: UUID;
+  notes: string | null;
+  responses: Record<string, any> | null;
+  step_id: string | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // CourseEnrollment Schema
 export type CourseEnrollmentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "entered_session_ids" | "current_phase_id" | "current_phase_started_at" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id" | "assessment_answers";
-  id: UUID;
-  status: "active" | "completed" | "not_started" | "paused" | "reactivated";
-  current_session_id: string | null;
-  entered_session_ids: Array<string>;
+  __primitiveFields: "app_id" | "assessment_answers" | "character_id" | "created_at" | "current_personalization_id" | "current_phase_id" | "current_phase_started_at" | "current_session_id" | "enrolled_at" | "entered_session_ids" | "id" | "reactivated_at" | "settings" | "status" | "streak_count" | "streak_last_date" | "updated_at" | "user_id";
+  app_id: UUID;
+  assessment_answers: Record<string, any> | null;
+  character_id: UUID;
+  created_at: UtcDateTimeUsec;
+  current_personalization_id: UUID | null;
   current_phase_id: string | null;
   current_phase_started_at: UtcDateTime | null;
-  reactivated_at: UtcDateTime | null;
+  current_session_id: string | null;
   enrolled_at: UtcDateTime | null;
+  entered_session_ids: Array<string>;
+  id: UUID;
+  reactivated_at: UtcDateTime | null;
+  settings: Record<string, any> | null;
+  status: "active" | "completed" | "not_started" | "paused" | "reactivated";
   streak_count: number | null;
   streak_last_date: AshDate | null;
-  settings: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   user_id: UUID;
-  character_id: UUID;
-  app_id: UUID;
-  current_personalization_id: UUID | null;
-  assessment_answers: Record<string, any> | null;
-  enrollment_completions_type_anchor: { __type: "Relationship"; __resource: EnrollmentCompletionsResourceSchema | null; };
-  activity_completion_summary_type_anchor: { __type: "Relationship"; __resource: ActivityCompletionSummaryResourceSchema | null; };
-  user: { __type: "Relationship"; __resource: UserResourceSchema; };
-  character: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
+  activity_completions: { __type: "Relationship"; __array: true; __resource: CourseActivityCompletionResourceSchema; __filterInput: CourseActivityCompletionFilterInput; __sortField: CourseActivityCompletionSortField; };
   app: { __type: "Relationship"; __resource: AppResourceSchema; };
-  activity_completions: { __type: "Relationship"; __array: true; __resource: CourseActivityCompletionResourceSchema; };
+  character: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
+  user: { __type: "Relationship"; __resource: UserResourceSchema; };
 };
 
 
 
 export type CourseEnrollmentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "entered_session_ids" | "current_phase_id" | "current_phase_started_at" | "reactivated_at" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings" | "created_at" | "updated_at" | "user_id" | "character_id" | "app_id" | "current_personalization_id";
-  id: UUID;
-  status: "active" | "completed" | "not_started" | "paused" | "reactivated";
-  current_session_id: string | null;
-  entered_session_ids: Array<string>;
+  __primitiveFields: "app_id" | "character_id" | "created_at" | "current_personalization_id" | "current_phase_id" | "current_phase_started_at" | "current_session_id" | "enrolled_at" | "entered_session_ids" | "id" | "reactivated_at" | "settings" | "status" | "streak_count" | "streak_last_date" | "updated_at" | "user_id";
+  app_id: UUID;
+  character_id: UUID;
+  created_at: UtcDateTimeUsec;
+  current_personalization_id: UUID | null;
   current_phase_id: string | null;
   current_phase_started_at: UtcDateTime | null;
-  reactivated_at: UtcDateTime | null;
+  current_session_id: string | null;
   enrolled_at: UtcDateTime | null;
+  entered_session_ids: Array<string>;
+  id: UUID;
+  reactivated_at: UtcDateTime | null;
+  settings: Record<string, any> | null;
+  status: "active" | "completed" | "not_started" | "paused" | "reactivated";
   streak_count: number | null;
   streak_last_date: AshDate | null;
-  settings: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
   user_id: UUID;
-  character_id: UUID;
-  app_id: UUID;
-  current_personalization_id: UUID | null;
 };
 
 
 // ActivityCompletionSummary Schema
 export type ActivityCompletionSummaryResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "activity_id" | "step_id" | "completed_date" | "responses";
-  id: UUID;
+  __primitiveFields: "activity_id" | "completed_date" | "id" | "responses" | "step_id";
   activity_id: string;
-  step_id: string | null;
   completed_date: AshDate;
+  id: UUID;
   responses: Record<string, any> | null;
+  step_id: string | null;
 };
 
 
 
 export type ActivityCompletionSummaryAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "activity_id" | "step_id" | "completed_date" | "responses";
-  id: UUID;
+  __primitiveFields: "activity_id" | "completed_date" | "id" | "responses" | "step_id";
   activity_id: string;
-  step_id: string | null;
   completed_date: AshDate;
+  id: UUID;
   responses: Record<string, any> | null;
+  step_id: string | null;
 };
 
 
 export type ActivityCompletionSummaryInputSchema = {
-  id: UUID;
   activity_id: string;
-  step_id?: string | null;
   completed_date: AshDate;
+  id: UUID;
   responses?: Record<string, any> | null;
+  step_id?: string | null;
 };
 
 
 // EnrollmentCompletions Schema
 export type EnrollmentCompletionsResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at";
-  id: UUID;
-  status: string;
-  current_session_id: string | null;
+  __primitiveFields: "current_phase_id" | "current_phase_started_at" | "current_session_id" | "id" | "status";
   current_phase_id: string | null;
   current_phase_started_at: UtcDateTime | null;
-  activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryResourceSchema; };
+  current_session_id: string | null;
+  id: UUID;
+  status: string;
+  activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryResourceSchema | null; };
 };
 
 
 
 export type EnrollmentCompletionsAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at";
-  id: UUID;
-  status: string;
-  current_session_id: string | null;
+  __primitiveFields: "current_phase_id" | "current_phase_started_at" | "current_session_id" | "id" | "status";
   current_phase_id: string | null;
   current_phase_started_at: UtcDateTime | null;
-  activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryAttributesOnlySchema; };
+  current_session_id: string | null;
+  id: UUID;
+  status: string;
+  activity_completions: { __type: "Relationship"; __array: true; __resource: ActivityCompletionSummaryAttributesOnlySchema | null; };
 };
 
 
 export type EnrollmentCompletionsInputSchema = {
-  id: UUID;
-  status: string;
-  current_session_id?: string | null;
+  activity_completions?: Array<ActivityCompletionSummaryInputSchema> | null;
   current_phase_id?: string | null;
   current_phase_started_at?: UtcDateTime | null;
-  activity_completions?: Array<ActivityCompletionSummaryInputSchema> | null;
+  current_session_id?: string | null;
+  id: UUID;
+  status: string;
 };
 
 
 // CourseEntitlement Schema
 export type CourseEntitlementResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "scope" | "ended_at" | "plan_id";
-  id: UUID;
-  tier: string;
-  granted_at: UtcDateTimeUsec;
+  __primitiveFields: "app_id" | "ended_at" | "granted_at" | "id" | "plan_id" | "scope" | "tier";
   app_id: UUID | null;
-  scope: "every_app" | "one_app";
   ended_at: UtcDateTimeUsec | null;
+  granted_at: UtcDateTimeUsec;
+  id: UUID;
   plan_id: UUID | null;
+  scope: "every_app" | "one_app";
+  tier: string;
   plan: { __type: "Relationship"; __resource: PlanResourceSchema | null; };
 };
 
@@ -1508,45 +1502,57 @@ export type CourseEntitlementResourceSchema = {
 
 export type CourseEntitlementAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tier" | "granted_at" | "app_id" | "scope" | "ended_at" | "plan_id";
-  id: UUID;
-  tier: string;
-  granted_at: UtcDateTimeUsec;
+  __primitiveFields: "app_id" | "ended_at" | "granted_at" | "id" | "plan_id" | "scope" | "tier";
   app_id: UUID | null;
-  scope: "every_app" | "one_app";
   ended_at: UtcDateTimeUsec | null;
+  granted_at: UtcDateTimeUsec;
+  id: UUID;
   plan_id: UUID | null;
+  scope: "every_app" | "one_app";
+  tier: string;
 };
 
 
 // DocumentBlock Schema
 export type DocumentBlockResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "record_id" | "document_id" | "parent_record_id" | "position" | "block_type" | "payload" | "created_at" | "updated_at";
-  record_id: UUID;
-  document_id: UUID;
-  parent_record_id: UUID | null;
-  position: number;
+  __primitiveFields: "block_type" | "created_at" | "document_id" | "library_file_id" | "parent_record_id" | "payload" | "position" | "record_id" | "target_app_id" | "target_origin_entity_id" | "target_record_id" | "updated_at";
   block_type: string;
-  payload: Record<string, any>;
   created_at: UtcDateTimeUsec;
+  document_id: UUID;
+  library_file_id: UUID | null;
+  parent_record_id: UUID | null;
+  payload: Record<string, any>;
+  position: number;
+  record_id: UUID;
+  target_app_id: UUID | null;
+  target_origin_entity_id: UUID | null;
+  target_record_id: UUID | null;
   updated_at: UtcDateTimeUsec;
+  children: { __type: "Relationship"; __array: true; __resource: DocumentBlockResourceSchema; __pagination: "mixed"; __filterInput: DocumentBlockFilterInput; __sortField: DocumentBlockSortField; };
+  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
   parent: { __type: "Relationship"; __resource: DocumentBlockResourceSchema | null; };
-  children: { __type: "Relationship"; __array: true; __resource: DocumentBlockResourceSchema; };
+  target_app: { __type: "Relationship"; __resource: AppResourceSchema | null; };
+  target_block: { __type: "Relationship"; __resource: DocumentBlockResourceSchema | null; };
+  target_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
 
 
 
 export type DocumentBlockAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "record_id" | "document_id" | "parent_record_id" | "position" | "block_type" | "payload" | "created_at" | "updated_at";
-  record_id: UUID;
-  document_id: UUID;
-  parent_record_id: UUID | null;
-  position: number;
+  __primitiveFields: "block_type" | "created_at" | "document_id" | "library_file_id" | "parent_record_id" | "payload" | "position" | "record_id" | "target_app_id" | "target_origin_entity_id" | "target_record_id" | "updated_at";
   block_type: string;
-  payload: Record<string, any>;
   created_at: UtcDateTimeUsec;
+  document_id: UUID;
+  library_file_id: UUID | null;
+  parent_record_id: UUID | null;
+  payload: Record<string, any>;
+  position: number;
+  record_id: UUID;
+  target_app_id: UUID | null;
+  target_origin_entity_id: UUID | null;
+  target_record_id: UUID | null;
   updated_at: UtcDateTimeUsec;
 };
 
@@ -1554,15 +1560,15 @@ export type DocumentBlockAttributesOnlySchema = {
 // AppVersion Schema
 export type AppVersionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
-  id: UUID;
-  version_action_type: "create" | "destroy" | "update";
-  version_action_name: string;
-  change_summary: string | null;
+  __primitiveFields: "change_source_message_id" | "change_summary" | "changes" | "id" | "version_action_name" | "version_action_type" | "version_inserted_at" | "version_source_id" | "version_updated_at";
   change_source_message_id: string | null;
-  version_source_id: UUID;
+  change_summary: string | null;
   changes: Record<string, any> | null;
+  id: UUID;
+  version_action_name: string;
+  version_action_type: "create" | "destroy" | "update";
   version_inserted_at: UtcDateTimeUsec;
+  version_source_id: UUID;
   version_updated_at: UtcDateTimeUsec;
 };
 
@@ -1570,15 +1576,15 @@ export type AppVersionResourceSchema = {
 
 export type AppVersionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "version_action_type" | "version_action_name" | "change_summary" | "change_source_message_id" | "version_source_id" | "changes" | "version_inserted_at" | "version_updated_at";
-  id: UUID;
-  version_action_type: "create" | "destroy" | "update";
-  version_action_name: string;
-  change_summary: string | null;
+  __primitiveFields: "change_source_message_id" | "change_summary" | "changes" | "id" | "version_action_name" | "version_action_type" | "version_inserted_at" | "version_source_id" | "version_updated_at";
   change_source_message_id: string | null;
-  version_source_id: UUID;
+  change_summary: string | null;
   changes: Record<string, any> | null;
+  id: UUID;
+  version_action_name: string;
+  version_action_type: "create" | "destroy" | "update";
   version_inserted_at: UtcDateTimeUsec;
+  version_source_id: UUID;
   version_updated_at: UtcDateTimeUsec;
 };
 
@@ -1586,278 +1592,278 @@ export type AppVersionAttributesOnlySchema = {
 // OriginsAppsEdge Schema
 export type OriginsAppsEdgeResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "source" | "target" | "condition_type" | "condition_field" | "condition_op" | "condition_value";
-  source: string;
-  target: string;
-  condition_type: "conditional" | "default" | null;
+  __primitiveFields: "condition_field" | "condition_op" | "condition_type" | "condition_value" | "source" | "target";
   condition_field: string | null;
   condition_op: string | null;
+  condition_type: "conditional" | "default" | null;
   condition_value: string | null;
+  source: string;
+  target: string;
 };
 
 
 
 export type OriginsAppsEdgeAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "source" | "target" | "condition_type" | "condition_field" | "condition_op" | "condition_value";
-  source: string;
-  target: string;
-  condition_type: "conditional" | "default" | null;
+  __primitiveFields: "condition_field" | "condition_op" | "condition_type" | "condition_value" | "source" | "target";
   condition_field: string | null;
   condition_op: string | null;
+  condition_type: "conditional" | "default" | null;
   condition_value: string | null;
+  source: string;
+  target: string;
 };
 
 
 export type OriginsAppsEdgeInputSchema = {
-  source: string;
-  target: string;
-  condition_type?: "conditional" | "default" | null;
   condition_field?: string | null;
   condition_op?: string | null;
+  condition_type?: "conditional" | "default" | null;
   condition_value?: string | null;
+  source: string;
+  target: string;
 };
 
 
 // GenerationHistoryEntry Schema
 export type GenerationHistoryEntryResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "role" | "content" | "reasoning" | "tool_calls" | "tool_return" | "tool_return_status" | "created_at";
-  id: string;
-  role: string;
+  __primitiveFields: "content" | "created_at" | "id" | "reasoning" | "role" | "tool_calls" | "tool_return" | "tool_return_status";
   content: string | null;
+  created_at: string | null;
+  id: string;
   reasoning: string | null;
+  role: string;
   tool_calls: Array<Record<string, any>> | null;
   tool_return: string | null;
   tool_return_status: string | null;
-  created_at: string | null;
 };
 
 
 
 export type GenerationHistoryEntryAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "role" | "content" | "reasoning" | "tool_calls" | "tool_return" | "tool_return_status" | "created_at";
-  id: string;
-  role: string;
+  __primitiveFields: "content" | "created_at" | "id" | "reasoning" | "role" | "tool_calls" | "tool_return" | "tool_return_status";
   content: string | null;
+  created_at: string | null;
+  id: string;
   reasoning: string | null;
+  role: string;
   tool_calls: Array<Record<string, any>> | null;
   tool_return: string | null;
   tool_return_status: string | null;
-  created_at: string | null;
 };
 
 
 export type GenerationHistoryEntryInputSchema = {
-  id: string;
-  role: string;
   content?: string | null;
+  created_at?: string | null;
+  id: string;
   reasoning?: string | null;
+  role: string;
   tool_calls?: Array<Record<string, any>> | null;
   tool_return?: string | null;
   tool_return_status?: string | null;
-  created_at?: string | null;
 };
 
 
 // OriginsAppsNode Schema
 export type OriginsAppsNodeResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight" | "summary_items" | "loading_bars";
+  __primitiveFields: "description" | "highlight" | "id" | "kind" | "loading_bars" | "max" | "min" | "required" | "subtitle" | "summary_items" | "title" | "type" | "weight";
+  description: string | null;
+  highlight: string | null;
   id: string;
-  type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
-  weight: number | null;
-  required: boolean | null;
+  loading_bars: Array<string> | null;
   max: number | null;
   min: number | null;
-  title: string | null;
-  description: string | null;
+  required: boolean | null;
   subtitle: string | null;
-  highlight: string | null;
   summary_items: Array<string> | null;
-  loading_bars: Array<string> | null;
-  options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionResourceSchema; };
-  sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderResourceSchema; };
+  title: string | null;
+  type: "interstitial" | "question" | "terminal" | null;
+  weight: number | null;
+  options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionResourceSchema | null; };
+  sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderResourceSchema | null; };
 };
 
 
 
 export type OriginsAppsNodeAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "type" | "kind" | "weight" | "required" | "max" | "min" | "title" | "description" | "subtitle" | "highlight" | "summary_items" | "loading_bars";
+  __primitiveFields: "description" | "highlight" | "id" | "kind" | "loading_bars" | "max" | "min" | "required" | "subtitle" | "summary_items" | "title" | "type" | "weight";
+  description: string | null;
+  highlight: string | null;
   id: string;
-  type: "interstitial" | "question" | "terminal" | null;
   kind: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
-  weight: number | null;
-  required: boolean | null;
+  loading_bars: Array<string> | null;
   max: number | null;
   min: number | null;
-  title: string | null;
-  description: string | null;
+  required: boolean | null;
   subtitle: string | null;
-  highlight: string | null;
   summary_items: Array<string> | null;
-  loading_bars: Array<string> | null;
-  options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionAttributesOnlySchema; };
-  sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderAttributesOnlySchema; };
+  title: string | null;
+  type: "interstitial" | "question" | "terminal" | null;
+  weight: number | null;
+  options: { __type: "Relationship"; __array: true; __resource: OriginsAppsOptionAttributesOnlySchema | null; };
+  sliders: { __type: "Relationship"; __array: true; __resource: OriginsAppsSliderAttributesOnlySchema | null; };
 };
 
 
 export type OriginsAppsNodeInputSchema = {
+  description?: string | null;
+  highlight?: string | null;
   id: string;
-  type?: "interstitial" | "question" | "terminal" | null;
   kind?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no" | null;
-  weight?: number | null;
-  required?: boolean | null;
+  loading_bars?: Array<string> | null;
   max?: number | null;
   min?: number | null;
-  title?: string | null;
-  description?: string | null;
-  subtitle?: string | null;
-  highlight?: string | null;
   options?: Array<OriginsAppsOptionInputSchema> | null;
+  required?: boolean | null;
   sliders?: Array<OriginsAppsSliderInputSchema> | null;
+  subtitle?: string | null;
   summary_items?: Array<string> | null;
-  loading_bars?: Array<string> | null;
+  title?: string | null;
+  type?: "interstitial" | "question" | "terminal" | null;
+  weight?: number | null;
 };
 
 
 // OriginsAppsOption Schema
 export type OriginsAppsOptionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "value" | "label" | "segment" | "route";
-  value: string;
+  __primitiveFields: "label" | "route" | "segment" | "value";
   label: string;
-  segment: string | null;
   route: string | null;
+  segment: string | null;
+  value: string;
 };
 
 
 
 export type OriginsAppsOptionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "value" | "label" | "segment" | "route";
-  value: string;
+  __primitiveFields: "label" | "route" | "segment" | "value";
   label: string;
-  segment: string | null;
   route: string | null;
+  segment: string | null;
+  value: string;
 };
 
 
 export type OriginsAppsOptionInputSchema = {
-  value: string;
   label: string;
-  segment?: string | null;
   route?: string | null;
+  segment?: string | null;
+  value: string;
 };
 
 
 // Plan Schema
 export type PlanResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "stripe_price_id" | "retired_at" | "scope" | "sale_count";
+  __primitiveFields: "id" | "name" | "retired_at" | "sale_count" | "scope" | "stripe_price_id";
   id: UUID;
   name: string;
-  stripe_price_id: string;
   retired_at: UtcDateTimeUsec | null;
-  scope: "every_app" | "linked_apps";
   sale_count: number;
-  apps: { __type: "Relationship"; __array: true; __resource: AppResourceSchema; };
+  scope: "every_app" | "linked_apps";
+  stripe_price_id: string;
+  apps: { __type: "Relationship"; __array: true; __resource: AppResourceSchema; __pagination: "keyset"; __filterInput: AppFilterInput; __sortField: AppSortField; };
 };
 
 
 
 export type PlanAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "stripe_price_id" | "retired_at" | "scope";
+  __primitiveFields: "id" | "name" | "retired_at" | "scope" | "stripe_price_id";
   id: UUID;
   name: string;
-  stripe_price_id: string;
   retired_at: UtcDateTimeUsec | null;
   scope: "every_app" | "linked_apps";
+  stripe_price_id: string;
 };
 
 
 // ProgramTest Schema
 export type ProgramTestResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "coach_conversation_id" | "created_at" | "updated_at" | "program_id" | "test_user_id";
-  id: UUID;
-  name: string;
+  __primitiveFields: "coach_conversation_id" | "created_at" | "id" | "name" | "program_id" | "test_user_id" | "updated_at";
   coach_conversation_id: UUID | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  name: string;
   program_id: UUID;
   test_user_id: UUID | null;
+  updated_at: UtcDateTimeUsec;
+  memories: { __type: "Relationship"; __array: true; __resource: AgentMemoryResourceSchema; __pagination: "mixed"; __filterInput: AgentMemoryFilterInput; __sortField: AgentMemorySortField; };
   program: { __type: "Relationship"; __resource: AppResourceSchema; };
   test_user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
-  memories: { __type: "Relationship"; __array: true; __resource: AgentMemoryResourceSchema; };
 };
 
 
 
 export type ProgramTestAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "coach_conversation_id" | "created_at" | "updated_at" | "program_id" | "test_user_id";
-  id: UUID;
-  name: string;
+  __primitiveFields: "coach_conversation_id" | "created_at" | "id" | "name" | "program_id" | "test_user_id" | "updated_at";
   coach_conversation_id: UUID | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  name: string;
   program_id: UUID;
   test_user_id: UUID | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // OriginsAppsSlider Schema
 export type OriginsAppsSliderResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "label" | "min" | "max" | "low_label" | "high_label";
+  __primitiveFields: "high_label" | "id" | "label" | "low_label" | "max" | "min";
+  high_label: string | null;
   id: string;
   label: string | null;
-  min: number | null;
-  max: number | null;
   low_label: string | null;
-  high_label: string | null;
+  max: number | null;
+  min: number | null;
 };
 
 
 
 export type OriginsAppsSliderAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "label" | "min" | "max" | "low_label" | "high_label";
+  __primitiveFields: "high_label" | "id" | "label" | "low_label" | "max" | "min";
+  high_label: string | null;
   id: string;
   label: string | null;
-  min: number | null;
-  max: number | null;
   low_label: string | null;
-  high_label: string | null;
+  max: number | null;
+  min: number | null;
 };
 
 
 export type OriginsAppsSliderInputSchema = {
+  high_label?: string | null;
   id: string;
   label?: string | null;
-  min?: number | null;
-  max?: number | null;
   low_label?: string | null;
-  high_label?: string | null;
+  max?: number | null;
+  min?: number | null;
 };
 
 
 // AppTemplate Schema
 export type AppTemplateResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
+  __primitiveFields: "created_at" | "description" | "id" | "name" | "page_type" | "seed_markdoc_content" | "sort_order" | "updated_at";
+  created_at: UtcDateTimeUsec;
+  description: string;
   id: UUID;
   name: string;
-  description: string;
   page_type: string;
   seed_markdoc_content: string;
   sort_order: number;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
 };
 
@@ -1865,14 +1871,14 @@ export type AppTemplateResourceSchema = {
 
 export type AppTemplateAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "page_type" | "seed_markdoc_content" | "sort_order" | "created_at" | "updated_at";
+  __primitiveFields: "created_at" | "description" | "id" | "name" | "page_type" | "seed_markdoc_content" | "sort_order" | "updated_at";
+  created_at: UtcDateTimeUsec;
+  description: string;
   id: UUID;
   name: string;
-  description: string;
   page_type: string;
   seed_markdoc_content: string;
   sort_order: number;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
 };
 
@@ -1880,95 +1886,95 @@ export type AppTemplateAttributesOnlySchema = {
 // WebhookDelivery Schema
 export type WebhookDeliveryResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "event_type" | "event_id" | "assessment_response_id" | "target_url" | "payload" | "status" | "attempts" | "last_status_code" | "last_error" | "delivered_at" | "created_at" | "updated_at" | "subscription_id" | "origin_entity_id";
-  id: UUID;
-  event_type: string;
-  event_id: UUID;
+  __primitiveFields: "assessment_response_id" | "attempts" | "created_at" | "delivered_at" | "event_id" | "event_type" | "id" | "last_error" | "last_status_code" | "origin_entity_id" | "payload" | "status" | "subscription_id" | "target_url" | "updated_at";
   assessment_response_id: UUID | null;
-  target_url: string;
+  attempts: number;
+  created_at: UtcDateTimeUsec;
+  delivered_at: UtcDateTime | null;
+  event_id: UUID;
+  event_type: string;
+  id: UUID;
+  last_error: string | null;
+  last_status_code: number | null;
+  origin_entity_id: UUID;
   payload: Record<string, any>;
   status: "delivered" | "failed" | "pending";
-  attempts: number;
-  last_status_code: number | null;
-  last_error: string | null;
-  delivered_at: UtcDateTime | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   subscription_id: UUID;
-  origin_entity_id: UUID;
-  subscription: { __type: "Relationship"; __resource: WebhookSubscriptionResourceSchema; };
+  target_url: string;
+  updated_at: UtcDateTimeUsec;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
+  subscription: { __type: "Relationship"; __resource: WebhookSubscriptionResourceSchema; };
 };
 
 
 
 export type WebhookDeliveryAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "event_type" | "event_id" | "assessment_response_id" | "target_url" | "payload" | "status" | "attempts" | "last_status_code" | "last_error" | "delivered_at" | "created_at" | "updated_at" | "subscription_id" | "origin_entity_id";
-  id: UUID;
-  event_type: string;
-  event_id: UUID;
+  __primitiveFields: "assessment_response_id" | "attempts" | "created_at" | "delivered_at" | "event_id" | "event_type" | "id" | "last_error" | "last_status_code" | "origin_entity_id" | "payload" | "status" | "subscription_id" | "target_url" | "updated_at";
   assessment_response_id: UUID | null;
-  target_url: string;
+  attempts: number;
+  created_at: UtcDateTimeUsec;
+  delivered_at: UtcDateTime | null;
+  event_id: UUID;
+  event_type: string;
+  id: UUID;
+  last_error: string | null;
+  last_status_code: number | null;
+  origin_entity_id: UUID;
   payload: Record<string, any>;
   status: "delivered" | "failed" | "pending";
-  attempts: number;
-  last_status_code: number | null;
-  last_error: string | null;
-  delivered_at: UtcDateTime | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   subscription_id: UUID;
-  origin_entity_id: UUID;
+  target_url: string;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // WebhookSubscription Schema
 export type WebhookSubscriptionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "target_url" | "secret" | "event_types" | "active" | "description" | "created_at" | "updated_at" | "origin_entity_id" | "app_id";
-  id: UUID;
-  target_url: string;
-  secret: string;
-  event_types: Array<string>;
+  __primitiveFields: "active" | "app_id" | "created_at" | "description" | "event_types" | "id" | "origin_entity_id" | "secret" | "target_url" | "updated_at";
   active: boolean;
-  description: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
   app_id: UUID | null;
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
+  created_at: UtcDateTimeUsec;
+  description: string | null;
+  event_types: Array<string>;
+  id: UUID;
+  origin_entity_id: UUID;
+  secret: string;
+  target_url: string;
+  updated_at: UtcDateTimeUsec;
   app: { __type: "Relationship"; __resource: AppResourceSchema | null; };
+  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
 
 
 export type WebhookSubscriptionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "target_url" | "secret" | "event_types" | "active" | "description" | "created_at" | "updated_at" | "origin_entity_id" | "app_id";
-  id: UUID;
-  target_url: string;
-  secret: string;
-  event_types: Array<string>;
+  __primitiveFields: "active" | "app_id" | "created_at" | "description" | "event_types" | "id" | "origin_entity_id" | "secret" | "target_url" | "updated_at";
   active: boolean;
-  description: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
   app_id: UUID | null;
+  created_at: UtcDateTimeUsec;
+  description: string | null;
+  event_types: Array<string>;
+  id: UUID;
+  origin_entity_id: UUID;
+  secret: string;
+  target_url: string;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // FeatureFlag Schema
 export type FeatureFlagResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "feature_name" | "enabled" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  feature_name: string;
-  enabled: boolean;
+  __primitiveFields: "created_at" | "enabled" | "feature_name" | "id" | "origin_entity_id" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  enabled: boolean;
+  feature_name: string;
+  id: UUID;
   origin_entity_id: UUID;
+  updated_at: UtcDateTimeUsec;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -1976,35 +1982,35 @@ export type FeatureFlagResourceSchema = {
 
 export type FeatureFlagAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "feature_name" | "enabled" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  feature_name: string;
-  enabled: boolean;
+  __primitiveFields: "created_at" | "enabled" | "feature_name" | "id" | "origin_entity_id" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  enabled: boolean;
+  feature_name: string;
+  id: UUID;
   origin_entity_id: UUID;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // Feedback Schema
 export type FeedbackResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "feedback_type" | "subject" | "message" | "screenshot_url" | "admin_notes" | "user_email" | "user_name" | "context_type" | "context_name" | "resolved_at" | "status" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  feedback_type: string;
-  subject: string;
-  message: string;
-  screenshot_url: string | null;
+  __primitiveFields: "admin_notes" | "context_name" | "context_type" | "created_at" | "feedback_type" | "id" | "message" | "origin_entity_id" | "resolved_at" | "screenshot_url" | "status" | "subject" | "updated_at" | "user_email" | "user_name";
   admin_notes: string | null;
+  context_name: string | null;
+  context_type: string | null;
+  created_at: UtcDateTimeUsec;
+  feedback_type: string;
+  id: UUID;
+  message: string;
+  origin_entity_id: UUID | null;
+  resolved_at: UtcDateTimeUsec | null;
+  screenshot_url: string | null;
+  status: string;
+  subject: string;
+  updated_at: UtcDateTimeUsec;
   user_email: string | null;
   user_name: string | null;
-  context_type: string | null;
-  context_name: string | null;
-  resolved_at: UtcDateTimeUsec | null;
-  status: string;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID | null;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
 
@@ -2012,51 +2018,51 @@ export type FeedbackResourceSchema = {
 
 export type FeedbackAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "feedback_type" | "subject" | "message" | "screenshot_url" | "admin_notes" | "user_email" | "user_name" | "context_type" | "context_name" | "resolved_at" | "status" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  feedback_type: string;
-  subject: string;
-  message: string;
-  screenshot_url: string | null;
+  __primitiveFields: "admin_notes" | "context_name" | "context_type" | "created_at" | "feedback_type" | "id" | "message" | "origin_entity_id" | "resolved_at" | "screenshot_url" | "status" | "subject" | "updated_at" | "user_email" | "user_name";
   admin_notes: string | null;
+  context_name: string | null;
+  context_type: string | null;
+  created_at: UtcDateTimeUsec;
+  feedback_type: string;
+  id: UUID;
+  message: string;
+  origin_entity_id: UUID | null;
+  resolved_at: UtcDateTimeUsec | null;
+  screenshot_url: string | null;
+  status: string;
+  subject: string;
+  updated_at: UtcDateTimeUsec;
   user_email: string | null;
   user_name: string | null;
-  context_type: string | null;
-  context_name: string | null;
-  resolved_at: UtcDateTimeUsec | null;
-  status: string;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID | null;
 };
 
 
 // HomepageCard Schema
 export type HomepageCardResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "role" | "gradient" | "is_active" | "custom_url" | "avatar_url" | "avatar_key" | "ai_enabled" | "description" | "tags" | "use_gradient" | "order_index" | "destination_type" | "created_at" | "updated_at" | "avatar_size" | "avatar_shape" | "avatar_vertical_position" | "background_color" | "origin_entity_id" | "presigned_avatar_url";
-  id: UUID;
-  name: string;
-  role: string;
-  gradient: string;
-  is_active: boolean;
-  custom_url: string | null;
-  avatar_url: string | null;
-  avatar_key: string | null;
+  __primitiveFields: "ai_enabled" | "avatar_key" | "avatar_shape" | "avatar_size" | "avatar_url" | "avatar_vertical_position" | "background_color" | "created_at" | "custom_url" | "description" | "destination_type" | "gradient" | "id" | "is_active" | "name" | "order_index" | "origin_entity_id" | "presigned_avatar_url" | "role" | "tags" | "updated_at" | "use_gradient";
   ai_enabled: boolean;
-  description: string | null;
-  tags: Array<string> | null;
-  use_gradient: boolean | null;
-  order_index: number;
-  destination_type: string;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  avatar_size: string | null;
+  avatar_key: string | null;
   avatar_shape: string | null;
+  avatar_size: string | null;
+  avatar_url: string | null;
   avatar_vertical_position: Decimal | null;
   background_color: string | null;
+  created_at: UtcDateTimeUsec;
+  custom_url: string | null;
+  description: string | null;
+  destination_type: string;
+  gradient: string;
+  id: UUID;
+  is_active: boolean;
+  name: string;
+  order_index: number;
   origin_entity_id: UUID | null;
   presigned_avatar_url: string | null;
+  role: string;
+  tags: Array<string> | null;
+  updated_at: UtcDateTimeUsec;
+  use_gradient: boolean | null;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
 
@@ -2064,306 +2070,306 @@ export type HomepageCardResourceSchema = {
 
 export type HomepageCardAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "role" | "gradient" | "is_active" | "custom_url" | "avatar_url" | "avatar_key" | "ai_enabled" | "description" | "tags" | "use_gradient" | "order_index" | "destination_type" | "created_at" | "updated_at" | "avatar_size" | "avatar_shape" | "avatar_vertical_position" | "background_color" | "origin_entity_id";
-  id: UUID;
-  name: string;
-  role: string;
-  gradient: string;
-  is_active: boolean;
-  custom_url: string | null;
-  avatar_url: string | null;
-  avatar_key: string | null;
+  __primitiveFields: "ai_enabled" | "avatar_key" | "avatar_shape" | "avatar_size" | "avatar_url" | "avatar_vertical_position" | "background_color" | "created_at" | "custom_url" | "description" | "destination_type" | "gradient" | "id" | "is_active" | "name" | "order_index" | "origin_entity_id" | "role" | "tags" | "updated_at" | "use_gradient";
   ai_enabled: boolean;
-  description: string | null;
-  tags: Array<string> | null;
-  use_gradient: boolean | null;
-  order_index: number;
-  destination_type: string;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  avatar_size: string | null;
+  avatar_key: string | null;
   avatar_shape: string | null;
+  avatar_size: string | null;
+  avatar_url: string | null;
   avatar_vertical_position: Decimal | null;
   background_color: string | null;
+  created_at: UtcDateTimeUsec;
+  custom_url: string | null;
+  description: string | null;
+  destination_type: string;
+  gradient: string;
+  id: UUID;
+  is_active: boolean;
+  name: string;
+  order_index: number;
   origin_entity_id: UUID | null;
+  role: string;
+  tags: Array<string> | null;
+  updated_at: UtcDateTimeUsec;
+  use_gradient: boolean | null;
 };
 
 
 // OriginsIdentityAppearanceConfig Schema
 export type OriginsIdentityAppearanceConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "checkmark_color" | "show_chat_button" | "chat_button_bg" | "chat_button_text" | "show_share_button" | "share_button_border" | "share_button_text" | "share_button_bg" | "button_border_radius" | "user_bubble_bg" | "user_bubble_text" | "ai_bubble_bg" | "ai_bubble_text" | "send_button_bg" | "send_button_text";
-  checkmark_color: string | null;
-  show_chat_button: boolean | null;
-  chat_button_bg: string | null;
-  chat_button_text: string | null;
-  show_share_button: boolean | null;
-  share_button_border: string | null;
-  share_button_text: string | null;
-  share_button_bg: string | null;
-  button_border_radius: number | null;
-  user_bubble_bg: string | null;
-  user_bubble_text: string | null;
+  __primitiveFields: "ai_bubble_bg" | "ai_bubble_text" | "button_border_radius" | "chat_button_bg" | "chat_button_text" | "checkmark_color" | "send_button_bg" | "send_button_text" | "share_button_bg" | "share_button_border" | "share_button_text" | "show_chat_button" | "show_share_button" | "user_bubble_bg" | "user_bubble_text";
   ai_bubble_bg: string | null;
   ai_bubble_text: string | null;
+  button_border_radius: number | null;
+  chat_button_bg: string | null;
+  chat_button_text: string | null;
+  checkmark_color: string | null;
   send_button_bg: string | null;
   send_button_text: string | null;
+  share_button_bg: string | null;
+  share_button_border: string | null;
+  share_button_text: string | null;
+  show_chat_button: boolean | null;
+  show_share_button: boolean | null;
+  user_bubble_bg: string | null;
+  user_bubble_text: string | null;
 };
 
 
 
 export type OriginsIdentityAppearanceConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "checkmark_color" | "show_chat_button" | "chat_button_bg" | "chat_button_text" | "show_share_button" | "share_button_border" | "share_button_text" | "share_button_bg" | "button_border_radius" | "user_bubble_bg" | "user_bubble_text" | "ai_bubble_bg" | "ai_bubble_text" | "send_button_bg" | "send_button_text";
-  checkmark_color: string | null;
-  show_chat_button: boolean | null;
-  chat_button_bg: string | null;
-  chat_button_text: string | null;
-  show_share_button: boolean | null;
-  share_button_border: string | null;
-  share_button_text: string | null;
-  share_button_bg: string | null;
-  button_border_radius: number | null;
-  user_bubble_bg: string | null;
-  user_bubble_text: string | null;
+  __primitiveFields: "ai_bubble_bg" | "ai_bubble_text" | "button_border_radius" | "chat_button_bg" | "chat_button_text" | "checkmark_color" | "send_button_bg" | "send_button_text" | "share_button_bg" | "share_button_border" | "share_button_text" | "show_chat_button" | "show_share_button" | "user_bubble_bg" | "user_bubble_text";
   ai_bubble_bg: string | null;
   ai_bubble_text: string | null;
+  button_border_radius: number | null;
+  chat_button_bg: string | null;
+  chat_button_text: string | null;
+  checkmark_color: string | null;
   send_button_bg: string | null;
   send_button_text: string | null;
+  share_button_bg: string | null;
+  share_button_border: string | null;
+  share_button_text: string | null;
+  show_chat_button: boolean | null;
+  show_share_button: boolean | null;
+  user_bubble_bg: string | null;
+  user_bubble_text: string | null;
 };
 
 
 export type OriginsIdentityAppearanceConfigInputSchema = {
-  checkmark_color?: string | null;
-  show_chat_button?: boolean | null;
-  chat_button_bg?: string | null;
-  chat_button_text?: string | null;
-  show_share_button?: boolean | null;
-  share_button_border?: string | null;
-  share_button_text?: string | null;
-  share_button_bg?: string | null;
-  button_border_radius?: number | null;
-  user_bubble_bg?: string | null;
-  user_bubble_text?: string | null;
   ai_bubble_bg?: string | null;
   ai_bubble_text?: string | null;
+  button_border_radius?: number | null;
+  chat_button_bg?: string | null;
+  chat_button_text?: string | null;
+  checkmark_color?: string | null;
   send_button_bg?: string | null;
   send_button_text?: string | null;
+  share_button_bg?: string | null;
+  share_button_border?: string | null;
+  share_button_text?: string | null;
+  show_chat_button?: boolean | null;
+  show_share_button?: boolean | null;
+  user_bubble_bg?: string | null;
+  user_bubble_text?: string | null;
 };
 
 
 // OriginsIdentityBrandConversationConfig Schema
 export type OriginsIdentityBrandConversationConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "checkmark_color" | "checkmark_bg_color" | "show_chat_button" | "chat_button_bg" | "chat_button_text" | "button_border_radius" | "show_share_button" | "share_button_bg" | "share_button_border" | "share_button_icon" | "show_description" | "show_content_section" | "show_avatars_section" | "selected_avatars" | "avatars_section_label" | "show_podcast_link" | "show_origins_button" | "origins_button_bg" | "origins_button_text" | "origins_button_border" | "origins_button_text_color" | "send_button_bg" | "send_button_text" | "user_bubble_bg" | "user_bubble_text" | "ai_bubble_bg" | "ai_bubble_text" | "chat_input_active_border" | "page_background_color" | "enabled_mode_ids";
-  checkmark_color: string | null;
-  checkmark_bg_color: string | null;
-  show_chat_button: boolean | null;
+  __primitiveFields: "ai_bubble_bg" | "ai_bubble_text" | "avatars_section_label" | "button_border_radius" | "chat_button_bg" | "chat_button_text" | "chat_input_active_border" | "checkmark_bg_color" | "checkmark_color" | "enabled_mode_ids" | "origins_button_bg" | "origins_button_border" | "origins_button_text" | "origins_button_text_color" | "page_background_color" | "selected_avatars" | "send_button_bg" | "send_button_text" | "share_button_bg" | "share_button_border" | "share_button_icon" | "show_avatars_section" | "show_chat_button" | "show_content_section" | "show_description" | "show_origins_button" | "show_podcast_link" | "show_share_button" | "user_bubble_bg" | "user_bubble_text";
+  ai_bubble_bg: string | null;
+  ai_bubble_text: string | null;
+  avatars_section_label: string | null;
+  button_border_radius: number | null;
   chat_button_bg: string | null;
   chat_button_text: string | null;
-  button_border_radius: number | null;
-  show_share_button: boolean | null;
+  chat_input_active_border: string | null;
+  checkmark_bg_color: string | null;
+  checkmark_color: string | null;
+  enabled_mode_ids: Array<string> | null;
+  origins_button_bg: string | null;
+  origins_button_border: string | null;
+  origins_button_text: string | null;
+  origins_button_text_color: string | null;
+  page_background_color: string | null;
+  selected_avatars: Array<string> | null;
+  send_button_bg: string | null;
+  send_button_text: string | null;
   share_button_bg: string | null;
   share_button_border: string | null;
   share_button_icon: string | null;
-  show_description: boolean | null;
-  show_content_section: boolean | null;
   show_avatars_section: boolean | null;
-  selected_avatars: Array<string> | null;
-  avatars_section_label: string | null;
-  show_podcast_link: boolean | null;
+  show_chat_button: boolean | null;
+  show_content_section: boolean | null;
+  show_description: boolean | null;
   show_origins_button: boolean | null;
-  origins_button_bg: string | null;
-  origins_button_text: string | null;
-  origins_button_border: string | null;
-  origins_button_text_color: string | null;
-  send_button_bg: string | null;
-  send_button_text: string | null;
+  show_podcast_link: boolean | null;
+  show_share_button: boolean | null;
   user_bubble_bg: string | null;
   user_bubble_text: string | null;
-  ai_bubble_bg: string | null;
-  ai_bubble_text: string | null;
-  chat_input_active_border: string | null;
-  page_background_color: string | null;
-  enabled_mode_ids: Array<string> | null;
-  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityBrandConversationSocialLinkResourceSchema; };
+  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityBrandConversationSocialLinkResourceSchema | null; };
 };
 
 
 
 export type OriginsIdentityBrandConversationConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "checkmark_color" | "checkmark_bg_color" | "show_chat_button" | "chat_button_bg" | "chat_button_text" | "button_border_radius" | "show_share_button" | "share_button_bg" | "share_button_border" | "share_button_icon" | "show_description" | "show_content_section" | "show_avatars_section" | "selected_avatars" | "avatars_section_label" | "show_podcast_link" | "show_origins_button" | "origins_button_bg" | "origins_button_text" | "origins_button_border" | "origins_button_text_color" | "send_button_bg" | "send_button_text" | "user_bubble_bg" | "user_bubble_text" | "ai_bubble_bg" | "ai_bubble_text" | "chat_input_active_border" | "page_background_color" | "enabled_mode_ids";
-  checkmark_color: string | null;
-  checkmark_bg_color: string | null;
-  show_chat_button: boolean | null;
+  __primitiveFields: "ai_bubble_bg" | "ai_bubble_text" | "avatars_section_label" | "button_border_radius" | "chat_button_bg" | "chat_button_text" | "chat_input_active_border" | "checkmark_bg_color" | "checkmark_color" | "enabled_mode_ids" | "origins_button_bg" | "origins_button_border" | "origins_button_text" | "origins_button_text_color" | "page_background_color" | "selected_avatars" | "send_button_bg" | "send_button_text" | "share_button_bg" | "share_button_border" | "share_button_icon" | "show_avatars_section" | "show_chat_button" | "show_content_section" | "show_description" | "show_origins_button" | "show_podcast_link" | "show_share_button" | "user_bubble_bg" | "user_bubble_text";
+  ai_bubble_bg: string | null;
+  ai_bubble_text: string | null;
+  avatars_section_label: string | null;
+  button_border_radius: number | null;
   chat_button_bg: string | null;
   chat_button_text: string | null;
-  button_border_radius: number | null;
-  show_share_button: boolean | null;
+  chat_input_active_border: string | null;
+  checkmark_bg_color: string | null;
+  checkmark_color: string | null;
+  enabled_mode_ids: Array<string> | null;
+  origins_button_bg: string | null;
+  origins_button_border: string | null;
+  origins_button_text: string | null;
+  origins_button_text_color: string | null;
+  page_background_color: string | null;
+  selected_avatars: Array<string> | null;
+  send_button_bg: string | null;
+  send_button_text: string | null;
   share_button_bg: string | null;
   share_button_border: string | null;
   share_button_icon: string | null;
-  show_description: boolean | null;
-  show_content_section: boolean | null;
   show_avatars_section: boolean | null;
-  selected_avatars: Array<string> | null;
-  avatars_section_label: string | null;
-  show_podcast_link: boolean | null;
+  show_chat_button: boolean | null;
+  show_content_section: boolean | null;
+  show_description: boolean | null;
   show_origins_button: boolean | null;
-  origins_button_bg: string | null;
-  origins_button_text: string | null;
-  origins_button_border: string | null;
-  origins_button_text_color: string | null;
-  send_button_bg: string | null;
-  send_button_text: string | null;
+  show_podcast_link: boolean | null;
+  show_share_button: boolean | null;
   user_bubble_bg: string | null;
   user_bubble_text: string | null;
-  ai_bubble_bg: string | null;
-  ai_bubble_text: string | null;
-  chat_input_active_border: string | null;
-  page_background_color: string | null;
-  enabled_mode_ids: Array<string> | null;
-  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityBrandConversationSocialLinkAttributesOnlySchema; };
+  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityBrandConversationSocialLinkAttributesOnlySchema | null; };
 };
 
 
 export type OriginsIdentityBrandConversationConfigInputSchema = {
-  checkmark_color?: string | null;
-  checkmark_bg_color?: string | null;
-  show_chat_button?: boolean | null;
+  ai_bubble_bg?: string | null;
+  ai_bubble_text?: string | null;
+  avatars_section_label?: string | null;
+  button_border_radius?: number | null;
   chat_button_bg?: string | null;
   chat_button_text?: string | null;
-  button_border_radius?: number | null;
-  show_share_button?: boolean | null;
+  chat_input_active_border?: string | null;
+  checkmark_bg_color?: string | null;
+  checkmark_color?: string | null;
+  enabled_mode_ids?: Array<string> | null;
+  origins_button_bg?: string | null;
+  origins_button_border?: string | null;
+  origins_button_text?: string | null;
+  origins_button_text_color?: string | null;
+  page_background_color?: string | null;
+  selected_avatars?: Array<string> | null;
+  send_button_bg?: string | null;
+  send_button_text?: string | null;
   share_button_bg?: string | null;
   share_button_border?: string | null;
   share_button_icon?: string | null;
-  show_description?: boolean | null;
-  show_content_section?: boolean | null;
   show_avatars_section?: boolean | null;
-  selected_avatars?: Array<string> | null;
-  avatars_section_label?: string | null;
-  show_podcast_link?: boolean | null;
+  show_chat_button?: boolean | null;
+  show_content_section?: boolean | null;
+  show_description?: boolean | null;
   show_origins_button?: boolean | null;
-  origins_button_bg?: string | null;
-  origins_button_text?: string | null;
-  origins_button_border?: string | null;
-  origins_button_text_color?: string | null;
+  show_podcast_link?: boolean | null;
+  show_share_button?: boolean | null;
   social_links?: Array<OriginsIdentityBrandConversationSocialLinkInputSchema> | null;
-  send_button_bg?: string | null;
-  send_button_text?: string | null;
   user_bubble_bg?: string | null;
   user_bubble_text?: string | null;
-  ai_bubble_bg?: string | null;
-  ai_bubble_text?: string | null;
-  chat_input_active_border?: string | null;
-  page_background_color?: string | null;
-  enabled_mode_ids?: Array<string> | null;
 };
 
 
 // OriginsIdentityBrandConversationSocialLink Schema
 export type OriginsIdentityBrandConversationSocialLinkResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "platform" | "url" | "visible" | "icon" | "icon_name" | "custom_icon_url" | "custom_label" | "custom_url";
-  platform: string | null;
-  url: string | null;
-  visible: boolean | null;
-  icon: string | null;
-  icon_name: string | null;
+  __primitiveFields: "custom_icon_url" | "custom_label" | "custom_url" | "icon" | "icon_name" | "platform" | "url" | "visible";
   custom_icon_url: string | null;
   custom_label: string | null;
   custom_url: string | null;
+  icon: string | null;
+  icon_name: string | null;
+  platform: string | null;
+  url: string | null;
+  visible: boolean | null;
 };
 
 
 
 export type OriginsIdentityBrandConversationSocialLinkAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "platform" | "url" | "visible" | "icon" | "icon_name" | "custom_icon_url" | "custom_label" | "custom_url";
-  platform: string | null;
-  url: string | null;
-  visible: boolean | null;
-  icon: string | null;
-  icon_name: string | null;
+  __primitiveFields: "custom_icon_url" | "custom_label" | "custom_url" | "icon" | "icon_name" | "platform" | "url" | "visible";
   custom_icon_url: string | null;
   custom_label: string | null;
   custom_url: string | null;
+  icon: string | null;
+  icon_name: string | null;
+  platform: string | null;
+  url: string | null;
+  visible: boolean | null;
 };
 
 
 export type OriginsIdentityBrandConversationSocialLinkInputSchema = {
-  platform?: string | null;
-  url?: string | null;
-  visible?: boolean | null;
-  icon?: string | null;
-  icon_name?: string | null;
   custom_icon_url?: string | null;
   custom_label?: string | null;
   custom_url?: string | null;
+  icon?: string | null;
+  icon_name?: string | null;
+  platform?: string | null;
+  url?: string | null;
+  visible?: boolean | null;
 };
 
 
 // ChatConfig Schema
 export type ChatConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "chat_button_color" | "welcome_message" | "show_close_button" | "show_powered_by" | "show_header_avatar" | "show_ai_message_avatar" | "chat_button_show_icon" | "public_profile_button_show_icon" | "podcast_button_show_icon" | "public_profile_show_brand_logo" | "podcast_show_brand_logo" | "use_chat_button_for_public_profile" | "use_chat_button_for_podcast" | "available_avatar_ids" | "chat_button_text" | "show_brand_logo" | "chat_window_title" | "chat_bubble_color" | "chat_bubble_text_color" | "user_bubble_color" | "user_bubble_text_color" | "enable_sound_notifications" | "show_typing_indicator" | "enable_chat_history" | "inherits_descendant_knowledge" | "created_at" | "updated_at" | "button_shape" | "window_size" | "header_style" | "window_border_radius" | "window_animation" | "send_button_style" | "input_placeholder" | "window_position_mode" | "chat_button_icon" | "chat_button_text_color" | "public_profile_button_icon" | "public_profile_button_text_color" | "podcast_button_icon" | "podcast_button_text_color" | "public_profile_button_color" | "podcast_button_color" | "chat_button_border_color" | "public_profile_button_border_color" | "podcast_button_border_color" | "public_profile_button_shape" | "podcast_button_shape" | "public_profile_button_text" | "podcast_button_text" | "input_style" | "chat_button_position" | "response_delay" | "origin_entity_id";
-  id: UUID;
-  chat_button_color: string | null;
-  welcome_message: string | null;
-  show_close_button: boolean | null;
-  show_powered_by: boolean | null;
-  show_header_avatar: boolean | null;
-  show_ai_message_avatar: boolean | null;
-  chat_button_show_icon: boolean | null;
-  public_profile_button_show_icon: boolean | null;
-  podcast_button_show_icon: boolean | null;
-  public_profile_show_brand_logo: boolean | null;
-  podcast_show_brand_logo: boolean | null;
-  use_chat_button_for_public_profile: boolean | null;
-  use_chat_button_for_podcast: boolean | null;
+  __primitiveFields: "available_avatar_ids" | "button_shape" | "chat_bubble_color" | "chat_bubble_text_color" | "chat_button_border_color" | "chat_button_color" | "chat_button_icon" | "chat_button_position" | "chat_button_show_icon" | "chat_button_text" | "chat_button_text_color" | "chat_window_title" | "created_at" | "enable_chat_history" | "enable_sound_notifications" | "header_style" | "id" | "inherits_descendant_knowledge" | "input_placeholder" | "input_style" | "origin_entity_id" | "podcast_button_border_color" | "podcast_button_color" | "podcast_button_icon" | "podcast_button_shape" | "podcast_button_show_icon" | "podcast_button_text" | "podcast_button_text_color" | "podcast_show_brand_logo" | "public_profile_button_border_color" | "public_profile_button_color" | "public_profile_button_icon" | "public_profile_button_shape" | "public_profile_button_show_icon" | "public_profile_button_text" | "public_profile_button_text_color" | "public_profile_show_brand_logo" | "response_delay" | "send_button_style" | "show_ai_message_avatar" | "show_brand_logo" | "show_close_button" | "show_header_avatar" | "show_powered_by" | "show_typing_indicator" | "updated_at" | "use_chat_button_for_podcast" | "use_chat_button_for_public_profile" | "user_bubble_color" | "user_bubble_text_color" | "welcome_message" | "window_animation" | "window_border_radius" | "window_position_mode" | "window_size";
   available_avatar_ids: Array<string> | null;
-  chat_button_text: string | null;
-  show_brand_logo: boolean | null;
-  chat_window_title: string | null;
+  button_shape: string | null;
   chat_bubble_color: string | null;
   chat_bubble_text_color: string | null;
+  chat_button_border_color: string | null;
+  chat_button_color: string | null;
+  chat_button_icon: string | null;
+  chat_button_position: string | null;
+  chat_button_show_icon: boolean | null;
+  chat_button_text: string | null;
+  chat_button_text_color: string | null;
+  chat_window_title: string | null;
+  created_at: UtcDateTimeUsec;
+  enable_chat_history: boolean | null;
+  enable_sound_notifications: boolean | null;
+  header_style: string | null;
+  id: UUID;
+  inherits_descendant_knowledge: boolean;
+  input_placeholder: string | null;
+  input_style: string | null;
+  origin_entity_id: UUID | null;
+  podcast_button_border_color: string | null;
+  podcast_button_color: string | null;
+  podcast_button_icon: string | null;
+  podcast_button_shape: string | null;
+  podcast_button_show_icon: boolean | null;
+  podcast_button_text: string | null;
+  podcast_button_text_color: string | null;
+  podcast_show_brand_logo: boolean | null;
+  public_profile_button_border_color: string | null;
+  public_profile_button_color: string | null;
+  public_profile_button_icon: string | null;
+  public_profile_button_shape: string | null;
+  public_profile_button_show_icon: boolean | null;
+  public_profile_button_text: string | null;
+  public_profile_button_text_color: string | null;
+  public_profile_show_brand_logo: boolean | null;
+  response_delay: number | null;
+  send_button_style: string | null;
+  show_ai_message_avatar: boolean | null;
+  show_brand_logo: boolean | null;
+  show_close_button: boolean | null;
+  show_header_avatar: boolean | null;
+  show_powered_by: boolean | null;
+  show_typing_indicator: boolean | null;
+  updated_at: UtcDateTimeUsec;
+  use_chat_button_for_podcast: boolean | null;
+  use_chat_button_for_public_profile: boolean | null;
   user_bubble_color: string | null;
   user_bubble_text_color: string | null;
-  enable_sound_notifications: boolean | null;
-  show_typing_indicator: boolean | null;
-  enable_chat_history: boolean | null;
-  inherits_descendant_knowledge: boolean;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  button_shape: string | null;
-  window_size: string | null;
-  header_style: string | null;
-  window_border_radius: string | null;
+  welcome_message: string | null;
   window_animation: string | null;
-  send_button_style: string | null;
-  input_placeholder: string | null;
+  window_border_radius: string | null;
   window_position_mode: string | null;
-  chat_button_icon: string | null;
-  chat_button_text_color: string | null;
-  public_profile_button_icon: string | null;
-  public_profile_button_text_color: string | null;
-  podcast_button_icon: string | null;
-  podcast_button_text_color: string | null;
-  public_profile_button_color: string | null;
-  podcast_button_color: string | null;
-  chat_button_border_color: string | null;
-  public_profile_button_border_color: string | null;
-  podcast_button_border_color: string | null;
-  public_profile_button_shape: string | null;
-  podcast_button_shape: string | null;
-  public_profile_button_text: string | null;
-  podcast_button_text: string | null;
-  input_style: string | null;
-  chat_button_position: string | null;
-  response_delay: number | null;
-  origin_entity_id: UUID | null;
+  window_size: string | null;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
 
@@ -2371,62 +2377,62 @@ export type ChatConfigResourceSchema = {
 
 export type ChatConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "chat_button_color" | "welcome_message" | "show_close_button" | "show_powered_by" | "show_header_avatar" | "show_ai_message_avatar" | "chat_button_show_icon" | "public_profile_button_show_icon" | "podcast_button_show_icon" | "public_profile_show_brand_logo" | "podcast_show_brand_logo" | "use_chat_button_for_public_profile" | "use_chat_button_for_podcast" | "available_avatar_ids" | "chat_button_text" | "show_brand_logo" | "chat_window_title" | "chat_bubble_color" | "chat_bubble_text_color" | "user_bubble_color" | "user_bubble_text_color" | "enable_sound_notifications" | "show_typing_indicator" | "enable_chat_history" | "inherits_descendant_knowledge" | "created_at" | "updated_at" | "button_shape" | "window_size" | "header_style" | "window_border_radius" | "window_animation" | "send_button_style" | "input_placeholder" | "window_position_mode" | "chat_button_icon" | "chat_button_text_color" | "public_profile_button_icon" | "public_profile_button_text_color" | "podcast_button_icon" | "podcast_button_text_color" | "public_profile_button_color" | "podcast_button_color" | "chat_button_border_color" | "public_profile_button_border_color" | "podcast_button_border_color" | "public_profile_button_shape" | "podcast_button_shape" | "public_profile_button_text" | "podcast_button_text" | "input_style" | "chat_button_position" | "response_delay" | "origin_entity_id";
-  id: UUID;
-  chat_button_color: string | null;
-  welcome_message: string | null;
-  show_close_button: boolean | null;
-  show_powered_by: boolean | null;
-  show_header_avatar: boolean | null;
-  show_ai_message_avatar: boolean | null;
-  chat_button_show_icon: boolean | null;
-  public_profile_button_show_icon: boolean | null;
-  podcast_button_show_icon: boolean | null;
-  public_profile_show_brand_logo: boolean | null;
-  podcast_show_brand_logo: boolean | null;
-  use_chat_button_for_public_profile: boolean | null;
-  use_chat_button_for_podcast: boolean | null;
+  __primitiveFields: "available_avatar_ids" | "button_shape" | "chat_bubble_color" | "chat_bubble_text_color" | "chat_button_border_color" | "chat_button_color" | "chat_button_icon" | "chat_button_position" | "chat_button_show_icon" | "chat_button_text" | "chat_button_text_color" | "chat_window_title" | "created_at" | "enable_chat_history" | "enable_sound_notifications" | "header_style" | "id" | "inherits_descendant_knowledge" | "input_placeholder" | "input_style" | "origin_entity_id" | "podcast_button_border_color" | "podcast_button_color" | "podcast_button_icon" | "podcast_button_shape" | "podcast_button_show_icon" | "podcast_button_text" | "podcast_button_text_color" | "podcast_show_brand_logo" | "public_profile_button_border_color" | "public_profile_button_color" | "public_profile_button_icon" | "public_profile_button_shape" | "public_profile_button_show_icon" | "public_profile_button_text" | "public_profile_button_text_color" | "public_profile_show_brand_logo" | "response_delay" | "send_button_style" | "show_ai_message_avatar" | "show_brand_logo" | "show_close_button" | "show_header_avatar" | "show_powered_by" | "show_typing_indicator" | "updated_at" | "use_chat_button_for_podcast" | "use_chat_button_for_public_profile" | "user_bubble_color" | "user_bubble_text_color" | "welcome_message" | "window_animation" | "window_border_radius" | "window_position_mode" | "window_size";
   available_avatar_ids: Array<string> | null;
-  chat_button_text: string | null;
-  show_brand_logo: boolean | null;
-  chat_window_title: string | null;
+  button_shape: string | null;
   chat_bubble_color: string | null;
   chat_bubble_text_color: string | null;
+  chat_button_border_color: string | null;
+  chat_button_color: string | null;
+  chat_button_icon: string | null;
+  chat_button_position: string | null;
+  chat_button_show_icon: boolean | null;
+  chat_button_text: string | null;
+  chat_button_text_color: string | null;
+  chat_window_title: string | null;
+  created_at: UtcDateTimeUsec;
+  enable_chat_history: boolean | null;
+  enable_sound_notifications: boolean | null;
+  header_style: string | null;
+  id: UUID;
+  inherits_descendant_knowledge: boolean;
+  input_placeholder: string | null;
+  input_style: string | null;
+  origin_entity_id: UUID | null;
+  podcast_button_border_color: string | null;
+  podcast_button_color: string | null;
+  podcast_button_icon: string | null;
+  podcast_button_shape: string | null;
+  podcast_button_show_icon: boolean | null;
+  podcast_button_text: string | null;
+  podcast_button_text_color: string | null;
+  podcast_show_brand_logo: boolean | null;
+  public_profile_button_border_color: string | null;
+  public_profile_button_color: string | null;
+  public_profile_button_icon: string | null;
+  public_profile_button_shape: string | null;
+  public_profile_button_show_icon: boolean | null;
+  public_profile_button_text: string | null;
+  public_profile_button_text_color: string | null;
+  public_profile_show_brand_logo: boolean | null;
+  response_delay: number | null;
+  send_button_style: string | null;
+  show_ai_message_avatar: boolean | null;
+  show_brand_logo: boolean | null;
+  show_close_button: boolean | null;
+  show_header_avatar: boolean | null;
+  show_powered_by: boolean | null;
+  show_typing_indicator: boolean | null;
+  updated_at: UtcDateTimeUsec;
+  use_chat_button_for_podcast: boolean | null;
+  use_chat_button_for_public_profile: boolean | null;
   user_bubble_color: string | null;
   user_bubble_text_color: string | null;
-  enable_sound_notifications: boolean | null;
-  show_typing_indicator: boolean | null;
-  enable_chat_history: boolean | null;
-  inherits_descendant_knowledge: boolean;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  button_shape: string | null;
-  window_size: string | null;
-  header_style: string | null;
-  window_border_radius: string | null;
+  welcome_message: string | null;
   window_animation: string | null;
-  send_button_style: string | null;
-  input_placeholder: string | null;
+  window_border_radius: string | null;
   window_position_mode: string | null;
-  chat_button_icon: string | null;
-  chat_button_text_color: string | null;
-  public_profile_button_icon: string | null;
-  public_profile_button_text_color: string | null;
-  podcast_button_icon: string | null;
-  podcast_button_text_color: string | null;
-  public_profile_button_color: string | null;
-  podcast_button_color: string | null;
-  chat_button_border_color: string | null;
-  public_profile_button_border_color: string | null;
-  podcast_button_border_color: string | null;
-  public_profile_button_shape: string | null;
-  podcast_button_shape: string | null;
-  public_profile_button_text: string | null;
-  podcast_button_text: string | null;
-  input_style: string | null;
-  chat_button_position: string | null;
-  response_delay: number | null;
-  origin_entity_id: UUID | null;
+  window_size: string | null;
 };
 
 
@@ -2457,19 +2463,19 @@ export type OriginsIdentityCustomLinkInputSchema = {
 // OriginAsset Schema
 export type OriginAssetResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "asset_type" | "asset_url" | "asset_key" | "asset_name" | "asset_metadata" | "source_platform" | "shared_with_origin_entity_ids" | "is_shared_globally" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
+  __primitiveFields: "asset_key" | "asset_metadata" | "asset_name" | "asset_type" | "asset_url" | "created_at" | "id" | "is_shared_globally" | "origin_entity_id" | "shared_with_origin_entity_ids" | "source_platform" | "updated_at";
+  asset_key: string | null;
+  asset_metadata: Record<string, any> | null;
+  asset_name: string | null;
   asset_type: string;
   asset_url: string;
-  asset_key: string | null;
-  asset_name: string | null;
-  asset_metadata: Record<string, any> | null;
-  source_platform: string | null;
-  shared_with_origin_entity_ids: Array<UUID> | null;
-  is_shared_globally: boolean | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  is_shared_globally: boolean | null;
   origin_entity_id: UUID;
+  shared_with_origin_entity_ids: Array<UUID> | null;
+  source_platform: string | null;
+  updated_at: UtcDateTimeUsec;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -2477,198 +2483,197 @@ export type OriginAssetResourceSchema = {
 
 export type OriginAssetAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "asset_type" | "asset_url" | "asset_key" | "asset_name" | "asset_metadata" | "source_platform" | "shared_with_origin_entity_ids" | "is_shared_globally" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
+  __primitiveFields: "asset_key" | "asset_metadata" | "asset_name" | "asset_type" | "asset_url" | "created_at" | "id" | "is_shared_globally" | "origin_entity_id" | "shared_with_origin_entity_ids" | "source_platform" | "updated_at";
+  asset_key: string | null;
+  asset_metadata: Record<string, any> | null;
+  asset_name: string | null;
   asset_type: string;
   asset_url: string;
-  asset_key: string | null;
-  asset_name: string | null;
-  asset_metadata: Record<string, any> | null;
-  source_platform: string | null;
-  shared_with_origin_entity_ids: Array<UUID> | null;
-  is_shared_globally: boolean | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  is_shared_globally: boolean | null;
   origin_entity_id: UUID;
+  shared_with_origin_entity_ids: Array<UUID> | null;
+  source_platform: string | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // OriginEntity Schema
 export type OriginEntityResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tenant_id" | "parent_origin_entity_id" | "name" | "description" | "title" | "personality_traits" | "mission_statement" | "core_values" | "accent_colors" | "tone_of_voice" | "key_messaging" | "target_audience" | "content_themes" | "categories" | "picture_url" | "picture_key" | "banner_url" | "banner_key" | "voice_settings" | "voice_config" | "guardrails_settings" | "engagement_metrics" | "extracted_content" | "ai_generated_summary" | "is_public" | "is_active" | "is_featured" | "slug" | "website_content" | "last_website_scrape" | "page_sections_config" | "content_tabs_config" | "youtube_channel_id" | "youtube_channel_data" | "youtube_sync_settings" | "youtube_content_settings" | "podcast_content_settings" | "podcast_button_visible" | "podcast_button_link" | "podcast_button_text" | "podcast_button_color" | "podcast_button_text_color" | "created_at" | "updated_at" | "setup_progress_id" | "presigned_picture_url" | "presigned_banner_url";
-  id: UUID;
-  tenant_id: UUID;
-  parent_origin_entity_id: UUID | null;
-  name: string;
-  description: string | null;
-  title: string | null;
-  personality_traits: Array<string> | null;
-  mission_statement: string | null;
-  core_values: Array<string> | null;
+  __primitiveFields: "accent_colors" | "ai_generated_summary" | "banner_key" | "banner_url" | "categories" | "content_tabs_config" | "content_themes" | "core_values" | "created_at" | "description" | "engagement_metrics" | "extracted_content" | "guardrails_settings" | "id" | "is_active" | "is_featured" | "is_public" | "key_messaging" | "last_website_scrape" | "mission_statement" | "name" | "page_sections_config" | "parent_origin_entity_id" | "personality_traits" | "picture_key" | "picture_url" | "podcast_button_color" | "podcast_button_link" | "podcast_button_text" | "podcast_button_text_color" | "podcast_button_visible" | "podcast_content_settings" | "presigned_banner_url" | "presigned_picture_url" | "setup_progress_id" | "slug" | "target_audience" | "tenant_id" | "title" | "tone_of_voice" | "updated_at" | "voice_config" | "voice_settings" | "website_content" | "youtube_channel_data" | "youtube_channel_id" | "youtube_content_settings" | "youtube_sync_settings";
   accent_colors: Array<string> | null;
-  tone_of_voice: string | null;
-  key_messaging: Array<string> | null;
-  target_audience: string | null;
-  content_themes: Array<string> | null;
-  categories: Array<string> | null;
-  picture_url: string | null;
-  picture_key: string | null;
-  banner_url: string | null;
+  ai_generated_summary: string | null;
   banner_key: string | null;
-  voice_settings: Record<string, any> | null;
-  voice_config: Record<string, any> | null;
-  guardrails_settings: Record<string, any> | null;
+  banner_url: string | null;
+  categories: Array<string> | null;
+  content_tabs_config: Record<string, any> | null;
+  content_themes: Array<string> | null;
+  core_values: Array<string> | null;
+  created_at: UtcDateTimeUsec;
+  description: string | null;
   engagement_metrics: Record<string, any> | null;
   extracted_content: Record<string, any> | null;
-  ai_generated_summary: string | null;
-  is_public: boolean | null;
+  guardrails_settings: Record<string, any> | null;
+  id: UUID;
   is_active: boolean | null;
   is_featured: boolean | null;
-  slug: string;
-  website_content: Record<string, any> | null;
+  is_public: boolean | null;
+  key_messaging: Array<string> | null;
   last_website_scrape: UtcDateTimeUsec | null;
+  mission_statement: string | null;
+  name: string;
   page_sections_config: Record<string, any> | null;
-  content_tabs_config: Record<string, any> | null;
-  youtube_channel_id: string | null;
-  youtube_channel_data: Record<string, any> | null;
-  youtube_sync_settings: Record<string, any> | null;
-  youtube_content_settings: Record<string, any> | null;
-  podcast_content_settings: Record<string, any> | null;
-  podcast_button_visible: boolean | null;
+  parent_origin_entity_id: UUID | null;
+  personality_traits: Array<string> | null;
+  picture_key: string | null;
+  picture_url: string | null;
+  podcast_button_color: string | null;
   podcast_button_link: string | null;
   podcast_button_text: string | null;
-  podcast_button_color: string | null;
   podcast_button_text_color: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  setup_progress_id: UUID | null;
-  presigned_picture_url: string | null;
+  podcast_button_visible: boolean | null;
+  podcast_content_settings: Record<string, any> | null;
   presigned_banner_url: string | null;
-  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkResourceSchema; };
+  presigned_picture_url: string | null;
+  setup_progress_id: UUID | null;
+  slug: string;
+  target_audience: string | null;
+  tenant_id: UUID;
+  title: string | null;
+  tone_of_voice: string | null;
+  updated_at: UtcDateTimeUsec;
+  voice_config: Record<string, any> | null;
+  voice_settings: Record<string, any> | null;
+  website_content: Record<string, any> | null;
+  youtube_channel_data: Record<string, any> | null;
+  youtube_channel_id: string | null;
+  youtube_content_settings: Record<string, any> | null;
+  youtube_sync_settings: Record<string, any> | null;
   appearance_config: { __type: "Relationship"; __resource: OriginsIdentityAppearanceConfigResourceSchema | null; };
   brand_conversation_config: { __type: "Relationship"; __resource: OriginsIdentityBrandConversationConfigResourceSchema | null; };
   public_profile_config: { __type: "Relationship"; __resource: OriginsIdentityPublicProfileConfigResourceSchema | null; };
-  scraped_website_content_type: { __type: "Relationship"; __resource: ScrapedWebsiteContentResourceSchema | null; };
-  tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
-  setup_progress: { __type: "Relationship"; __resource: SetupProgressResourceSchema | null; };
-  parent_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
-  child_origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; };
-  memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; };
-  soul_config: { __type: "Relationship"; __resource: SoulConfigResourceSchema | null; };
+  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkResourceSchema | null; };
+  apps: { __type: "Relationship"; __array: true; __resource: AppResourceSchema; __pagination: "keyset"; __filterInput: AppFilterInput; __sortField: AppSortField; };
   chat_config: { __type: "Relationship"; __resource: ChatConfigResourceSchema | null; };
+  child_origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; __pagination: "keyset"; __filterInput: OriginEntityFilterInput; __sortField: OriginEntitySortField; };
+  feature_flags: { __type: "Relationship"; __array: true; __resource: FeatureFlagResourceSchema; __filterInput: FeatureFlagFilterInput; __sortField: FeatureFlagSortField; };
+  feedbacks: { __type: "Relationship"; __array: true; __resource: FeedbackResourceSchema; __pagination: "mixed"; __filterInput: FeedbackFilterInput; __sortField: FeedbackSortField; };
+  homepage_cards: { __type: "Relationship"; __array: true; __resource: HomepageCardResourceSchema; __filterInput: HomepageCardFilterInput; __sortField: HomepageCardSortField; };
+  interview_sessions: { __type: "Relationship"; __array: true; __resource: InterviewSessionResourceSchema; __pagination: "mixed"; __filterInput: InterviewSessionFilterInput; __sortField: InterviewSessionSortField; };
+  memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; __pagination: "mixed"; __filterInput: OriginEntityStaffMembershipFilterInput; __sortField: OriginEntityStaffMembershipSortField; };
+  origin_assets: { __type: "Relationship"; __array: true; __resource: OriginAssetResourceSchema; __pagination: "keyset"; __filterInput: OriginAssetFilterInput; __sortField: OriginAssetSortField; };
+  parent_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
   podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
-  origin_assets: { __type: "Relationship"; __array: true; __resource: OriginAssetResourceSchema; };
-  youtube_episodes: { __type: "Relationship"; __array: true; __resource: YoutubeEpisodeResourceSchema; };
-  apps: { __type: "Relationship"; __array: true; __resource: AppResourceSchema; };
-  interview_sessions: { __type: "Relationship"; __array: true; __resource: InterviewSessionResourceSchema; };
-  prompt_tools: { __type: "Relationship"; __array: true; __resource: PromptToolResourceSchema; };
-  prompt_contexts: { __type: "Relationship"; __array: true; __resource: PromptContextResourceSchema; };
-  feature_flags: { __type: "Relationship"; __array: true; __resource: FeatureFlagResourceSchema; };
-  feedbacks: { __type: "Relationship"; __array: true; __resource: FeedbackResourceSchema; };
-  homepage_cards: { __type: "Relationship"; __array: true; __resource: HomepageCardResourceSchema; };
+  prompt_contexts: { __type: "Relationship"; __array: true; __resource: PromptContextResourceSchema; __pagination: "mixed"; __filterInput: PromptContextFilterInput; __sortField: PromptContextSortField; };
+  prompt_tools: { __type: "Relationship"; __array: true; __resource: PromptToolResourceSchema; __pagination: "mixed"; __filterInput: PromptToolFilterInput; __sortField: PromptToolSortField; };
+  setup_progress: { __type: "Relationship"; __resource: SetupProgressResourceSchema | null; };
+  soul_config: { __type: "Relationship"; __resource: SoulConfigResourceSchema | null; };
+  tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
+  youtube_episodes: { __type: "Relationship"; __array: true; __resource: YoutubeEpisodeResourceSchema; __pagination: "mixed"; __filterInput: YoutubeEpisodeFilterInput; __sortField: YoutubeEpisodeSortField; };
 };
 
 
 
 export type OriginEntityAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "tenant_id" | "parent_origin_entity_id" | "name" | "description" | "title" | "personality_traits" | "mission_statement" | "core_values" | "accent_colors" | "tone_of_voice" | "key_messaging" | "target_audience" | "content_themes" | "categories" | "picture_url" | "picture_key" | "banner_url" | "banner_key" | "voice_settings" | "voice_config" | "guardrails_settings" | "engagement_metrics" | "extracted_content" | "ai_generated_summary" | "is_public" | "is_active" | "is_featured" | "slug" | "website_content" | "last_website_scrape" | "page_sections_config" | "content_tabs_config" | "youtube_channel_id" | "youtube_channel_data" | "youtube_sync_settings" | "youtube_content_settings" | "podcast_content_settings" | "podcast_button_visible" | "podcast_button_link" | "podcast_button_text" | "podcast_button_color" | "podcast_button_text_color" | "created_at" | "updated_at" | "setup_progress_id";
-  id: UUID;
-  tenant_id: UUID;
-  parent_origin_entity_id: UUID | null;
-  name: string;
-  description: string | null;
-  title: string | null;
-  personality_traits: Array<string> | null;
-  mission_statement: string | null;
-  core_values: Array<string> | null;
+  __primitiveFields: "accent_colors" | "ai_generated_summary" | "banner_key" | "banner_url" | "categories" | "content_tabs_config" | "content_themes" | "core_values" | "created_at" | "description" | "engagement_metrics" | "extracted_content" | "guardrails_settings" | "id" | "is_active" | "is_featured" | "is_public" | "key_messaging" | "last_website_scrape" | "mission_statement" | "name" | "page_sections_config" | "parent_origin_entity_id" | "personality_traits" | "picture_key" | "picture_url" | "podcast_button_color" | "podcast_button_link" | "podcast_button_text" | "podcast_button_text_color" | "podcast_button_visible" | "podcast_content_settings" | "setup_progress_id" | "slug" | "target_audience" | "tenant_id" | "title" | "tone_of_voice" | "updated_at" | "voice_config" | "voice_settings" | "website_content" | "youtube_channel_data" | "youtube_channel_id" | "youtube_content_settings" | "youtube_sync_settings";
   accent_colors: Array<string> | null;
-  tone_of_voice: string | null;
-  key_messaging: Array<string> | null;
-  target_audience: string | null;
-  content_themes: Array<string> | null;
-  categories: Array<string> | null;
-  picture_url: string | null;
-  picture_key: string | null;
-  banner_url: string | null;
+  ai_generated_summary: string | null;
   banner_key: string | null;
-  voice_settings: Record<string, any> | null;
-  voice_config: Record<string, any> | null;
-  guardrails_settings: Record<string, any> | null;
+  banner_url: string | null;
+  categories: Array<string> | null;
+  content_tabs_config: Record<string, any> | null;
+  content_themes: Array<string> | null;
+  core_values: Array<string> | null;
+  created_at: UtcDateTimeUsec;
+  description: string | null;
   engagement_metrics: Record<string, any> | null;
   extracted_content: Record<string, any> | null;
-  ai_generated_summary: string | null;
-  is_public: boolean | null;
+  guardrails_settings: Record<string, any> | null;
+  id: UUID;
   is_active: boolean | null;
   is_featured: boolean | null;
-  slug: string;
-  website_content: Record<string, any> | null;
+  is_public: boolean | null;
+  key_messaging: Array<string> | null;
   last_website_scrape: UtcDateTimeUsec | null;
+  mission_statement: string | null;
+  name: string;
   page_sections_config: Record<string, any> | null;
-  content_tabs_config: Record<string, any> | null;
-  youtube_channel_id: string | null;
-  youtube_channel_data: Record<string, any> | null;
-  youtube_sync_settings: Record<string, any> | null;
-  youtube_content_settings: Record<string, any> | null;
-  podcast_content_settings: Record<string, any> | null;
-  podcast_button_visible: boolean | null;
+  parent_origin_entity_id: UUID | null;
+  personality_traits: Array<string> | null;
+  picture_key: string | null;
+  picture_url: string | null;
+  podcast_button_color: string | null;
   podcast_button_link: string | null;
   podcast_button_text: string | null;
-  podcast_button_color: string | null;
   podcast_button_text_color: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  podcast_button_visible: boolean | null;
+  podcast_content_settings: Record<string, any> | null;
   setup_progress_id: UUID | null;
-  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkAttributesOnlySchema; };
+  slug: string;
+  target_audience: string | null;
+  tenant_id: UUID;
+  title: string | null;
+  tone_of_voice: string | null;
+  updated_at: UtcDateTimeUsec;
+  voice_config: Record<string, any> | null;
+  voice_settings: Record<string, any> | null;
+  website_content: Record<string, any> | null;
+  youtube_channel_data: Record<string, any> | null;
+  youtube_channel_id: string | null;
+  youtube_content_settings: Record<string, any> | null;
+  youtube_sync_settings: Record<string, any> | null;
   appearance_config: { __type: "Relationship"; __resource: OriginsIdentityAppearanceConfigAttributesOnlySchema | null; };
   brand_conversation_config: { __type: "Relationship"; __resource: OriginsIdentityBrandConversationConfigAttributesOnlySchema | null; };
   public_profile_config: { __type: "Relationship"; __resource: OriginsIdentityPublicProfileConfigAttributesOnlySchema | null; };
+  social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkAttributesOnlySchema | null; };
 };
 
 
 // ScrapedWebsiteContent Schema
 export type ScrapedWebsiteContentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "url" | "title" | "meta_description" | "meta_keywords" | "paragraphs" | "text_content" | "scraped_at";
-  url: string | null;
-  title: string | null;
+  __primitiveFields: "meta_description" | "meta_keywords" | "paragraphs" | "scraped_at" | "text_content" | "title" | "url";
   meta_description: string | null;
   meta_keywords: string | null;
   paragraphs: Array<string> | null;
-  text_content: string | null;
   scraped_at: string | null;
+  text_content: string | null;
+  title: string | null;
+  url: string | null;
+  headings: { __type: "Relationship"; __array: true; __resource: ScrapedWebsiteContentHeadingResourceSchema | null; };
   open_graph: { __type: "Relationship"; __resource: ScrapedWebsiteContentOpenGraphResourceSchema | null; };
-  headings: { __type: "Relationship"; __array: true; __resource: ScrapedWebsiteContentHeadingResourceSchema; };
 };
 
 
 
 export type ScrapedWebsiteContentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "url" | "title" | "meta_description" | "meta_keywords" | "paragraphs" | "text_content" | "scraped_at";
-  url: string | null;
-  title: string | null;
+  __primitiveFields: "meta_description" | "meta_keywords" | "paragraphs" | "scraped_at" | "text_content" | "title" | "url";
   meta_description: string | null;
   meta_keywords: string | null;
   paragraphs: Array<string> | null;
-  text_content: string | null;
   scraped_at: string | null;
+  text_content: string | null;
+  title: string | null;
+  url: string | null;
+  headings: { __type: "Relationship"; __array: true; __resource: ScrapedWebsiteContentHeadingAttributesOnlySchema | null; };
   open_graph: { __type: "Relationship"; __resource: ScrapedWebsiteContentOpenGraphAttributesOnlySchema | null; };
-  headings: { __type: "Relationship"; __array: true; __resource: ScrapedWebsiteContentHeadingAttributesOnlySchema; };
 };
 
 
 export type ScrapedWebsiteContentInputSchema = {
-  url?: string | null;
-  title?: string | null;
+  headings?: Array<ScrapedWebsiteContentHeadingInputSchema> | null;
   meta_description?: string | null;
   meta_keywords?: string | null;
   open_graph?: ScrapedWebsiteContentOpenGraphInputSchema | null;
-  headings?: Array<ScrapedWebsiteContentHeadingInputSchema> | null;
   paragraphs?: Array<string> | null;
-  text_content?: string | null;
   scraped_at?: string | null;
+  text_content?: string | null;
+  title?: string | null;
+  url?: string | null;
 };
 
 
@@ -2699,47 +2704,47 @@ export type ScrapedWebsiteContentHeadingInputSchema = {
 // ScrapedWebsiteContentOpenGraph Schema
 export type ScrapedWebsiteContentOpenGraphResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "title" | "description" | "image";
-  title: string | null;
+  __primitiveFields: "description" | "image" | "title";
   description: string | null;
   image: string | null;
+  title: string | null;
 };
 
 
 
 export type ScrapedWebsiteContentOpenGraphAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "title" | "description" | "image";
-  title: string | null;
+  __primitiveFields: "description" | "image" | "title";
   description: string | null;
   image: string | null;
+  title: string | null;
 };
 
 
 export type ScrapedWebsiteContentOpenGraphInputSchema = {
-  title?: string | null;
   description?: string | null;
   image?: string | null;
+  title?: string | null;
 };
 
 
 // OriginEntityStaffMembership Schema
 export type OriginEntityStaffMembershipResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "role" | "status" | "invitation_token" | "invited_email" | "expires_at" | "invited_by" | "accepted_at" | "joined_at" | "created_at" | "updated_at" | "origin_entity_id";
+  __primitiveFields: "accepted_at" | "created_at" | "expires_at" | "id" | "invitation_token" | "invited_by" | "invited_email" | "joined_at" | "origin_entity_id" | "role" | "status" | "updated_at" | "user_id";
+  accepted_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec;
+  expires_at: UtcDateTimeUsec | null;
   id: UUID;
-  user_id: UUID | null;
+  invitation_token: UUID | null;
+  invited_by: UUID | null;
+  invited_email: string | null;
+  joined_at: UtcDateTimeUsec;
+  origin_entity_id: UUID;
   role: "admin" | "member" | "owner" | "viewer";
   status: "active" | "pending" | "suspended";
-  invitation_token: UUID | null;
-  invited_email: string | null;
-  expires_at: UtcDateTimeUsec | null;
-  invited_by: UUID | null;
-  accepted_at: UtcDateTimeUsec | null;
-  joined_at: UtcDateTimeUsec;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
+  user_id: UUID | null;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   user: { __type: "Relationship"; __resource: UserResourceSchema | null; };
 };
@@ -2748,38 +2753,38 @@ export type OriginEntityStaffMembershipResourceSchema = {
 
 export type OriginEntityStaffMembershipAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "role" | "status" | "invitation_token" | "invited_email" | "expires_at" | "invited_by" | "accepted_at" | "joined_at" | "created_at" | "updated_at" | "origin_entity_id";
+  __primitiveFields: "accepted_at" | "created_at" | "expires_at" | "id" | "invitation_token" | "invited_by" | "invited_email" | "joined_at" | "origin_entity_id" | "role" | "status" | "updated_at" | "user_id";
+  accepted_at: UtcDateTimeUsec | null;
+  created_at: UtcDateTimeUsec;
+  expires_at: UtcDateTimeUsec | null;
   id: UUID;
-  user_id: UUID | null;
+  invitation_token: UUID | null;
+  invited_by: UUID | null;
+  invited_email: string | null;
+  joined_at: UtcDateTimeUsec;
+  origin_entity_id: UUID;
   role: "admin" | "member" | "owner" | "viewer";
   status: "active" | "pending" | "suspended";
-  invitation_token: UUID | null;
-  invited_email: string | null;
-  expires_at: UtcDateTimeUsec | null;
-  invited_by: UUID | null;
-  accepted_at: UtcDateTimeUsec | null;
-  joined_at: UtcDateTimeUsec;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
+  user_id: UUID | null;
 };
 
 
 // PromptContext Schema
 export type PromptContextResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "public_title" | "public_description" | "context_text" | "prompt_tool_ids" | "is_active" | "is_default" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  name: string;
-  public_title: string | null;
-  public_description: string | null;
+  __primitiveFields: "context_text" | "created_at" | "id" | "is_active" | "is_default" | "name" | "origin_entity_id" | "prompt_tool_ids" | "public_description" | "public_title" | "updated_at";
   context_text: string;
-  prompt_tool_ids: Array<UUID> | null;
+  created_at: UtcDateTimeUsec;
+  id: UUID;
   is_active: boolean | null;
   is_default: boolean | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  name: string;
   origin_entity_id: UUID;
+  prompt_tool_ids: Array<UUID> | null;
+  public_description: string | null;
+  public_title: string | null;
+  updated_at: UtcDateTimeUsec;
   guardrail_config: { __type: "Relationship"; __resource: OriginsIdentityPromptContextGuardrailConfigResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
@@ -2788,18 +2793,18 @@ export type PromptContextResourceSchema = {
 
 export type PromptContextAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "public_title" | "public_description" | "context_text" | "prompt_tool_ids" | "is_active" | "is_default" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  name: string;
-  public_title: string | null;
-  public_description: string | null;
+  __primitiveFields: "context_text" | "created_at" | "id" | "is_active" | "is_default" | "name" | "origin_entity_id" | "prompt_tool_ids" | "public_description" | "public_title" | "updated_at";
   context_text: string;
-  prompt_tool_ids: Array<UUID> | null;
+  created_at: UtcDateTimeUsec;
+  id: UUID;
   is_active: boolean | null;
   is_default: boolean | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  name: string;
   origin_entity_id: UUID;
+  prompt_tool_ids: Array<UUID> | null;
+  public_description: string | null;
+  public_title: string | null;
+  updated_at: UtcDateTimeUsec;
   guardrail_config: { __type: "Relationship"; __resource: OriginsIdentityPromptContextGuardrailConfigAttributesOnlySchema | null; };
 };
 
@@ -2807,72 +2812,72 @@ export type PromptContextAttributesOnlySchema = {
 // OriginsIdentityPromptContextGuardrailConfig Schema
 export type OriginsIdentityPromptContextGuardrailConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "input_prompt_injection_detection" | "input_jailbreak_detection" | "input_toxicity_detection" | "input_max_length" | "output_data_leakage_prevention" | "output_content_moderation" | "output_toxicity_detection" | "confidence_threshold" | "allowed_toxicity_categories" | "grounding_check" | "grounding_threshold";
-  input_prompt_injection_detection: boolean;
-  input_jailbreak_detection: boolean;
-  input_toxicity_detection: boolean;
-  input_max_length: number;
-  output_data_leakage_prevention: boolean;
-  output_content_moderation: boolean;
-  output_toxicity_detection: boolean;
-  confidence_threshold: number;
+  __primitiveFields: "allowed_toxicity_categories" | "confidence_threshold" | "grounding_check" | "grounding_threshold" | "input_jailbreak_detection" | "input_max_length" | "input_prompt_injection_detection" | "input_toxicity_detection" | "output_content_moderation" | "output_data_leakage_prevention" | "output_toxicity_detection";
   allowed_toxicity_categories: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
+  confidence_threshold: number;
   grounding_check: boolean;
   grounding_threshold: number;
+  input_jailbreak_detection: boolean;
+  input_max_length: number;
+  input_prompt_injection_detection: boolean;
+  input_toxicity_detection: boolean;
+  output_content_moderation: boolean;
+  output_data_leakage_prevention: boolean;
+  output_toxicity_detection: boolean;
 };
 
 
 
 export type OriginsIdentityPromptContextGuardrailConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "input_prompt_injection_detection" | "input_jailbreak_detection" | "input_toxicity_detection" | "input_max_length" | "output_data_leakage_prevention" | "output_content_moderation" | "output_toxicity_detection" | "confidence_threshold" | "allowed_toxicity_categories" | "grounding_check" | "grounding_threshold";
-  input_prompt_injection_detection: boolean;
-  input_jailbreak_detection: boolean;
-  input_toxicity_detection: boolean;
-  input_max_length: number;
-  output_data_leakage_prevention: boolean;
-  output_content_moderation: boolean;
-  output_toxicity_detection: boolean;
-  confidence_threshold: number;
+  __primitiveFields: "allowed_toxicity_categories" | "confidence_threshold" | "grounding_check" | "grounding_threshold" | "input_jailbreak_detection" | "input_max_length" | "input_prompt_injection_detection" | "input_toxicity_detection" | "output_content_moderation" | "output_data_leakage_prevention" | "output_toxicity_detection";
   allowed_toxicity_categories: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
+  confidence_threshold: number;
   grounding_check: boolean;
   grounding_threshold: number;
+  input_jailbreak_detection: boolean;
+  input_max_length: number;
+  input_prompt_injection_detection: boolean;
+  input_toxicity_detection: boolean;
+  output_content_moderation: boolean;
+  output_data_leakage_prevention: boolean;
+  output_toxicity_detection: boolean;
 };
 
 
 export type OriginsIdentityPromptContextGuardrailConfigInputSchema = {
-  input_prompt_injection_detection?: boolean;
-  input_jailbreak_detection?: boolean;
-  input_toxicity_detection?: boolean;
-  input_max_length?: number;
-  output_data_leakage_prevention?: boolean;
-  output_content_moderation?: boolean;
-  output_toxicity_detection?: boolean;
-  confidence_threshold?: number;
   allowed_toxicity_categories?: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
+  confidence_threshold?: number;
   grounding_check?: boolean;
   grounding_threshold?: number;
+  input_jailbreak_detection?: boolean;
+  input_max_length?: number;
+  input_prompt_injection_detection?: boolean;
+  input_toxicity_detection?: boolean;
+  output_content_moderation?: boolean;
+  output_data_leakage_prevention?: boolean;
+  output_toxicity_detection?: boolean;
 };
 
 
 // PromptTool Schema
 export type PromptToolResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "prompt_template" | "model" | "temperature" | "max_tokens" | "is_active" | "auto_approve" | "letta_tools" | "created_at" | "updated_at" | "origin_entity_id" | "source_origin_entity_id";
-  id: UUID;
-  name: string;
-  description: string;
-  prompt_template: string;
-  model: string | null;
-  temperature: number | null;
-  max_tokens: number | null;
-  is_active: boolean | null;
+  __primitiveFields: "auto_approve" | "created_at" | "description" | "id" | "is_active" | "letta_tools" | "max_tokens" | "model" | "name" | "origin_entity_id" | "prompt_template" | "source_origin_entity_id" | "temperature" | "updated_at";
   auto_approve: boolean | null;
-  letta_tools: Array<string> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  description: string;
+  id: UUID;
+  is_active: boolean | null;
+  letta_tools: Array<string> | null;
+  max_tokens: number | null;
+  model: string | null;
+  name: string;
   origin_entity_id: UUID;
+  prompt_template: string;
   source_origin_entity_id: UUID | null;
+  temperature: number | null;
+  updated_at: UtcDateTimeUsec;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
   source_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
@@ -2881,160 +2886,160 @@ export type PromptToolResourceSchema = {
 
 export type PromptToolAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "description" | "prompt_template" | "model" | "temperature" | "max_tokens" | "is_active" | "auto_approve" | "letta_tools" | "created_at" | "updated_at" | "origin_entity_id" | "source_origin_entity_id";
-  id: UUID;
-  name: string;
-  description: string;
-  prompt_template: string;
-  model: string | null;
-  temperature: number | null;
-  max_tokens: number | null;
-  is_active: boolean | null;
+  __primitiveFields: "auto_approve" | "created_at" | "description" | "id" | "is_active" | "letta_tools" | "max_tokens" | "model" | "name" | "origin_entity_id" | "prompt_template" | "source_origin_entity_id" | "temperature" | "updated_at";
   auto_approve: boolean | null;
-  letta_tools: Array<string> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  description: string;
+  id: UUID;
+  is_active: boolean | null;
+  letta_tools: Array<string> | null;
+  max_tokens: number | null;
+  model: string | null;
+  name: string;
   origin_entity_id: UUID;
+  prompt_template: string;
   source_origin_entity_id: UUID | null;
+  temperature: number | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // OriginsIdentityPublicProfileConfig Schema
 export type OriginsIdentityPublicProfileConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "show_content_section" | "display_order" | "voice_enabled" | "show_signin_button" | "show_children_section";
-  show_content_section: boolean | null;
+  __primitiveFields: "display_order" | "show_children_section" | "show_content_section" | "show_signin_button" | "voice_enabled";
   display_order: number | null;
-  voice_enabled: boolean | null;
-  show_signin_button: boolean | null;
   show_children_section: boolean | null;
-  custom_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityCustomLinkResourceSchema; };
+  show_content_section: boolean | null;
+  show_signin_button: boolean | null;
+  voice_enabled: boolean | null;
+  custom_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityCustomLinkResourceSchema | null; };
 };
 
 
 
 export type OriginsIdentityPublicProfileConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "show_content_section" | "display_order" | "voice_enabled" | "show_signin_button" | "show_children_section";
-  show_content_section: boolean | null;
+  __primitiveFields: "display_order" | "show_children_section" | "show_content_section" | "show_signin_button" | "voice_enabled";
   display_order: number | null;
-  voice_enabled: boolean | null;
-  show_signin_button: boolean | null;
   show_children_section: boolean | null;
-  custom_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityCustomLinkAttributesOnlySchema; };
+  show_content_section: boolean | null;
+  show_signin_button: boolean | null;
+  voice_enabled: boolean | null;
+  custom_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentityCustomLinkAttributesOnlySchema | null; };
 };
 
 
 export type OriginsIdentityPublicProfileConfigInputSchema = {
   custom_links?: Array<OriginsIdentityCustomLinkInputSchema> | null;
-  show_content_section?: boolean | null;
   display_order?: number | null;
-  voice_enabled?: boolean | null;
-  show_signin_button?: boolean | null;
   show_children_section?: boolean | null;
+  show_content_section?: boolean | null;
+  show_signin_button?: boolean | null;
+  voice_enabled?: boolean | null;
 };
 
 
 // SetupProgress Schema
 export type SetupProgressResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "entity_name" | "completed_steps" | "social_media_links" | "ai_suggested_links" | "api_extracted_data" | "metadata" | "is_completed" | "current_step" | "onboarding_mode" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  entity_name: string;
-  completed_steps: Array<string> | null;
-  social_media_links: Record<string, any> | null;
+  __primitiveFields: "ai_suggested_links" | "api_extracted_data" | "completed_steps" | "created_at" | "current_step" | "entity_name" | "id" | "is_completed" | "metadata" | "onboarding_mode" | "origin_entity_id" | "social_media_links" | "updated_at";
   ai_suggested_links: Record<string, any> | null;
   api_extracted_data: Record<string, any> | null;
-  metadata: Record<string, any> | null;
-  is_completed: boolean | null;
-  current_step: number | null;
-  onboarding_mode: string | null;
+  completed_steps: Array<string> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  current_step: number | null;
+  entity_name: string;
+  id: UUID;
+  is_completed: boolean | null;
+  metadata: Record<string, any> | null;
+  onboarding_mode: string | null;
   origin_entity_id: UUID | null;
+  social_media_links: Record<string, any> | null;
+  updated_at: UtcDateTimeUsec;
+  origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; __pagination: "keyset"; __filterInput: OriginEntityFilterInput; __sortField: OriginEntitySortField; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
-  origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; };
 };
 
 
 
 export type SetupProgressAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "entity_name" | "completed_steps" | "social_media_links" | "ai_suggested_links" | "api_extracted_data" | "metadata" | "is_completed" | "current_step" | "onboarding_mode" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  entity_name: string;
-  completed_steps: Array<string> | null;
-  social_media_links: Record<string, any> | null;
+  __primitiveFields: "ai_suggested_links" | "api_extracted_data" | "completed_steps" | "created_at" | "current_step" | "entity_name" | "id" | "is_completed" | "metadata" | "onboarding_mode" | "origin_entity_id" | "social_media_links" | "updated_at";
   ai_suggested_links: Record<string, any> | null;
   api_extracted_data: Record<string, any> | null;
-  metadata: Record<string, any> | null;
-  is_completed: boolean | null;
-  current_step: number | null;
-  onboarding_mode: string | null;
+  completed_steps: Array<string> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  current_step: number | null;
+  entity_name: string;
+  id: UUID;
+  is_completed: boolean | null;
+  metadata: Record<string, any> | null;
+  onboarding_mode: string | null;
   origin_entity_id: UUID | null;
+  social_media_links: Record<string, any> | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // OriginsIdentitySocialLink Schema
 export type OriginsIdentitySocialLinkResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "platform" | "url" | "visible" | "custom_platform_name" | "icon_name" | "custom_icon_key" | "custom_icon_url";
+  __primitiveFields: "custom_icon_key" | "custom_icon_url" | "custom_platform_name" | "icon_name" | "platform" | "url" | "visible";
+  custom_icon_key: string | null;
+  custom_icon_url: string | null;
+  custom_platform_name: string | null;
+  icon_name: string | null;
   platform: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
   url: string;
   visible: boolean | null;
-  custom_platform_name: string | null;
-  icon_name: string | null;
-  custom_icon_key: string | null;
-  custom_icon_url: string | null;
 };
 
 
 
 export type OriginsIdentitySocialLinkAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "platform" | "url" | "visible" | "custom_platform_name" | "icon_name" | "custom_icon_key" | "custom_icon_url";
+  __primitiveFields: "custom_icon_key" | "custom_icon_url" | "custom_platform_name" | "icon_name" | "platform" | "url" | "visible";
+  custom_icon_key: string | null;
+  custom_icon_url: string | null;
+  custom_platform_name: string | null;
+  icon_name: string | null;
   platform: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
   url: string;
   visible: boolean | null;
-  custom_platform_name: string | null;
-  icon_name: string | null;
-  custom_icon_key: string | null;
-  custom_icon_url: string | null;
 };
 
 
 export type OriginsIdentitySocialLinkInputSchema = {
+  custom_icon_key?: string | null;
+  custom_icon_url?: string | null;
+  custom_platform_name?: string | null;
+  icon_name?: string | null;
   platform: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
   url: string;
   visible?: boolean | null;
-  custom_platform_name?: string | null;
-  icon_name?: string | null;
-  custom_icon_key?: string | null;
-  custom_icon_url?: string | null;
 };
 
 
 // SoulConfig Schema
 export type SoulConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "personality_traits" | "purpose_statement" | "core_instructions" | "conversation_starters" | "speaking_tone" | "vocabulary_preferences" | "guardrails_settings" | "response_length" | "created_at" | "updated_at" | "origin_entity_id";
+  __primitiveFields: "conversation_starters" | "core_instructions" | "created_at" | "guardrails_settings" | "id" | "origin_entity_id" | "personality_traits" | "purpose_statement" | "response_length" | "speaking_tone" | "updated_at" | "vocabulary_preferences";
+  conversation_starters: Array<Record<string, any>> | null;
+  core_instructions: Array<string> | null;
+  created_at: UtcDateTimeUsec;
+  guardrails_settings: Record<string, any> | null;
   id: UUID;
+  origin_entity_id: UUID | null;
   personality_traits: Array<Record<string, any>> | null;
   purpose_statement: string | null;
-  core_instructions: Array<string> | null;
-  conversation_starters: Array<Record<string, any>> | null;
-  speaking_tone: string | null;
-  vocabulary_preferences: Array<string> | null;
-  guardrails_settings: Record<string, any> | null;
   response_length: string | null;
-  created_at: UtcDateTimeUsec;
+  speaking_tone: string | null;
   updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID | null;
+  vocabulary_preferences: Array<string> | null;
   communication_style: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigCommunicationStyleResourceSchema | null; };
-  response_format_preferences: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema | null; };
   experience_settings: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigExperienceSettingsResourceSchema | null; };
+  response_format_preferences: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema | null; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
 
@@ -3042,22 +3047,22 @@ export type SoulConfigResourceSchema = {
 
 export type SoulConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "personality_traits" | "purpose_statement" | "core_instructions" | "conversation_starters" | "speaking_tone" | "vocabulary_preferences" | "guardrails_settings" | "response_length" | "created_at" | "updated_at" | "origin_entity_id";
+  __primitiveFields: "conversation_starters" | "core_instructions" | "created_at" | "guardrails_settings" | "id" | "origin_entity_id" | "personality_traits" | "purpose_statement" | "response_length" | "speaking_tone" | "updated_at" | "vocabulary_preferences";
+  conversation_starters: Array<Record<string, any>> | null;
+  core_instructions: Array<string> | null;
+  created_at: UtcDateTimeUsec;
+  guardrails_settings: Record<string, any> | null;
   id: UUID;
+  origin_entity_id: UUID | null;
   personality_traits: Array<Record<string, any>> | null;
   purpose_statement: string | null;
-  core_instructions: Array<string> | null;
-  conversation_starters: Array<Record<string, any>> | null;
-  speaking_tone: string | null;
-  vocabulary_preferences: Array<string> | null;
-  guardrails_settings: Record<string, any> | null;
   response_length: string | null;
-  created_at: UtcDateTimeUsec;
+  speaking_tone: string | null;
   updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID | null;
+  vocabulary_preferences: Array<string> | null;
   communication_style: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigCommunicationStyleAttributesOnlySchema | null; };
-  response_format_preferences: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigResponseFormatPreferencesAttributesOnlySchema | null; };
   experience_settings: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigExperienceSettingsAttributesOnlySchema | null; };
+  response_format_preferences: { __type: "Relationship"; __resource: OriginsIdentitySoulConfigResponseFormatPreferencesAttributesOnlySchema | null; };
 };
 
 
@@ -3085,109 +3090,109 @@ export type OriginsIdentitySoulConfigCommunicationStyleInputSchema = {
 // OriginsIdentitySoulConfigExperienceSettings Schema
 export type OriginsIdentitySoulConfigExperienceSettingsResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "welcome_message" | "proactive_assistance" | "context_awareness" | "personalized_responses";
-  welcome_message: string | null;
-  proactive_assistance: boolean;
+  __primitiveFields: "context_awareness" | "personalized_responses" | "proactive_assistance" | "welcome_message";
   context_awareness: boolean;
   personalized_responses: boolean;
+  proactive_assistance: boolean;
+  welcome_message: string | null;
 };
 
 
 
 export type OriginsIdentitySoulConfigExperienceSettingsAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "welcome_message" | "proactive_assistance" | "context_awareness" | "personalized_responses";
-  welcome_message: string | null;
-  proactive_assistance: boolean;
+  __primitiveFields: "context_awareness" | "personalized_responses" | "proactive_assistance" | "welcome_message";
   context_awareness: boolean;
   personalized_responses: boolean;
+  proactive_assistance: boolean;
+  welcome_message: string | null;
 };
 
 
 export type OriginsIdentitySoulConfigExperienceSettingsInputSchema = {
-  welcome_message?: string | null;
-  proactive_assistance?: boolean;
   context_awareness?: boolean;
   personalized_responses?: boolean;
+  proactive_assistance?: boolean;
+  welcome_message?: string | null;
 };
 
 
 // OriginsIdentitySoulConfigResponseFormatPreferences Schema
 export type OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "use_bullet_points" | "use_emojis" | "include_examples";
+  __primitiveFields: "include_examples" | "use_bullet_points" | "use_emojis";
+  include_examples: boolean;
   use_bullet_points: boolean;
   use_emojis: boolean;
-  include_examples: boolean;
 };
 
 
 
 export type OriginsIdentitySoulConfigResponseFormatPreferencesAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "use_bullet_points" | "use_emojis" | "include_examples";
+  __primitiveFields: "include_examples" | "use_bullet_points" | "use_emojis";
+  include_examples: boolean;
   use_bullet_points: boolean;
   use_emojis: boolean;
-  include_examples: boolean;
 };
 
 
 export type OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema = {
+  include_examples?: boolean;
   use_bullet_points?: boolean;
   use_emojis?: boolean;
-  include_examples?: boolean;
 };
 
 
 // UserProfile Schema
 export type UserProfileResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "display_name" | "avatar_url" | "bio" | "notification_preferences" | "privacy_settings" | "email" | "theme_preference" | "created_at" | "updated_at";
-  id: UUID;
-  user_id: UUID;
-  display_name: string | null;
+  __primitiveFields: "avatar_url" | "bio" | "created_at" | "display_name" | "email" | "id" | "notification_preferences" | "privacy_settings" | "theme_preference" | "updated_at" | "user_id";
   avatar_url: string | null;
   bio: string | null;
+  created_at: UtcDateTimeUsec;
+  display_name: string | null;
+  email: string | null;
+  id: UUID;
   notification_preferences: Record<string, any> | null;
   privacy_settings: Record<string, any> | null;
-  email: string | null;
   theme_preference: string | null;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
+  user_id: UUID;
 };
 
 
 
 export type UserProfileAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "user_id" | "display_name" | "avatar_url" | "bio" | "notification_preferences" | "privacy_settings" | "email" | "theme_preference" | "created_at" | "updated_at";
-  id: UUID;
-  user_id: UUID;
-  display_name: string | null;
+  __primitiveFields: "avatar_url" | "bio" | "created_at" | "display_name" | "email" | "id" | "notification_preferences" | "privacy_settings" | "theme_preference" | "updated_at" | "user_id";
   avatar_url: string | null;
   bio: string | null;
+  created_at: UtcDateTimeUsec;
+  display_name: string | null;
+  email: string | null;
+  id: UUID;
   notification_preferences: Record<string, any> | null;
   privacy_settings: Record<string, any> | null;
-  email: string | null;
   theme_preference: string | null;
-  created_at: UtcDateTimeUsec;
   updated_at: UtcDateTimeUsec;
+  user_id: UUID;
 };
 
 
 // InterviewGeneratedContent Schema
 export type InterviewGeneratedContentResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "content_type" | "content" | "title" | "status" | "metadata" | "created_at" | "updated_at" | "interview_session_id";
-  id: UUID;
-  content_type: "article" | "post" | "summary" | "thread" | "tweet";
+  __primitiveFields: "content" | "content_type" | "created_at" | "id" | "interview_session_id" | "metadata" | "status" | "title" | "updated_at";
   content: string;
-  title: string | null;
-  status: "approved" | "draft" | "published" | "rejected";
-  metadata: Record<string, any> | null;
+  content_type: "article" | "post" | "summary" | "thread" | "tweet";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
   interview_session_id: UUID;
+  metadata: Record<string, any> | null;
+  status: "approved" | "draft" | "published" | "rejected";
+  title: string | null;
+  updated_at: UtcDateTimeUsec;
   interview_session: { __type: "Relationship"; __resource: InterviewSessionResourceSchema; };
 };
 
@@ -3195,39 +3200,39 @@ export type InterviewGeneratedContentResourceSchema = {
 
 export type InterviewGeneratedContentAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "content_type" | "content" | "title" | "status" | "metadata" | "created_at" | "updated_at" | "interview_session_id";
-  id: UUID;
-  content_type: "article" | "post" | "summary" | "thread" | "tweet";
+  __primitiveFields: "content" | "content_type" | "created_at" | "id" | "interview_session_id" | "metadata" | "status" | "title" | "updated_at";
   content: string;
-  title: string | null;
-  status: "approved" | "draft" | "published" | "rejected";
-  metadata: Record<string, any> | null;
+  content_type: "article" | "post" | "summary" | "thread" | "tweet";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
   interview_session_id: UUID;
+  metadata: Record<string, any> | null;
+  status: "approved" | "draft" | "published" | "rejected";
+  title: string | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // InterviewRecording Schema
 export type InterviewRecordingResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "recording_type" | "file_name" | "storage_key" | "file_size" | "duration_ms" | "video_codec" | "audio_codec" | "width" | "height" | "status" | "error_message" | "metadata" | "created_at" | "updated_at" | "interview_session_id";
-  id: UUID;
-  recording_type: "audio_only" | "audio_video" | "video_only";
-  file_name: string;
-  storage_key: string;
-  file_size: number | null;
-  duration_ms: number | null;
-  video_codec: string | null;
+  __primitiveFields: "audio_codec" | "created_at" | "duration_ms" | "error_message" | "file_name" | "file_size" | "height" | "id" | "interview_session_id" | "metadata" | "recording_type" | "status" | "storage_key" | "updated_at" | "video_codec" | "width";
   audio_codec: string | null;
-  width: number | null;
-  height: number | null;
-  status: "failed" | "processing" | "ready" | "recording" | "uploading";
-  error_message: string | null;
-  metadata: Record<string, any> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  duration_ms: number | null;
+  error_message: string | null;
+  file_name: string;
+  file_size: number | null;
+  height: number | null;
+  id: UUID;
   interview_session_id: UUID;
+  metadata: Record<string, any> | null;
+  recording_type: "audio_only" | "audio_video" | "video_only";
+  status: "failed" | "processing" | "ready" | "recording" | "uploading";
+  storage_key: string;
+  updated_at: UtcDateTimeUsec;
+  video_codec: string | null;
+  width: number | null;
   interview_session: { __type: "Relationship"; __resource: InterviewSessionResourceSchema; };
 };
 
@@ -3235,78 +3240,78 @@ export type InterviewRecordingResourceSchema = {
 
 export type InterviewRecordingAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "recording_type" | "file_name" | "storage_key" | "file_size" | "duration_ms" | "video_codec" | "audio_codec" | "width" | "height" | "status" | "error_message" | "metadata" | "created_at" | "updated_at" | "interview_session_id";
-  id: UUID;
-  recording_type: "audio_only" | "audio_video" | "video_only";
-  file_name: string;
-  storage_key: string;
-  file_size: number | null;
-  duration_ms: number | null;
-  video_codec: string | null;
+  __primitiveFields: "audio_codec" | "created_at" | "duration_ms" | "error_message" | "file_name" | "file_size" | "height" | "id" | "interview_session_id" | "metadata" | "recording_type" | "status" | "storage_key" | "updated_at" | "video_codec" | "width";
   audio_codec: string | null;
-  width: number | null;
-  height: number | null;
-  status: "failed" | "processing" | "ready" | "recording" | "uploading";
-  error_message: string | null;
-  metadata: Record<string, any> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  duration_ms: number | null;
+  error_message: string | null;
+  file_name: string;
+  file_size: number | null;
+  height: number | null;
+  id: UUID;
   interview_session_id: UUID;
+  metadata: Record<string, any> | null;
+  recording_type: "audio_only" | "audio_video" | "video_only";
+  status: "failed" | "processing" | "ready" | "recording" | "uploading";
+  storage_key: string;
+  updated_at: UtcDateTimeUsec;
+  video_codec: string | null;
+  width: number | null;
 };
 
 
 // InterviewSession Schema
 export type InterviewSessionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "channel" | "metadata" | "session_name" | "summary" | "key_quotes" | "topics" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  status: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+  __primitiveFields: "channel" | "created_at" | "id" | "key_quotes" | "metadata" | "origin_entity_id" | "session_name" | "status" | "summary" | "topics" | "updated_at";
   channel: "video";
-  metadata: Record<string, any> | null;
-  session_name: string | null;
-  summary: string | null;
-  key_quotes: Array<Record<string, any>> | null;
-  topics: Array<string> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  key_quotes: Array<Record<string, any>> | null;
+  metadata: Record<string, any> | null;
   origin_entity_id: UUID;
+  session_name: string | null;
+  status: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+  summary: string | null;
+  topics: Array<string> | null;
+  updated_at: UtcDateTimeUsec;
+  interview_generated_contents: { __type: "Relationship"; __array: true; __resource: InterviewGeneratedContentResourceSchema; __pagination: "mixed"; __filterInput: InterviewGeneratedContentFilterInput; __sortField: InterviewGeneratedContentSortField; };
+  interview_recordings: { __type: "Relationship"; __array: true; __resource: InterviewRecordingResourceSchema; __pagination: "mixed"; __filterInput: InterviewRecordingFilterInput; __sortField: InterviewRecordingSortField; };
+  interview_turns: { __type: "Relationship"; __array: true; __resource: InterviewTurnResourceSchema; __pagination: "mixed"; __filterInput: InterviewTurnFilterInput; __sortField: InterviewTurnSortField; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-  interview_turns: { __type: "Relationship"; __array: true; __resource: InterviewTurnResourceSchema; };
-  interview_generated_contents: { __type: "Relationship"; __array: true; __resource: InterviewGeneratedContentResourceSchema; };
-  interview_recordings: { __type: "Relationship"; __array: true; __resource: InterviewRecordingResourceSchema; };
 };
 
 
 
 export type InterviewSessionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "status" | "channel" | "metadata" | "session_name" | "summary" | "key_quotes" | "topics" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  status: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+  __primitiveFields: "channel" | "created_at" | "id" | "key_quotes" | "metadata" | "origin_entity_id" | "session_name" | "status" | "summary" | "topics" | "updated_at";
   channel: "video";
-  metadata: Record<string, any> | null;
-  session_name: string | null;
-  summary: string | null;
-  key_quotes: Array<Record<string, any>> | null;
-  topics: Array<string> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  key_quotes: Array<Record<string, any>> | null;
+  metadata: Record<string, any> | null;
   origin_entity_id: UUID;
+  session_name: string | null;
+  status: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+  summary: string | null;
+  topics: Array<string> | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // InterviewTurn Schema
 export type InterviewTurnResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "turn_number" | "question" | "answer" | "metadata" | "created_at" | "updated_at" | "interview_session_id";
-  id: UUID;
-  turn_number: number;
-  question: string;
+  __primitiveFields: "answer" | "created_at" | "id" | "interview_session_id" | "metadata" | "question" | "turn_number" | "updated_at";
   answer: string | null;
-  metadata: Record<string, any> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
   interview_session_id: UUID;
+  metadata: Record<string, any> | null;
+  question: string;
+  turn_number: number;
+  updated_at: UtcDateTimeUsec;
   interview_session: { __type: "Relationship"; __resource: InterviewSessionResourceSchema; };
 };
 
@@ -3314,15 +3319,15 @@ export type InterviewTurnResourceSchema = {
 
 export type InterviewTurnAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "turn_number" | "question" | "answer" | "metadata" | "created_at" | "updated_at" | "interview_session_id";
-  id: UUID;
-  turn_number: number;
-  question: string;
+  __primitiveFields: "answer" | "created_at" | "id" | "interview_session_id" | "metadata" | "question" | "turn_number" | "updated_at";
   answer: string | null;
-  metadata: Record<string, any> | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
   interview_session_id: UUID;
+  metadata: Record<string, any> | null;
+  question: string;
+  turn_number: number;
+  updated_at: UtcDateTimeUsec;
 };
 
 
@@ -3349,15 +3354,15 @@ export type AgentMemoryAttributesOnlySchema = {
 // DriveConnection Schema
 export type DriveConnectionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "token_expires_at" | "status" | "connected_by_user_id" | "google_email" | "created_at" | "updated_at" | "entity_profile_id";
-  id: UUID;
-  token_expires_at: UtcDateTime | null;
-  status: "active" | "disconnected" | "needs_reauth" | null;
+  __primitiveFields: "connected_by_user_id" | "created_at" | "entity_profile_id" | "google_email" | "id" | "status" | "token_expires_at" | "updated_at";
   connected_by_user_id: UUID | null;
-  google_email: string | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   entity_profile_id: UUID;
+  google_email: string | null;
+  id: UUID;
+  status: "active" | "disconnected" | "needs_reauth" | null;
+  token_expires_at: UtcDateTime | null;
+  updated_at: UtcDateTimeUsec;
   entity_profile: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -3365,31 +3370,31 @@ export type DriveConnectionResourceSchema = {
 
 export type DriveConnectionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "token_expires_at" | "status" | "connected_by_user_id" | "google_email" | "created_at" | "updated_at" | "entity_profile_id";
-  id: UUID;
-  token_expires_at: UtcDateTime | null;
-  status: "active" | "disconnected" | "needs_reauth" | null;
+  __primitiveFields: "connected_by_user_id" | "created_at" | "entity_profile_id" | "google_email" | "id" | "status" | "token_expires_at" | "updated_at";
   connected_by_user_id: UUID | null;
-  google_email: string | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   entity_profile_id: UUID;
+  google_email: string | null;
+  id: UUID;
+  status: "active" | "disconnected" | "needs_reauth" | null;
+  token_expires_at: UtcDateTime | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // GithubConnection Schema
 export type GithubConnectionResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "installation_id" | "github_account_login" | "github_account_type" | "status" | "connected_by_user_id" | "created_at" | "updated_at" | "entity_profile_id";
-  id: UUID;
-  installation_id: string;
-  github_account_login: string;
-  github_account_type: "organization" | "user";
-  status: "active" | "disconnected" | "needs_reauth" | null;
+  __primitiveFields: "connected_by_user_id" | "created_at" | "entity_profile_id" | "github_account_login" | "github_account_type" | "id" | "installation_id" | "status" | "updated_at";
   connected_by_user_id: UUID | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   entity_profile_id: UUID;
+  github_account_login: string;
+  github_account_type: "organization" | "user";
+  id: UUID;
+  installation_id: string;
+  status: "active" | "disconnected" | "needs_reauth" | null;
+  updated_at: UtcDateTimeUsec;
   entity_profile: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -3397,117 +3402,117 @@ export type GithubConnectionResourceSchema = {
 
 export type GithubConnectionAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "installation_id" | "github_account_login" | "github_account_type" | "status" | "connected_by_user_id" | "created_at" | "updated_at" | "entity_profile_id";
-  id: UUID;
-  installation_id: string;
-  github_account_login: string;
-  github_account_type: "organization" | "user";
-  status: "active" | "disconnected" | "needs_reauth" | null;
+  __primitiveFields: "connected_by_user_id" | "created_at" | "entity_profile_id" | "github_account_login" | "github_account_type" | "id" | "installation_id" | "status" | "updated_at";
   connected_by_user_id: UUID | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
   entity_profile_id: UUID;
+  github_account_login: string;
+  github_account_type: "organization" | "user";
+  id: UUID;
+  installation_id: string;
+  status: "active" | "disconnected" | "needs_reauth" | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // Library Schema
 export type LibraryResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "slug" | "adapter_kind" | "adapter_config" | "inherits_to_descendants" | "status" | "last_synced_at" | "error_count" | "last_error" | "last_error_at" | "auto_resync_enabled" | "auto_ingest_videos" | "transcribe_media" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  name: string;
-  slug: string;
-  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+  __primitiveFields: "adapter_config" | "adapter_kind" | "auto_ingest_videos" | "auto_resync_enabled" | "created_at" | "error_count" | "id" | "inherits_to_descendants" | "last_error" | "last_error_at" | "last_synced_at" | "name" | "origin_entity_id" | "slug" | "status" | "transcribe_media" | "updated_at";
   adapter_config: Record<string, any> | null;
-  inherits_to_descendants: boolean;
-  status: "error" | "pending" | "synced" | "syncing";
-  last_synced_at: UtcDateTime | null;
+  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+  auto_ingest_videos: boolean;
+  auto_resync_enabled: boolean;
+  created_at: UtcDateTimeUsec;
   error_count: number;
+  id: UUID;
+  inherits_to_descendants: boolean;
   last_error: string | null;
   last_error_at: UtcDateTime | null;
-  auto_resync_enabled: boolean;
-  auto_ingest_videos: boolean;
-  transcribe_media: boolean;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  last_synced_at: UtcDateTime | null;
+  name: string;
   origin_entity_id: UUID;
+  slug: string;
+  status: "error" | "pending" | "synced" | "syncing";
+  transcribe_media: boolean;
+  updated_at: UtcDateTimeUsec;
+  files: { __type: "Relationship"; __array: true; __resource: LibraryFileResourceSchema; __pagination: "keyset"; __filterInput: LibraryFileFilterInput; __sortField: LibraryFileSortField; };
+  grants: { __type: "Relationship"; __array: true; __resource: LibraryAccessGrantResourceSchema; __pagination: "mixed"; __filterInput: LibraryAccessGrantFilterInput; __sortField: LibraryAccessGrantSortField; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-  files: { __type: "Relationship"; __array: true; __resource: LibraryFileResourceSchema; };
-  grants: { __type: "Relationship"; __array: true; __resource: LibraryAccessGrantResourceSchema; };
 };
 
 
 
 export type LibraryAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "name" | "slug" | "adapter_kind" | "adapter_config" | "inherits_to_descendants" | "status" | "last_synced_at" | "error_count" | "last_error" | "last_error_at" | "auto_resync_enabled" | "auto_ingest_videos" | "transcribe_media" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  name: string;
-  slug: string;
-  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+  __primitiveFields: "adapter_config" | "adapter_kind" | "auto_ingest_videos" | "auto_resync_enabled" | "created_at" | "error_count" | "id" | "inherits_to_descendants" | "last_error" | "last_error_at" | "last_synced_at" | "name" | "origin_entity_id" | "slug" | "status" | "transcribe_media" | "updated_at";
   adapter_config: Record<string, any> | null;
-  inherits_to_descendants: boolean;
-  status: "error" | "pending" | "synced" | "syncing";
-  last_synced_at: UtcDateTime | null;
+  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+  auto_ingest_videos: boolean;
+  auto_resync_enabled: boolean;
+  created_at: UtcDateTimeUsec;
   error_count: number;
+  id: UUID;
+  inherits_to_descendants: boolean;
   last_error: string | null;
   last_error_at: UtcDateTime | null;
-  auto_resync_enabled: boolean;
-  auto_ingest_videos: boolean;
-  transcribe_media: boolean;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  last_synced_at: UtcDateTime | null;
+  name: string;
   origin_entity_id: UUID;
+  slug: string;
+  status: "error" | "pending" | "synced" | "syncing";
+  transcribe_media: boolean;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // LibraryAccessGrant Schema
 export type LibraryAccessGrantResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "created_at" | "updated_at" | "library_id" | "grantee_origin_entity_id";
-  id: UUID;
+  __primitiveFields: "created_at" | "grantee_origin_entity_id" | "id" | "library_id" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  library_id: UUID;
   grantee_origin_entity_id: UUID;
-  library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
+  id: UUID;
+  library_id: UUID;
+  updated_at: UtcDateTimeUsec;
   grantee_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
+  library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
 };
 
 
 
 export type LibraryAccessGrantAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "created_at" | "updated_at" | "library_id" | "grantee_origin_entity_id";
-  id: UUID;
+  __primitiveFields: "created_at" | "grantee_origin_entity_id" | "id" | "library_id" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  library_id: UUID;
   grantee_origin_entity_id: UUID;
+  id: UUID;
+  library_id: UUID;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // LibraryFile Schema
 export type LibraryFileResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "path" | "item_type" | "item_name" | "item_content" | "s3_key" | "sync_status" | "source_metadata" | "created_at" | "updated_at" | "library_id" | "signed_s3_url" | "vfs_path" | "media_format";
-  id: UUID;
-  path: string;
-  item_type: string;
-  item_name: string;
-  item_content: string | null;
-  s3_key: string | null;
-  sync_status: "error" | "orphaned" | "synced" | null;
-  source_metadata: Record<string, any> | null;
+  __primitiveFields: "created_at" | "id" | "item_content" | "item_name" | "item_type" | "library_id" | "media_format" | "path" | "s3_key" | "signed_s3_url" | "source_metadata" | "sync_status" | "updated_at" | "vfs_path";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  item_content: string | null;
+  item_name: string;
+  item_type: string;
   library_id: UUID;
-  signed_s3_url: string | null;
-  vfs_path: string | null;
   media_format: string | null;
-  metadata_contains: { __type: "ComplexCalculation"; __returnType: boolean | null; __args: { value?: Record<string, any> }; };
-  metadata_keys: { __type: "ComplexCalculation"; __returnType: Record<string, any> | null; __args: { keys?: Array<string> }; };
-  metadata_number: { __type: "ComplexCalculation"; __returnType: Decimal | null; __args: { key?: string }; };
+  path: string;
+  s3_key: string | null;
+  signed_s3_url: string | null;
+  source_metadata: Record<string, any> | null;
+  sync_status: "error" | "orphaned" | "synced" | null;
+  updated_at: UtcDateTimeUsec;
+  vfs_path: string | null;
+  metadata_contains: { __type: "ComplexCalculation"; __returnType: boolean | null; __args: { value: Record<string, any> }; };
+  metadata_keys: { __type: "ComplexCalculation"; __returnType: Record<string, any> | null; __args: { keys: Array<string> }; };
+  metadata_number: { __type: "ComplexCalculation"; __returnType: Decimal | null; __args: { key: string }; };
   library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
   video_asset: { __type: "Relationship"; __resource: VideoAssetResourceSchema | null; };
 };
@@ -3516,46 +3521,46 @@ export type LibraryFileResourceSchema = {
 
 export type LibraryFileAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "path" | "item_type" | "item_name" | "item_content" | "s3_key" | "sync_status" | "source_metadata" | "created_at" | "updated_at" | "library_id";
-  id: UUID;
-  path: string;
-  item_type: string;
-  item_name: string;
-  item_content: string | null;
-  s3_key: string | null;
-  sync_status: "error" | "orphaned" | "synced" | null;
-  source_metadata: Record<string, any> | null;
+  __primitiveFields: "created_at" | "id" | "item_content" | "item_name" | "item_type" | "library_id" | "path" | "s3_key" | "source_metadata" | "sync_status" | "updated_at";
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  item_content: string | null;
+  item_name: string;
+  item_type: string;
   library_id: UUID;
+  path: string;
+  s3_key: string | null;
+  source_metadata: Record<string, any> | null;
+  sync_status: "error" | "orphaned" | "synced" | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // Playlist Schema
 export type PlaylistResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "description" | "item_count" | "created_at" | "updated_at" | "user_id";
-  id: UUID;
-  title: string;
-  description: string | null;
-  item_count: number;
+  __primitiveFields: "created_at" | "description" | "id" | "item_count" | "title" | "updated_at" | "user_id";
   created_at: UtcDateTimeUsec;
+  description: string | null;
+  id: UUID;
+  item_count: number;
+  title: string;
   updated_at: UtcDateTimeUsec;
   user_id: UUID;
+  items: { __type: "Relationship"; __array: true; __resource: PlaylistItemResourceSchema; __pagination: "mixed"; __filterInput: PlaylistItemFilterInput; __sortField: PlaylistItemSortField; };
   user: { __type: "Relationship"; __resource: UserResourceSchema; };
-  items: { __type: "Relationship"; __array: true; __resource: PlaylistItemResourceSchema; };
 };
 
 
 
 export type PlaylistAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "title" | "description" | "item_count" | "created_at" | "updated_at" | "user_id";
-  id: UUID;
-  title: string;
-  description: string | null;
-  item_count: number;
+  __primitiveFields: "created_at" | "description" | "id" | "item_count" | "title" | "updated_at" | "user_id";
   created_at: UtcDateTimeUsec;
+  description: string | null;
+  id: UUID;
+  item_count: number;
+  title: string;
   updated_at: UtcDateTimeUsec;
   user_id: UUID;
 };
@@ -3564,56 +3569,53 @@ export type PlaylistAttributesOnlySchema = {
 // PlaylistItem Schema
 export type PlaylistItemResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "item_type" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id" | "library_id";
+  __primitiveFields: "created_at" | "id" | "item_type" | "library_file_id" | "library_id" | "playlist_id" | "position" | "updated_at";
+  created_at: UtcDateTimeUsec;
   id: UUID;
   item_type: "library" | "video";
-  position: number;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  playlist_id: UUID;
   library_file_id: UUID | null;
   library_id: UUID | null;
-  playlist: { __type: "Relationship"; __resource: PlaylistResourceSchema; };
-  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
+  playlist_id: UUID;
+  position: number;
+  updated_at: UtcDateTimeUsec;
   library: { __type: "Relationship"; __resource: LibraryResourceSchema | null; };
+  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
+  playlist: { __type: "Relationship"; __resource: PlaylistResourceSchema; };
 };
 
 
 
 export type PlaylistItemAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "item_type" | "position" | "created_at" | "updated_at" | "playlist_id" | "library_file_id" | "library_id";
+  __primitiveFields: "created_at" | "id" | "item_type" | "library_file_id" | "library_id" | "playlist_id" | "position" | "updated_at";
+  created_at: UtcDateTimeUsec;
   id: UUID;
   item_type: "library" | "video";
-  position: number;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  playlist_id: UUID;
   library_file_id: UUID | null;
   library_id: UUID | null;
+  playlist_id: UUID;
+  position: number;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // VideoAsset Schema
 export type VideoAssetResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "otterwake_org" | "otterwake_upload_id" | "otterwake_asset_id" | "otterwake_playback_id" | "status" | "duration" | "aspect_ratio" | "error" | "captioned_at" | "created_at" | "updated_at" | "library_file_id";
-  id: UUID;
-  otterwake_org: string;
-  otterwake_upload_id: string | null;
-  otterwake_asset_id: string | null;
-  otterwake_playback_id: string | null;
-  status: "errored" | "preparing" | "ready";
-  duration: number | null;
+  __primitiveFields: "aspect_ratio" | "captioned_at" | "created_at" | "duration" | "error" | "id" | "library_file_id" | "otterwake_asset_id" | "otterwake_org" | "otterwake_playback_id" | "otterwake_upload_id" | "status" | "updated_at";
   aspect_ratio: string | null;
-  error: string | null;
   captioned_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  duration: number | null;
+  error: string | null;
+  id: UUID;
   library_file_id: UUID;
-  resolved_playback_type: { __type: "Relationship"; __resource: ResolvedPlaybackResourceSchema | null; };
-  static_rendition_request_type: { __type: "Relationship"; __resource: StaticRenditionRequestResultResourceSchema | null; };
-  static_rendition_type: { __type: "Relationship"; __resource: StaticRenditionResourceSchema | null; };
+  otterwake_asset_id: string | null;
+  otterwake_org: string;
+  otterwake_playback_id: string | null;
+  otterwake_upload_id: string | null;
+  status: "errored" | "preparing" | "ready";
+  updated_at: UtcDateTimeUsec;
   library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema; };
 };
 
@@ -3621,50 +3623,50 @@ export type VideoAssetResourceSchema = {
 
 export type VideoAssetAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "otterwake_org" | "otterwake_upload_id" | "otterwake_asset_id" | "otterwake_playback_id" | "status" | "duration" | "aspect_ratio" | "error" | "captioned_at" | "created_at" | "updated_at" | "library_file_id";
-  id: UUID;
-  otterwake_org: string;
-  otterwake_upload_id: string | null;
-  otterwake_asset_id: string | null;
-  otterwake_playback_id: string | null;
-  status: "errored" | "preparing" | "ready";
-  duration: number | null;
+  __primitiveFields: "aspect_ratio" | "captioned_at" | "created_at" | "duration" | "error" | "id" | "library_file_id" | "otterwake_asset_id" | "otterwake_org" | "otterwake_playback_id" | "otterwake_upload_id" | "status" | "updated_at";
   aspect_ratio: string | null;
-  error: string | null;
   captioned_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  duration: number | null;
+  error: string | null;
+  id: UUID;
   library_file_id: UUID;
+  otterwake_asset_id: string | null;
+  otterwake_org: string;
+  otterwake_playback_id: string | null;
+  otterwake_upload_id: string | null;
+  status: "errored" | "preparing" | "ready";
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // ResolvedPlayback Schema
 export type ResolvedPlaybackResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "status" | "src" | "poster" | "library_file_id";
-  status: string;
-  src: string | null;
-  poster: string | null;
+  __primitiveFields: "library_file_id" | "poster" | "src" | "status";
   library_file_id: UUID | null;
+  poster: string | null;
+  src: string | null;
+  status: string;
 };
 
 
 
 export type ResolvedPlaybackAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "status" | "src" | "poster" | "library_file_id";
-  status: string;
-  src: string | null;
-  poster: string | null;
+  __primitiveFields: "library_file_id" | "poster" | "src" | "status";
   library_file_id: UUID | null;
+  poster: string | null;
+  src: string | null;
+  status: string;
 };
 
 
 export type ResolvedPlaybackInputSchema = {
-  status: string;
-  src?: string | null;
-  poster?: string | null;
   library_file_id?: UUID | null;
+  poster?: string | null;
+  src?: string | null;
+  status: string;
 };
 
 
@@ -3695,27 +3697,27 @@ export type StaticRenditionInputSchema = {
 // StaticRenditionRequest Schema
 export type StaticRenditionRequestResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "resolution" | "status" | "error";
+  __primitiveFields: "error" | "resolution" | "status";
+  error: string | null;
   resolution: string;
   status: string;
-  error: string | null;
 };
 
 
 
 export type StaticRenditionRequestAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "resolution" | "status" | "error";
+  __primitiveFields: "error" | "resolution" | "status";
+  error: string | null;
   resolution: string;
   status: string;
-  error: string | null;
 };
 
 
 export type StaticRenditionRequestInputSchema = {
+  error?: string | null;
   resolution: string;
   status: string;
-  error?: string | null;
 };
 
 
@@ -3723,7 +3725,7 @@ export type StaticRenditionRequestInputSchema = {
 export type StaticRenditionRequestResultResourceSchema = {
   __type: "Resource";
   __primitiveFields: never;
-  requested: { __type: "Relationship"; __array: true; __resource: StaticRenditionRequestResourceSchema; };
+  requested: { __type: "Relationship"; __array: true; __resource: StaticRenditionRequestResourceSchema | null; };
 };
 
 
@@ -3731,7 +3733,7 @@ export type StaticRenditionRequestResultResourceSchema = {
 export type StaticRenditionRequestResultAttributesOnlySchema = {
   __type: "Resource";
   __primitiveFields: never;
-  requested: { __type: "Relationship"; __array: true; __resource: StaticRenditionRequestAttributesOnlySchema; };
+  requested: { __type: "Relationship"; __array: true; __resource: StaticRenditionRequestAttributesOnlySchema | null; };
 };
 
 
@@ -3743,16 +3745,16 @@ export type StaticRenditionRequestResultInputSchema = {
 // ChatBinding Schema
 export type ChatBindingResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "chat_guid" | "prospect_labels" | "notes" | "bound_at" | "created_at" | "updated_at" | "origin_entity_id" | "prospect_phones";
-  id: UUID;
-  chat_guid: string | null;
-  prospect_labels: Record<string, any>;
-  notes: string | null;
+  __primitiveFields: "bound_at" | "chat_guid" | "created_at" | "id" | "notes" | "origin_entity_id" | "prospect_labels" | "prospect_phones" | "updated_at";
   bound_at: UtcDateTime | null;
+  chat_guid: string | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  notes: string | null;
   origin_entity_id: UUID;
+  prospect_labels: Record<string, any>;
   prospect_phones: Array<string>;
+  updated_at: UtcDateTimeUsec;
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
@@ -3760,44 +3762,44 @@ export type ChatBindingResourceSchema = {
 
 export type ChatBindingAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "chat_guid" | "prospect_labels" | "notes" | "bound_at" | "created_at" | "updated_at" | "origin_entity_id";
-  id: UUID;
-  chat_guid: string | null;
-  prospect_labels: Record<string, any>;
-  notes: string | null;
+  __primitiveFields: "bound_at" | "chat_guid" | "created_at" | "id" | "notes" | "origin_entity_id" | "prospect_labels" | "updated_at";
   bound_at: UtcDateTime | null;
+  chat_guid: string | null;
   created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
+  id: UUID;
+  notes: string | null;
   origin_entity_id: UUID;
+  prospect_labels: Record<string, any>;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // PodcastConfig Schema
 export type PodcastConfigResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_subtitle" | "featured_video_url" | "hero_cta_link" | "playlist_id" | "episodes" | "appearance_config" | "is_public" | "trailer_url" | "conversation_starter_config" | "origins_button_visible" | "page_title" | "hero_cta_text" | "created_at" | "updated_at" | "logo_link_url" | "cta_button_border_color" | "origins_button_text" | "origins_button_border_color" | "origins_button_text_color" | "logo_link_type" | "entity_profile_id";
-  id: UUID;
-  page_subtitle: string | null;
+  __primitiveFields: "appearance_config" | "conversation_starter_config" | "created_at" | "cta_button_border_color" | "entity_profile_id" | "episodes" | "featured_video_url" | "hero_cta_link" | "hero_cta_text" | "id" | "is_public" | "logo_link_type" | "logo_link_url" | "origins_button_border_color" | "origins_button_text" | "origins_button_text_color" | "origins_button_visible" | "page_subtitle" | "page_title" | "playlist_id" | "trailer_url" | "updated_at";
+  appearance_config: Record<string, any> | null;
+  conversation_starter_config: Record<string, any> | null;
+  created_at: UtcDateTimeUsec;
+  cta_button_border_color: string | null;
+  entity_profile_id: UUID | null;
+  episodes: Array<Record<string, any>> | null;
   featured_video_url: string | null;
   hero_cta_link: string | null;
-  playlist_id: string | null;
-  episodes: Array<Record<string, any>> | null;
-  appearance_config: Record<string, any> | null;
-  is_public: boolean | null;
-  trailer_url: string | null;
-  conversation_starter_config: Record<string, any> | null;
-  origins_button_visible: boolean | null;
-  page_title: string | null;
   hero_cta_text: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  logo_link_url: string | null;
-  cta_button_border_color: string | null;
-  origins_button_text: string | null;
-  origins_button_border_color: string | null;
-  origins_button_text_color: string | null;
+  id: UUID;
+  is_public: boolean | null;
   logo_link_type: string | null;
-  entity_profile_id: UUID | null;
+  logo_link_url: string | null;
+  origins_button_border_color: string | null;
+  origins_button_text: string | null;
+  origins_button_text_color: string | null;
+  origins_button_visible: boolean | null;
+  page_subtitle: string | null;
+  page_title: string | null;
+  playlist_id: string | null;
+  trailer_url: string | null;
+  updated_at: UtcDateTimeUsec;
   entity_profile: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
 };
 
@@ -3805,122 +3807,122 @@ export type PodcastConfigResourceSchema = {
 
 export type PodcastConfigAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "page_subtitle" | "featured_video_url" | "hero_cta_link" | "playlist_id" | "episodes" | "appearance_config" | "is_public" | "trailer_url" | "conversation_starter_config" | "origins_button_visible" | "page_title" | "hero_cta_text" | "created_at" | "updated_at" | "logo_link_url" | "cta_button_border_color" | "origins_button_text" | "origins_button_border_color" | "origins_button_text_color" | "logo_link_type" | "entity_profile_id";
-  id: UUID;
-  page_subtitle: string | null;
+  __primitiveFields: "appearance_config" | "conversation_starter_config" | "created_at" | "cta_button_border_color" | "entity_profile_id" | "episodes" | "featured_video_url" | "hero_cta_link" | "hero_cta_text" | "id" | "is_public" | "logo_link_type" | "logo_link_url" | "origins_button_border_color" | "origins_button_text" | "origins_button_text_color" | "origins_button_visible" | "page_subtitle" | "page_title" | "playlist_id" | "trailer_url" | "updated_at";
+  appearance_config: Record<string, any> | null;
+  conversation_starter_config: Record<string, any> | null;
+  created_at: UtcDateTimeUsec;
+  cta_button_border_color: string | null;
+  entity_profile_id: UUID | null;
+  episodes: Array<Record<string, any>> | null;
   featured_video_url: string | null;
   hero_cta_link: string | null;
-  playlist_id: string | null;
-  episodes: Array<Record<string, any>> | null;
-  appearance_config: Record<string, any> | null;
-  is_public: boolean | null;
-  trailer_url: string | null;
-  conversation_starter_config: Record<string, any> | null;
-  origins_button_visible: boolean | null;
-  page_title: string | null;
   hero_cta_text: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  logo_link_url: string | null;
-  cta_button_border_color: string | null;
-  origins_button_text: string | null;
-  origins_button_border_color: string | null;
-  origins_button_text_color: string | null;
+  id: UUID;
+  is_public: boolean | null;
   logo_link_type: string | null;
-  entity_profile_id: UUID | null;
+  logo_link_url: string | null;
+  origins_button_border_color: string | null;
+  origins_button_text: string | null;
+  origins_button_text_color: string | null;
+  origins_button_visible: boolean | null;
+  page_subtitle: string | null;
+  page_title: string | null;
+  playlist_id: string | null;
+  trailer_url: string | null;
+  updated_at: UtcDateTimeUsec;
 };
 
 
 // PodcastEpisodeSettings Schema
 export type PodcastEpisodeSettingsResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "visible" | "ai_enabled" | "order" | "created_at" | "updated_at" | "youtube_episode_id" | "podcast_config_id" | "character_id";
-  id: UUID;
-  visible: boolean;
+  __primitiveFields: "ai_enabled" | "character_id" | "created_at" | "id" | "order" | "podcast_config_id" | "updated_at" | "visible" | "youtube_episode_id";
   ai_enabled: boolean;
-  order: number;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  youtube_episode_id: UUID;
-  podcast_config_id: UUID | null;
   character_id: UUID | null;
-  youtube_episode: { __type: "Relationship"; __resource: YoutubeEpisodeResourceSchema; };
-  podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
+  created_at: UtcDateTimeUsec;
+  id: UUID;
+  order: number;
+  podcast_config_id: UUID | null;
+  updated_at: UtcDateTimeUsec;
+  visible: boolean;
+  youtube_episode_id: UUID;
   character: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
+  podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
+  youtube_episode: { __type: "Relationship"; __resource: YoutubeEpisodeResourceSchema; };
 };
 
 
 
 export type PodcastEpisodeSettingsAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "visible" | "ai_enabled" | "order" | "created_at" | "updated_at" | "youtube_episode_id" | "podcast_config_id" | "character_id";
-  id: UUID;
-  visible: boolean;
+  __primitiveFields: "ai_enabled" | "character_id" | "created_at" | "id" | "order" | "podcast_config_id" | "updated_at" | "visible" | "youtube_episode_id";
   ai_enabled: boolean;
-  order: number;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  youtube_episode_id: UUID;
-  podcast_config_id: UUID | null;
   character_id: UUID | null;
+  created_at: UtcDateTimeUsec;
+  id: UUID;
+  order: number;
+  podcast_config_id: UUID | null;
+  updated_at: UtcDateTimeUsec;
+  visible: boolean;
+  youtube_episode_id: UUID;
 };
 
 
 // YoutubeEpisode Schema
 export type YoutubeEpisodeResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "video_id" | "video_url" | "title" | "description" | "thumbnail_url" | "publish_date" | "duration" | "episode_number" | "host_ids" | "guest_ids" | "guest_names" | "conversation_starters" | "used_in_podcast" | "used_in_public_profile" | "public_profile_config" | "playlist_id" | "created_at" | "updated_at" | "origin_entity_id" | "transcript_id";
-  id: UUID;
-  video_id: string;
-  video_url: string;
-  title: string;
+  __primitiveFields: "conversation_starters" | "created_at" | "description" | "duration" | "episode_number" | "guest_ids" | "guest_names" | "host_ids" | "id" | "origin_entity_id" | "playlist_id" | "public_profile_config" | "publish_date" | "thumbnail_url" | "title" | "transcript_id" | "updated_at" | "used_in_podcast" | "used_in_public_profile" | "video_id" | "video_url";
+  conversation_starters: Array<string> | null;
+  created_at: UtcDateTimeUsec;
   description: string | null;
-  thumbnail_url: string | null;
-  publish_date: UtcDateTimeUsec | null;
   duration: string | null;
   episode_number: number | null;
-  host_ids: Array<UUID> | null;
   guest_ids: Array<UUID> | null;
   guest_names: Array<string> | null;
-  conversation_starters: Array<string> | null;
+  host_ids: Array<UUID> | null;
+  id: UUID;
+  origin_entity_id: UUID;
+  playlist_id: string | null;
+  public_profile_config: Record<string, any> | null;
+  publish_date: UtcDateTimeUsec | null;
+  thumbnail_url: string | null;
+  title: string;
+  transcript_id: UUID | null;
+  updated_at: UtcDateTimeUsec;
   used_in_podcast: boolean | null;
   used_in_public_profile: boolean | null;
-  public_profile_config: Record<string, any> | null;
-  playlist_id: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
-  transcript_id: UUID | null;
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
+  video_id: string;
+  video_url: string;
   library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
+  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
 };
 
 
 
 export type YoutubeEpisodeAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "id" | "video_id" | "video_url" | "title" | "description" | "thumbnail_url" | "publish_date" | "duration" | "episode_number" | "host_ids" | "guest_ids" | "guest_names" | "conversation_starters" | "used_in_podcast" | "used_in_public_profile" | "public_profile_config" | "playlist_id" | "created_at" | "updated_at" | "origin_entity_id" | "transcript_id";
-  id: UUID;
-  video_id: string;
-  video_url: string;
-  title: string;
+  __primitiveFields: "conversation_starters" | "created_at" | "description" | "duration" | "episode_number" | "guest_ids" | "guest_names" | "host_ids" | "id" | "origin_entity_id" | "playlist_id" | "public_profile_config" | "publish_date" | "thumbnail_url" | "title" | "transcript_id" | "updated_at" | "used_in_podcast" | "used_in_public_profile" | "video_id" | "video_url";
+  conversation_starters: Array<string> | null;
+  created_at: UtcDateTimeUsec;
   description: string | null;
-  thumbnail_url: string | null;
-  publish_date: UtcDateTimeUsec | null;
   duration: string | null;
   episode_number: number | null;
-  host_ids: Array<UUID> | null;
   guest_ids: Array<UUID> | null;
   guest_names: Array<string> | null;
-  conversation_starters: Array<string> | null;
+  host_ids: Array<UUID> | null;
+  id: UUID;
+  origin_entity_id: UUID;
+  playlist_id: string | null;
+  public_profile_config: Record<string, any> | null;
+  publish_date: UtcDateTimeUsec | null;
+  thumbnail_url: string | null;
+  title: string;
+  transcript_id: UUID | null;
+  updated_at: UtcDateTimeUsec;
   used_in_podcast: boolean | null;
   used_in_public_profile: boolean | null;
-  public_profile_config: Record<string, any> | null;
-  playlist_id: string | null;
-  created_at: UtcDateTimeUsec;
-  updated_at: UtcDateTimeUsec;
-  origin_entity_id: UUID;
-  transcript_id: UUID | null;
+  video_id: string;
+  video_url: string;
 };
 
 
@@ -3929,79 +3931,133 @@ export type ConsentRecordFilterInput = {
   or?: Array<ConsentRecordFilterInput>;
   not?: Array<ConsentRecordFilterInput>;
 
+  custom_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  email?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  granted?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  ip?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   kind?: {
     eq?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
     not_eq?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
     in?: Array<"ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos">;
-  };
-
-  custom_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  granted?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  policy_version?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+    less_than?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+    greater_than?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+    less_than_or_equal?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
+    greater_than_or_equal?: "ai_chat" | "collect" | "custom" | "improve" | "marketing" | "share" | "tos";
   };
 
   method?: {
     eq?: "checkbox" | "settings";
     not_eq?: "checkbox" | "settings";
     in?: Array<"checkbox" | "settings">;
+    less_than?: "checkbox" | "settings";
+    greater_than?: "checkbox" | "settings";
+    less_than_or_equal?: "checkbox" | "settings";
+    greater_than_or_equal?: "checkbox" | "settings";
+  };
+
+  policy_version?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  recorded_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   text_shown?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  ip?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   user_agent?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  recorded_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -4010,69 +4066,80 @@ export type StaffTenantGrantFilterInput = {
   or?: Array<StaffTenantGrantFilterInput>;
   not?: Array<StaffTenantGrantFilterInput>;
 
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  granted_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  user_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  revoked_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   tenant_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-  };
-
-  granted_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  revoked_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-
-  user?: UserFilterInput;
+  user_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
 
   tenant?: TenantFilterInput;
+
+  user?: UserFilterInput;
 
 };
 export type TenantFilterInput = {
@@ -4080,68 +4147,93 @@ export type TenantFilterInput = {
   or?: Array<TenantFilterInput>;
   not?: Array<TenantFilterInput>;
 
+  archived_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  root_origin_entity_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   slug?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   status?: {
     eq?: "active" | "archived";
     not_eq?: "active" | "archived";
     in?: Array<"active" | "archived">;
-  };
-
-  archived_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  root_origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: "active" | "archived";
+    greater_than?: "active" | "archived";
+    less_than_or_equal?: "active" | "archived";
+    greater_than_or_equal?: "active" | "archived";
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
 
   root_origin_entity?: OriginEntityFilterInput;
 
@@ -4151,239 +4243,278 @@ export type UserFilterInput = {
   or?: Array<UserFilterInput>;
   not?: Array<UserFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  tenant_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  instance_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
   aud?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  role?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  banned_until?: {
     is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  confirmation_sent_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  confirmed_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  created_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  deleted_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   email?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   email_confirmed_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  instance_id?: {
     is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   invited_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
     less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  confirmation_sent_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
     greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  recovery_sent_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
     greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  last_sign_in_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  raw_app_meta_data?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  raw_user_meta_data?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  is_super_admin?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  phone?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  phone_confirmed_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  phone_change_sent_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  confirmed_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  deleted_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  reauthentication_sent_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  banned_until?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  social_sign_in_response_type?: {
-    eq?: SocialSignInResponseResourceSchema;
-    not_eq?: SocialSignInResponseResourceSchema;
-    in?: Array<SocialSignInResponseResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  sign_in_link_response_type?: {
-    eq?: SignInLinkResponseResourceSchema;
-    not_eq?: SignInLinkResponseResourceSchema;
-    in?: Array<SignInLinkResponseResourceSchema>;
-    is_nil?: boolean;
   };
 
   is_creator?: {
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
-  tenant?: TenantFilterInput;
+  is_super_admin?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
 
-  staff_tenant_grants?: StaffTenantGrantFilterInput;
+  last_sign_in_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
-  profile?: UserProfileFilterInput;
+  phone?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  phone_change_sent_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  phone_confirmed_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  raw_app_meta_data?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  raw_user_meta_data?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  reauthentication_sent_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  recovery_sent_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  role?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  tenant_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  origin_entities?: OriginEntityFilterInput;
 
   origin_entity_memberships?: OriginEntityStaffMembershipFilterInput;
 
-  origin_entities?: OriginEntityFilterInput;
+  profile?: UserProfileFilterInput;
+
+  staff_tenant_grants?: StaffTenantGrantFilterInput;
+
+  tenant?: TenantFilterInput;
 
 };
 export type SignInLinkResponseFilterInput = {
@@ -4395,8 +4526,11 @@ export type SignInLinkResponseFilterInput = {
     eq?: "no_account" | "sent" | "sent_unverified";
     not_eq?: "no_account" | "sent" | "sent_unverified";
     in?: Array<"no_account" | "sent" | "sent_unverified">;
+    less_than?: "no_account" | "sent" | "sent_unverified";
+    greater_than?: "no_account" | "sent" | "sent_unverified";
+    less_than_or_equal?: "no_account" | "sent" | "sent_unverified";
+    greater_than_or_equal?: "no_account" | "sent" | "sent_unverified";
   };
-
 
 
 };
@@ -4405,24 +4539,41 @@ export type SocialSignInResponseFilterInput = {
   or?: Array<SocialSignInResponseFilterInput>;
   not?: Array<SocialSignInResponseFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
   email?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   token?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -4431,128 +4582,190 @@ export type WaitlistEntryFilterInput = {
   or?: Array<WaitlistEntryFilterInput>;
   not?: Array<WaitlistEntryFilterInput>;
 
-  id?: {
+  approved_by?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  company_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   email?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  expires_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   full_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  company_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  role?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   interest_areas?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  invitation_token?: {
     is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  invited_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   message?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  source?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   metadata?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  role?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  source?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   status?: {
     eq?: "approved" | "pending" | "rejected";
     not_eq?: "approved" | "pending" | "rejected";
     in?: Array<"approved" | "pending" | "rejected">;
-  };
-
-  invitation_token?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  expires_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  invited_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  approved_by?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: "approved" | "pending" | "rejected";
+    greater_than?: "approved" | "pending" | "rejected";
+    less_than_or_equal?: "approved" | "pending" | "rejected";
+    greater_than_or_equal?: "approved" | "pending" | "rejected";
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
 
 
 };
@@ -4561,31 +4774,58 @@ export type ChatMessageFilterInput = {
   or?: Array<ChatMessageFilterInput>;
   not?: Array<ChatMessageFilterInput>;
 
+  content?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   role?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  created_at?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -4594,18 +4834,39 @@ export type ChatReplyFilterInput = {
   or?: Array<ChatReplyFilterInput>;
   not?: Array<ChatReplyFilterInput>;
 
-  response?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
   conversation_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  data?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  response?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -4618,8 +4879,8 @@ export type ChatSuggestionsFilterInput = {
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
+    has?: string;
   };
-
 
 
 };
@@ -4628,190 +4889,228 @@ export type PublicConversationFilterInput = {
   or?: Array<PublicConversationFilterInput>;
   not?: Array<PublicConversationFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  user_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  channel?: {
     is_nil?: boolean;
-  };
-
-  session_id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   closed_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  phone_number?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  sms_opt_in?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  channel?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  status?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  is_root?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  root_conversation_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  started_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
     less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  last_message_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
     greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
+  has_letta_agent?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  is_root?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  last_message_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  message_count?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  has_letta_agent?: {
+  phone_number?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  root_conversation_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  session_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  sms_opt_in?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
-  chat_reply_type?: {
-    eq?: ChatReplyResourceSchema;
-    not_eq?: ChatReplyResourceSchema;
-    in?: Array<ChatReplyResourceSchema>;
-    is_nil?: boolean;
+  started_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  chat_suggestions_type?: {
-    eq?: ChatSuggestionsResourceSchema;
-    not_eq?: ChatSuggestionsResourceSchema;
-    in?: Array<ChatSuggestionsResourceSchema>;
+  status?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  chat_message_type?: {
-    eq?: ChatMessageResourceSchema;
-    not_eq?: ChatMessageResourceSchema;
-    in?: Array<ChatMessageResourceSchema>;
-    is_nil?: boolean;
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  turn_state_type?: {
-    eq?: TurnStateResourceSchema;
-    not_eq?: TurnStateResourceSchema;
-    in?: Array<TurnStateResourceSchema>;
+  user_email?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  message_count?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
+  user_id?: {
     is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  user?: UserFilterInput;
+  user_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  memories?: AgentMemoryFilterInput;
+
+  messages?: PublicMessageFilterInput;
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -4819,9 +5118,7 @@ export type PublicConversationFilterInput = {
 
   threads?: PublicConversationFilterInput;
 
-  messages?: PublicMessageFilterInput;
-
-  memories?: AgentMemoryFilterInput;
+  user?: UserFilterInput;
 
 };
 export type PublicMessageFilterInput = {
@@ -4829,78 +5126,110 @@ export type PublicMessageFilterInput = {
   or?: Array<PublicMessageFilterInput>;
   not?: Array<PublicMessageFilterInput>;
 
+  content?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  conversation_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  model_used?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  response_time_ms?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   role?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  model_used?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   tokens_used?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  response_time_ms?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
     less_than?: number;
+    greater_than?: number;
     less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+    greater_than_or_equal?: number;
   };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  conversation_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
 
   conversation?: PublicConversationFilterInput;
 
@@ -4910,71 +5239,110 @@ export type MessageAttachmentFilterInput = {
   or?: Array<MessageAttachmentFilterInput>;
   not?: Array<MessageAttachmentFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  message_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   file_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  file_size?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   file_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  file_size?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  message_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  parsed_content?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  pending_message_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   storage_path?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  parsed_content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  pending_message_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
 
 
 };
@@ -4986,19 +5354,19 @@ export type TurnStateFilterInput = {
   running?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   stale_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
 
 
 };
@@ -5007,151 +5375,233 @@ export type AppFilterInput = {
   or?: Array<AppFilterInput>;
   not?: Array<AppFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  page_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  slug?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  is_published?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  assessment_graph?: {
     is_nil?: boolean;
+    eq?: AssessmentGraphResourceSchema;
+    not_eq?: AssessmentGraphResourceSchema;
+    in?: Array<AssessmentGraphResourceSchema>;
+    less_than?: AssessmentGraphResourceSchema;
+    greater_than?: AssessmentGraphResourceSchema;
+    less_than_or_equal?: AssessmentGraphResourceSchema;
+    greater_than_or_equal?: AssessmentGraphResourceSchema;
   };
 
-  meta?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
+  authoring_document?: {
     is_nil?: boolean;
+    eq?: AuthoringDocumentResourceSchema;
+    not_eq?: AuthoringDocumentResourceSchema;
+    in?: Array<AuthoringDocumentResourceSchema>;
+    less_than?: AuthoringDocumentResourceSchema;
+    greater_than?: AuthoringDocumentResourceSchema;
+    less_than_or_equal?: AuthoringDocumentResourceSchema;
+    greater_than_or_equal?: AuthoringDocumentResourceSchema;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  example_briefing?: {
     is_nil?: boolean;
+    eq?: DailyBriefingResourceSchema;
+    not_eq?: DailyBriefingResourceSchema;
+    in?: Array<DailyBriefingResourceSchema>;
+    less_than?: DailyBriefingResourceSchema;
+    greater_than?: DailyBriefingResourceSchema;
+    less_than_or_equal?: DailyBriefingResourceSchema;
+    greater_than_or_equal?: DailyBriefingResourceSchema;
   };
 
-  source?: {
+  generation_error?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   generation_format?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  generation_history?: {
     is_nil?: boolean;
+    eq?: Array<GenerationHistoryEntryResourceSchema>;
+    not_eq?: Array<GenerationHistoryEntryResourceSchema>;
+    in?: Array<Array<GenerationHistoryEntryResourceSchema>>;
+    has?: GenerationHistoryEntryResourceSchema;
   };
 
   generation_prompt?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  origin_entity_id?: {
+  generation_status?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  has_letta_agent?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  is_published?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   markdoc_content?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  authoring_document?: {
-    eq?: AuthoringDocumentResourceSchema;
-    not_eq?: AuthoringDocumentResourceSchema;
-    in?: Array<AuthoringDocumentResourceSchema>;
+  meta?: {
     is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  generation_history?: {
-    eq?: Array<GenerationHistoryEntryResourceSchema>;
-    not_eq?: Array<GenerationHistoryEntryResourceSchema>;
-    in?: Array<Array<GenerationHistoryEntryResourceSchema>>;
-    is_nil?: boolean;
+  origin_entity_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  assessment_graph?: {
-    eq?: AssessmentGraphResourceSchema;
-    not_eq?: AssessmentGraphResourceSchema;
-    in?: Array<AssessmentGraphResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  has_letta_agent?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  generation_status?: {
+  page_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  generation_error?: {
+  slug?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  example_briefing?: {
-    eq?: DailyBriefingResourceSchema;
-    not_eq?: DailyBriefingResourceSchema;
-    in?: Array<DailyBriefingResourceSchema>;
-    is_nil?: boolean;
+  source?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  gated_course_payload_type_anchor?: {
-    eq?: GatedCoursePayloadResourceSchema;
-    not_eq?: GatedCoursePayloadResourceSchema;
-    in?: Array<GatedCoursePayloadResourceSchema>;
+  title?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -5161,27 +5611,35 @@ export type AssessmentGraphFilterInput = {
   or?: Array<AssessmentGraphFilterInput>;
   not?: Array<AssessmentGraphFilterInput>;
 
-  start_node?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  nodes?: {
-    eq?: Array<OriginsAppsNodeResourceSchema>;
-    not_eq?: Array<OriginsAppsNodeResourceSchema>;
-    in?: Array<Array<OriginsAppsNodeResourceSchema>>;
-    is_nil?: boolean;
-  };
-
   edges?: {
+    is_nil?: boolean;
     eq?: Array<OriginsAppsEdgeResourceSchema>;
     not_eq?: Array<OriginsAppsEdgeResourceSchema>;
     in?: Array<Array<OriginsAppsEdgeResourceSchema>>;
-    is_nil?: boolean;
+    has?: OriginsAppsEdgeResourceSchema;
   };
 
+  nodes?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsNodeResourceSchema>;
+    not_eq?: Array<OriginsAppsNodeResourceSchema>;
+    in?: Array<Array<OriginsAppsNodeResourceSchema>>;
+    has?: OriginsAppsNodeResourceSchema;
+  };
+
+  start_node?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -5190,140 +5648,205 @@ export type AssessmentResponseFilterInput = {
   or?: Array<AssessmentResponseFilterInput>;
   not?: Array<AssessmentResponseFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  user_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  launch_activity_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   answers?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  path_history?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  current_node?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  graph_snapshot_nodes?: {
-    eq?: Array<OriginsAppsNodeResourceSchema>;
-    not_eq?: Array<OriginsAppsNodeResourceSchema>;
-    in?: Array<Array<OriginsAppsNodeResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  graph_snapshot_edges?: {
-    eq?: Array<OriginsAppsEdgeResourceSchema>;
-    not_eq?: Array<OriginsAppsEdgeResourceSchema>;
-    in?: Array<Array<OriginsAppsEdgeResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  result?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  attribution?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  full_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  phone?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  completed_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   app_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  attribution?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  completed_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  current_node?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  email?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   enrollment_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  full_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  graph_snapshot_edges?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsEdgeResourceSchema>;
+    not_eq?: Array<OriginsAppsEdgeResourceSchema>;
+    in?: Array<Array<OriginsAppsEdgeResourceSchema>>;
+    has?: OriginsAppsEdgeResourceSchema;
+  };
+
+  graph_snapshot_nodes?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsNodeResourceSchema>;
+    not_eq?: Array<OriginsAppsNodeResourceSchema>;
+    in?: Array<Array<OriginsAppsNodeResourceSchema>>;
+    has?: OriginsAppsNodeResourceSchema;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  launch_activity_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  path_history?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  phone?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  result?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  user_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
 
   app?: AppFilterInput;
 
@@ -5335,33 +5858,45 @@ export type AuthoringDocumentFilterInput = {
   or?: Array<AuthoringDocumentFilterInput>;
   not?: Array<AuthoringDocumentFilterInput>;
 
+  blocks?: {
+    is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    has?: Record<string, any>;
+  };
+
+  config?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  errors?: {
+    is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    has?: Record<string, any>;
+  };
+
   page_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  blocks?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
-  };
-
-  config?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  errors?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -5370,160 +5905,255 @@ export type OriginsAppsContentCourseActivityFilterInput = {
   or?: Array<OriginsAppsContentCourseActivityFilterInput>;
   not?: Array<OriginsAppsContentCourseActivityFilterInput>;
 
+  assessment?: {
+    is_nil?: boolean;
+    eq?: OriginsAppsContentCourseAssessmentResourceSchema;
+    not_eq?: OriginsAppsContentCourseAssessmentResourceSchema;
+    in?: Array<OriginsAppsContentCourseAssessmentResourceSchema>;
+    less_than?: OriginsAppsContentCourseAssessmentResourceSchema;
+    greater_than?: OriginsAppsContentCourseAssessmentResourceSchema;
+    less_than_or_equal?: OriginsAppsContentCourseAssessmentResourceSchema;
+    greater_than_or_equal?: OriginsAppsContentCourseAssessmentResourceSchema;
+  };
+
+  availability?: {
+    is_nil?: boolean;
+    eq?: "anytime" | "scheduled";
+    not_eq?: "anytime" | "scheduled";
+    in?: Array<"anytime" | "scheduled">;
+    less_than?: "anytime" | "scheduled";
+    greater_than?: "anytime" | "scheduled";
+    less_than_or_equal?: "anytime" | "scheduled";
+    greater_than_or_equal?: "anytime" | "scheduled";
+  };
+
+  body?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  content?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  contributors?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseContributorResourceSchema>>;
+    has?: OriginsAppsContentCourseContributorResourceSchema;
+  };
+
+  duration?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  icon?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  image?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   kind?: {
     eq?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
     not_eq?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
     in?: Array<"check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video">;
+    less_than?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+    greater_than?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+    less_than_or_equal?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
+    greater_than_or_equal?: "check_in" | "graduation" | "journal" | "practice" | "reflection" | "resource" | "video";
   };
 
   label?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  icon?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  mode?: {
     is_nil?: boolean;
+    eq?: "partner" | "solo";
+    not_eq?: "partner" | "solo";
+    in?: Array<"partner" | "solo">;
+    less_than?: "partner" | "solo";
+    greater_than?: "partner" | "solo";
+    less_than_or_equal?: "partner" | "solo";
+    greater_than_or_equal?: "partner" | "solo";
   };
 
-  source_course?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  opens?: {
     is_nil?: boolean;
+    eq?: OriginsAppsContentCourseGateResourceSchema;
+    not_eq?: OriginsAppsContentCourseGateResourceSchema;
+    in?: Array<OriginsAppsContentCourseGateResourceSchema>;
+    less_than?: OriginsAppsContentCourseGateResourceSchema;
+    greater_than?: OriginsAppsContentCourseGateResourceSchema;
+    less_than_or_equal?: OriginsAppsContentCourseGateResourceSchema;
+    greater_than_or_equal?: OriginsAppsContentCourseGateResourceSchema;
+  };
+
+  optional?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   phase?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+  };
+
+  prompts?: {
     is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCoursePromptResourceSchema>>;
+    has?: OriginsAppsContentCoursePromptResourceSchema;
+  };
+
+  recurrence?: {
+    is_nil?: boolean;
+    eq?: "daily" | "once" | "phase-start" | "weekly";
+    not_eq?: "daily" | "once" | "phase-start" | "weekly";
+    in?: Array<"daily" | "once" | "phase-start" | "weekly">;
+    less_than?: "daily" | "once" | "phase-start" | "weekly";
+    greater_than?: "daily" | "once" | "phase-start" | "weekly";
+    less_than_or_equal?: "daily" | "once" | "phase-start" | "weekly";
+    greater_than_or_equal?: "daily" | "once" | "phase-start" | "weekly";
   };
 
   session?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+  };
+
+  source_course?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  steps?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCourseCourseStepResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseCourseStepResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseCourseStepResourceSchema>>;
+    has?: OriginsAppsContentCourseCourseStepResourceSchema;
   };
 
   title?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  duration?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  recurrence?: {
-    eq?: "daily" | "once" | "phase-start" | "weekly";
-    not_eq?: "daily" | "once" | "phase-start" | "weekly";
-    in?: Array<"daily" | "once" | "phase-start" | "weekly">;
-    is_nil?: boolean;
-  };
-
-  availability?: {
-    eq?: "anytime" | "scheduled";
-    not_eq?: "anytime" | "scheduled";
-    in?: Array<"anytime" | "scheduled">;
-    is_nil?: boolean;
-  };
-
-  mode?: {
-    eq?: "partner" | "solo";
-    not_eq?: "partner" | "solo";
-    in?: Array<"partner" | "solo">;
-    is_nil?: boolean;
-  };
-
-  body?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  image?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  opens?: {
-    eq?: OriginsAppsContentCourseGateResourceSchema;
-    not_eq?: OriginsAppsContentCourseGateResourceSchema;
-    in?: Array<OriginsAppsContentCourseGateResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  optional?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   video?: {
+    is_nil?: boolean;
     eq?: OriginsAppsContentCourseVideoResourceSchema;
     not_eq?: OriginsAppsContentCourseVideoResourceSchema;
     in?: Array<OriginsAppsContentCourseVideoResourceSchema>;
-    is_nil?: boolean;
+    less_than?: OriginsAppsContentCourseVideoResourceSchema;
+    greater_than?: OriginsAppsContentCourseVideoResourceSchema;
+    less_than_or_equal?: OriginsAppsContentCourseVideoResourceSchema;
+    greater_than_or_equal?: OriginsAppsContentCourseVideoResourceSchema;
   };
-
-  assessment?: {
-    eq?: OriginsAppsContentCourseAssessmentResourceSchema;
-    not_eq?: OriginsAppsContentCourseAssessmentResourceSchema;
-    in?: Array<OriginsAppsContentCourseAssessmentResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  steps?: {
-    eq?: Array<OriginsAppsContentCourseCourseStepResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCourseCourseStepResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCourseCourseStepResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  prompts?: {
-    eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCoursePromptResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  contributors?: {
-    eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCourseContributorResourceSchema>>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -5536,8 +6166,11 @@ export type OriginsAppsContentCourseAssessmentFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
   };
-
 
 
 };
@@ -5546,41 +6179,72 @@ export type OriginsAppsContentCourseContributorFilterInput = {
   or?: Array<OriginsAppsContentCourseContributorFilterInput>;
   not?: Array<OriginsAppsContentCourseContributorFilterInput>;
 
-  ref?: {
+  avatar_url?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  role?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   bio?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  avatar_url?: {
+  name?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  ref?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+  };
+
+  role?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -5589,143 +6253,264 @@ export type OriginsAppsContentCourseCourseFilterInput = {
   or?: Array<OriginsAppsContentCourseCourseFilterInput>;
   not?: Array<OriginsAppsContentCourseCourseFilterInput>;
 
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  logo?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  background?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  foreground?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  card?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  card_foreground?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  primary?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  primary_foreground?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   accent?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   accent_foreground?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  background?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   border?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  video_accent?: {
+  card?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  video_captions?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  card_foreground?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  streaks?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  foreground?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   gated?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  segment?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  purchase_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
   gated_default_tab?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  unit_label?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   head?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  logo?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  primary?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  primary_foreground?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  purchase_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  segment?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  streaks?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  unit_label?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  video_accent?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  video_captions?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
 
 
 };
@@ -5734,69 +6519,98 @@ export type OriginsAppsContentCourseCourseStepFilterInput = {
   or?: Array<OriginsAppsContentCourseCourseStepFilterInput>;
   not?: Array<OriginsAppsContentCourseCourseStepFilterInput>;
 
-  id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  duration?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
   body?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  required?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   content?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  duration?: {
     is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   order?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   prompts?: {
+    is_nil?: boolean;
     eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
     not_eq?: Array<OriginsAppsContentCoursePromptResourceSchema>;
     in?: Array<Array<OriginsAppsContentCoursePromptResourceSchema>>;
-    is_nil?: boolean;
+    has?: OriginsAppsContentCoursePromptResourceSchema;
   };
 
+  required?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -5806,40 +6620,68 @@ export type OriginsAppsContentCourseGateFilterInput = {
   not?: Array<OriginsAppsContentCourseGateFilterInput>;
 
   after?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
   };
 
   any_of?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
   };
 
   at_least?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   delay?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   every?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -5848,32 +6690,59 @@ export type OriginsAppsContentCoursePhaseFilterInput = {
   or?: Array<OriginsAppsContentCoursePhaseFilterInput>;
   not?: Array<OriginsAppsContentCoursePhaseFilterInput>;
 
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   title?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   weeks?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -5883,72 +6752,97 @@ export type OriginsAppsContentCoursePromptFilterInput = {
   not?: Array<OriginsAppsContentCoursePromptFilterInput>;
 
   id?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   kind?: {
+    is_nil?: boolean;
     eq?: "number" | "select" | "slider" | "text";
     not_eq?: "number" | "select" | "slider" | "text";
     in?: Array<"number" | "select" | "slider" | "text">;
-    is_nil?: boolean;
+    less_than?: "number" | "select" | "slider" | "text";
+    greater_than?: "number" | "select" | "slider" | "text";
+    less_than_or_equal?: "number" | "select" | "slider" | "text";
+    greater_than_or_equal?: "number" | "select" | "slider" | "text";
   };
 
   label?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  min?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   max?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  min?: {
     is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   options?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  required?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   order?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
+  required?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
 
 
 };
@@ -5957,57 +6851,89 @@ export type OriginsAppsContentCourseSessionFilterInput = {
   or?: Array<OriginsAppsContentCourseSessionFilterInput>;
   not?: Array<OriginsAppsContentCourseSessionFilterInput>;
 
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  opens?: {
-    eq?: OriginsAppsContentCourseGateResourceSchema;
-    not_eq?: OriginsAppsContentCourseGateResourceSchema;
-    in?: Array<OriginsAppsContentCourseGateResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  optional?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  phase_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   index?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
+  opens?: {
+    is_nil?: boolean;
+    eq?: OriginsAppsContentCourseGateResourceSchema;
+    not_eq?: OriginsAppsContentCourseGateResourceSchema;
+    in?: Array<OriginsAppsContentCourseGateResourceSchema>;
+    less_than?: OriginsAppsContentCourseGateResourceSchema;
+    greater_than?: OriginsAppsContentCourseGateResourceSchema;
+    less_than_or_equal?: OriginsAppsContentCourseGateResourceSchema;
+    greater_than_or_equal?: OriginsAppsContentCourseGateResourceSchema;
+  };
+
+  optional?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  phase_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -6016,41 +6942,75 @@ export type OriginsAppsContentCourseTransitionFilterInput = {
   or?: Array<OriginsAppsContentCourseTransitionFilterInput>;
   not?: Array<OriginsAppsContentCourseTransitionFilterInput>;
 
-  id?: {
+  at?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  body?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   between?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  at?: {
+  body?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -6059,19 +7019,29 @@ export type OriginsAppsContentCourseVideoFilterInput = {
   or?: Array<OriginsAppsContentCourseVideoFilterInput>;
   not?: Array<OriginsAppsContentCourseVideoFilterInput>;
 
+  caption?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   path?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
   };
-
-  caption?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -6084,8 +7054,14 @@ export type BriefingPageFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -6094,52 +7070,59 @@ export type DailyBriefingFilterInput = {
   or?: Array<DailyBriefingFilterInput>;
   not?: Array<DailyBriefingFilterInput>;
 
+  date?: {
+    is_nil?: boolean;
+    eq?: AshDate;
+    not_eq?: AshDate;
+    in?: Array<AshDate>;
+    less_than?: AshDate;
+    greater_than?: AshDate;
+    less_than_or_equal?: AshDate;
+    greater_than_or_equal?: AshDate;
+  };
+
+  generated_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  pages?: {
+    is_nil?: boolean;
+    eq?: Array<BriefingPageResourceSchema>;
+    not_eq?: Array<BriefingPageResourceSchema>;
+    in?: Array<Array<BriefingPageResourceSchema>>;
+    has?: BriefingPageResourceSchema;
+  };
+
+  read_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   session_id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  date?: {
-    eq?: AshDate;
-    not_eq?: AshDate;
-    greater_than?: AshDate;
-    greater_than_or_equal?: AshDate;
-    less_than?: AshDate;
-    less_than_or_equal?: AshDate;
-    in?: Array<AshDate>;
-    is_nil?: boolean;
-  };
-
-  pages?: {
-    eq?: Array<BriefingPageResourceSchema>;
-    not_eq?: Array<BriefingPageResourceSchema>;
-    in?: Array<Array<BriefingPageResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  generated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  read_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -6148,75 +7131,93 @@ export type GatedCourseFilterInput = {
   or?: Array<GatedCourseFilterInput>;
   not?: Array<GatedCourseFilterInput>;
 
-  config?: {
-    eq?: OriginsAppsContentCourseCourseResourceSchema;
-    not_eq?: OriginsAppsContentCourseCourseResourceSchema;
-    in?: Array<OriginsAppsContentCourseCourseResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  briefing_enabled?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  unit_label?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  outcomes?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  contributors?: {
-    eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCourseContributorResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  phases?: {
-    eq?: Array<OriginsAppsContentCoursePhaseResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCoursePhaseResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCoursePhaseResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  transitions?: {
-    eq?: Array<OriginsAppsContentCourseTransitionResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCourseTransitionResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCourseTransitionResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  sessions?: {
-    eq?: Array<OriginsAppsContentCourseSessionResourceSchema>;
-    not_eq?: Array<OriginsAppsContentCourseSessionResourceSchema>;
-    in?: Array<Array<OriginsAppsContentCourseSessionResourceSchema>>;
-    is_nil?: boolean;
-  };
-
   activities?: {
+    is_nil?: boolean;
     eq?: Array<OriginsAppsContentCourseActivityResourceSchema>;
     not_eq?: Array<OriginsAppsContentCourseActivityResourceSchema>;
     in?: Array<Array<OriginsAppsContentCourseActivityResourceSchema>>;
-    is_nil?: boolean;
+    has?: OriginsAppsContentCourseActivityResourceSchema;
   };
 
-  source_libraries?: {
+  briefing_enabled?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  config?: {
+    is_nil?: boolean;
+    eq?: OriginsAppsContentCourseCourseResourceSchema;
+    not_eq?: OriginsAppsContentCourseCourseResourceSchema;
+    in?: Array<OriginsAppsContentCourseCourseResourceSchema>;
+    less_than?: OriginsAppsContentCourseCourseResourceSchema;
+    greater_than?: OriginsAppsContentCourseCourseResourceSchema;
+    less_than_or_equal?: OriginsAppsContentCourseCourseResourceSchema;
+    greater_than_or_equal?: OriginsAppsContentCourseCourseResourceSchema;
+  };
+
+  contributors?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseContributorResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseContributorResourceSchema>>;
+    has?: OriginsAppsContentCourseContributorResourceSchema;
+  };
+
+  outcomes?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
+    has?: string;
   };
 
+  phases?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCoursePhaseResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCoursePhaseResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCoursePhaseResourceSchema>>;
+    has?: OriginsAppsContentCoursePhaseResourceSchema;
+  };
+
+  sessions?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCourseSessionResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseSessionResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseSessionResourceSchema>>;
+    has?: OriginsAppsContentCourseSessionResourceSchema;
+  };
+
+  source_libraries?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  transitions?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsContentCourseTransitionResourceSchema>;
+    not_eq?: Array<OriginsAppsContentCourseTransitionResourceSchema>;
+    in?: Array<Array<OriginsAppsContentCourseTransitionResourceSchema>>;
+    has?: OriginsAppsContentCourseTransitionResourceSchema;
+  };
+
+  unit_label?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -6225,33 +7226,42 @@ export type GatedCoursePayloadFilterInput = {
   or?: Array<GatedCoursePayloadFilterInput>;
   not?: Array<GatedCoursePayloadFilterInput>;
 
+  assessment_launches?: {
+    is_nil?: boolean;
+    eq?: Array<CourseAssessmentLaunchResourceSchema>;
+    not_eq?: Array<CourseAssessmentLaunchResourceSchema>;
+    in?: Array<Array<CourseAssessmentLaunchResourceSchema>>;
+    has?: CourseAssessmentLaunchResourceSchema;
+  };
+
+  enrollment?: {
+    is_nil?: boolean;
+    eq?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    not_eq?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    in?: Array<{id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"}>;
+    less_than?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    greater_than?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    less_than_or_equal?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+    greater_than_or_equal?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
+  };
+
   gated_course?: {
     eq?: GatedCourseResourceSchema;
     not_eq?: GatedCourseResourceSchema;
     in?: Array<GatedCourseResourceSchema>;
-  };
-
-  enrollment?: {
-    eq?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
-    not_eq?: {id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"};
-    in?: Array<{id: UUID | null, status: string | null, current_session_id: string | null, current_phase_id: string | null, current_phase_started_at: UtcDateTime | null, entered_session_ids: Array<string> | null, enrolled_at: UtcDateTime | null, streak_count: number | null, streak_last_date: AshDate | null, settings: Record<string, any> | null, __type: "TypedMap", __primitiveFields: "id" | "status" | "current_session_id" | "current_phase_id" | "current_phase_started_at" | "entered_session_ids" | "enrolled_at" | "streak_count" | "streak_last_date" | "settings"}>;
-    is_nil?: boolean;
+    less_than?: GatedCourseResourceSchema;
+    greater_than?: GatedCourseResourceSchema;
+    less_than_or_equal?: GatedCourseResourceSchema;
+    greater_than_or_equal?: GatedCourseResourceSchema;
   };
 
   state?: {
+    is_nil?: boolean;
     eq?: Array<CourseItemStateResourceSchema>;
     not_eq?: Array<CourseItemStateResourceSchema>;
     in?: Array<Array<CourseItemStateResourceSchema>>;
-    is_nil?: boolean;
+    has?: CourseItemStateResourceSchema;
   };
-
-  assessment_launches?: {
-    eq?: Array<CourseAssessmentLaunchResourceSchema>;
-    not_eq?: Array<CourseAssessmentLaunchResourceSchema>;
-    in?: Array<Array<CourseAssessmentLaunchResourceSchema>>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -6260,40 +7270,52 @@ export type CourseItemStateFilterInput = {
   or?: Array<CourseItemStateFilterInput>;
   not?: Array<CourseItemStateFilterInput>;
 
-  item_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
   available?: {
     eq?: boolean;
     not_eq?: boolean;
-  };
-
-  unlocks_when?: {
-    eq?: CourseUnlocksWhenResourceSchema;
-    not_eq?: CourseUnlocksWhenResourceSchema;
-    in?: Array<CourseUnlocksWhenResourceSchema>;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
   complete?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  item_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   progress?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
+  unlocks_when?: {
+    is_nil?: boolean;
+    eq?: CourseUnlocksWhenResourceSchema;
+    not_eq?: CourseUnlocksWhenResourceSchema;
+    in?: Array<CourseUnlocksWhenResourceSchema>;
+    less_than?: CourseUnlocksWhenResourceSchema;
+    greater_than?: CourseUnlocksWhenResourceSchema;
+    less_than_or_equal?: CourseUnlocksWhenResourceSchema;
+    greater_than_or_equal?: CourseUnlocksWhenResourceSchema;
+  };
 
 
 };
@@ -6306,15 +7328,25 @@ export type CourseAssessmentLaunchFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   app_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
-
 
 
 };
@@ -6323,33 +7355,51 @@ export type CourseUnlocksWhenFilterInput = {
   or?: Array<CourseUnlocksWhenFilterInput>;
   not?: Array<CourseUnlocksWhenFilterInput>;
 
+  activity_ids?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  date?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  reason?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   type?: {
     eq?: "after" | "after_any" | "at" | "locked_by";
     not_eq?: "after" | "after_any" | "at" | "locked_by";
     in?: Array<"after" | "after_any" | "at" | "locked_by">;
+    less_than?: "after" | "after_any" | "at" | "locked_by";
+    greater_than?: "after" | "after_any" | "at" | "locked_by";
+    less_than_or_equal?: "after" | "after_any" | "at" | "locked_by";
+    greater_than_or_equal?: "after" | "after_any" | "at" | "locked_by";
   };
-
-  date?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  activity_ids?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  reason?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -6358,93 +7408,126 @@ export type CourseActivityCompletionFilterInput = {
   or?: Array<CourseActivityCompletionFilterInput>;
   not?: Array<CourseActivityCompletionFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
   activity_id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  step_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  attachments?: {
     is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    has?: Record<string, any>;
   };
 
   completed_date?: {
     eq?: AshDate;
     not_eq?: AshDate;
-    greater_than?: AshDate;
-    greater_than_or_equal?: AshDate;
-    less_than?: AshDate;
-    less_than_or_equal?: AshDate;
     in?: Array<AshDate>;
-  };
-
-  responses?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  notes?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  duration_seconds?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  attachments?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
+    less_than?: AshDate;
+    greater_than?: AshDate;
+    less_than_or_equal?: AshDate;
+    greater_than_or_equal?: AshDate;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  duration_seconds?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   enrollment_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  notes?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  responses?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  step_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   enrollment?: CourseEnrollmentFilterInput;
 
@@ -6454,174 +7537,206 @@ export type CourseEnrollmentFilterInput = {
   or?: Array<CourseEnrollmentFilterInput>;
   not?: Array<CourseEnrollmentFilterInput>;
 
-  id?: {
+  app_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  status?: {
-    eq?: "active" | "completed" | "not_started" | "paused" | "reactivated";
-    not_eq?: "active" | "completed" | "not_started" | "paused" | "reactivated";
-    in?: Array<"active" | "completed" | "not_started" | "paused" | "reactivated">;
-  };
-
-  current_session_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  assessment_answers?: {
     is_nil?: boolean;
-  };
-
-  entered_session_ids?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-  };
-
-  current_phase_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  current_phase_started_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  reactivated_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  enrolled_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  streak_count?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  streak_last_date?: {
-    eq?: AshDate;
-    not_eq?: AshDate;
-    greater_than?: AshDate;
-    greater_than_or_equal?: AshDate;
-    less_than?: AshDate;
-    less_than_or_equal?: AshDate;
-    in?: Array<AshDate>;
-    is_nil?: boolean;
-  };
-
-  settings?: {
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  user_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   character_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  app_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   current_personalization_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  assessment_answers?: {
+  current_phase_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  current_phase_started_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  current_session_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  enrolled_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  entered_session_ids?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  reactivated_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  settings?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  enrollment_completions_type_anchor?: {
-    eq?: EnrollmentCompletionsResourceSchema;
-    not_eq?: EnrollmentCompletionsResourceSchema;
-    in?: Array<EnrollmentCompletionsResourceSchema>;
-    is_nil?: boolean;
+  status?: {
+    eq?: "active" | "completed" | "not_started" | "paused" | "reactivated";
+    not_eq?: "active" | "completed" | "not_started" | "paused" | "reactivated";
+    in?: Array<"active" | "completed" | "not_started" | "paused" | "reactivated">;
+    less_than?: "active" | "completed" | "not_started" | "paused" | "reactivated";
+    greater_than?: "active" | "completed" | "not_started" | "paused" | "reactivated";
+    less_than_or_equal?: "active" | "completed" | "not_started" | "paused" | "reactivated";
+    greater_than_or_equal?: "active" | "completed" | "not_started" | "paused" | "reactivated";
   };
 
-  activity_completion_summary_type_anchor?: {
-    eq?: ActivityCompletionSummaryResourceSchema;
-    not_eq?: ActivityCompletionSummaryResourceSchema;
-    in?: Array<ActivityCompletionSummaryResourceSchema>;
+  streak_count?: {
     is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
+  streak_last_date?: {
+    is_nil?: boolean;
+    eq?: AshDate;
+    not_eq?: AshDate;
+    in?: Array<AshDate>;
+    less_than?: AshDate;
+    greater_than?: AshDate;
+    less_than_or_equal?: AshDate;
+    greater_than_or_equal?: AshDate;
+  };
 
-  user?: UserFilterInput;
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
-  character?: OriginEntityFilterInput;
+  user_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  activity_completions?: CourseActivityCompletionFilterInput;
 
   app?: AppFilterInput;
 
-  activity_completions?: CourseActivityCompletionFilterInput;
+  character?: OriginEntityFilterInput;
+
+  user?: UserFilterInput;
 
 };
 export type ActivityCompletionSummaryFilterInput = {
@@ -6629,42 +7744,63 @@ export type ActivityCompletionSummaryFilterInput = {
   or?: Array<ActivityCompletionSummaryFilterInput>;
   not?: Array<ActivityCompletionSummaryFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
   activity_id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  step_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   completed_date?: {
     eq?: AshDate;
     not_eq?: AshDate;
-    greater_than?: AshDate;
-    greater_than_or_equal?: AshDate;
-    less_than?: AshDate;
-    less_than_or_equal?: AshDate;
     in?: Array<AshDate>;
+    less_than?: AshDate;
+    greater_than?: AshDate;
+    less_than_or_equal?: AshDate;
+    greater_than_or_equal?: AshDate;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   responses?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
+  step_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -6673,50 +7809,72 @@ export type EnrollmentCompletionsFilterInput = {
   or?: Array<EnrollmentCompletionsFilterInput>;
   not?: Array<EnrollmentCompletionsFilterInput>;
 
+  activity_completions?: {
+    is_nil?: boolean;
+    eq?: Array<ActivityCompletionSummaryResourceSchema>;
+    not_eq?: Array<ActivityCompletionSummaryResourceSchema>;
+    in?: Array<Array<ActivityCompletionSummaryResourceSchema>>;
+    has?: ActivityCompletionSummaryResourceSchema;
+  };
+
+  current_phase_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  current_phase_started_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  current_session_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   status?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
   };
-
-  current_session_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  current_phase_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  current_phase_started_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  activity_completions?: {
-    eq?: Array<ActivityCompletionSummaryResourceSchema>;
-    not_eq?: Array<ActivityCompletionSummaryResourceSchema>;
-    in?: Array<Array<ActivityCompletionSummaryResourceSchema>>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -6725,59 +7883,81 @@ export type CourseEntitlementFilterInput = {
   or?: Array<CourseEntitlementFilterInput>;
   not?: Array<CourseEntitlementFilterInput>;
 
-  id?: {
+  app_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  tier?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  ended_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   granted_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  app_id?: {
+  id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  plan_id?: {
     is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   scope?: {
     eq?: "every_app" | "one_app";
     not_eq?: "every_app" | "one_app";
     in?: Array<"every_app" | "one_app">;
+    less_than?: "every_app" | "one_app";
+    greater_than?: "every_app" | "one_app";
+    less_than_or_equal?: "every_app" | "one_app";
+    greater_than_or_equal?: "every_app" | "one_app";
   };
 
-  ended_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
+  tier?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  plan_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
 
   plan?: PlanFilterInput;
 
@@ -6787,71 +7967,145 @@ export type DocumentBlockFilterInput = {
   or?: Array<DocumentBlockFilterInput>;
   not?: Array<DocumentBlockFilterInput>;
 
-  record_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  block_type?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   document_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  parent_record_id?: {
+  library_file_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  parent_record_id?: {
     is_nil?: boolean;
-  };
-
-  position?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-  };
-
-  block_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   payload?: {
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  position?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  record_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  target_app_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  target_origin_entity_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  target_record_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
+  children?: DocumentBlockFilterInput;
+
+  library_file?: LibraryFileFilterInput;
 
   parent?: DocumentBlockFilterInput;
 
-  children?: DocumentBlockFilterInput;
+  target_app?: AppFilterInput;
+
+  target_block?: DocumentBlockFilterInput;
+
+  target_origin_entity?: OriginEntityFilterInput;
 
 };
 export type AppVersionFilterInput = {
@@ -6859,71 +8113,104 @@ export type AppVersionFilterInput = {
   or?: Array<AppVersionFilterInput>;
   not?: Array<AppVersionFilterInput>;
 
+  change_source_message_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  change_summary?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  changes?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-  };
-
-  version_action_type?: {
-    eq?: "create" | "destroy" | "update";
-    not_eq?: "create" | "destroy" | "update";
-    in?: Array<"create" | "destroy" | "update">;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   version_action_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
   };
 
-  change_summary?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+  version_action_type?: {
+    eq?: "create" | "destroy" | "update";
+    not_eq?: "create" | "destroy" | "update";
+    in?: Array<"create" | "destroy" | "update">;
+    less_than?: "create" | "destroy" | "update";
+    greater_than?: "create" | "destroy" | "update";
+    less_than_or_equal?: "create" | "destroy" | "update";
+    greater_than_or_equal?: "create" | "destroy" | "update";
   };
 
-  change_source_message_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+  version_inserted_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   version_source_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-  };
-
-  changes?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  version_inserted_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   version_updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
 
 
 };
@@ -6932,46 +8219,84 @@ export type OriginsAppsEdgeFilterInput = {
   or?: Array<OriginsAppsEdgeFilterInput>;
   not?: Array<OriginsAppsEdgeFilterInput>;
 
+  condition_field?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  condition_op?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  condition_type?: {
+    is_nil?: boolean;
+    eq?: "conditional" | "default";
+    not_eq?: "conditional" | "default";
+    in?: Array<"conditional" | "default">;
+    less_than?: "conditional" | "default";
+    greater_than?: "conditional" | "default";
+    less_than_or_equal?: "conditional" | "default";
+    greater_than_or_equal?: "conditional" | "default";
+  };
+
+  condition_value?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   source?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   target?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  condition_type?: {
-    eq?: "conditional" | "default";
-    not_eq?: "conditional" | "default";
-    in?: Array<"conditional" | "default">;
-    is_nil?: boolean;
-  };
-
-  condition_field?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  condition_op?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  condition_value?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -6980,60 +8305,109 @@ export type GenerationHistoryEntryFilterInput = {
   or?: Array<GenerationHistoryEntryFilterInput>;
   not?: Array<GenerationHistoryEntryFilterInput>;
 
+  content?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  reasoning?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   role?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  reasoning?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   tool_calls?: {
+    is_nil?: boolean;
     eq?: Array<Record<string, any>>;
     not_eq?: Array<Record<string, any>>;
     in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
+    has?: Record<string, any>;
   };
 
   tool_return?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   tool_return_status?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  created_at?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -7042,121 +8416,168 @@ export type OriginsAppsNodeFilterInput = {
   or?: Array<OriginsAppsNodeFilterInput>;
   not?: Array<OriginsAppsNodeFilterInput>;
 
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  highlight?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  type?: {
-    eq?: "interstitial" | "question" | "terminal";
-    not_eq?: "interstitial" | "question" | "terminal";
-    in?: Array<"interstitial" | "question" | "terminal">;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   kind?: {
+    is_nil?: boolean;
     eq?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
     not_eq?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
     in?: Array<"multi_select" | "single_select" | "slider_group" | "text" | "yes_no">;
-    is_nil?: boolean;
-  };
-
-  weight?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  required?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  max?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  min?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  subtitle?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  highlight?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  options?: {
-    eq?: Array<OriginsAppsOptionResourceSchema>;
-    not_eq?: Array<OriginsAppsOptionResourceSchema>;
-    in?: Array<Array<OriginsAppsOptionResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  sliders?: {
-    eq?: Array<OriginsAppsSliderResourceSchema>;
-    not_eq?: Array<OriginsAppsSliderResourceSchema>;
-    in?: Array<Array<OriginsAppsSliderResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  summary_items?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
+    less_than?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
+    greater_than?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
+    less_than_or_equal?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
+    greater_than_or_equal?: "multi_select" | "single_select" | "slider_group" | "text" | "yes_no";
   };
 
   loading_bars?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
+    has?: string;
   };
 
+  max?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  min?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  options?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsOptionResourceSchema>;
+    not_eq?: Array<OriginsAppsOptionResourceSchema>;
+    in?: Array<Array<OriginsAppsOptionResourceSchema>>;
+    has?: OriginsAppsOptionResourceSchema;
+  };
+
+  required?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  sliders?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsAppsSliderResourceSchema>;
+    not_eq?: Array<OriginsAppsSliderResourceSchema>;
+    in?: Array<Array<OriginsAppsSliderResourceSchema>>;
+    has?: OriginsAppsSliderResourceSchema;
+  };
+
+  subtitle?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  summary_items?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  type?: {
+    is_nil?: boolean;
+    eq?: "interstitial" | "question" | "terminal";
+    not_eq?: "interstitial" | "question" | "terminal";
+    in?: Array<"interstitial" | "question" | "terminal">;
+    less_than?: "interstitial" | "question" | "terminal";
+    greater_than?: "interstitial" | "question" | "terminal";
+    less_than_or_equal?: "interstitial" | "question" | "terminal";
+    greater_than_or_equal?: "interstitial" | "question" | "terminal";
+  };
+
+  weight?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
 
 
 };
@@ -7165,32 +8586,59 @@ export type OriginsAppsOptionFilterInput = {
   or?: Array<OriginsAppsOptionFilterInput>;
   not?: Array<OriginsAppsOptionFilterInput>;
 
-  value?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
   label?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  segment?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   route?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  segment?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  value?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -7203,46 +8651,67 @@ export type PlanFilterInput = {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  stripe_price_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   retired_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  sale_count?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   scope?: {
     eq?: "every_app" | "linked_apps";
     not_eq?: "every_app" | "linked_apps";
     in?: Array<"every_app" | "linked_apps">;
+    less_than?: "every_app" | "linked_apps";
+    greater_than?: "every_app" | "linked_apps";
+    less_than_or_equal?: "every_app" | "linked_apps";
+    greater_than_or_equal?: "every_app" | "linked_apps";
   };
 
-  sale_count?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+  stripe_price_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   apps?: AppFilterInput;
@@ -7253,64 +8722,86 @@ export type ProgramTestFilterInput = {
   or?: Array<ProgramTestFilterInput>;
   not?: Array<ProgramTestFilterInput>;
 
+  coach_conversation_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  coach_conversation_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   program_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   test_user_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  memories?: AgentMemoryFilterInput;
 
   program?: AppFilterInput;
 
   test_user?: UserFilterInput;
-
-  memories?: AgentMemoryFilterInput;
 
 };
 export type OriginsAppsSliderFilterInput = {
@@ -7318,55 +8809,82 @@ export type OriginsAppsSliderFilterInput = {
   or?: Array<OriginsAppsSliderFilterInput>;
   not?: Array<OriginsAppsSliderFilterInput>;
 
+  high_label?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   label?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  min?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  max?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   low_label?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  high_label?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  max?: {
     is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
+  min?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
 
 
 };
@@ -7375,66 +8893,97 @@ export type AppTemplateFilterInput = {
   or?: Array<AppTemplateFilterInput>;
   not?: Array<AppTemplateFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   description?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   page_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   seed_markdoc_content?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   sort_order?: {
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
 
 
 };
@@ -7443,124 +8992,172 @@ export type WebhookDeliveryFilterInput = {
   or?: Array<WebhookDeliveryFilterInput>;
   not?: Array<WebhookDeliveryFilterInput>;
 
-  id?: {
+  assessment_response_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  event_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  attempts?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  delivered_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
   };
 
   event_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  assessment_response_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  target_url?: {
+  event_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  payload?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-  };
-
-  status?: {
-    eq?: "delivered" | "failed" | "pending";
-    not_eq?: "delivered" | "failed" | "pending";
-    in?: Array<"delivered" | "failed" | "pending">;
-  };
-
-  attempts?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-  };
-
-  last_status_code?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   last_error?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  last_status_code?: {
     is_nil?: boolean;
-  };
-
-  delivered_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  subscription_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  payload?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
 
-  subscription?: WebhookSubscriptionFilterInput;
+  status?: {
+    eq?: "delivered" | "failed" | "pending";
+    not_eq?: "delivered" | "failed" | "pending";
+    in?: Array<"delivered" | "failed" | "pending">;
+    less_than?: "delivered" | "failed" | "pending";
+    greater_than?: "delivered" | "failed" | "pending";
+    less_than_or_equal?: "delivered" | "failed" | "pending";
+    greater_than_or_equal?: "delivered" | "failed" | "pending";
+  };
+
+  subscription_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  target_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   origin_entity?: OriginEntityFilterInput;
+
+  subscription?: WebhookSubscriptionFilterInput;
 
 };
 export type WebhookSubscriptionFilterInput = {
@@ -7568,79 +9165,113 @@ export type WebhookSubscriptionFilterInput = {
   or?: Array<WebhookSubscriptionFilterInput>;
   not?: Array<WebhookSubscriptionFilterInput>;
 
-  id?: {
+  active?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  app_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  target_url?: {
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  description?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  secret?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   event_types?: {
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
+    has?: string;
   };
 
-  active?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  app_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
+  secret?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  target_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
-  origin_entity?: OriginEntityFilterInput;
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   app?: AppFilterInput;
+
+  origin_entity?: OriginEntityFilterInput;
 
 };
 export type FeatureFlagFilterInput = {
@@ -7648,49 +9279,64 @@ export type FeatureFlagFilterInput = {
   or?: Array<FeatureFlagFilterInput>;
   not?: Array<FeatureFlagFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  enabled?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   feature_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  enabled?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -7700,116 +9346,193 @@ export type FeedbackFilterInput = {
   or?: Array<FeedbackFilterInput>;
   not?: Array<FeedbackFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  admin_notes?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  context_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  context_type?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   feedback_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  subject?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   message?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  screenshot_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  origin_entity_id?: {
     is_nil?: boolean;
-  };
-
-  admin_notes?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  context_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  context_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   resolved_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  screenshot_url?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   status?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  subject?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  user_email?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  user_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -7819,163 +9542,258 @@ export type HomepageCardFilterInput = {
   or?: Array<HomepageCardFilterInput>;
   not?: Array<HomepageCardFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  role?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  gradient?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  is_active?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  custom_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  avatar_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  avatar_key?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   ai_enabled?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
-  description?: {
+  avatar_key?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  tags?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
+  avatar_shape?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  use_gradient?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  avatar_size?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  order_index?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
+  avatar_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  avatar_vertical_position?: {
+    is_nil?: boolean;
+    eq?: Decimal;
+    not_eq?: Decimal;
+    in?: Array<Decimal>;
+    less_than?: Decimal;
+    greater_than?: Decimal;
+    less_than_or_equal?: Decimal;
+    greater_than_or_equal?: Decimal;
+  };
+
+  background_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  custom_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   destination_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  gradient?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  is_active?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  order_index?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  origin_entity_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  presigned_avatar_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  role?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  tags?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  avatar_size?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  use_gradient?: {
     is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
-
-  avatar_shape?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  avatar_vertical_position?: {
-    eq?: Decimal;
-    not_eq?: Decimal;
-    greater_than?: Decimal;
-    greater_than_or_equal?: Decimal;
-    less_than?: Decimal;
-    less_than_or_equal?: Decimal;
-    in?: Array<Decimal>;
-    is_nil?: boolean;
-  };
-
-  background_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  presigned_avatar_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -7985,113 +9803,198 @@ export type OriginsIdentityAppearanceConfigFilterInput = {
   or?: Array<OriginsIdentityAppearanceConfigFilterInput>;
   not?: Array<OriginsIdentityAppearanceConfigFilterInput>;
 
-  checkmark_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_chat_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  chat_button_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  chat_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_share_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  share_button_border?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  share_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  share_button_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  button_border_radius?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  user_bubble_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_bubble_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   ai_bubble_bg?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   ai_bubble_text?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  button_border_radius?: {
     is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  chat_button_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  chat_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  checkmark_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   send_button_bg?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   send_button_text?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  share_button_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  share_button_border?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  share_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  show_chat_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_share_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  user_bubble_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  user_bubble_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -8100,220 +10003,369 @@ export type OriginsIdentityBrandConversationConfigFilterInput = {
   or?: Array<OriginsIdentityBrandConversationConfigFilterInput>;
   not?: Array<OriginsIdentityBrandConversationConfigFilterInput>;
 
-  checkmark_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  checkmark_bg_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_chat_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  chat_button_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  chat_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  button_border_radius?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  show_share_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  share_button_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  share_button_border?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  share_button_icon?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_description?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_content_section?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_avatars_section?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  selected_avatars?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  avatars_section_label?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_podcast_link?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_origins_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  origins_button_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origins_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origins_button_border?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origins_button_text_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  social_links?: {
-    eq?: Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>;
-    not_eq?: Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>;
-    in?: Array<Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  send_button_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  send_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_bubble_bg?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  user_bubble_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   ai_bubble_bg?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   ai_bubble_text?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  avatars_section_label?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  button_border_radius?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  chat_button_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  chat_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   chat_input_active_border?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  page_background_color?: {
+  checkmark_bg_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  checkmark_color?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   enabled_mode_ids?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
+    has?: string;
   };
 
+  origins_button_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_border?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_text_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  page_background_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  selected_avatars?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  send_button_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  send_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  share_button_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  share_button_border?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  share_button_icon?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  show_avatars_section?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_chat_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_content_section?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_description?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_origins_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_podcast_link?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_share_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  social_links?: {
+    is_nil?: boolean;
+    eq?: Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>;
+    not_eq?: Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>;
+    in?: Array<Array<OriginsIdentityBrandConversationSocialLinkResourceSchema>>;
+    has?: OriginsIdentityBrandConversationSocialLinkResourceSchema;
+  };
+
+  user_bubble_bg?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  user_bubble_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -8322,61 +10374,110 @@ export type OriginsIdentityBrandConversationSocialLinkFilterInput = {
   or?: Array<OriginsIdentityBrandConversationSocialLinkFilterInput>;
   not?: Array<OriginsIdentityBrandConversationSocialLinkFilterInput>;
 
-  platform?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  visible?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  icon?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  icon_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   custom_icon_url?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   custom_label?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   custom_url?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  icon?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  icon_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  platform?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  visible?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
 
 
 };
@@ -8385,383 +10486,638 @@ export type ChatConfigFilterInput = {
   or?: Array<ChatConfigFilterInput>;
   not?: Array<ChatConfigFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  chat_button_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  welcome_message?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_close_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_powered_by?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_header_avatar?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_ai_message_avatar?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  chat_button_show_icon?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_show_icon?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  podcast_button_show_icon?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  public_profile_show_brand_logo?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  podcast_show_brand_logo?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  use_chat_button_for_public_profile?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  use_chat_button_for_podcast?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
   available_avatar_ids?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
+    has?: string;
   };
 
-  chat_button_text?: {
+  button_shape?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  show_brand_logo?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  chat_window_title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   chat_bubble_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   chat_bubble_text_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  user_bubble_color?: {
+  chat_button_border_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  user_bubble_text_color?: {
+  chat_button_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  enable_sound_notifications?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  chat_button_icon?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  show_typing_indicator?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  chat_button_position?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  enable_chat_history?: {
+  chat_button_show_icon?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
-  inherits_descendant_knowledge?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  chat_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  chat_button_text_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  chat_window_title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  enable_chat_history?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  enable_sound_notifications?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  header_style?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  inherits_descendant_knowledge?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  input_placeholder?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  input_style?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origin_entity_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  podcast_button_border_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_icon?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_shape?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_show_icon?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  podcast_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_text_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_show_brand_logo?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  public_profile_button_border_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_button_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_button_icon?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_button_shape?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_button_show_icon?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  public_profile_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_button_text_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_show_brand_logo?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  response_delay?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  send_button_style?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  show_ai_message_avatar?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_brand_logo?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_close_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_header_avatar?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_powered_by?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_typing_indicator?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  button_shape?: {
+  use_chat_button_for_podcast?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  use_chat_button_for_public_profile?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  user_bubble_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  window_size?: {
+  user_bubble_text_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  header_style?: {
+  welcome_message?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  window_border_radius?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   window_animation?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  send_button_style?: {
+  window_border_radius?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  input_placeholder?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   window_position_mode?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  chat_button_icon?: {
+  window_size?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  chat_button_text_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_icon?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_text_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_icon?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_text_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  chat_button_border_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_border_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_border_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_shape?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_shape?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_profile_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  input_style?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  chat_button_position?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  response_delay?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -8775,14 +11131,27 @@ export type OriginsIdentityCustomLinkFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   url?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -8791,91 +11160,139 @@ export type OriginAssetFilterInput = {
   or?: Array<OriginAssetFilterInput>;
   not?: Array<OriginAssetFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  asset_key?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  asset_metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  asset_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   asset_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   asset_url?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  asset_key?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  asset_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  asset_metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  source_platform?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  shared_with_origin_entity_ids?: {
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    is_nil?: boolean;
-  };
-
-  is_shared_globally?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  is_shared_globally?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  shared_with_origin_entity_ids?: {
+    is_nil?: boolean;
+    eq?: Array<UUID>;
+    not_eq?: Array<UUID>;
+    in?: Array<Array<UUID>>;
+    has?: UUID;
+  };
+
+  source_platform?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -8885,407 +11302,597 @@ export type OriginEntityFilterInput = {
   or?: Array<OriginEntityFilterInput>;
   not?: Array<OriginEntityFilterInput>;
 
+  accent_colors?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  ai_generated_summary?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  appearance_config?: {
+    is_nil?: boolean;
+    eq?: OriginsIdentityAppearanceConfigResourceSchema;
+    not_eq?: OriginsIdentityAppearanceConfigResourceSchema;
+    in?: Array<OriginsIdentityAppearanceConfigResourceSchema>;
+    less_than?: OriginsIdentityAppearanceConfigResourceSchema;
+    greater_than?: OriginsIdentityAppearanceConfigResourceSchema;
+    less_than_or_equal?: OriginsIdentityAppearanceConfigResourceSchema;
+    greater_than_or_equal?: OriginsIdentityAppearanceConfigResourceSchema;
+  };
+
+  banner_key?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  banner_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  brand_conversation_config?: {
+    is_nil?: boolean;
+    eq?: OriginsIdentityBrandConversationConfigResourceSchema;
+    not_eq?: OriginsIdentityBrandConversationConfigResourceSchema;
+    in?: Array<OriginsIdentityBrandConversationConfigResourceSchema>;
+    less_than?: OriginsIdentityBrandConversationConfigResourceSchema;
+    greater_than?: OriginsIdentityBrandConversationConfigResourceSchema;
+    less_than_or_equal?: OriginsIdentityBrandConversationConfigResourceSchema;
+    greater_than_or_equal?: OriginsIdentityBrandConversationConfigResourceSchema;
+  };
+
+  categories?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  content_tabs_config?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  content_themes?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  core_values?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  engagement_metrics?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  extracted_content?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  guardrails_settings?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  tenant_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  parent_origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  is_active?: {
     is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  is_featured?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  is_public?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  key_messaging?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  last_website_scrape?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  mission_statement?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  page_sections_config?: {
     is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  parent_origin_entity_id?: {
     is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   personality_traits?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  mission_statement?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  core_values?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  accent_colors?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  tone_of_voice?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  key_messaging?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  target_audience?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  content_themes?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  categories?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  picture_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    has?: string;
   };
 
   picture_key?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  banner_url?: {
+  picture_url?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  banner_key?: {
+  podcast_button_color?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  social_links?: {
-    eq?: Array<OriginsIdentitySocialLinkResourceSchema>;
-    not_eq?: Array<OriginsIdentitySocialLinkResourceSchema>;
-    in?: Array<Array<OriginsIdentitySocialLinkResourceSchema>>;
+  podcast_button_link?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  voice_settings?: {
+  podcast_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_text_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  podcast_button_visible?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  podcast_content_settings?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  voice_config?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
+  presigned_banner_url?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  guardrails_settings?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
+  presigned_picture_url?: {
     is_nil?: boolean;
-  };
-
-  appearance_config?: {
-    eq?: OriginsIdentityAppearanceConfigResourceSchema;
-    not_eq?: OriginsIdentityAppearanceConfigResourceSchema;
-    in?: Array<OriginsIdentityAppearanceConfigResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  brand_conversation_config?: {
-    eq?: OriginsIdentityBrandConversationConfigResourceSchema;
-    not_eq?: OriginsIdentityBrandConversationConfigResourceSchema;
-    in?: Array<OriginsIdentityBrandConversationConfigResourceSchema>;
-    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   public_profile_config?: {
+    is_nil?: boolean;
     eq?: OriginsIdentityPublicProfileConfigResourceSchema;
     not_eq?: OriginsIdentityPublicProfileConfigResourceSchema;
     in?: Array<OriginsIdentityPublicProfileConfigResourceSchema>;
-    is_nil?: boolean;
+    less_than?: OriginsIdentityPublicProfileConfigResourceSchema;
+    greater_than?: OriginsIdentityPublicProfileConfigResourceSchema;
+    less_than_or_equal?: OriginsIdentityPublicProfileConfigResourceSchema;
+    greater_than_or_equal?: OriginsIdentityPublicProfileConfigResourceSchema;
   };
 
-  engagement_metrics?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
+  setup_progress_id?: {
     is_nil?: boolean;
-  };
-
-  extracted_content?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  ai_generated_summary?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  is_public?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  is_active?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  is_featured?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   slug?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  website_content?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
+  social_links?: {
     is_nil?: boolean;
+    eq?: Array<OriginsIdentitySocialLinkResourceSchema>;
+    not_eq?: Array<OriginsIdentitySocialLinkResourceSchema>;
+    in?: Array<Array<OriginsIdentitySocialLinkResourceSchema>>;
+    has?: OriginsIdentitySocialLinkResourceSchema;
   };
 
-  last_website_scrape?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  target_audience?: {
     is_nil?: boolean;
-  };
-
-  page_sections_config?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  content_tabs_config?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  youtube_channel_id?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  youtube_channel_data?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+  tenant_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  youtube_sync_settings?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
+  title?: {
     is_nil?: boolean;
-  };
-
-  youtube_content_settings?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  podcast_content_settings?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_visible?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  podcast_button_link?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  podcast_button_text?: {
+  tone_of_voice?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  podcast_button_text_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  setup_progress_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  voice_config?: {
     is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  presigned_picture_url?: {
+  voice_settings?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  website_content?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  youtube_channel_data?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  youtube_channel_id?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  presigned_banner_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  youtube_content_settings?: {
     is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
-  scraped_website_content_type?: {
-    eq?: ScrapedWebsiteContentResourceSchema;
-    not_eq?: ScrapedWebsiteContentResourceSchema;
-    in?: Array<ScrapedWebsiteContentResourceSchema>;
+  youtube_sync_settings?: {
     is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
-
-
-  tenant?: TenantFilterInput;
-
-  setup_progress?: SetupProgressFilterInput;
-
-  parent_origin_entity?: OriginEntityFilterInput;
-
-  child_origin_entities?: OriginEntityFilterInput;
-
-  memberships?: OriginEntityStaffMembershipFilterInput;
-
-  soul_config?: SoulConfigFilterInput;
-
-  chat_config?: ChatConfigFilterInput;
-
-  podcast_config?: PodcastConfigFilterInput;
-
-  origin_assets?: OriginAssetFilterInput;
-
-  youtube_episodes?: YoutubeEpisodeFilterInput;
 
   apps?: AppFilterInput;
 
-  interview_sessions?: InterviewSessionFilterInput;
+  chat_config?: ChatConfigFilterInput;
 
-  prompt_tools?: PromptToolFilterInput;
-
-  prompt_contexts?: PromptContextFilterInput;
+  child_origin_entities?: OriginEntityFilterInput;
 
   feature_flags?: FeatureFlagFilterInput;
 
@@ -9293,75 +11900,144 @@ export type OriginEntityFilterInput = {
 
   homepage_cards?: HomepageCardFilterInput;
 
+  interview_sessions?: InterviewSessionFilterInput;
+
+  memberships?: OriginEntityStaffMembershipFilterInput;
+
+  origin_assets?: OriginAssetFilterInput;
+
+  parent_origin_entity?: OriginEntityFilterInput;
+
+  podcast_config?: PodcastConfigFilterInput;
+
+  prompt_contexts?: PromptContextFilterInput;
+
+  prompt_tools?: PromptToolFilterInput;
+
+  setup_progress?: SetupProgressFilterInput;
+
+  soul_config?: SoulConfigFilterInput;
+
+  tenant?: TenantFilterInput;
+
+  youtube_episodes?: YoutubeEpisodeFilterInput;
+
 };
 export type ScrapedWebsiteContentFilterInput = {
   and?: Array<ScrapedWebsiteContentFilterInput>;
   or?: Array<ScrapedWebsiteContentFilterInput>;
   not?: Array<ScrapedWebsiteContentFilterInput>;
 
-  url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  meta_description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  meta_keywords?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  open_graph?: {
-    eq?: ScrapedWebsiteContentOpenGraphResourceSchema;
-    not_eq?: ScrapedWebsiteContentOpenGraphResourceSchema;
-    in?: Array<ScrapedWebsiteContentOpenGraphResourceSchema>;
-    is_nil?: boolean;
-  };
-
   headings?: {
+    is_nil?: boolean;
     eq?: Array<ScrapedWebsiteContentHeadingResourceSchema>;
     not_eq?: Array<ScrapedWebsiteContentHeadingResourceSchema>;
     in?: Array<Array<ScrapedWebsiteContentHeadingResourceSchema>>;
+    has?: ScrapedWebsiteContentHeadingResourceSchema;
+  };
+
+  meta_description?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  meta_keywords?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  open_graph?: {
+    is_nil?: boolean;
+    eq?: ScrapedWebsiteContentOpenGraphResourceSchema;
+    not_eq?: ScrapedWebsiteContentOpenGraphResourceSchema;
+    in?: Array<ScrapedWebsiteContentOpenGraphResourceSchema>;
+    less_than?: ScrapedWebsiteContentOpenGraphResourceSchema;
+    greater_than?: ScrapedWebsiteContentOpenGraphResourceSchema;
+    less_than_or_equal?: ScrapedWebsiteContentOpenGraphResourceSchema;
+    greater_than_or_equal?: ScrapedWebsiteContentOpenGraphResourceSchema;
   };
 
   paragraphs?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  text_content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    has?: string;
   };
 
   scraped_at?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  text_content?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -9371,19 +12047,32 @@ export type ScrapedWebsiteContentHeadingFilterInput = {
   not?: Array<ScrapedWebsiteContentHeadingFilterInput>;
 
   level?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   text?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -9392,27 +12081,47 @@ export type ScrapedWebsiteContentOpenGraphFilterInput = {
   or?: Array<ScrapedWebsiteContentOpenGraphFilterInput>;
   not?: Array<ScrapedWebsiteContentOpenGraphFilterInput>;
 
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   description?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   image?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -9421,110 +12130,144 @@ export type OriginEntityStaffMembershipFilterInput = {
   or?: Array<OriginEntityStaffMembershipFilterInput>;
   not?: Array<OriginEntityStaffMembershipFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  user_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  role?: {
-    eq?: "admin" | "member" | "owner" | "viewer";
-    not_eq?: "admin" | "member" | "owner" | "viewer";
-    in?: Array<"admin" | "member" | "owner" | "viewer">;
-  };
-
-  status?: {
-    eq?: "active" | "pending" | "suspended";
-    not_eq?: "active" | "pending" | "suspended";
-    in?: Array<"active" | "pending" | "suspended">;
-  };
-
-  invitation_token?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  invited_email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  expires_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  invited_by?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
   accepted_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
     is_nil?: boolean;
-  };
-
-  joined_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
+  expires_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  invitation_token?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  invited_by?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  invited_email?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  joined_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  role?: {
+    eq?: "admin" | "member" | "owner" | "viewer";
+    not_eq?: "admin" | "member" | "owner" | "viewer";
+    in?: Array<"admin" | "member" | "owner" | "viewer">;
+    less_than?: "admin" | "member" | "owner" | "viewer";
+    greater_than?: "admin" | "member" | "owner" | "viewer";
+    less_than_or_equal?: "admin" | "member" | "owner" | "viewer";
+    greater_than_or_equal?: "admin" | "member" | "owner" | "viewer";
+  };
+
+  status?: {
+    eq?: "active" | "pending" | "suspended";
+    not_eq?: "active" | "pending" | "suspended";
+    in?: Array<"active" | "pending" | "suspended">;
+    less_than?: "active" | "pending" | "suspended";
+    greater_than?: "active" | "pending" | "suspended";
+    less_than_or_equal?: "active" | "pending" | "suspended";
+    greater_than_or_equal?: "active" | "pending" | "suspended";
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  user_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -9536,90 +12279,132 @@ export type PromptContextFilterInput = {
   or?: Array<PromptContextFilterInput>;
   not?: Array<PromptContextFilterInput>;
 
+  context_text?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  guardrail_config?: {
+    is_nil?: boolean;
+    eq?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
+    not_eq?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
+    in?: Array<OriginsIdentityPromptContextGuardrailConfigResourceSchema>;
+    less_than?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
+    greater_than?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
+    less_than_or_equal?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
+    greater_than_or_equal?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  is_active?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  is_default?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  public_title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  public_description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  context_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  prompt_tool_ids?: {
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    is_nil?: boolean;
-  };
-
-  is_active?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  is_default?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  guardrail_config?: {
-    eq?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
-    not_eq?: OriginsIdentityPromptContextGuardrailConfigResourceSchema;
-    in?: Array<OriginsIdentityPromptContextGuardrailConfigResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  prompt_tool_ids?: {
+    is_nil?: boolean;
+    eq?: Array<UUID>;
+    not_eq?: Array<UUID>;
+    in?: Array<Array<UUID>>;
+    has?: UUID;
+  };
+
+  public_description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -9629,77 +12414,84 @@ export type OriginsIdentityPromptContextGuardrailConfigFilterInput = {
   or?: Array<OriginsIdentityPromptContextGuardrailConfigFilterInput>;
   not?: Array<OriginsIdentityPromptContextGuardrailConfigFilterInput>;
 
-  input_prompt_injection_detection?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  input_jailbreak_detection?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  input_toxicity_detection?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  input_max_length?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-  };
-
-  output_data_leakage_prevention?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  output_content_moderation?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  output_toxicity_detection?: {
-    eq?: boolean;
-    not_eq?: boolean;
+  allowed_toxicity_categories?: {
+    eq?: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
+    not_eq?: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
+    in?: Array<Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">>;
+    has?: "harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic";
   };
 
   confidence_threshold?: {
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-  };
-
-  allowed_toxicity_categories?: {
-    eq?: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
-    not_eq?: Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">;
-    in?: Array<Array<"harassment" | "harassment/threatening" | "hate" | "hate/threatening" | "illicit" | "illicit/violent" | "self-harm" | "self-harm/instructions" | "self-harm/intent" | "sexual" | "violence" | "violence/graphic">>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   grounding_check?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   grounding_threshold?: {
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
+  input_jailbreak_detection?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  input_max_length?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  input_prompt_injection_detection?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  input_toxicity_detection?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  output_content_moderation?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  output_data_leakage_prevention?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  output_toxicity_detection?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
 
 
 };
@@ -9708,111 +12500,153 @@ export type PromptToolFilterInput = {
   or?: Array<PromptToolFilterInput>;
   not?: Array<PromptToolFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  auto_approve?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   description?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  prompt_template?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  model?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  temperature?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  max_tokens?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   is_active?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  auto_approve?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
   letta_tools?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  max_tokens?: {
     is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  model?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  prompt_template?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   source_origin_entity_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  temperature?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -9825,47 +12659,51 @@ export type OriginsIdentityPublicProfileConfigFilterInput = {
   not?: Array<OriginsIdentityPublicProfileConfigFilterInput>;
 
   custom_links?: {
+    is_nil?: boolean;
     eq?: Array<OriginsIdentityCustomLinkResourceSchema>;
     not_eq?: Array<OriginsIdentityCustomLinkResourceSchema>;
     in?: Array<Array<OriginsIdentityCustomLinkResourceSchema>>;
-    is_nil?: boolean;
-  };
-
-  show_content_section?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    has?: OriginsIdentityCustomLinkResourceSchema;
   };
 
   display_order?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  voice_enabled?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  show_signin_button?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   show_children_section?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
+  show_content_section?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  show_signin_button?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  voice_enabled?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
 
 
 };
@@ -9874,108 +12712,147 @@ export type SetupProgressFilterInput = {
   or?: Array<SetupProgressFilterInput>;
   not?: Array<SetupProgressFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  ai_suggested_links?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  api_extracted_data?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  completed_steps?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  current_step?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   entity_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  completed_steps?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  social_media_links?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  ai_suggested_links?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  api_extracted_data?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   is_completed?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
 
-  current_step?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
+  metadata?: {
     is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   onboarding_mode?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  origin_entity_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  social_media_links?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-
-  origin_entity?: OriginEntityFilterInput;
 
   origin_entities?: OriginEntityFilterInput;
+
+  origin_entity?: OriginEntityFilterInput;
 
 };
 export type OriginsIdentitySocialLinkFilterInput = {
@@ -9983,52 +12860,91 @@ export type OriginsIdentitySocialLinkFilterInput = {
   or?: Array<OriginsIdentitySocialLinkFilterInput>;
   not?: Array<OriginsIdentitySocialLinkFilterInput>;
 
+  custom_icon_key?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  custom_icon_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  custom_platform_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  icon_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   platform?: {
     eq?: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
     not_eq?: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
     in?: Array<"apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube">;
+    less_than?: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
+    greater_than?: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
+    less_than_or_equal?: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
+    greater_than_or_equal?: "apple_podcasts" | "facebook" | "instagram" | "linkedin" | "other" | "pinterest" | "podcast" | "rss_feed" | "spotify" | "tiktok" | "website" | "x" | "youtube";
   };
 
   url?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   visible?: {
+    is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
-    is_nil?: boolean;
+    in?: Array<boolean>;
   };
-
-  custom_platform_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  icon_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  custom_icon_key?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  custom_icon_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -10037,116 +12953,176 @@ export type SoulConfigFilterInput = {
   or?: Array<SoulConfigFilterInput>;
   not?: Array<SoulConfigFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  personality_traits?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
-  };
-
-  purpose_statement?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  core_instructions?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  conversation_starters?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
-  };
-
-  speaking_tone?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
   communication_style?: {
+    is_nil?: boolean;
     eq?: OriginsIdentitySoulConfigCommunicationStyleResourceSchema;
     not_eq?: OriginsIdentitySoulConfigCommunicationStyleResourceSchema;
     in?: Array<OriginsIdentitySoulConfigCommunicationStyleResourceSchema>;
-    is_nil?: boolean;
+    less_than?: OriginsIdentitySoulConfigCommunicationStyleResourceSchema;
+    greater_than?: OriginsIdentitySoulConfigCommunicationStyleResourceSchema;
+    less_than_or_equal?: OriginsIdentitySoulConfigCommunicationStyleResourceSchema;
+    greater_than_or_equal?: OriginsIdentitySoulConfigCommunicationStyleResourceSchema;
   };
 
-  vocabulary_preferences?: {
+  conversation_starters?: {
+    is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    less_than?: Array<Record<string, any>>;
+    greater_than?: Array<Record<string, any>>;
+    less_than_or_equal?: Array<Record<string, any>>;
+    greater_than_or_equal?: Array<Record<string, any>>;
+  };
+
+  core_instructions?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  response_format_preferences?: {
-    eq?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
-    not_eq?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
-    in?: Array<OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  experience_settings?: {
-    eq?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
-    not_eq?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
-    in?: Array<OriginsIdentitySoulConfigExperienceSettingsResourceSchema>;
-    is_nil?: boolean;
-  };
-
-  guardrails_settings?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  response_length?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: Array<string>;
+    greater_than?: Array<string>;
+    less_than_or_equal?: Array<string>;
+    greater_than_or_equal?: Array<string>;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  experience_settings?: {
+    is_nil?: boolean;
+    eq?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
+    not_eq?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
+    in?: Array<OriginsIdentitySoulConfigExperienceSettingsResourceSchema>;
+    less_than?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
+    greater_than?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
+    less_than_or_equal?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
+    greater_than_or_equal?: OriginsIdentitySoulConfigExperienceSettingsResourceSchema;
+  };
+
+  guardrails_settings?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  origin_entity_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  personality_traits?: {
+    is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    less_than?: Array<Record<string, any>>;
+    greater_than?: Array<Record<string, any>>;
+    less_than_or_equal?: Array<Record<string, any>>;
+    greater_than_or_equal?: Array<Record<string, any>>;
+  };
+
+  purpose_statement?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  response_format_preferences?: {
+    is_nil?: boolean;
+    eq?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
+    not_eq?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
+    in?: Array<OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema>;
+    less_than?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
+    greater_than?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
+    less_than_or_equal?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
+    greater_than_or_equal?: OriginsIdentitySoulConfigResponseFormatPreferencesResourceSchema;
+  };
+
+  response_length?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  speaking_tone?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  vocabulary_preferences?: {
     is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    less_than?: Array<string>;
+    greater_than?: Array<string>;
+    less_than_or_equal?: Array<string>;
+    greater_than_or_equal?: Array<string>;
   };
-
 
   origin_entity?: OriginEntityFilterInput;
 
@@ -10157,12 +13133,18 @@ export type OriginsIdentitySoulConfigCommunicationStyleFilterInput = {
   not?: Array<OriginsIdentitySoulConfigCommunicationStyleFilterInput>;
 
   notes?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -10171,28 +13153,37 @@ export type OriginsIdentitySoulConfigExperienceSettingsFilterInput = {
   or?: Array<OriginsIdentitySoulConfigExperienceSettingsFilterInput>;
   not?: Array<OriginsIdentitySoulConfigExperienceSettingsFilterInput>;
 
-  welcome_message?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  proactive_assistance?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
   context_awareness?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   personalized_responses?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
+  proactive_assistance?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  welcome_message?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
 
 };
@@ -10201,21 +13192,23 @@ export type OriginsIdentitySoulConfigResponseFormatPreferencesFilterInput = {
   or?: Array<OriginsIdentitySoulConfigResponseFormatPreferencesFilterInput>;
   not?: Array<OriginsIdentitySoulConfigResponseFormatPreferencesFilterInput>;
 
+  include_examples?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
   use_bullet_points?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   use_emojis?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
-
-  include_examples?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
 
 
 };
@@ -10224,87 +13217,137 @@ export type UserProfileFilterInput = {
   or?: Array<UserProfileFilterInput>;
   not?: Array<UserProfileFilterInput>;
 
+  avatar_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  bio?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  display_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  email?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  notification_preferences?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  privacy_settings?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  theme_preference?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   user_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
-
-  display_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  avatar_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  bio?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  notification_preferences?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  privacy_settings?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  theme_preference?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
 
 
 };
@@ -10313,70 +13356,103 @@ export type InterviewGeneratedContentFilterInput = {
   or?: Array<InterviewGeneratedContentFilterInput>;
   not?: Array<InterviewGeneratedContentFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  content?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   content_type?: {
     eq?: "article" | "post" | "summary" | "thread" | "tweet";
     not_eq?: "article" | "post" | "summary" | "thread" | "tweet";
     in?: Array<"article" | "post" | "summary" | "thread" | "tweet">;
-  };
-
-  content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  status?: {
-    eq?: "approved" | "draft" | "published" | "rejected";
-    not_eq?: "approved" | "draft" | "published" | "rejected";
-    in?: Array<"approved" | "draft" | "published" | "rejected">;
-  };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+    less_than?: "article" | "post" | "summary" | "thread" | "tweet";
+    greater_than?: "article" | "post" | "summary" | "thread" | "tweet";
+    less_than_or_equal?: "article" | "post" | "summary" | "thread" | "tweet";
+    greater_than_or_equal?: "article" | "post" | "summary" | "thread" | "tweet";
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   interview_session_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  status?: {
+    eq?: "approved" | "draft" | "published" | "rejected";
+    not_eq?: "approved" | "draft" | "published" | "rejected";
+    in?: Array<"approved" | "draft" | "published" | "rejected">;
+    less_than?: "approved" | "draft" | "published" | "rejected";
+    greater_than?: "approved" | "draft" | "published" | "rejected";
+    less_than_or_equal?: "approved" | "draft" | "published" | "rejected";
+    greater_than_or_equal?: "approved" | "draft" | "published" | "rejected";
+  };
+
+  title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   interview_session?: InterviewSessionFilterInput;
 
@@ -10386,134 +13462,188 @@ export type InterviewRecordingFilterInput = {
   or?: Array<InterviewRecordingFilterInput>;
   not?: Array<InterviewRecordingFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  audio_codec?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  recording_type?: {
-    eq?: "audio_only" | "audio_video" | "video_only";
-    not_eq?: "audio_only" | "audio_video" | "video_only";
-    in?: Array<"audio_only" | "audio_video" | "video_only">;
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  duration_ms?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  error_message?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   file_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  storage_key?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   file_size?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  duration_ms?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
     less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  video_codec?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  audio_codec?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  width?: {
-    eq?: number;
-    not_eq?: number;
     greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
     less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
+    greater_than_or_equal?: number;
   };
 
   height?: {
+    is_nil?: boolean;
     eq?: number;
     not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
     in?: Array<number>;
-    is_nil?: boolean;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
-  status?: {
-    eq?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    not_eq?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    in?: Array<"failed" | "processing" | "ready" | "recording" | "uploading">;
-  };
-
-  error_message?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   interview_session_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  recording_type?: {
+    eq?: "audio_only" | "audio_video" | "video_only";
+    not_eq?: "audio_only" | "audio_video" | "video_only";
+    in?: Array<"audio_only" | "audio_video" | "video_only">;
+    less_than?: "audio_only" | "audio_video" | "video_only";
+    greater_than?: "audio_only" | "audio_video" | "video_only";
+    less_than_or_equal?: "audio_only" | "audio_video" | "video_only";
+    greater_than_or_equal?: "audio_only" | "audio_video" | "video_only";
+  };
+
+  status?: {
+    eq?: "failed" | "processing" | "ready" | "recording" | "uploading";
+    not_eq?: "failed" | "processing" | "ready" | "recording" | "uploading";
+    in?: Array<"failed" | "processing" | "ready" | "recording" | "uploading">;
+    less_than?: "failed" | "processing" | "ready" | "recording" | "uploading";
+    greater_than?: "failed" | "processing" | "ready" | "recording" | "uploading";
+    less_than_or_equal?: "failed" | "processing" | "ready" | "recording" | "uploading";
+    greater_than_or_equal?: "failed" | "processing" | "ready" | "recording" | "uploading";
+  };
+
+  storage_key?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  video_codec?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  width?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
 
   interview_session?: InterviewSessionFilterInput;
 
@@ -10523,93 +13653,128 @@ export type InterviewSessionFilterInput = {
   or?: Array<InterviewSessionFilterInput>;
   not?: Array<InterviewSessionFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  status?: {
-    eq?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    not_eq?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    in?: Array<"cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing">;
-  };
-
   channel?: {
     eq?: "video";
     not_eq?: "video";
     in?: Array<"video">;
-  };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  session_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  summary?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  key_quotes?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
-  };
-
-  topics?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
+    less_than?: "video";
+    greater_than?: "video";
+    less_than_or_equal?: "video";
+    greater_than_or_equal?: "video";
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  key_quotes?: {
+    is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    has?: Record<string, any>;
+  };
+
+  metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  session_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
-  origin_entity?: OriginEntityFilterInput;
+  status?: {
+    eq?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+    not_eq?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+    in?: Array<"cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing">;
+    less_than?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+    greater_than?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+    less_than_or_equal?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+    greater_than_or_equal?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
+  };
 
-  interview_turns?: InterviewTurnFilterInput;
+  summary?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  topics?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   interview_generated_contents?: InterviewGeneratedContentFilterInput;
 
   interview_recordings?: InterviewRecordingFilterInput;
+
+  interview_turns?: InterviewTurnFilterInput;
+
+  origin_entity?: OriginEntityFilterInput;
 
 };
 export type InterviewTurnFilterInput = {
@@ -10617,68 +13782,93 @@ export type InterviewTurnFilterInput = {
   or?: Array<InterviewTurnFilterInput>;
   not?: Array<InterviewTurnFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  turn_number?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-  };
-
-  question?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
   answer?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   interview_session_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  question?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  turn_number?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   interview_session?: InterviewSessionFilterInput;
 
@@ -10692,21 +13882,41 @@ export type AgentMemoryFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   label?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   value?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -10715,70 +13925,92 @@ export type DriveConnectionFilterInput = {
   or?: Array<DriveConnectionFilterInput>;
   not?: Array<DriveConnectionFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  token_expires_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  status?: {
-    eq?: "active" | "disconnected" | "needs_reauth";
-    not_eq?: "active" | "disconnected" | "needs_reauth";
-    in?: Array<"active" | "disconnected" | "needs_reauth">;
-    is_nil?: boolean;
-  };
-
   connected_by_user_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  google_email?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
     less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   entity_profile_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  google_email?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  status?: {
+    is_nil?: boolean;
+    eq?: "active" | "disconnected" | "needs_reauth";
+    not_eq?: "active" | "disconnected" | "needs_reauth";
+    in?: Array<"active" | "disconnected" | "needs_reauth">;
+    less_than?: "active" | "disconnected" | "needs_reauth";
+    greater_than?: "active" | "disconnected" | "needs_reauth";
+    less_than_or_equal?: "active" | "disconnected" | "needs_reauth";
+    greater_than_or_equal?: "active" | "disconnected" | "needs_reauth";
+  };
+
+  token_expires_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   entity_profile?: OriginEntityFilterInput;
 
@@ -10788,70 +14020,103 @@ export type GithubConnectionFilterInput = {
   or?: Array<GithubConnectionFilterInput>;
   not?: Array<GithubConnectionFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  installation_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  github_account_login?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  github_account_type?: {
-    eq?: "organization" | "user";
-    not_eq?: "organization" | "user";
-    in?: Array<"organization" | "user">;
-  };
-
-  status?: {
-    eq?: "active" | "disconnected" | "needs_reauth";
-    not_eq?: "active" | "disconnected" | "needs_reauth";
-    in?: Array<"active" | "disconnected" | "needs_reauth">;
-    is_nil?: boolean;
-  };
-
   connected_by_user_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
     less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   entity_profile_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  github_account_login?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  github_account_type?: {
+    eq?: "organization" | "user";
+    not_eq?: "organization" | "user";
+    in?: Array<"organization" | "user">;
+    less_than?: "organization" | "user";
+    greater_than?: "organization" | "user";
+    less_than_or_equal?: "organization" | "user";
+    greater_than_or_equal?: "organization" | "user";
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  installation_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  status?: {
+    is_nil?: boolean;
+    eq?: "active" | "disconnected" | "needs_reauth";
+    not_eq?: "active" | "disconnected" | "needs_reauth";
+    in?: Array<"active" | "disconnected" | "needs_reauth">;
+    less_than?: "active" | "disconnected" | "needs_reauth";
+    greater_than?: "active" | "disconnected" | "needs_reauth";
+    less_than_or_equal?: "active" | "disconnected" | "needs_reauth";
+    greater_than_or_equal?: "active" | "disconnected" | "needs_reauth";
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   entity_profile?: OriginEntityFilterInput;
 
@@ -10861,134 +14126,178 @@ export type LibraryFilterInput = {
   or?: Array<LibraryFilterInput>;
   not?: Array<LibraryFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  slug?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+  adapter_config?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   adapter_kind?: {
     eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
     not_eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
     in?: Array<"craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube">;
-  };
-
-  adapter_config?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  inherits_to_descendants?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
-  status?: {
-    eq?: "error" | "pending" | "synced" | "syncing";
-    not_eq?: "error" | "pending" | "synced" | "syncing";
-    in?: Array<"error" | "pending" | "synced" | "syncing">;
-  };
-
-  last_synced_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  error_count?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-  };
-
-  last_error?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  last_error_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
-  };
-
-  auto_resync_enabled?: {
-    eq?: boolean;
-    not_eq?: boolean;
+    less_than?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    greater_than?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    less_than_or_equal?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    greater_than_or_equal?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
   };
 
   auto_ingest_videos?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
-  transcribe_media?: {
+  auto_resync_enabled?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  error_count?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  inherits_to_descendants?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  last_error?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  last_error_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  last_synced_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
+  };
+
+  name?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  slug?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
-  origin_entity?: OriginEntityFilterInput;
+  status?: {
+    eq?: "error" | "pending" | "synced" | "syncing";
+    not_eq?: "error" | "pending" | "synced" | "syncing";
+    in?: Array<"error" | "pending" | "synced" | "syncing">;
+    less_than?: "error" | "pending" | "synced" | "syncing";
+    greater_than?: "error" | "pending" | "synced" | "syncing";
+    less_than_or_equal?: "error" | "pending" | "synced" | "syncing";
+    greater_than_or_equal?: "error" | "pending" | "synced" | "syncing";
+  };
+
+  transcribe_media?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   files?: LibraryFileFilterInput;
 
   grants?: LibraryAccessGrantFilterInput;
+
+  origin_entity?: OriginEntityFilterInput;
 
 };
 export type LibraryAccessGrantFilterInput = {
@@ -10996,48 +14305,59 @@ export type LibraryAccessGrantFilterInput = {
   or?: Array<LibraryAccessGrantFilterInput>;
   not?: Array<LibraryAccessGrantFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
     less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  library_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   grantee_origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
 
-  library?: LibraryFilterInput;
+  library_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   grantee_origin_entity?: OriginEntityFilterInput;
+
+  library?: LibraryFilterInput;
 
 };
 export type LibraryFileFilterInput = {
@@ -11045,129 +14365,205 @@ export type LibraryFileFilterInput = {
   or?: Array<LibraryFileFilterInput>;
   not?: Array<LibraryFileFilterInput>;
 
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  path?: {
+  item_content?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  item_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   item_name?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  item_content?: {
+  item_type?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  s3_key?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  sync_status?: {
-    eq?: "error" | "orphaned" | "synced";
-    not_eq?: "error" | "orphaned" | "synced";
-    in?: Array<"error" | "orphaned" | "synced">;
-    is_nil?: boolean;
-  };
-
-  source_metadata?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   library_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-  };
-
-  metadata_contains?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  metadata_keys?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  metadata_number?: {
-    eq?: Decimal;
-    not_eq?: Decimal;
-    greater_than?: Decimal;
-    greater_than_or_equal?: Decimal;
-    less_than?: Decimal;
-    less_than_or_equal?: Decimal;
-    in?: Array<Decimal>;
-    is_nil?: boolean;
-  };
-
-  signed_s3_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  vfs_path?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   media_format?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  metadata_contains?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  metadata_keys?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  metadata_number?: {
+    is_nil?: boolean;
+    eq?: Decimal;
+    not_eq?: Decimal;
+    in?: Array<Decimal>;
+    less_than?: Decimal;
+    greater_than?: Decimal;
+    less_than_or_equal?: Decimal;
+    greater_than_or_equal?: Decimal;
+  };
+
+  path?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  s3_key?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  signed_s3_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  source_metadata?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  sync_status?: {
+    is_nil?: boolean;
+    eq?: "error" | "orphaned" | "synced";
+    not_eq?: "error" | "orphaned" | "synced";
+    in?: Array<"error" | "orphaned" | "synced">;
+    less_than?: "error" | "orphaned" | "synced";
+    greater_than?: "error" | "orphaned" | "synced";
+    less_than_or_equal?: "error" | "orphaned" | "synced";
+    greater_than_or_equal?: "error" | "orphaned" | "synced";
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  vfs_path?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
   library?: LibraryFilterInput;
 
@@ -11179,65 +14575,86 @@ export type PlaylistFilterInput = {
   or?: Array<PlaylistFilterInput>;
   not?: Array<PlaylistFilterInput>;
 
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  item_count?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   title?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-  };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  item_count?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   user_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  items?: PlaylistItemFilterInput;
 
   user?: UserFilterInput;
-
-  items?: PlaylistItemFilterInput;
 
 };
 export type PlaylistItemFilterInput = {
@@ -11245,74 +14662,93 @@ export type PlaylistItemFilterInput = {
   or?: Array<PlaylistItemFilterInput>;
   not?: Array<PlaylistItemFilterInput>;
 
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
   id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   item_type?: {
     eq?: "library" | "video";
     not_eq?: "library" | "video";
     in?: Array<"library" | "video">;
+    less_than?: "library" | "video";
+    greater_than?: "library" | "video";
+    less_than_or_equal?: "library" | "video";
+    greater_than_or_equal?: "library" | "video";
   };
 
-  position?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
+  library_file_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  library_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   playlist_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  library_file_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
+  position?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
-  library_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-
-  playlist?: PlaylistFilterInput;
+  library?: LibraryFilterInput;
 
   library_file?: LibraryFileFilterInput;
 
-  library?: LibraryFilterInput;
+  playlist?: PlaylistFilterInput;
 
 };
 export type VideoAssetFilterInput = {
@@ -11320,128 +14756,160 @@ export type VideoAssetFilterInput = {
   or?: Array<VideoAssetFilterInput>;
   not?: Array<VideoAssetFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  otterwake_org?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  otterwake_upload_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  otterwake_asset_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  otterwake_playback_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  status?: {
-    eq?: "errored" | "preparing" | "ready";
-    not_eq?: "errored" | "preparing" | "ready";
-    in?: Array<"errored" | "preparing" | "ready">;
-  };
-
-  duration?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
   aspect_ratio?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  error?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   captioned_at?: {
+    is_nil?: boolean;
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  duration?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  error?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   library_file_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  resolved_playback_type?: {
-    eq?: ResolvedPlaybackResourceSchema;
-    not_eq?: ResolvedPlaybackResourceSchema;
-    in?: Array<ResolvedPlaybackResourceSchema>;
+  otterwake_asset_id?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  static_rendition_request_type?: {
-    eq?: StaticRenditionRequestResultResourceSchema;
-    not_eq?: StaticRenditionRequestResultResourceSchema;
-    in?: Array<StaticRenditionRequestResultResourceSchema>;
+  otterwake_org?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  otterwake_playback_id?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
-  static_rendition_type?: {
-    eq?: StaticRenditionResourceSchema;
-    not_eq?: StaticRenditionResourceSchema;
-    in?: Array<StaticRenditionResourceSchema>;
+  otterwake_upload_id?: {
     is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
+  status?: {
+    eq?: "errored" | "preparing" | "ready";
+    not_eq?: "errored" | "preparing" | "ready";
+    in?: Array<"errored" | "preparing" | "ready">;
+    less_than?: "errored" | "preparing" | "ready";
+    greater_than?: "errored" | "preparing" | "ready";
+    less_than_or_equal?: "errored" | "preparing" | "ready";
+    greater_than_or_equal?: "errored" | "preparing" | "ready";
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
   library_file?: LibraryFileFilterInput;
 
@@ -11451,33 +14919,57 @@ export type ResolvedPlaybackFilterInput = {
   or?: Array<ResolvedPlaybackFilterInput>;
   not?: Array<ResolvedPlaybackFilterInput>;
 
+  library_file_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  poster?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  src?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   status?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  src?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  poster?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  library_file_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -11490,14 +14982,27 @@ export type StaticRenditionFilterInput = {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   url?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
 
 
 };
@@ -11506,25 +15011,45 @@ export type StaticRenditionRequestFilterInput = {
   or?: Array<StaticRenditionRequestFilterInput>;
   not?: Array<StaticRenditionRequestFilterInput>;
 
+  error?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   resolution?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   status?: {
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
-
-  error?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
 
 
 };
@@ -11534,12 +15059,12 @@ export type StaticRenditionRequestResultFilterInput = {
   not?: Array<StaticRenditionRequestResultFilterInput>;
 
   requested?: {
+    is_nil?: boolean;
     eq?: Array<StaticRenditionRequestResourceSchema>;
     not_eq?: Array<StaticRenditionRequestResourceSchema>;
     in?: Array<Array<StaticRenditionRequestResourceSchema>>;
-    is_nil?: boolean;
+    has?: StaticRenditionRequestResourceSchema;
   };
-
 
 
 };
@@ -11548,74 +15073,100 @@ export type ChatBindingFilterInput = {
   or?: Array<ChatBindingFilterInput>;
   not?: Array<ChatBindingFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
+  bound_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTime;
+    not_eq?: UtcDateTime;
+    in?: Array<UtcDateTime>;
+    less_than?: UtcDateTime;
+    greater_than?: UtcDateTime;
+    less_than_or_equal?: UtcDateTime;
+    greater_than_or_equal?: UtcDateTime;
   };
 
   chat_guid?: {
+    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  prospect_labels?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-  };
-
-  notes?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  bound_at?: {
-    eq?: UtcDateTime;
-    not_eq?: UtcDateTime;
-    greater_than?: UtcDateTime;
-    greater_than_or_equal?: UtcDateTime;
-    less_than?: UtcDateTime;
-    less_than_or_equal?: UtcDateTime;
-    in?: Array<UtcDateTime>;
-    is_nil?: boolean;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  notes?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  prospect_labels?: {
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   prospect_phones?: {
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
+    has?: string;
+  };
+
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
   origin_entity?: OriginEntityFilterInput;
@@ -11626,163 +15177,272 @@ export type PodcastConfigFilterInput = {
   or?: Array<PodcastConfigFilterInput>;
   not?: Array<PodcastConfigFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  page_subtitle?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  featured_video_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  hero_cta_link?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  playlist_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  episodes?: {
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    is_nil?: boolean;
-  };
-
   appearance_config?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  is_public?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  trailer_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   conversation_starter_config?: {
+    is_nil?: boolean;
     eq?: Record<string, any>;
     not_eq?: Record<string, any>;
     in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  origins_button_visible?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  page_title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  hero_cta_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  cta_button_border_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  entity_profile_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  episodes?: {
+    is_nil?: boolean;
+    eq?: Array<Record<string, any>>;
+    not_eq?: Array<Record<string, any>>;
+    in?: Array<Array<Record<string, any>>>;
+    has?: Record<string, any>;
+  };
+
+  featured_video_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  hero_cta_link?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  hero_cta_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  is_public?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  logo_link_type?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  logo_link_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_border_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_text_color?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  origins_button_visible?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  page_subtitle?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  page_title?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  playlist_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  trailer_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
-
-  logo_link_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  cta_button_border_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origins_button_text?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origins_button_border_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  origins_button_text_color?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  logo_link_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  entity_profile_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
 
   entity_profile?: OriginEntityFilterInput;
 
@@ -11792,78 +15452,95 @@ export type PodcastEpisodeSettingsFilterInput = {
   or?: Array<PodcastEpisodeSettingsFilterInput>;
   not?: Array<PodcastEpisodeSettingsFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  visible?: {
-    eq?: boolean;
-    not_eq?: boolean;
-  };
-
   ai_enabled?: {
     eq?: boolean;
     not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
-  order?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
+  character_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  order?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  podcast_config_id?: {
+    is_nil?: boolean;
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   updated_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  visible?: {
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
   };
 
   youtube_episode_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
-  podcast_config_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-  character_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    is_nil?: boolean;
-  };
-
-
-  youtube_episode?: YoutubeEpisodeFilterInput;
+  character?: OriginEntityFilterInput;
 
   podcast_config?: PodcastConfigFilterInput;
 
-  character?: OriginEntityFilterInput;
+  youtube_episode?: YoutubeEpisodeFilterInput;
 
 };
 export type YoutubeEpisodeFilterInput = {
@@ -11871,761 +15548,831 @@ export type YoutubeEpisodeFilterInput = {
   or?: Array<YoutubeEpisodeFilterInput>;
   not?: Array<YoutubeEpisodeFilterInput>;
 
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-  };
-
-  video_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  video_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-  };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  thumbnail_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  publish_date?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    is_nil?: boolean;
-  };
-
-  duration?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
-  };
-
-  episode_number?: {
-    eq?: number;
-    not_eq?: number;
-    greater_than?: number;
-    greater_than_or_equal?: number;
-    less_than?: number;
-    less_than_or_equal?: number;
-    in?: Array<number>;
-    is_nil?: boolean;
-  };
-
-  host_ids?: {
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    is_nil?: boolean;
-  };
-
-  guest_ids?: {
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    is_nil?: boolean;
-  };
-
-  guest_names?: {
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
   conversation_starters?: {
+    is_nil?: boolean;
     eq?: Array<string>;
     not_eq?: Array<string>;
     in?: Array<Array<string>>;
-    is_nil?: boolean;
-  };
-
-  used_in_podcast?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  used_in_public_profile?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    is_nil?: boolean;
-  };
-
-  public_profile_config?: {
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    is_nil?: boolean;
-  };
-
-  playlist_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    is_nil?: boolean;
+    has?: string;
   };
 
   created_at?: {
     eq?: UtcDateTimeUsec;
     not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
     in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-    less_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
+  description?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  duration?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  episode_number?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  guest_ids?: {
+    is_nil?: boolean;
+    eq?: Array<UUID>;
+    not_eq?: Array<UUID>;
+    in?: Array<Array<UUID>>;
+    has?: UUID;
+  };
+
+  guest_names?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
+  };
+
+  host_ids?: {
+    is_nil?: boolean;
+    eq?: Array<UUID>;
+    not_eq?: Array<UUID>;
+    in?: Array<Array<UUID>>;
+    has?: UUID;
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
   origin_entity_id?: {
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  playlist_id?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  public_profile_config?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  publish_date?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  thumbnail_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  title?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   transcript_id?: {
+    is_nil?: boolean;
     eq?: UUID;
     not_eq?: UUID;
     in?: Array<UUID>;
-    is_nil?: boolean;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
   };
 
+  updated_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
 
-  origin_entity?: OriginEntityFilterInput;
+  used_in_podcast?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  used_in_public_profile?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  video_id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  video_url?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
 
   library_file?: LibraryFileFilterInput;
+
+  origin_entity?: OriginEntityFilterInput;
 
 };
 
 
-export const consentRecordFilterFields = ["id", "kind", "custom_name", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
+export const consentRecordFilterFields = ["custom_name", "email", "granted", "id", "ip", "kind", "method", "policy_version", "recorded_at", "text_shown", "user_agent"] as const;
 export type ConsentRecordFilterField = (typeof consentRecordFilterFields)[number];
 
-export const staffTenantGrantFilterFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at", "user", "tenant"] as const;
+export const staffTenantGrantFilterFields = ["created_at", "granted_at", "id", "revoked_at", "tenant_id", "updated_at", "user_id", "tenant", "user"] as const;
 export type StaffTenantGrantFilterField = (typeof staffTenantGrantFilterFields)[number];
 
-export const tenantFilterFields = ["id", "name", "slug", "status", "archived_at", "root_origin_entity_id", "created_at", "updated_at", "root_origin_entity"] as const;
+export const tenantFilterFields = ["archived_at", "created_at", "id", "name", "root_origin_entity_id", "slug", "status", "updated_at", "root_origin_entity"] as const;
 export type TenantFilterField = (typeof tenantFilterFields)[number];
 
-export const userFilterFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "sign_in_link_response_type", "is_creator", "tenant", "identities", "staff_tenant_grants", "profile", "origin_entity_memberships", "origin_entities"] as const;
+export const userFilterFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "deleted_at", "email", "email_confirmed_at", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "phone", "phone_change_sent_at", "phone_confirmed_at", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "tenant_id", "updated_at", "identities", "origin_entities", "origin_entity_memberships", "profile", "staff_tenant_grants", "tenant"] as const;
 export type UserFilterField = (typeof userFilterFields)[number];
 
 export const signInLinkResponseFilterFields = ["status"] as const;
 export type SignInLinkResponseFilterField = (typeof signInLinkResponseFilterFields)[number];
 
-export const socialSignInResponseFilterFields = ["id", "email", "token"] as const;
+export const socialSignInResponseFilterFields = ["email", "id", "token"] as const;
 export type SocialSignInResponseFilterField = (typeof socialSignInResponseFilterFields)[number];
 
-export const waitlistEntryFilterFields = ["id", "email", "full_name", "company_name", "role", "interest_areas", "message", "source", "metadata", "status", "invitation_token", "expires_at", "invited_at", "approved_by", "created_at", "updated_at"] as const;
+export const waitlistEntryFilterFields = ["approved_by", "company_name", "created_at", "email", "expires_at", "full_name", "id", "interest_areas", "invitation_token", "invited_at", "message", "metadata", "role", "source", "status", "updated_at"] as const;
 export type WaitlistEntryFilterField = (typeof waitlistEntryFilterFields)[number];
 
-export const chatMessageFilterFields = ["id", "role", "content", "created_at"] as const;
+export const chatMessageFilterFields = ["content", "created_at", "id", "role"] as const;
 export type ChatMessageFilterField = (typeof chatMessageFilterFields)[number];
 
-export const chatReplyFilterFields = ["response", "conversation_id"] as const;
+export const chatReplyFilterFields = ["conversation_id", "data", "response"] as const;
 export type ChatReplyFilterField = (typeof chatReplyFilterFields)[number];
 
 export const chatSuggestionsFilterFields = ["suggestions"] as const;
 export type ChatSuggestionsFilterField = (typeof chatSuggestionsFilterFields)[number];
 
-export const publicConversationFilterFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "turn_state_type", "message_count", "user", "origin_entity", "root_conversation", "threads", "messages", "memories"] as const;
+export const publicConversationFilterFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "session_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name", "memories", "messages", "origin_entity", "root_conversation", "threads", "user"] as const;
 export type PublicConversationFilterField = (typeof publicConversationFilterFields)[number];
 
-export const publicMessageFilterFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id", "conversation"] as const;
+export const publicMessageFilterFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used", "conversation"] as const;
 export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number];
 
-export const messageAttachmentFilterFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
+export const messageAttachmentFilterFields = ["created_at", "file_name", "file_size", "file_type", "id", "message_id", "parsed_content", "pending_message_id", "storage_path"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor", "origin_entity", "document"] as const;
+export const appFilterFields = ["assessment_graph", "authoring_document", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at", "document", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
-export const assessmentGraphFilterFields = ["start_node", "nodes", "edges"] as const;
+export const assessmentGraphFilterFields = ["edges", "nodes", "start_node"] as const;
 export type AssessmentGraphFilterField = (typeof assessmentGraphFilterFields)[number];
 
-export const assessmentResponseFilterFields = ["id", "user_id", "email", "launch_activity_id", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id", "enrollment_id", "app", "enrollment"] as const;
+export const assessmentResponseFilterFields = ["answers", "app_id", "attribution", "completed_at", "created_at", "current_node", "email", "enrollment_id", "full_name", "graph_snapshot_edges", "graph_snapshot_nodes", "id", "launch_activity_id", "path_history", "phone", "result", "updated_at", "user_id", "app", "enrollment"] as const;
 export type AssessmentResponseFilterField = (typeof assessmentResponseFilterFields)[number];
 
-export const authoringDocumentFilterFields = ["page_type", "blocks", "config", "errors"] as const;
+export const authoringDocumentFilterFields = ["blocks", "config", "errors", "page_type"] as const;
 export type AuthoringDocumentFilterField = (typeof authoringDocumentFilterFields)[number];
 
-export const originsAppsContentCourseActivityFilterFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts", "contributors"] as const;
+export const originsAppsContentCourseActivityFilterFields = ["assessment", "availability", "body", "content", "contributors", "duration", "icon", "id", "image", "kind", "label", "mode", "opens", "optional", "phase", "prompts", "recurrence", "session", "source_course", "steps", "title", "video"] as const;
 export type OriginsAppsContentCourseActivityFilterField = (typeof originsAppsContentCourseActivityFilterFields)[number];
 
 export const originsAppsContentCourseAssessmentFilterFields = ["app"] as const;
 export type OriginsAppsContentCourseAssessmentFilterField = (typeof originsAppsContentCourseAssessmentFilterFields)[number];
 
-export const originsAppsContentCourseContributorFilterFields = ["ref", "name", "role", "bio", "avatar_url"] as const;
+export const originsAppsContentCourseContributorFilterFields = ["avatar_url", "bio", "name", "ref", "role"] as const;
 export type OriginsAppsContentCourseContributorFilterField = (typeof originsAppsContentCourseContributorFilterFields)[number];
 
-export const originsAppsContentCourseCourseFilterFields = ["name", "logo", "background", "foreground", "card", "card_foreground", "primary", "primary_foreground", "accent", "accent_foreground", "border", "video_accent", "video_captions", "streaks", "gated", "segment", "purchase_url", "gated_default_tab", "unit_label", "head"] as const;
+export const originsAppsContentCourseCourseFilterFields = ["accent", "accent_foreground", "background", "border", "card", "card_foreground", "foreground", "gated", "gated_default_tab", "head", "logo", "name", "primary", "primary_foreground", "purchase_url", "segment", "streaks", "unit_label", "video_accent", "video_captions"] as const;
 export type OriginsAppsContentCourseCourseFilterField = (typeof originsAppsContentCourseCourseFilterFields)[number];
 
-export const originsAppsContentCourseCourseStepFilterFields = ["id", "title", "duration", "body", "required", "content", "order", "prompts"] as const;
+export const originsAppsContentCourseCourseStepFilterFields = ["body", "content", "duration", "id", "order", "prompts", "required", "title"] as const;
 export type OriginsAppsContentCourseCourseStepFilterField = (typeof originsAppsContentCourseCourseStepFilterFields)[number];
 
 export const originsAppsContentCourseGateFilterFields = ["after", "any_of", "at_least", "delay", "every"] as const;
 export type OriginsAppsContentCourseGateFilterField = (typeof originsAppsContentCourseGateFilterFields)[number];
 
-export const originsAppsContentCoursePhaseFilterFields = ["id", "title", "weeks", "description"] as const;
+export const originsAppsContentCoursePhaseFilterFields = ["description", "id", "title", "weeks"] as const;
 export type OriginsAppsContentCoursePhaseFilterField = (typeof originsAppsContentCoursePhaseFilterFields)[number];
 
-export const originsAppsContentCoursePromptFilterFields = ["id", "kind", "label", "min", "max", "options", "required", "order"] as const;
+export const originsAppsContentCoursePromptFilterFields = ["id", "kind", "label", "max", "min", "options", "order", "required"] as const;
 export type OriginsAppsContentCoursePromptFilterField = (typeof originsAppsContentCoursePromptFilterFields)[number];
 
-export const originsAppsContentCourseSessionFilterFields = ["id", "title", "description", "opens", "optional", "phase_id", "index"] as const;
+export const originsAppsContentCourseSessionFilterFields = ["description", "id", "index", "opens", "optional", "phase_id", "title"] as const;
 export type OriginsAppsContentCourseSessionFilterField = (typeof originsAppsContentCourseSessionFilterFields)[number];
 
-export const originsAppsContentCourseTransitionFilterFields = ["id", "title", "body", "between", "at"] as const;
+export const originsAppsContentCourseTransitionFilterFields = ["at", "between", "body", "id", "title"] as const;
 export type OriginsAppsContentCourseTransitionFilterField = (typeof originsAppsContentCourseTransitionFilterFields)[number];
 
-export const originsAppsContentCourseVideoFilterFields = ["path", "caption"] as const;
+export const originsAppsContentCourseVideoFilterFields = ["caption", "path"] as const;
 export type OriginsAppsContentCourseVideoFilterField = (typeof originsAppsContentCourseVideoFilterFields)[number];
 
 export const briefingPageFilterFields = ["body"] as const;
 export type BriefingPageFilterField = (typeof briefingPageFilterFields)[number];
 
-export const dailyBriefingFilterFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
+export const dailyBriefingFilterFields = ["date", "generated_at", "pages", "read_at", "session_id"] as const;
 export type DailyBriefingFilterField = (typeof dailyBriefingFilterFields)[number];
 
-export const gatedCourseFilterFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities", "source_libraries"] as const;
+export const gatedCourseFilterFields = ["activities", "briefing_enabled", "config", "contributors", "outcomes", "phases", "sessions", "source_libraries", "transitions", "unit_label"] as const;
 export type GatedCourseFilterField = (typeof gatedCourseFilterFields)[number];
 
-export const gatedCoursePayloadFilterFields = ["gated_course", "enrollment", "state", "assessment_launches"] as const;
+export const gatedCoursePayloadFilterFields = ["assessment_launches", "enrollment", "gated_course", "state"] as const;
 export type GatedCoursePayloadFilterField = (typeof gatedCoursePayloadFilterFields)[number];
 
-export const courseItemStateFilterFields = ["item_id", "available", "unlocks_when", "complete", "progress"] as const;
+export const courseItemStateFilterFields = ["available", "complete", "item_id", "progress", "unlocks_when"] as const;
 export type CourseItemStateFilterField = (typeof courseItemStateFilterFields)[number];
 
 export const courseAssessmentLaunchFilterFields = ["activity_id", "app_id"] as const;
 export type CourseAssessmentLaunchFilterField = (typeof courseAssessmentLaunchFilterFields)[number];
 
-export const courseUnlocksWhenFilterFields = ["type", "date", "activity_ids", "reason"] as const;
+export const courseUnlocksWhenFilterFields = ["activity_ids", "date", "reason", "type"] as const;
 export type CourseUnlocksWhenFilterField = (typeof courseUnlocksWhenFilterFields)[number];
 
-export const courseActivityCompletionFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id", "enrollment"] as const;
+export const courseActivityCompletionFilterFields = ["activity_id", "attachments", "completed_date", "created_at", "duration_seconds", "enrollment_id", "id", "notes", "responses", "step_id", "updated_at", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
 
-export const courseEnrollmentFilterFields = ["id", "status", "current_session_id", "entered_session_ids", "current_phase_id", "current_phase_started_at", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor", "user", "character", "app", "activity_completions", "current_personalization"] as const;
+export const courseEnrollmentFilterFields = ["app_id", "assessment_answers", "character_id", "created_at", "current_personalization_id", "current_phase_id", "current_phase_started_at", "current_session_id", "enrolled_at", "entered_session_ids", "id", "reactivated_at", "settings", "status", "streak_count", "streak_last_date", "updated_at", "user_id", "activity_completions", "app", "character", "current_personalization", "user"] as const;
 export type CourseEnrollmentFilterField = (typeof courseEnrollmentFilterFields)[number];
 
-export const activityCompletionSummaryFilterFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
+export const activityCompletionSummaryFilterFields = ["activity_id", "completed_date", "id", "responses", "step_id"] as const;
 export type ActivityCompletionSummaryFilterField = (typeof activityCompletionSummaryFilterFields)[number];
 
-export const enrollmentCompletionsFilterFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
+export const enrollmentCompletionsFilterFields = ["activity_completions", "current_phase_id", "current_phase_started_at", "current_session_id", "id", "status"] as const;
 export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilterFields)[number];
 
-export const courseEntitlementFilterFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id", "plan"] as const;
+export const courseEntitlementFilterFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier", "plan"] as const;
 export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
 
-export const documentBlockFilterFields = ["record_id", "document_id", "parent_record_id", "position", "block_type", "payload", "created_at", "updated_at", "document", "parent", "children"] as const;
+export const documentBlockFilterFields = ["block_type", "created_at", "document_id", "library_file_id", "parent_record_id", "payload", "position", "record_id", "target_app_id", "target_origin_entity_id", "target_record_id", "updated_at", "children", "document", "library_file", "parent", "references", "target_app", "target_block", "target_origin_entity"] as const;
 export type DocumentBlockFilterField = (typeof documentBlockFilterFields)[number];
 
-export const appVersionFilterFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at", "version_source"] as const;
+export const appVersionFilterFields = ["change_source_message_id", "change_summary", "changes", "id", "version_action_name", "version_action_type", "version_inserted_at", "version_source_id", "version_updated_at", "version_source"] as const;
 export type AppVersionFilterField = (typeof appVersionFilterFields)[number];
 
-export const originsAppsEdgeFilterFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
+export const originsAppsEdgeFilterFields = ["condition_field", "condition_op", "condition_type", "condition_value", "source", "target"] as const;
 export type OriginsAppsEdgeFilterField = (typeof originsAppsEdgeFilterFields)[number];
 
-export const generationHistoryEntryFilterFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
+export const generationHistoryEntryFilterFields = ["content", "created_at", "id", "reasoning", "role", "tool_calls", "tool_return", "tool_return_status"] as const;
 export type GenerationHistoryEntryFilterField = (typeof generationHistoryEntryFilterFields)[number];
 
-export const originsAppsNodeFilterFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders", "summary_items", "loading_bars"] as const;
+export const originsAppsNodeFilterFields = ["description", "highlight", "id", "kind", "loading_bars", "max", "min", "options", "required", "sliders", "subtitle", "summary_items", "title", "type", "weight"] as const;
 export type OriginsAppsNodeFilterField = (typeof originsAppsNodeFilterFields)[number];
 
-export const originsAppsOptionFilterFields = ["value", "label", "segment", "route"] as const;
+export const originsAppsOptionFilterFields = ["label", "route", "segment", "value"] as const;
 export type OriginsAppsOptionFilterField = (typeof originsAppsOptionFilterFields)[number];
 
-export const planFilterFields = ["id", "name", "stripe_price_id", "retired_at", "scope", "sale_count", "apps"] as const;
+export const planFilterFields = ["id", "name", "retired_at", "sale_count", "scope", "stripe_price_id", "apps"] as const;
 export type PlanFilterField = (typeof planFilterFields)[number];
 
-export const programTestFilterFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id", "program", "test_user", "memories"] as const;
+export const programTestFilterFields = ["coach_conversation_id", "created_at", "id", "name", "program_id", "test_user_id", "updated_at", "memories", "program", "test_user"] as const;
 export type ProgramTestFilterField = (typeof programTestFilterFields)[number];
 
-export const originsAppsSliderFilterFields = ["id", "label", "min", "max", "low_label", "high_label"] as const;
+export const originsAppsSliderFilterFields = ["high_label", "id", "label", "low_label", "max", "min"] as const;
 export type OriginsAppsSliderFilterField = (typeof originsAppsSliderFilterFields)[number];
 
-export const appTemplateFilterFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
+export const appTemplateFilterFields = ["created_at", "description", "id", "name", "page_type", "seed_markdoc_content", "sort_order", "updated_at"] as const;
 export type AppTemplateFilterField = (typeof appTemplateFilterFields)[number];
 
-export const webhookDeliveryFilterFields = ["id", "event_type", "event_id", "assessment_response_id", "target_url", "payload", "status", "attempts", "last_status_code", "last_error", "delivered_at", "created_at", "updated_at", "subscription_id", "origin_entity_id", "subscription", "origin_entity"] as const;
+export const webhookDeliveryFilterFields = ["assessment_response_id", "attempts", "created_at", "delivered_at", "event_id", "event_type", "id", "last_error", "last_status_code", "origin_entity_id", "payload", "status", "subscription_id", "target_url", "updated_at", "origin_entity", "subscription"] as const;
 export type WebhookDeliveryFilterField = (typeof webhookDeliveryFilterFields)[number];
 
-export const webhookSubscriptionFilterFields = ["id", "target_url", "secret", "event_types", "active", "description", "created_at", "updated_at", "origin_entity_id", "app_id", "origin_entity", "app"] as const;
+export const webhookSubscriptionFilterFields = ["active", "app_id", "created_at", "description", "event_types", "id", "origin_entity_id", "secret", "target_url", "updated_at", "app", "origin_entity"] as const;
 export type WebhookSubscriptionFilterField = (typeof webhookSubscriptionFilterFields)[number];
 
-export const featureFlagFilterFields = ["id", "feature_name", "enabled", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
+export const featureFlagFilterFields = ["created_at", "enabled", "feature_name", "id", "origin_entity_id", "updated_at", "origin_entity"] as const;
 export type FeatureFlagFilterField = (typeof featureFlagFilterFields)[number];
 
-export const feedbackFilterFields = ["id", "feedback_type", "subject", "message", "screenshot_url", "admin_notes", "user_email", "user_name", "context_type", "context_name", "resolved_at", "status", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
+export const feedbackFilterFields = ["admin_notes", "context_name", "context_type", "created_at", "feedback_type", "id", "message", "origin_entity_id", "resolved_at", "screenshot_url", "status", "subject", "updated_at", "user_email", "user_name", "origin_entity"] as const;
 export type FeedbackFilterField = (typeof feedbackFilterFields)[number];
 
-export const homepageCardFilterFields = ["id", "name", "role", "gradient", "is_active", "custom_url", "avatar_url", "avatar_key", "ai_enabled", "description", "tags", "use_gradient", "order_index", "destination_type", "created_at", "updated_at", "avatar_size", "avatar_shape", "avatar_vertical_position", "background_color", "origin_entity_id", "presigned_avatar_url", "origin_entity"] as const;
+export const homepageCardFilterFields = ["ai_enabled", "avatar_key", "avatar_shape", "avatar_size", "avatar_url", "avatar_vertical_position", "background_color", "created_at", "custom_url", "description", "destination_type", "gradient", "id", "is_active", "name", "order_index", "origin_entity_id", "presigned_avatar_url", "role", "tags", "updated_at", "use_gradient", "origin_entity"] as const;
 export type HomepageCardFilterField = (typeof homepageCardFilterFields)[number];
 
-export const originsIdentityAppearanceConfigFilterFields = ["checkmark_color", "show_chat_button", "chat_button_bg", "chat_button_text", "show_share_button", "share_button_border", "share_button_text", "share_button_bg", "button_border_radius", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "send_button_bg", "send_button_text"] as const;
+export const originsIdentityAppearanceConfigFilterFields = ["ai_bubble_bg", "ai_bubble_text", "button_border_radius", "chat_button_bg", "chat_button_text", "checkmark_color", "send_button_bg", "send_button_text", "share_button_bg", "share_button_border", "share_button_text", "show_chat_button", "show_share_button", "user_bubble_bg", "user_bubble_text"] as const;
 export type OriginsIdentityAppearanceConfigFilterField = (typeof originsIdentityAppearanceConfigFilterFields)[number];
 
-export const originsIdentityBrandConversationConfigFilterFields = ["checkmark_color", "checkmark_bg_color", "show_chat_button", "chat_button_bg", "chat_button_text", "button_border_radius", "show_share_button", "share_button_bg", "share_button_border", "share_button_icon", "show_description", "show_content_section", "show_avatars_section", "selected_avatars", "avatars_section_label", "show_podcast_link", "show_origins_button", "origins_button_bg", "origins_button_text", "origins_button_border", "origins_button_text_color", "social_links", "send_button_bg", "send_button_text", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "chat_input_active_border", "page_background_color", "enabled_mode_ids"] as const;
+export const originsIdentityBrandConversationConfigFilterFields = ["ai_bubble_bg", "ai_bubble_text", "avatars_section_label", "button_border_radius", "chat_button_bg", "chat_button_text", "chat_input_active_border", "checkmark_bg_color", "checkmark_color", "enabled_mode_ids", "origins_button_bg", "origins_button_border", "origins_button_text", "origins_button_text_color", "page_background_color", "selected_avatars", "send_button_bg", "send_button_text", "share_button_bg", "share_button_border", "share_button_icon", "show_avatars_section", "show_chat_button", "show_content_section", "show_description", "show_origins_button", "show_podcast_link", "show_share_button", "social_links", "user_bubble_bg", "user_bubble_text"] as const;
 export type OriginsIdentityBrandConversationConfigFilterField = (typeof originsIdentityBrandConversationConfigFilterFields)[number];
 
-export const originsIdentityBrandConversationSocialLinkFilterFields = ["platform", "url", "visible", "icon", "icon_name", "custom_icon_url", "custom_label", "custom_url"] as const;
+export const originsIdentityBrandConversationSocialLinkFilterFields = ["custom_icon_url", "custom_label", "custom_url", "icon", "icon_name", "platform", "url", "visible"] as const;
 export type OriginsIdentityBrandConversationSocialLinkFilterField = (typeof originsIdentityBrandConversationSocialLinkFilterFields)[number];
 
-export const chatConfigFilterFields = ["id", "chat_button_color", "welcome_message", "show_close_button", "show_powered_by", "show_header_avatar", "show_ai_message_avatar", "chat_button_show_icon", "public_profile_button_show_icon", "podcast_button_show_icon", "public_profile_show_brand_logo", "podcast_show_brand_logo", "use_chat_button_for_public_profile", "use_chat_button_for_podcast", "available_avatar_ids", "chat_button_text", "show_brand_logo", "chat_window_title", "chat_bubble_color", "chat_bubble_text_color", "user_bubble_color", "user_bubble_text_color", "enable_sound_notifications", "show_typing_indicator", "enable_chat_history", "inherits_descendant_knowledge", "created_at", "updated_at", "button_shape", "window_size", "header_style", "window_border_radius", "window_animation", "send_button_style", "input_placeholder", "window_position_mode", "chat_button_icon", "chat_button_text_color", "public_profile_button_icon", "public_profile_button_text_color", "podcast_button_icon", "podcast_button_text_color", "public_profile_button_color", "podcast_button_color", "chat_button_border_color", "public_profile_button_border_color", "podcast_button_border_color", "public_profile_button_shape", "podcast_button_shape", "public_profile_button_text", "podcast_button_text", "input_style", "chat_button_position", "response_delay", "origin_entity_id", "origin_entity"] as const;
+export const chatConfigFilterFields = ["available_avatar_ids", "button_shape", "chat_bubble_color", "chat_bubble_text_color", "chat_button_border_color", "chat_button_color", "chat_button_icon", "chat_button_position", "chat_button_show_icon", "chat_button_text", "chat_button_text_color", "chat_window_title", "created_at", "enable_chat_history", "enable_sound_notifications", "header_style", "id", "inherits_descendant_knowledge", "input_placeholder", "input_style", "origin_entity_id", "podcast_button_border_color", "podcast_button_color", "podcast_button_icon", "podcast_button_shape", "podcast_button_show_icon", "podcast_button_text", "podcast_button_text_color", "podcast_show_brand_logo", "public_profile_button_border_color", "public_profile_button_color", "public_profile_button_icon", "public_profile_button_shape", "public_profile_button_show_icon", "public_profile_button_text", "public_profile_button_text_color", "public_profile_show_brand_logo", "response_delay", "send_button_style", "show_ai_message_avatar", "show_brand_logo", "show_close_button", "show_header_avatar", "show_powered_by", "show_typing_indicator", "updated_at", "use_chat_button_for_podcast", "use_chat_button_for_public_profile", "user_bubble_color", "user_bubble_text_color", "welcome_message", "window_animation", "window_border_radius", "window_position_mode", "window_size", "origin_entity"] as const;
 export type ChatConfigFilterField = (typeof chatConfigFilterFields)[number];
 
 export const originsIdentityCustomLinkFilterFields = ["label", "url"] as const;
 export type OriginsIdentityCustomLinkFilterField = (typeof originsIdentityCustomLinkFilterFields)[number];
 
-export const originAssetFilterFields = ["id", "asset_type", "asset_url", "asset_key", "asset_name", "asset_metadata", "source_platform", "shared_with_origin_entity_ids", "is_shared_globally", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
+export const originAssetFilterFields = ["asset_key", "asset_metadata", "asset_name", "asset_type", "asset_url", "created_at", "id", "is_shared_globally", "origin_entity_id", "shared_with_origin_entity_ids", "source_platform", "updated_at", "origin_entity"] as const;
 export type OriginAssetFilterField = (typeof originAssetFilterFields)[number];
 
-export const originEntityFilterFields = ["id", "tenant_id", "parent_origin_entity_id", "name", "description", "title", "personality_traits", "mission_statement", "core_values", "accent_colors", "tone_of_voice", "key_messaging", "target_audience", "content_themes", "categories", "picture_url", "picture_key", "banner_url", "banner_key", "social_links", "voice_settings", "voice_config", "guardrails_settings", "appearance_config", "brand_conversation_config", "public_profile_config", "engagement_metrics", "extracted_content", "ai_generated_summary", "is_public", "is_active", "is_featured", "slug", "website_content", "last_website_scrape", "page_sections_config", "content_tabs_config", "youtube_channel_id", "youtube_channel_data", "youtube_sync_settings", "youtube_content_settings", "podcast_content_settings", "podcast_button_visible", "podcast_button_link", "podcast_button_text", "podcast_button_color", "podcast_button_text_color", "created_at", "updated_at", "setup_progress_id", "presigned_picture_url", "presigned_banner_url", "scraped_website_content_type", "tenant", "setup_progress", "parent_origin_entity", "child_origin_entities", "memberships", "soul_config", "chat_config", "podcast_config", "origin_assets", "youtube_episodes", "apps", "interview_sessions", "prompt_tools", "prompt_contexts", "feature_flags", "feedbacks", "homepage_cards"] as const;
+export const originEntityFilterFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "description", "engagement_metrics", "extracted_content", "guardrails_settings", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings", "apps", "chat_config", "child_origin_entities", "feature_flags", "feedbacks", "homepage_cards", "interview_sessions", "memberships", "origin_assets", "parent_origin_entity", "podcast_config", "prompt_contexts", "prompt_tools", "setup_progress", "soul_config", "tenant", "youtube_episodes"] as const;
 export type OriginEntityFilterField = (typeof originEntityFilterFields)[number];
 
-export const scrapedWebsiteContentFilterFields = ["url", "title", "meta_description", "meta_keywords", "open_graph", "headings", "paragraphs", "text_content", "scraped_at"] as const;
+export const scrapedWebsiteContentFilterFields = ["headings", "meta_description", "meta_keywords", "open_graph", "paragraphs", "scraped_at", "text_content", "title", "url"] as const;
 export type ScrapedWebsiteContentFilterField = (typeof scrapedWebsiteContentFilterFields)[number];
 
 export const scrapedWebsiteContentHeadingFilterFields = ["level", "text"] as const;
 export type ScrapedWebsiteContentHeadingFilterField = (typeof scrapedWebsiteContentHeadingFilterFields)[number];
 
-export const scrapedWebsiteContentOpenGraphFilterFields = ["title", "description", "image"] as const;
+export const scrapedWebsiteContentOpenGraphFilterFields = ["description", "image", "title"] as const;
 export type ScrapedWebsiteContentOpenGraphFilterField = (typeof scrapedWebsiteContentOpenGraphFilterFields)[number];
 
-export const originEntityStaffMembershipFilterFields = ["id", "user_id", "role", "status", "invitation_token", "invited_email", "expires_at", "invited_by", "accepted_at", "joined_at", "created_at", "updated_at", "origin_entity_id", "origin_entity", "user"] as const;
+export const originEntityStaffMembershipFilterFields = ["accepted_at", "created_at", "expires_at", "id", "invitation_token", "invited_by", "invited_email", "joined_at", "origin_entity_id", "role", "status", "updated_at", "user_id", "origin_entity", "user"] as const;
 export type OriginEntityStaffMembershipFilterField = (typeof originEntityStaffMembershipFilterFields)[number];
 
-export const promptContextFilterFields = ["id", "name", "public_title", "public_description", "context_text", "prompt_tool_ids", "is_active", "is_default", "guardrail_config", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
+export const promptContextFilterFields = ["context_text", "created_at", "guardrail_config", "id", "is_active", "is_default", "name", "origin_entity_id", "prompt_tool_ids", "public_description", "public_title", "updated_at", "origin_entity"] as const;
 export type PromptContextFilterField = (typeof promptContextFilterFields)[number];
 
-export const originsIdentityPromptContextGuardrailConfigFilterFields = ["input_prompt_injection_detection", "input_jailbreak_detection", "input_toxicity_detection", "input_max_length", "output_data_leakage_prevention", "output_content_moderation", "output_toxicity_detection", "confidence_threshold", "allowed_toxicity_categories", "grounding_check", "grounding_threshold"] as const;
+export const originsIdentityPromptContextGuardrailConfigFilterFields = ["allowed_toxicity_categories", "confidence_threshold", "grounding_check", "grounding_threshold", "input_jailbreak_detection", "input_max_length", "input_prompt_injection_detection", "input_toxicity_detection", "output_content_moderation", "output_data_leakage_prevention", "output_toxicity_detection"] as const;
 export type OriginsIdentityPromptContextGuardrailConfigFilterField = (typeof originsIdentityPromptContextGuardrailConfigFilterFields)[number];
 
-export const promptToolFilterFields = ["id", "name", "description", "prompt_template", "model", "temperature", "max_tokens", "is_active", "auto_approve", "letta_tools", "created_at", "updated_at", "origin_entity_id", "source_origin_entity_id", "origin_entity", "source_origin_entity"] as const;
+export const promptToolFilterFields = ["auto_approve", "created_at", "description", "id", "is_active", "letta_tools", "max_tokens", "model", "name", "origin_entity_id", "prompt_template", "source_origin_entity_id", "temperature", "updated_at", "origin_entity", "source_origin_entity"] as const;
 export type PromptToolFilterField = (typeof promptToolFilterFields)[number];
 
-export const originsIdentityPublicProfileConfigFilterFields = ["custom_links", "show_content_section", "display_order", "voice_enabled", "show_signin_button", "show_children_section"] as const;
+export const originsIdentityPublicProfileConfigFilterFields = ["custom_links", "display_order", "show_children_section", "show_content_section", "show_signin_button", "voice_enabled"] as const;
 export type OriginsIdentityPublicProfileConfigFilterField = (typeof originsIdentityPublicProfileConfigFilterFields)[number];
 
-export const setupProgressFilterFields = ["id", "entity_name", "completed_steps", "social_media_links", "ai_suggested_links", "api_extracted_data", "metadata", "is_completed", "current_step", "onboarding_mode", "created_at", "updated_at", "origin_entity_id", "origin_entity", "origin_entities"] as const;
+export const setupProgressFilterFields = ["ai_suggested_links", "api_extracted_data", "completed_steps", "created_at", "current_step", "entity_name", "id", "is_completed", "metadata", "onboarding_mode", "origin_entity_id", "social_media_links", "updated_at", "origin_entities", "origin_entity"] as const;
 export type SetupProgressFilterField = (typeof setupProgressFilterFields)[number];
 
-export const originsIdentitySocialLinkFilterFields = ["platform", "url", "visible", "custom_platform_name", "icon_name", "custom_icon_key", "custom_icon_url"] as const;
+export const originsIdentitySocialLinkFilterFields = ["custom_icon_key", "custom_icon_url", "custom_platform_name", "icon_name", "platform", "url", "visible"] as const;
 export type OriginsIdentitySocialLinkFilterField = (typeof originsIdentitySocialLinkFilterFields)[number];
 
-export const soulConfigFilterFields = ["id", "personality_traits", "purpose_statement", "core_instructions", "conversation_starters", "speaking_tone", "communication_style", "vocabulary_preferences", "response_format_preferences", "experience_settings", "guardrails_settings", "response_length", "created_at", "updated_at", "origin_entity_id", "origin_entity"] as const;
+export const soulConfigFilterFields = ["communication_style", "conversation_starters", "core_instructions", "created_at", "experience_settings", "guardrails_settings", "id", "origin_entity_id", "personality_traits", "purpose_statement", "response_format_preferences", "response_length", "speaking_tone", "updated_at", "vocabulary_preferences", "origin_entity"] as const;
 export type SoulConfigFilterField = (typeof soulConfigFilterFields)[number];
 
 export const originsIdentitySoulConfigCommunicationStyleFilterFields = ["notes"] as const;
 export type OriginsIdentitySoulConfigCommunicationStyleFilterField = (typeof originsIdentitySoulConfigCommunicationStyleFilterFields)[number];
 
-export const originsIdentitySoulConfigExperienceSettingsFilterFields = ["welcome_message", "proactive_assistance", "context_awareness", "personalized_responses"] as const;
+export const originsIdentitySoulConfigExperienceSettingsFilterFields = ["context_awareness", "personalized_responses", "proactive_assistance", "welcome_message"] as const;
 export type OriginsIdentitySoulConfigExperienceSettingsFilterField = (typeof originsIdentitySoulConfigExperienceSettingsFilterFields)[number];
 
-export const originsIdentitySoulConfigResponseFormatPreferencesFilterFields = ["use_bullet_points", "use_emojis", "include_examples"] as const;
+export const originsIdentitySoulConfigResponseFormatPreferencesFilterFields = ["include_examples", "use_bullet_points", "use_emojis"] as const;
 export type OriginsIdentitySoulConfigResponseFormatPreferencesFilterField = (typeof originsIdentitySoulConfigResponseFormatPreferencesFilterFields)[number];
 
-export const userProfileFilterFields = ["id", "user_id", "display_name", "avatar_url", "bio", "notification_preferences", "privacy_settings", "email", "theme_preference", "created_at", "updated_at"] as const;
+export const userProfileFilterFields = ["avatar_url", "bio", "created_at", "display_name", "email", "id", "notification_preferences", "privacy_settings", "theme_preference", "updated_at", "user_id"] as const;
 export type UserProfileFilterField = (typeof userProfileFilterFields)[number];
 
-export const interviewGeneratedContentFilterFields = ["id", "content_type", "content", "title", "status", "metadata", "created_at", "updated_at", "interview_session_id", "interview_session"] as const;
+export const interviewGeneratedContentFilterFields = ["content", "content_type", "created_at", "id", "interview_session_id", "metadata", "status", "title", "updated_at", "interview_session"] as const;
 export type InterviewGeneratedContentFilterField = (typeof interviewGeneratedContentFilterFields)[number];
 
-export const interviewRecordingFilterFields = ["id", "recording_type", "file_name", "storage_key", "file_size", "duration_ms", "video_codec", "audio_codec", "width", "height", "status", "error_message", "metadata", "created_at", "updated_at", "interview_session_id", "interview_session"] as const;
+export const interviewRecordingFilterFields = ["audio_codec", "created_at", "duration_ms", "error_message", "file_name", "file_size", "height", "id", "interview_session_id", "metadata", "recording_type", "status", "storage_key", "updated_at", "video_codec", "width", "interview_session"] as const;
 export type InterviewRecordingFilterField = (typeof interviewRecordingFilterFields)[number];
 
-export const interviewSessionFilterFields = ["id", "status", "channel", "metadata", "session_name", "summary", "key_quotes", "topics", "created_at", "updated_at", "origin_entity_id", "origin_entity", "interview_turns", "interview_generated_contents", "interview_recordings"] as const;
+export const interviewSessionFilterFields = ["channel", "created_at", "id", "key_quotes", "metadata", "origin_entity_id", "session_name", "status", "summary", "topics", "updated_at", "interview_generated_contents", "interview_recordings", "interview_turns", "origin_entity"] as const;
 export type InterviewSessionFilterField = (typeof interviewSessionFilterFields)[number];
 
-export const interviewTurnFilterFields = ["id", "turn_number", "question", "answer", "metadata", "created_at", "updated_at", "interview_session_id", "interview_session"] as const;
+export const interviewTurnFilterFields = ["answer", "created_at", "id", "interview_session_id", "metadata", "question", "turn_number", "updated_at", "interview_session"] as const;
 export type InterviewTurnFilterField = (typeof interviewTurnFilterFields)[number];
 
 export const agentMemoryFilterFields = ["id", "label", "value"] as const;
 export type AgentMemoryFilterField = (typeof agentMemoryFilterFields)[number];
 
-export const driveConnectionFilterFields = ["id", "token_expires_at", "status", "connected_by_user_id", "google_email", "created_at", "updated_at", "entity_profile_id", "entity_profile"] as const;
+export const driveConnectionFilterFields = ["connected_by_user_id", "created_at", "entity_profile_id", "google_email", "id", "status", "token_expires_at", "updated_at", "entity_profile"] as const;
 export type DriveConnectionFilterField = (typeof driveConnectionFilterFields)[number];
 
-export const githubConnectionFilterFields = ["id", "installation_id", "github_account_login", "github_account_type", "status", "connected_by_user_id", "created_at", "updated_at", "entity_profile_id", "entity_profile"] as const;
+export const githubConnectionFilterFields = ["connected_by_user_id", "created_at", "entity_profile_id", "github_account_login", "github_account_type", "id", "installation_id", "status", "updated_at", "entity_profile"] as const;
 export type GithubConnectionFilterField = (typeof githubConnectionFilterFields)[number];
 
-export const libraryFilterFields = ["id", "name", "slug", "adapter_kind", "adapter_config", "inherits_to_descendants", "status", "last_synced_at", "error_count", "last_error", "last_error_at", "auto_resync_enabled", "auto_ingest_videos", "transcribe_media", "created_at", "updated_at", "origin_entity_id", "origin_entity", "files", "grants"] as const;
+export const libraryFilterFields = ["adapter_config", "adapter_kind", "auto_ingest_videos", "auto_resync_enabled", "created_at", "error_count", "id", "inherits_to_descendants", "last_error", "last_error_at", "last_synced_at", "name", "origin_entity_id", "slug", "status", "transcribe_media", "updated_at", "files", "grants", "origin_entity"] as const;
 export type LibraryFilterField = (typeof libraryFilterFields)[number];
 
-export const libraryAccessGrantFilterFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id", "library", "grantee_origin_entity"] as const;
+export const libraryAccessGrantFilterFields = ["created_at", "grantee_origin_entity_id", "id", "library_id", "updated_at", "grantee_origin_entity", "library"] as const;
 export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFields)[number];
 
-export const libraryFileFilterFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_keys", "metadata_number", "signed_s3_url", "vfs_path", "media_format", "library", "video_asset"] as const;
+export const libraryFileFilterFields = ["created_at", "id", "item_content", "item_name", "item_type", "library_id", "media_format", "metadata_contains", "metadata_keys", "metadata_number", "path", "s3_key", "signed_s3_url", "source_metadata", "sync_status", "updated_at", "vfs_path", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
-export const playlistFilterFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id", "user", "items"] as const;
+export const playlistFilterFields = ["created_at", "description", "id", "item_count", "title", "updated_at", "user_id", "items", "user"] as const;
 export type PlaylistFilterField = (typeof playlistFilterFields)[number];
 
-export const playlistItemFilterFields = ["id", "item_type", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "library_id", "playlist", "library_file", "library"] as const;
+export const playlistItemFilterFields = ["created_at", "id", "item_type", "library_file_id", "library_id", "playlist_id", "position", "updated_at", "library", "library_file", "playlist"] as const;
 export type PlaylistItemFilterField = (typeof playlistItemFilterFields)[number];
 
-export const videoAssetFilterFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "static_rendition_request_type", "static_rendition_type", "library_file"] as const;
+export const videoAssetFilterFields = ["aspect_ratio", "captioned_at", "created_at", "duration", "error", "id", "library_file_id", "otterwake_asset_id", "otterwake_org", "otterwake_playback_id", "otterwake_upload_id", "status", "updated_at", "library_file"] as const;
 export type VideoAssetFilterField = (typeof videoAssetFilterFields)[number];
 
-export const resolvedPlaybackFilterFields = ["status", "src", "poster", "library_file_id"] as const;
+export const resolvedPlaybackFilterFields = ["library_file_id", "poster", "src", "status"] as const;
 export type ResolvedPlaybackFilterField = (typeof resolvedPlaybackFilterFields)[number];
 
 export const staticRenditionFilterFields = ["name", "url"] as const;
 export type StaticRenditionFilterField = (typeof staticRenditionFilterFields)[number];
 
-export const staticRenditionRequestFilterFields = ["resolution", "status", "error"] as const;
+export const staticRenditionRequestFilterFields = ["error", "resolution", "status"] as const;
 export type StaticRenditionRequestFilterField = (typeof staticRenditionRequestFilterFields)[number];
 
 export const staticRenditionRequestResultFilterFields = ["requested"] as const;
 export type StaticRenditionRequestResultFilterField = (typeof staticRenditionRequestResultFilterFields)[number];
 
-export const chatBindingFilterFields = ["id", "chat_guid", "prospect_labels", "notes", "bound_at", "created_at", "updated_at", "origin_entity_id", "prospect_phones", "origin_entity"] as const;
+export const chatBindingFilterFields = ["bound_at", "chat_guid", "created_at", "id", "notes", "origin_entity_id", "prospect_labels", "prospect_phones", "updated_at", "origin_entity"] as const;
 export type ChatBindingFilterField = (typeof chatBindingFilterFields)[number];
 
-export const podcastConfigFilterFields = ["id", "page_subtitle", "featured_video_url", "hero_cta_link", "playlist_id", "episodes", "appearance_config", "is_public", "trailer_url", "conversation_starter_config", "origins_button_visible", "page_title", "hero_cta_text", "created_at", "updated_at", "logo_link_url", "cta_button_border_color", "origins_button_text", "origins_button_border_color", "origins_button_text_color", "logo_link_type", "entity_profile_id", "entity_profile"] as const;
+export const podcastConfigFilterFields = ["appearance_config", "conversation_starter_config", "created_at", "cta_button_border_color", "entity_profile_id", "episodes", "featured_video_url", "hero_cta_link", "hero_cta_text", "id", "is_public", "logo_link_type", "logo_link_url", "origins_button_border_color", "origins_button_text", "origins_button_text_color", "origins_button_visible", "page_subtitle", "page_title", "playlist_id", "trailer_url", "updated_at", "entity_profile"] as const;
 export type PodcastConfigFilterField = (typeof podcastConfigFilterFields)[number];
 
-export const podcastEpisodeSettingsFilterFields = ["id", "visible", "ai_enabled", "order", "created_at", "updated_at", "youtube_episode_id", "podcast_config_id", "character_id", "youtube_episode", "podcast_config", "character"] as const;
+export const podcastEpisodeSettingsFilterFields = ["ai_enabled", "character_id", "created_at", "id", "order", "podcast_config_id", "updated_at", "visible", "youtube_episode_id", "character", "podcast_config", "youtube_episode"] as const;
 export type PodcastEpisodeSettingsFilterField = (typeof podcastEpisodeSettingsFilterFields)[number];
 
-export const youtubeEpisodeFilterFields = ["id", "video_id", "video_url", "title", "description", "thumbnail_url", "publish_date", "duration", "episode_number", "host_ids", "guest_ids", "guest_names", "conversation_starters", "used_in_podcast", "used_in_public_profile", "public_profile_config", "playlist_id", "created_at", "updated_at", "origin_entity_id", "transcript_id", "origin_entity", "library_file"] as const;
+export const youtubeEpisodeFilterFields = ["conversation_starters", "created_at", "description", "duration", "episode_number", "guest_ids", "guest_names", "host_ids", "id", "origin_entity_id", "playlist_id", "public_profile_config", "publish_date", "thumbnail_url", "title", "transcript_id", "updated_at", "used_in_podcast", "used_in_public_profile", "video_id", "video_url", "library_file", "origin_entity"] as const;
 export type YoutubeEpisodeFilterField = (typeof youtubeEpisodeFilterFields)[number];
 
 
-export const consentRecordSortFields = ["id", "kind", "custom_name", "granted", "policy_version", "method", "text_shown", "ip", "user_agent", "recorded_at", "email"] as const;
+export const consentRecordSortFields = ["custom_name", "email", "granted", "id", "ip", "kind", "method", "policy_version", "recorded_at", "text_shown", "user_agent"] as const;
 export type ConsentRecordSortField = (typeof consentRecordSortFields)[number];
 
-export const staffTenantGrantSortFields = ["id", "user_id", "tenant_id", "granted_at", "revoked_at", "created_at", "updated_at"] as const;
+export const staffTenantGrantSortFields = ["created_at", "granted_at", "id", "revoked_at", "tenant_id", "updated_at", "user_id"] as const;
 export type StaffTenantGrantSortField = (typeof staffTenantGrantSortFields)[number];
 
-export const tenantSortFields = ["id", "name", "slug", "status", "archived_at", "root_origin_entity_id", "created_at", "updated_at"] as const;
+export const tenantSortFields = ["archived_at", "created_at", "id", "name", "root_origin_entity_id", "slug", "status", "updated_at"] as const;
 export type TenantSortField = (typeof tenantSortFields)[number];
 
-export const userSortFields = ["id", "tenant_id", "instance_id", "aud", "role", "email", "email_confirmed_at", "invited_at", "confirmation_sent_at", "recovery_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change_sent_at", "confirmed_at", "deleted_at", "reauthentication_sent_at", "banned_until", "social_sign_in_response_type", "sign_in_link_response_type", "is_creator"] as const;
+export const userSortFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "deleted_at", "email", "email_confirmed_at", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "phone", "phone_change_sent_at", "phone_confirmed_at", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "tenant_id", "updated_at"] as const;
 export type UserSortField = (typeof userSortFields)[number];
 
 export const signInLinkResponseSortFields = ["status"] as const;
 export type SignInLinkResponseSortField = (typeof signInLinkResponseSortFields)[number];
 
-export const socialSignInResponseSortFields = ["id", "email", "token"] as const;
+export const socialSignInResponseSortFields = ["email", "id", "token"] as const;
 export type SocialSignInResponseSortField = (typeof socialSignInResponseSortFields)[number];
 
-export const waitlistEntrySortFields = ["id", "email", "full_name", "company_name", "role", "interest_areas", "message", "source", "metadata", "status", "invitation_token", "expires_at", "invited_at", "approved_by", "created_at", "updated_at"] as const;
+export const waitlistEntrySortFields = ["approved_by", "company_name", "created_at", "email", "expires_at", "full_name", "id", "interest_areas", "invitation_token", "invited_at", "message", "metadata", "role", "source", "status", "updated_at"] as const;
 export type WaitlistEntrySortField = (typeof waitlistEntrySortFields)[number];
 
-export const chatMessageSortFields = ["id", "role", "content", "created_at"] as const;
+export const chatMessageSortFields = ["content", "created_at", "id", "role"] as const;
 export type ChatMessageSortField = (typeof chatMessageSortFields)[number];
 
-export const chatReplySortFields = ["response", "conversation_id"] as const;
+export const chatReplySortFields = ["conversation_id", "data", "response"] as const;
 export type ChatReplySortField = (typeof chatReplySortFields)[number];
 
 export const chatSuggestionsSortFields = ["suggestions"] as const;
 export type ChatSuggestionsSortField = (typeof chatSuggestionsSortFields)[number];
 
-export const publicConversationSortFields = ["id", "user_id", "session_id", "user_email", "user_name", "metadata", "closed_at", "phone_number", "sms_opt_in", "channel", "status", "is_root", "root_conversation_id", "started_at", "last_message_at", "created_at", "updated_at", "origin_entity_id", "has_letta_agent", "chat_reply_type", "chat_suggestions_type", "chat_message_type", "turn_state_type", "message_count"] as const;
+export const publicConversationSortFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "session_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name"] as const;
 export type PublicConversationSortField = (typeof publicConversationSortFields)[number];
 
-export const publicMessageSortFields = ["id", "role", "content", "model_used", "tokens_used", "response_time_ms", "metadata", "created_at", "conversation_id"] as const;
+export const publicMessageSortFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used"] as const;
 export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 
-export const messageAttachmentSortFields = ["id", "message_id", "file_name", "file_type", "file_size", "storage_path", "parsed_content", "pending_message_id", "created_at"] as const;
+export const messageAttachmentSortFields = ["created_at", "file_name", "file_size", "file_type", "id", "message_id", "parsed_content", "pending_message_id", "storage_path"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
 export const turnStateSortFields = ["running", "stale_at"] as const;
 export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
-export const appSortFields = ["id", "page_type", "slug", "is_published", "meta", "created_at", "updated_at", "title", "source", "generation_format", "generation_prompt", "origin_entity_id", "markdoc_content", "authoring_document", "generation_history", "assessment_graph", "has_letta_agent", "generation_status", "generation_error", "example_briefing", "gated_course_payload_type_anchor"] as const;
+export const appSortFields = ["assessment_graph", "authoring_document", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
-export const assessmentGraphSortFields = ["start_node", "nodes", "edges"] as const;
+export const assessmentGraphSortFields = ["edges", "nodes", "start_node"] as const;
 export type AssessmentGraphSortField = (typeof assessmentGraphSortFields)[number];
 
-export const assessmentResponseSortFields = ["id", "user_id", "email", "launch_activity_id", "answers", "path_history", "current_node", "graph_snapshot_nodes", "graph_snapshot_edges", "result", "attribution", "full_name", "phone", "completed_at", "created_at", "updated_at", "app_id", "enrollment_id"] as const;
+export const assessmentResponseSortFields = ["answers", "app_id", "attribution", "completed_at", "created_at", "current_node", "email", "enrollment_id", "full_name", "graph_snapshot_edges", "graph_snapshot_nodes", "id", "launch_activity_id", "path_history", "phone", "result", "updated_at", "user_id"] as const;
 export type AssessmentResponseSortField = (typeof assessmentResponseSortFields)[number];
 
-export const authoringDocumentSortFields = ["page_type", "blocks", "config", "errors"] as const;
+export const authoringDocumentSortFields = ["blocks", "config", "errors", "page_type"] as const;
 export type AuthoringDocumentSortField = (typeof authoringDocumentSortFields)[number];
 
-export const originsAppsContentCourseActivitySortFields = ["id", "kind", "label", "icon", "source_course", "phase", "session", "title", "duration", "recurrence", "availability", "mode", "body", "image", "opens", "optional", "content", "video", "assessment", "steps", "prompts", "contributors"] as const;
+export const originsAppsContentCourseActivitySortFields = ["assessment", "availability", "body", "content", "contributors", "duration", "icon", "id", "image", "kind", "label", "mode", "opens", "optional", "phase", "prompts", "recurrence", "session", "source_course", "steps", "title", "video"] as const;
 export type OriginsAppsContentCourseActivitySortField = (typeof originsAppsContentCourseActivitySortFields)[number];
 
 export const originsAppsContentCourseAssessmentSortFields = ["app"] as const;
 export type OriginsAppsContentCourseAssessmentSortField = (typeof originsAppsContentCourseAssessmentSortFields)[number];
 
-export const originsAppsContentCourseContributorSortFields = ["ref", "name", "role", "bio", "avatar_url"] as const;
+export const originsAppsContentCourseContributorSortFields = ["avatar_url", "bio", "name", "ref", "role"] as const;
 export type OriginsAppsContentCourseContributorSortField = (typeof originsAppsContentCourseContributorSortFields)[number];
 
-export const originsAppsContentCourseCourseSortFields = ["name", "logo", "background", "foreground", "card", "card_foreground", "primary", "primary_foreground", "accent", "accent_foreground", "border", "video_accent", "video_captions", "streaks", "gated", "segment", "purchase_url", "gated_default_tab", "unit_label", "head"] as const;
+export const originsAppsContentCourseCourseSortFields = ["accent", "accent_foreground", "background", "border", "card", "card_foreground", "foreground", "gated", "gated_default_tab", "head", "logo", "name", "primary", "primary_foreground", "purchase_url", "segment", "streaks", "unit_label", "video_accent", "video_captions"] as const;
 export type OriginsAppsContentCourseCourseSortField = (typeof originsAppsContentCourseCourseSortFields)[number];
 
-export const originsAppsContentCourseCourseStepSortFields = ["id", "title", "duration", "body", "required", "content", "order", "prompts"] as const;
+export const originsAppsContentCourseCourseStepSortFields = ["body", "content", "duration", "id", "order", "prompts", "required", "title"] as const;
 export type OriginsAppsContentCourseCourseStepSortField = (typeof originsAppsContentCourseCourseStepSortFields)[number];
 
 export const originsAppsContentCourseGateSortFields = ["after", "any_of", "at_least", "delay", "every"] as const;
 export type OriginsAppsContentCourseGateSortField = (typeof originsAppsContentCourseGateSortFields)[number];
 
-export const originsAppsContentCoursePhaseSortFields = ["id", "title", "weeks", "description"] as const;
+export const originsAppsContentCoursePhaseSortFields = ["description", "id", "title", "weeks"] as const;
 export type OriginsAppsContentCoursePhaseSortField = (typeof originsAppsContentCoursePhaseSortFields)[number];
 
-export const originsAppsContentCoursePromptSortFields = ["id", "kind", "label", "min", "max", "options", "required", "order"] as const;
+export const originsAppsContentCoursePromptSortFields = ["id", "kind", "label", "max", "min", "options", "order", "required"] as const;
 export type OriginsAppsContentCoursePromptSortField = (typeof originsAppsContentCoursePromptSortFields)[number];
 
-export const originsAppsContentCourseSessionSortFields = ["id", "title", "description", "opens", "optional", "phase_id", "index"] as const;
+export const originsAppsContentCourseSessionSortFields = ["description", "id", "index", "opens", "optional", "phase_id", "title"] as const;
 export type OriginsAppsContentCourseSessionSortField = (typeof originsAppsContentCourseSessionSortFields)[number];
 
-export const originsAppsContentCourseTransitionSortFields = ["id", "title", "body", "between", "at"] as const;
+export const originsAppsContentCourseTransitionSortFields = ["at", "between", "body", "id", "title"] as const;
 export type OriginsAppsContentCourseTransitionSortField = (typeof originsAppsContentCourseTransitionSortFields)[number];
 
-export const originsAppsContentCourseVideoSortFields = ["path", "caption"] as const;
+export const originsAppsContentCourseVideoSortFields = ["caption", "path"] as const;
 export type OriginsAppsContentCourseVideoSortField = (typeof originsAppsContentCourseVideoSortFields)[number];
 
 export const briefingPageSortFields = ["body"] as const;
 export type BriefingPageSortField = (typeof briefingPageSortFields)[number];
 
-export const dailyBriefingSortFields = ["session_id", "date", "pages", "generated_at", "read_at"] as const;
+export const dailyBriefingSortFields = ["date", "generated_at", "pages", "read_at", "session_id"] as const;
 export type DailyBriefingSortField = (typeof dailyBriefingSortFields)[number];
 
-export const gatedCourseSortFields = ["config", "briefing_enabled", "unit_label", "outcomes", "contributors", "phases", "transitions", "sessions", "activities", "source_libraries"] as const;
+export const gatedCourseSortFields = ["activities", "briefing_enabled", "config", "contributors", "outcomes", "phases", "sessions", "source_libraries", "transitions", "unit_label"] as const;
 export type GatedCourseSortField = (typeof gatedCourseSortFields)[number];
 
-export const gatedCoursePayloadSortFields = ["gated_course", "enrollment", "state", "assessment_launches"] as const;
+export const gatedCoursePayloadSortFields = ["assessment_launches", "enrollment", "gated_course", "state"] as const;
 export type GatedCoursePayloadSortField = (typeof gatedCoursePayloadSortFields)[number];
 
-export const courseItemStateSortFields = ["item_id", "available", "unlocks_when", "complete", "progress"] as const;
+export const courseItemStateSortFields = ["available", "complete", "item_id", "progress", "unlocks_when"] as const;
 export type CourseItemStateSortField = (typeof courseItemStateSortFields)[number];
 
 export const courseAssessmentLaunchSortFields = ["activity_id", "app_id"] as const;
 export type CourseAssessmentLaunchSortField = (typeof courseAssessmentLaunchSortFields)[number];
 
-export const courseUnlocksWhenSortFields = ["type", "date", "activity_ids", "reason"] as const;
+export const courseUnlocksWhenSortFields = ["activity_ids", "date", "reason", "type"] as const;
 export type CourseUnlocksWhenSortField = (typeof courseUnlocksWhenSortFields)[number];
 
-export const courseActivityCompletionSortFields = ["id", "activity_id", "step_id", "completed_date", "responses", "notes", "duration_seconds", "attachments", "created_at", "updated_at", "enrollment_id"] as const;
+export const courseActivityCompletionSortFields = ["activity_id", "attachments", "completed_date", "created_at", "duration_seconds", "enrollment_id", "id", "notes", "responses", "step_id", "updated_at"] as const;
 export type CourseActivityCompletionSortField = (typeof courseActivityCompletionSortFields)[number];
 
-export const courseEnrollmentSortFields = ["id", "status", "current_session_id", "entered_session_ids", "current_phase_id", "current_phase_started_at", "reactivated_at", "enrolled_at", "streak_count", "streak_last_date", "settings", "created_at", "updated_at", "user_id", "character_id", "app_id", "current_personalization_id", "assessment_answers", "enrollment_completions_type_anchor", "activity_completion_summary_type_anchor"] as const;
+export const courseEnrollmentSortFields = ["app_id", "assessment_answers", "character_id", "created_at", "current_personalization_id", "current_phase_id", "current_phase_started_at", "current_session_id", "enrolled_at", "entered_session_ids", "id", "reactivated_at", "settings", "status", "streak_count", "streak_last_date", "updated_at", "user_id"] as const;
 export type CourseEnrollmentSortField = (typeof courseEnrollmentSortFields)[number];
 
-export const activityCompletionSummarySortFields = ["id", "activity_id", "step_id", "completed_date", "responses"] as const;
+export const activityCompletionSummarySortFields = ["activity_id", "completed_date", "id", "responses", "step_id"] as const;
 export type ActivityCompletionSummarySortField = (typeof activityCompletionSummarySortFields)[number];
 
-export const enrollmentCompletionsSortFields = ["id", "status", "current_session_id", "current_phase_id", "current_phase_started_at", "activity_completions"] as const;
+export const enrollmentCompletionsSortFields = ["activity_completions", "current_phase_id", "current_phase_started_at", "current_session_id", "id", "status"] as const;
 export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFields)[number];
 
-export const courseEntitlementSortFields = ["id", "tier", "granted_at", "app_id", "scope", "ended_at", "plan_id"] as const;
+export const courseEntitlementSortFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier"] as const;
 export type CourseEntitlementSortField = (typeof courseEntitlementSortFields)[number];
 
-export const documentBlockSortFields = ["record_id", "document_id", "parent_record_id", "position", "block_type", "payload", "created_at", "updated_at"] as const;
+export const documentBlockSortFields = ["block_type", "created_at", "document_id", "library_file_id", "parent_record_id", "payload", "position", "record_id", "target_app_id", "target_origin_entity_id", "target_record_id", "updated_at"] as const;
 export type DocumentBlockSortField = (typeof documentBlockSortFields)[number];
 
-export const appVersionSortFields = ["id", "version_action_type", "version_action_name", "change_summary", "change_source_message_id", "version_source_id", "changes", "version_inserted_at", "version_updated_at"] as const;
+export const appVersionSortFields = ["change_source_message_id", "change_summary", "changes", "id", "version_action_name", "version_action_type", "version_inserted_at", "version_source_id", "version_updated_at"] as const;
 export type AppVersionSortField = (typeof appVersionSortFields)[number];
 
-export const originsAppsEdgeSortFields = ["source", "target", "condition_type", "condition_field", "condition_op", "condition_value"] as const;
+export const originsAppsEdgeSortFields = ["condition_field", "condition_op", "condition_type", "condition_value", "source", "target"] as const;
 export type OriginsAppsEdgeSortField = (typeof originsAppsEdgeSortFields)[number];
 
-export const generationHistoryEntrySortFields = ["id", "role", "content", "reasoning", "tool_calls", "tool_return", "tool_return_status", "created_at"] as const;
+export const generationHistoryEntrySortFields = ["content", "created_at", "id", "reasoning", "role", "tool_calls", "tool_return", "tool_return_status"] as const;
 export type GenerationHistoryEntrySortField = (typeof generationHistoryEntrySortFields)[number];
 
-export const originsAppsNodeSortFields = ["id", "type", "kind", "weight", "required", "max", "min", "title", "description", "subtitle", "highlight", "options", "sliders", "summary_items", "loading_bars"] as const;
+export const originsAppsNodeSortFields = ["description", "highlight", "id", "kind", "loading_bars", "max", "min", "options", "required", "sliders", "subtitle", "summary_items", "title", "type", "weight"] as const;
 export type OriginsAppsNodeSortField = (typeof originsAppsNodeSortFields)[number];
 
-export const originsAppsOptionSortFields = ["value", "label", "segment", "route"] as const;
+export const originsAppsOptionSortFields = ["label", "route", "segment", "value"] as const;
 export type OriginsAppsOptionSortField = (typeof originsAppsOptionSortFields)[number];
 
-export const planSortFields = ["id", "name", "stripe_price_id", "retired_at", "scope", "sale_count"] as const;
+export const planSortFields = ["id", "name", "retired_at", "sale_count", "scope", "stripe_price_id"] as const;
 export type PlanSortField = (typeof planSortFields)[number];
 
-export const programTestSortFields = ["id", "name", "coach_conversation_id", "created_at", "updated_at", "program_id", "test_user_id"] as const;
+export const programTestSortFields = ["coach_conversation_id", "created_at", "id", "name", "program_id", "test_user_id", "updated_at"] as const;
 export type ProgramTestSortField = (typeof programTestSortFields)[number];
 
-export const originsAppsSliderSortFields = ["id", "label", "min", "max", "low_label", "high_label"] as const;
+export const originsAppsSliderSortFields = ["high_label", "id", "label", "low_label", "max", "min"] as const;
 export type OriginsAppsSliderSortField = (typeof originsAppsSliderSortFields)[number];
 
-export const appTemplateSortFields = ["id", "name", "description", "page_type", "seed_markdoc_content", "sort_order", "created_at", "updated_at"] as const;
+export const appTemplateSortFields = ["created_at", "description", "id", "name", "page_type", "seed_markdoc_content", "sort_order", "updated_at"] as const;
 export type AppTemplateSortField = (typeof appTemplateSortFields)[number];
 
-export const webhookDeliverySortFields = ["id", "event_type", "event_id", "assessment_response_id", "target_url", "payload", "status", "attempts", "last_status_code", "last_error", "delivered_at", "created_at", "updated_at", "subscription_id", "origin_entity_id"] as const;
+export const webhookDeliverySortFields = ["assessment_response_id", "attempts", "created_at", "delivered_at", "event_id", "event_type", "id", "last_error", "last_status_code", "origin_entity_id", "payload", "status", "subscription_id", "target_url", "updated_at"] as const;
 export type WebhookDeliverySortField = (typeof webhookDeliverySortFields)[number];
 
-export const webhookSubscriptionSortFields = ["id", "target_url", "secret", "event_types", "active", "description", "created_at", "updated_at", "origin_entity_id", "app_id"] as const;
+export const webhookSubscriptionSortFields = ["active", "app_id", "created_at", "description", "event_types", "id", "origin_entity_id", "secret", "target_url", "updated_at"] as const;
 export type WebhookSubscriptionSortField = (typeof webhookSubscriptionSortFields)[number];
 
-export const featureFlagSortFields = ["id", "feature_name", "enabled", "created_at", "updated_at", "origin_entity_id"] as const;
+export const featureFlagSortFields = ["created_at", "enabled", "feature_name", "id", "origin_entity_id", "updated_at"] as const;
 export type FeatureFlagSortField = (typeof featureFlagSortFields)[number];
 
-export const feedbackSortFields = ["id", "feedback_type", "subject", "message", "screenshot_url", "admin_notes", "user_email", "user_name", "context_type", "context_name", "resolved_at", "status", "created_at", "updated_at", "origin_entity_id"] as const;
+export const feedbackSortFields = ["admin_notes", "context_name", "context_type", "created_at", "feedback_type", "id", "message", "origin_entity_id", "resolved_at", "screenshot_url", "status", "subject", "updated_at", "user_email", "user_name"] as const;
 export type FeedbackSortField = (typeof feedbackSortFields)[number];
 
-export const homepageCardSortFields = ["id", "name", "role", "gradient", "is_active", "custom_url", "avatar_url", "avatar_key", "ai_enabled", "description", "tags", "use_gradient", "order_index", "destination_type", "created_at", "updated_at", "avatar_size", "avatar_shape", "avatar_vertical_position", "background_color", "origin_entity_id", "presigned_avatar_url"] as const;
+export const homepageCardSortFields = ["ai_enabled", "avatar_key", "avatar_shape", "avatar_size", "avatar_url", "avatar_vertical_position", "background_color", "created_at", "custom_url", "description", "destination_type", "gradient", "id", "is_active", "name", "order_index", "origin_entity_id", "presigned_avatar_url", "role", "tags", "updated_at", "use_gradient"] as const;
 export type HomepageCardSortField = (typeof homepageCardSortFields)[number];
 
-export const originsIdentityAppearanceConfigSortFields = ["checkmark_color", "show_chat_button", "chat_button_bg", "chat_button_text", "show_share_button", "share_button_border", "share_button_text", "share_button_bg", "button_border_radius", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "send_button_bg", "send_button_text"] as const;
+export const originsIdentityAppearanceConfigSortFields = ["ai_bubble_bg", "ai_bubble_text", "button_border_radius", "chat_button_bg", "chat_button_text", "checkmark_color", "send_button_bg", "send_button_text", "share_button_bg", "share_button_border", "share_button_text", "show_chat_button", "show_share_button", "user_bubble_bg", "user_bubble_text"] as const;
 export type OriginsIdentityAppearanceConfigSortField = (typeof originsIdentityAppearanceConfigSortFields)[number];
 
-export const originsIdentityBrandConversationConfigSortFields = ["checkmark_color", "checkmark_bg_color", "show_chat_button", "chat_button_bg", "chat_button_text", "button_border_radius", "show_share_button", "share_button_bg", "share_button_border", "share_button_icon", "show_description", "show_content_section", "show_avatars_section", "selected_avatars", "avatars_section_label", "show_podcast_link", "show_origins_button", "origins_button_bg", "origins_button_text", "origins_button_border", "origins_button_text_color", "social_links", "send_button_bg", "send_button_text", "user_bubble_bg", "user_bubble_text", "ai_bubble_bg", "ai_bubble_text", "chat_input_active_border", "page_background_color", "enabled_mode_ids"] as const;
+export const originsIdentityBrandConversationConfigSortFields = ["ai_bubble_bg", "ai_bubble_text", "avatars_section_label", "button_border_radius", "chat_button_bg", "chat_button_text", "chat_input_active_border", "checkmark_bg_color", "checkmark_color", "enabled_mode_ids", "origins_button_bg", "origins_button_border", "origins_button_text", "origins_button_text_color", "page_background_color", "selected_avatars", "send_button_bg", "send_button_text", "share_button_bg", "share_button_border", "share_button_icon", "show_avatars_section", "show_chat_button", "show_content_section", "show_description", "show_origins_button", "show_podcast_link", "show_share_button", "social_links", "user_bubble_bg", "user_bubble_text"] as const;
 export type OriginsIdentityBrandConversationConfigSortField = (typeof originsIdentityBrandConversationConfigSortFields)[number];
 
-export const originsIdentityBrandConversationSocialLinkSortFields = ["platform", "url", "visible", "icon", "icon_name", "custom_icon_url", "custom_label", "custom_url"] as const;
+export const originsIdentityBrandConversationSocialLinkSortFields = ["custom_icon_url", "custom_label", "custom_url", "icon", "icon_name", "platform", "url", "visible"] as const;
 export type OriginsIdentityBrandConversationSocialLinkSortField = (typeof originsIdentityBrandConversationSocialLinkSortFields)[number];
 
-export const chatConfigSortFields = ["id", "chat_button_color", "welcome_message", "show_close_button", "show_powered_by", "show_header_avatar", "show_ai_message_avatar", "chat_button_show_icon", "public_profile_button_show_icon", "podcast_button_show_icon", "public_profile_show_brand_logo", "podcast_show_brand_logo", "use_chat_button_for_public_profile", "use_chat_button_for_podcast", "available_avatar_ids", "chat_button_text", "show_brand_logo", "chat_window_title", "chat_bubble_color", "chat_bubble_text_color", "user_bubble_color", "user_bubble_text_color", "enable_sound_notifications", "show_typing_indicator", "enable_chat_history", "inherits_descendant_knowledge", "created_at", "updated_at", "button_shape", "window_size", "header_style", "window_border_radius", "window_animation", "send_button_style", "input_placeholder", "window_position_mode", "chat_button_icon", "chat_button_text_color", "public_profile_button_icon", "public_profile_button_text_color", "podcast_button_icon", "podcast_button_text_color", "public_profile_button_color", "podcast_button_color", "chat_button_border_color", "public_profile_button_border_color", "podcast_button_border_color", "public_profile_button_shape", "podcast_button_shape", "public_profile_button_text", "podcast_button_text", "input_style", "chat_button_position", "response_delay", "origin_entity_id"] as const;
+export const chatConfigSortFields = ["available_avatar_ids", "button_shape", "chat_bubble_color", "chat_bubble_text_color", "chat_button_border_color", "chat_button_color", "chat_button_icon", "chat_button_position", "chat_button_show_icon", "chat_button_text", "chat_button_text_color", "chat_window_title", "created_at", "enable_chat_history", "enable_sound_notifications", "header_style", "id", "inherits_descendant_knowledge", "input_placeholder", "input_style", "origin_entity_id", "podcast_button_border_color", "podcast_button_color", "podcast_button_icon", "podcast_button_shape", "podcast_button_show_icon", "podcast_button_text", "podcast_button_text_color", "podcast_show_brand_logo", "public_profile_button_border_color", "public_profile_button_color", "public_profile_button_icon", "public_profile_button_shape", "public_profile_button_show_icon", "public_profile_button_text", "public_profile_button_text_color", "public_profile_show_brand_logo", "response_delay", "send_button_style", "show_ai_message_avatar", "show_brand_logo", "show_close_button", "show_header_avatar", "show_powered_by", "show_typing_indicator", "updated_at", "use_chat_button_for_podcast", "use_chat_button_for_public_profile", "user_bubble_color", "user_bubble_text_color", "welcome_message", "window_animation", "window_border_radius", "window_position_mode", "window_size"] as const;
 export type ChatConfigSortField = (typeof chatConfigSortFields)[number];
 
 export const originsIdentityCustomLinkSortFields = ["label", "url"] as const;
 export type OriginsIdentityCustomLinkSortField = (typeof originsIdentityCustomLinkSortFields)[number];
 
-export const originAssetSortFields = ["id", "asset_type", "asset_url", "asset_key", "asset_name", "asset_metadata", "source_platform", "shared_with_origin_entity_ids", "is_shared_globally", "created_at", "updated_at", "origin_entity_id"] as const;
+export const originAssetSortFields = ["asset_key", "asset_metadata", "asset_name", "asset_type", "asset_url", "created_at", "id", "is_shared_globally", "origin_entity_id", "shared_with_origin_entity_ids", "source_platform", "updated_at"] as const;
 export type OriginAssetSortField = (typeof originAssetSortFields)[number];
 
-export const originEntitySortFields = ["id", "tenant_id", "parent_origin_entity_id", "name", "description", "title", "personality_traits", "mission_statement", "core_values", "accent_colors", "tone_of_voice", "key_messaging", "target_audience", "content_themes", "categories", "picture_url", "picture_key", "banner_url", "banner_key", "social_links", "voice_settings", "voice_config", "guardrails_settings", "appearance_config", "brand_conversation_config", "public_profile_config", "engagement_metrics", "extracted_content", "ai_generated_summary", "is_public", "is_active", "is_featured", "slug", "website_content", "last_website_scrape", "page_sections_config", "content_tabs_config", "youtube_channel_id", "youtube_channel_data", "youtube_sync_settings", "youtube_content_settings", "podcast_content_settings", "podcast_button_visible", "podcast_button_link", "podcast_button_text", "podcast_button_color", "podcast_button_text_color", "created_at", "updated_at", "setup_progress_id", "presigned_picture_url", "presigned_banner_url", "scraped_website_content_type"] as const;
+export const originEntitySortFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "description", "engagement_metrics", "extracted_content", "guardrails_settings", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings"] as const;
 export type OriginEntitySortField = (typeof originEntitySortFields)[number];
 
-export const scrapedWebsiteContentSortFields = ["url", "title", "meta_description", "meta_keywords", "open_graph", "headings", "paragraphs", "text_content", "scraped_at"] as const;
+export const scrapedWebsiteContentSortFields = ["headings", "meta_description", "meta_keywords", "open_graph", "paragraphs", "scraped_at", "text_content", "title", "url"] as const;
 export type ScrapedWebsiteContentSortField = (typeof scrapedWebsiteContentSortFields)[number];
 
 export const scrapedWebsiteContentHeadingSortFields = ["level", "text"] as const;
 export type ScrapedWebsiteContentHeadingSortField = (typeof scrapedWebsiteContentHeadingSortFields)[number];
 
-export const scrapedWebsiteContentOpenGraphSortFields = ["title", "description", "image"] as const;
+export const scrapedWebsiteContentOpenGraphSortFields = ["description", "image", "title"] as const;
 export type ScrapedWebsiteContentOpenGraphSortField = (typeof scrapedWebsiteContentOpenGraphSortFields)[number];
 
-export const originEntityStaffMembershipSortFields = ["id", "user_id", "role", "status", "invitation_token", "invited_email", "expires_at", "invited_by", "accepted_at", "joined_at", "created_at", "updated_at", "origin_entity_id"] as const;
+export const originEntityStaffMembershipSortFields = ["accepted_at", "created_at", "expires_at", "id", "invitation_token", "invited_by", "invited_email", "joined_at", "origin_entity_id", "role", "status", "updated_at", "user_id"] as const;
 export type OriginEntityStaffMembershipSortField = (typeof originEntityStaffMembershipSortFields)[number];
 
-export const promptContextSortFields = ["id", "name", "public_title", "public_description", "context_text", "prompt_tool_ids", "is_active", "is_default", "guardrail_config", "created_at", "updated_at", "origin_entity_id"] as const;
+export const promptContextSortFields = ["context_text", "created_at", "guardrail_config", "id", "is_active", "is_default", "name", "origin_entity_id", "prompt_tool_ids", "public_description", "public_title", "updated_at"] as const;
 export type PromptContextSortField = (typeof promptContextSortFields)[number];
 
-export const originsIdentityPromptContextGuardrailConfigSortFields = ["input_prompt_injection_detection", "input_jailbreak_detection", "input_toxicity_detection", "input_max_length", "output_data_leakage_prevention", "output_content_moderation", "output_toxicity_detection", "confidence_threshold", "allowed_toxicity_categories", "grounding_check", "grounding_threshold"] as const;
+export const originsIdentityPromptContextGuardrailConfigSortFields = ["allowed_toxicity_categories", "confidence_threshold", "grounding_check", "grounding_threshold", "input_jailbreak_detection", "input_max_length", "input_prompt_injection_detection", "input_toxicity_detection", "output_content_moderation", "output_data_leakage_prevention", "output_toxicity_detection"] as const;
 export type OriginsIdentityPromptContextGuardrailConfigSortField = (typeof originsIdentityPromptContextGuardrailConfigSortFields)[number];
 
-export const promptToolSortFields = ["id", "name", "description", "prompt_template", "model", "temperature", "max_tokens", "is_active", "auto_approve", "letta_tools", "created_at", "updated_at", "origin_entity_id", "source_origin_entity_id"] as const;
+export const promptToolSortFields = ["auto_approve", "created_at", "description", "id", "is_active", "letta_tools", "max_tokens", "model", "name", "origin_entity_id", "prompt_template", "source_origin_entity_id", "temperature", "updated_at"] as const;
 export type PromptToolSortField = (typeof promptToolSortFields)[number];
 
-export const originsIdentityPublicProfileConfigSortFields = ["custom_links", "show_content_section", "display_order", "voice_enabled", "show_signin_button", "show_children_section"] as const;
+export const originsIdentityPublicProfileConfigSortFields = ["custom_links", "display_order", "show_children_section", "show_content_section", "show_signin_button", "voice_enabled"] as const;
 export type OriginsIdentityPublicProfileConfigSortField = (typeof originsIdentityPublicProfileConfigSortFields)[number];
 
-export const setupProgressSortFields = ["id", "entity_name", "completed_steps", "social_media_links", "ai_suggested_links", "api_extracted_data", "metadata", "is_completed", "current_step", "onboarding_mode", "created_at", "updated_at", "origin_entity_id"] as const;
+export const setupProgressSortFields = ["ai_suggested_links", "api_extracted_data", "completed_steps", "created_at", "current_step", "entity_name", "id", "is_completed", "metadata", "onboarding_mode", "origin_entity_id", "social_media_links", "updated_at"] as const;
 export type SetupProgressSortField = (typeof setupProgressSortFields)[number];
 
-export const originsIdentitySocialLinkSortFields = ["platform", "url", "visible", "custom_platform_name", "icon_name", "custom_icon_key", "custom_icon_url"] as const;
+export const originsIdentitySocialLinkSortFields = ["custom_icon_key", "custom_icon_url", "custom_platform_name", "icon_name", "platform", "url", "visible"] as const;
 export type OriginsIdentitySocialLinkSortField = (typeof originsIdentitySocialLinkSortFields)[number];
 
-export const soulConfigSortFields = ["id", "personality_traits", "purpose_statement", "core_instructions", "conversation_starters", "speaking_tone", "communication_style", "vocabulary_preferences", "response_format_preferences", "experience_settings", "guardrails_settings", "response_length", "created_at", "updated_at", "origin_entity_id"] as const;
+export const soulConfigSortFields = ["communication_style", "conversation_starters", "core_instructions", "created_at", "experience_settings", "guardrails_settings", "id", "origin_entity_id", "personality_traits", "purpose_statement", "response_format_preferences", "response_length", "speaking_tone", "updated_at", "vocabulary_preferences"] as const;
 export type SoulConfigSortField = (typeof soulConfigSortFields)[number];
 
 export const originsIdentitySoulConfigCommunicationStyleSortFields = ["notes"] as const;
 export type OriginsIdentitySoulConfigCommunicationStyleSortField = (typeof originsIdentitySoulConfigCommunicationStyleSortFields)[number];
 
-export const originsIdentitySoulConfigExperienceSettingsSortFields = ["welcome_message", "proactive_assistance", "context_awareness", "personalized_responses"] as const;
+export const originsIdentitySoulConfigExperienceSettingsSortFields = ["context_awareness", "personalized_responses", "proactive_assistance", "welcome_message"] as const;
 export type OriginsIdentitySoulConfigExperienceSettingsSortField = (typeof originsIdentitySoulConfigExperienceSettingsSortFields)[number];
 
-export const originsIdentitySoulConfigResponseFormatPreferencesSortFields = ["use_bullet_points", "use_emojis", "include_examples"] as const;
+export const originsIdentitySoulConfigResponseFormatPreferencesSortFields = ["include_examples", "use_bullet_points", "use_emojis"] as const;
 export type OriginsIdentitySoulConfigResponseFormatPreferencesSortField = (typeof originsIdentitySoulConfigResponseFormatPreferencesSortFields)[number];
 
-export const userProfileSortFields = ["id", "user_id", "display_name", "avatar_url", "bio", "notification_preferences", "privacy_settings", "email", "theme_preference", "created_at", "updated_at"] as const;
+export const userProfileSortFields = ["avatar_url", "bio", "created_at", "display_name", "email", "id", "notification_preferences", "privacy_settings", "theme_preference", "updated_at", "user_id"] as const;
 export type UserProfileSortField = (typeof userProfileSortFields)[number];
 
-export const interviewGeneratedContentSortFields = ["id", "content_type", "content", "title", "status", "metadata", "created_at", "updated_at", "interview_session_id"] as const;
+export const interviewGeneratedContentSortFields = ["content", "content_type", "created_at", "id", "interview_session_id", "metadata", "status", "title", "updated_at"] as const;
 export type InterviewGeneratedContentSortField = (typeof interviewGeneratedContentSortFields)[number];
 
-export const interviewRecordingSortFields = ["id", "recording_type", "file_name", "storage_key", "file_size", "duration_ms", "video_codec", "audio_codec", "width", "height", "status", "error_message", "metadata", "created_at", "updated_at", "interview_session_id"] as const;
+export const interviewRecordingSortFields = ["audio_codec", "created_at", "duration_ms", "error_message", "file_name", "file_size", "height", "id", "interview_session_id", "metadata", "recording_type", "status", "storage_key", "updated_at", "video_codec", "width"] as const;
 export type InterviewRecordingSortField = (typeof interviewRecordingSortFields)[number];
 
-export const interviewSessionSortFields = ["id", "status", "channel", "metadata", "session_name", "summary", "key_quotes", "topics", "created_at", "updated_at", "origin_entity_id"] as const;
+export const interviewSessionSortFields = ["channel", "created_at", "id", "key_quotes", "metadata", "origin_entity_id", "session_name", "status", "summary", "topics", "updated_at"] as const;
 export type InterviewSessionSortField = (typeof interviewSessionSortFields)[number];
 
-export const interviewTurnSortFields = ["id", "turn_number", "question", "answer", "metadata", "created_at", "updated_at", "interview_session_id"] as const;
+export const interviewTurnSortFields = ["answer", "created_at", "id", "interview_session_id", "metadata", "question", "turn_number", "updated_at"] as const;
 export type InterviewTurnSortField = (typeof interviewTurnSortFields)[number];
 
 export const agentMemorySortFields = ["id", "label", "value"] as const;
 export type AgentMemorySortField = (typeof agentMemorySortFields)[number];
 
-export const driveConnectionSortFields = ["id", "token_expires_at", "status", "connected_by_user_id", "google_email", "created_at", "updated_at", "entity_profile_id"] as const;
+export const driveConnectionSortFields = ["connected_by_user_id", "created_at", "entity_profile_id", "google_email", "id", "status", "token_expires_at", "updated_at"] as const;
 export type DriveConnectionSortField = (typeof driveConnectionSortFields)[number];
 
-export const githubConnectionSortFields = ["id", "installation_id", "github_account_login", "github_account_type", "status", "connected_by_user_id", "created_at", "updated_at", "entity_profile_id"] as const;
+export const githubConnectionSortFields = ["connected_by_user_id", "created_at", "entity_profile_id", "github_account_login", "github_account_type", "id", "installation_id", "status", "updated_at"] as const;
 export type GithubConnectionSortField = (typeof githubConnectionSortFields)[number];
 
-export const librarySortFields = ["id", "name", "slug", "adapter_kind", "adapter_config", "inherits_to_descendants", "status", "last_synced_at", "error_count", "last_error", "last_error_at", "auto_resync_enabled", "auto_ingest_videos", "transcribe_media", "created_at", "updated_at", "origin_entity_id"] as const;
+export const librarySortFields = ["adapter_config", "adapter_kind", "auto_ingest_videos", "auto_resync_enabled", "created_at", "error_count", "id", "inherits_to_descendants", "last_error", "last_error_at", "last_synced_at", "name", "origin_entity_id", "slug", "status", "transcribe_media", "updated_at"] as const;
 export type LibrarySortField = (typeof librarySortFields)[number];
 
-export const libraryAccessGrantSortFields = ["id", "created_at", "updated_at", "library_id", "grantee_origin_entity_id"] as const;
+export const libraryAccessGrantSortFields = ["created_at", "grantee_origin_entity_id", "id", "library_id", "updated_at"] as const;
 export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[number];
 
-export const libraryFileSortFields = ["id", "path", "item_type", "item_name", "item_content", "s3_key", "sync_status", "source_metadata", "created_at", "updated_at", "library_id", "metadata_contains", "metadata_keys", "metadata_number", "signed_s3_url", "vfs_path", "media_format"] as const;
+export const libraryFileSortFields = ["created_at", "id", "item_content", "item_name", "item_type", "library_id", "media_format", "metadata_contains", "metadata_keys", "metadata_number", "path", "s3_key", "signed_s3_url", "source_metadata", "sync_status", "updated_at", "vfs_path"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
 
-export const playlistSortFields = ["id", "title", "description", "item_count", "created_at", "updated_at", "user_id"] as const;
+export const playlistSortFields = ["created_at", "description", "id", "item_count", "title", "updated_at", "user_id"] as const;
 export type PlaylistSortField = (typeof playlistSortFields)[number];
 
-export const playlistItemSortFields = ["id", "item_type", "position", "created_at", "updated_at", "playlist_id", "library_file_id", "library_id"] as const;
+export const playlistItemSortFields = ["created_at", "id", "item_type", "library_file_id", "library_id", "playlist_id", "position", "updated_at"] as const;
 export type PlaylistItemSortField = (typeof playlistItemSortFields)[number];
 
-export const videoAssetSortFields = ["id", "otterwake_org", "otterwake_upload_id", "otterwake_asset_id", "otterwake_playback_id", "status", "duration", "aspect_ratio", "error", "captioned_at", "created_at", "updated_at", "library_file_id", "resolved_playback_type", "static_rendition_request_type", "static_rendition_type"] as const;
+export const videoAssetSortFields = ["aspect_ratio", "captioned_at", "created_at", "duration", "error", "id", "library_file_id", "otterwake_asset_id", "otterwake_org", "otterwake_playback_id", "otterwake_upload_id", "status", "updated_at"] as const;
 export type VideoAssetSortField = (typeof videoAssetSortFields)[number];
 
-export const resolvedPlaybackSortFields = ["status", "src", "poster", "library_file_id"] as const;
+export const resolvedPlaybackSortFields = ["library_file_id", "poster", "src", "status"] as const;
 export type ResolvedPlaybackSortField = (typeof resolvedPlaybackSortFields)[number];
 
 export const staticRenditionSortFields = ["name", "url"] as const;
 export type StaticRenditionSortField = (typeof staticRenditionSortFields)[number];
 
-export const staticRenditionRequestSortFields = ["resolution", "status", "error"] as const;
+export const staticRenditionRequestSortFields = ["error", "resolution", "status"] as const;
 export type StaticRenditionRequestSortField = (typeof staticRenditionRequestSortFields)[number];
 
 export const staticRenditionRequestResultSortFields = ["requested"] as const;
 export type StaticRenditionRequestResultSortField = (typeof staticRenditionRequestResultSortFields)[number];
 
-export const chatBindingSortFields = ["id", "chat_guid", "prospect_labels", "notes", "bound_at", "created_at", "updated_at", "origin_entity_id", "prospect_phones"] as const;
+export const chatBindingSortFields = ["bound_at", "chat_guid", "created_at", "id", "notes", "origin_entity_id", "prospect_labels", "prospect_phones", "updated_at"] as const;
 export type ChatBindingSortField = (typeof chatBindingSortFields)[number];
 
-export const podcastConfigSortFields = ["id", "page_subtitle", "featured_video_url", "hero_cta_link", "playlist_id", "episodes", "appearance_config", "is_public", "trailer_url", "conversation_starter_config", "origins_button_visible", "page_title", "hero_cta_text", "created_at", "updated_at", "logo_link_url", "cta_button_border_color", "origins_button_text", "origins_button_border_color", "origins_button_text_color", "logo_link_type", "entity_profile_id"] as const;
+export const podcastConfigSortFields = ["appearance_config", "conversation_starter_config", "created_at", "cta_button_border_color", "entity_profile_id", "episodes", "featured_video_url", "hero_cta_link", "hero_cta_text", "id", "is_public", "logo_link_type", "logo_link_url", "origins_button_border_color", "origins_button_text", "origins_button_text_color", "origins_button_visible", "page_subtitle", "page_title", "playlist_id", "trailer_url", "updated_at"] as const;
 export type PodcastConfigSortField = (typeof podcastConfigSortFields)[number];
 
-export const podcastEpisodeSettingsSortFields = ["id", "visible", "ai_enabled", "order", "created_at", "updated_at", "youtube_episode_id", "podcast_config_id", "character_id"] as const;
+export const podcastEpisodeSettingsSortFields = ["ai_enabled", "character_id", "created_at", "id", "order", "podcast_config_id", "updated_at", "visible", "youtube_episode_id"] as const;
 export type PodcastEpisodeSettingsSortField = (typeof podcastEpisodeSettingsSortFields)[number];
 
-export const youtubeEpisodeSortFields = ["id", "video_id", "video_url", "title", "description", "thumbnail_url", "publish_date", "duration", "episode_number", "host_ids", "guest_ids", "guest_names", "conversation_starters", "used_in_podcast", "used_in_public_profile", "public_profile_config", "playlist_id", "created_at", "updated_at", "origin_entity_id", "transcript_id"] as const;
+export const youtubeEpisodeSortFields = ["conversation_starters", "created_at", "description", "duration", "episode_number", "guest_ids", "guest_names", "host_ids", "id", "origin_entity_id", "playlist_id", "public_profile_config", "publish_date", "thumbnail_url", "title", "transcript_id", "updated_at", "used_in_podcast", "used_in_public_profile", "video_id", "video_url"] as const;
 export type YoutubeEpisodeSortField = (typeof youtubeEpisodeSortFields)[number];
 
 
@@ -12634,6 +16381,19 @@ export type YoutubeEpisodeSortField = (typeof youtubeEpisodeSortFields)[number];
 // Sort string type — allows optional direction prefix on sort field names
 // Prefixes per Ash.Query.sort/3: + (asc), - (desc), ++ (asc_nils_first), -- (desc_nils_last)
 export type SortString<T extends string> = T | `+${T}` | `-${T}` | `++${T}` | `--${T}`;
+
+// Nested relationship pagination input, keyed by the relationship's
+// __pagination marker ("offset" | "keyset" | "mixed"). Keys of the other
+// pagination family are typed `never` so passing them is a structural
+// error (excess-property checking does not fire through the envelope's
+// conditional types).
+export type NestedPageInput<P extends string> = P extends "offset"
+  ? { limit?: number; offset?: number; count?: boolean; after?: never; before?: never }
+  : P extends "keyset"
+    ? { limit?: number; after?: string; before?: string; count?: boolean; offset?: never }
+    :
+        | { limit?: number; offset?: number; count?: boolean; after?: never; before?: never }
+        | { limit?: number; after?: string; before?: string; count?: boolean; offset?: never };
 
 // Resource schema constraint
 export type TypedSchema = {
@@ -12649,50 +16409,59 @@ export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) ex
   : never;
 
 // Helper type to infer union field values, avoiding duplication between array and non-array unions
+// Selection-object walkers use key remapping to drop keys whose value is
+// undefined: hoisting a selection with `satisfies` widens the array to a
+// union whose object members grow synthetic `?: undefined` siblings, and
+// walking those as real selections would collapse the result to never.
+// `FieldSelection[FieldIndex] extends infer Sel` re-binds the element to a
+// naked type parameter so widened (non-tuple) selections distribute over
+// their element union instead of falling through to never.
 export type InferUnionFieldValue<
   UnionSchema extends { __type: "Union"; __primitiveFields: any },
   FieldSelection extends any[],
 > = UnionToIntersection<
   {
-    [FieldIndex in keyof FieldSelection]: FieldSelection[FieldIndex] extends UnionSchema["__primitiveFields"]
-      ? FieldSelection[FieldIndex] extends keyof UnionSchema
-        ? { [P in FieldSelection[FieldIndex]]: UnionSchema[FieldSelection[FieldIndex]] }
-        : never
-      : FieldSelection[FieldIndex] extends Record<string, any>
-        ? {
-            [UnionKey in keyof FieldSelection[FieldIndex]]: UnionKey extends keyof UnionSchema
-              ? NonNullable<UnionSchema[UnionKey]> extends { __array: true; __type: "TypedMap"; __primitiveFields: infer TypedMapFields }
-                ? FieldSelection[FieldIndex][UnionKey] extends any[]
-                  ? Array<
-                      UnionToIntersection<
-                        {
-                          [FieldIdx in keyof FieldSelection[FieldIndex][UnionKey]]: FieldSelection[FieldIndex][UnionKey][FieldIdx] extends TypedMapFields
-                            ? FieldSelection[FieldIndex][UnionKey][FieldIdx] extends keyof NonNullable<UnionSchema[UnionKey]>
-                              ? { [P in FieldSelection[FieldIndex][UnionKey][FieldIdx]]: NonNullable<UnionSchema[UnionKey]>[P] }
-                              : never
-                            : never;
-                        }[number]
-                      >
-                    > | null
-                  : never
-                : NonNullable<UnionSchema[UnionKey]> extends { __type: "TypedMap"; __primitiveFields: infer TypedMapFields }
-                  ? FieldSelection[FieldIndex][UnionKey] extends any[]
-                    ? UnionToIntersection<
-                        {
-                          [FieldIdx in keyof FieldSelection[FieldIndex][UnionKey]]: FieldSelection[FieldIndex][UnionKey][FieldIdx] extends TypedMapFields
-                            ? FieldSelection[FieldIndex][UnionKey][FieldIdx] extends keyof NonNullable<UnionSchema[UnionKey]>
-                              ? { [P in FieldSelection[FieldIndex][UnionKey][FieldIdx]]: NonNullable<UnionSchema[UnionKey]>[P] }
-                              : never
-                            : never;
-                        }[number]
+    [FieldIndex in keyof FieldSelection]: FieldSelection[FieldIndex] extends infer Sel
+      ? Sel extends UnionSchema["__primitiveFields"]
+        ? Sel extends keyof UnionSchema
+          ? { [P in Sel]: UnionSchema[Sel] }
+          : never
+        : Sel extends Record<string, any>
+          ? {
+              [UnionKey in keyof Sel as Sel[UnionKey] extends undefined ? never : UnionKey]: UnionKey extends keyof UnionSchema
+                ? NonNullable<UnionSchema[UnionKey]> extends { __array: true; __type: "TypedMap"; __primitiveFields: infer TypedMapFields }
+                  ? Sel[UnionKey] extends any[]
+                    ? Array<
+                        UnionToIntersection<
+                          {
+                            [FieldIdx in keyof Sel[UnionKey]]: Sel[UnionKey][FieldIdx] extends TypedMapFields
+                              ? Sel[UnionKey][FieldIdx] extends keyof NonNullable<UnionSchema[UnionKey]>
+                                ? { [P in Sel[UnionKey][FieldIdx]]: NonNullable<UnionSchema[UnionKey]>[P] }
+                                : never
+                              : never;
+                          }[number]
+                        >
                       > | null
                     : never
-                  : NonNullable<UnionSchema[UnionKey]> extends TypedSchema
-                    ? InferResult<NonNullable<UnionSchema[UnionKey]>, FieldSelection[FieldIndex][UnionKey]>
-                    : never
-              : never;
-          }
-        : never;
+                  : NonNullable<UnionSchema[UnionKey]> extends { __type: "TypedMap"; __primitiveFields: infer TypedMapFields }
+                    ? Sel[UnionKey] extends any[]
+                      ? UnionToIntersection<
+                          {
+                            [FieldIdx in keyof Sel[UnionKey]]: Sel[UnionKey][FieldIdx] extends TypedMapFields
+                              ? Sel[UnionKey][FieldIdx] extends keyof NonNullable<UnionSchema[UnionKey]>
+                                ? { [P in Sel[UnionKey][FieldIdx]]: NonNullable<UnionSchema[UnionKey]>[P] }
+                                : never
+                              : never;
+                          }[number]
+                        > | null
+                      : never
+                    : NonNullable<UnionSchema[UnionKey]> extends TypedSchema
+                      ? InferResult<NonNullable<UnionSchema[UnionKey]>, Sel[UnionKey]>
+                      : never
+                : never;
+            }
+          : never
+      : never;
   }[number]
 >;
 
@@ -12710,13 +16479,52 @@ export type ComplexFieldKeys<T extends TypedSchema> = keyof Omit<
 
 export type LeafFieldSelection<T extends TypedSchema> = T["__primitiveFields"];
 
-export type ComplexFieldSelection<T extends TypedSchema> = {
+// Query-option envelope for many-cardinality relationships. Each optional
+// key is usable only when the corresponding capability marker is present
+// and the action-level flag (F = filter, S = sort) is enabled; otherwise
+// the key is typed `never` so passing a value is a structural error (plain
+// excess-property checking does not fire through these conditional types).
+// `page` and bare `limit`/`offset` are mutually exclusive: the pagination
+// part is a union of the two shapes, each `never`-typing the other's keys.
+export type RelationshipQueryEnvelope<
+  Meta,
+  Dest extends TypedSchema,
+  F extends boolean = true,
+  S extends boolean = true,
+> = {
+  fields: UnifiedFieldSelection<Dest, F, S>[];
+} & (F extends true
+  ? Meta extends { __filterInput: infer FI }
+    ? { filter?: FI }
+    : { filter?: never }
+  : { filter?: never }) &
+  (S extends true
+    ? Meta extends { __sortField: infer SF extends string }
+      ? { sort?: SortString<SF> | SortString<SF>[] }
+      : { sort?: never }
+    : { sort?: never }) &
+  (Meta extends { __pagination: infer P extends string }
+    ? (
+        | { page?: NestedPageInput<P>; limit?: never; offset?: never }
+        | { limit?: number; offset?: number; page?: never }
+      )
+    : { limit?: number; offset?: number; page?: never });
+
+export type ComplexFieldSelection<
+  T extends TypedSchema,
+  F extends boolean = true,
+  S extends boolean = true,
+> = {
   [K in ComplexFieldKeys<T>]?: T[K] extends {
     __type: "Relationship";
     __resource: infer Resource;
   }
     ? NonNullable<Resource> extends TypedSchema
-      ? UnifiedFieldSelection<NonNullable<Resource>>[]
+      ? T[K] extends { __array: true }
+        ?
+            | UnifiedFieldSelection<NonNullable<Resource>, F, S>[]
+            | RelationshipQueryEnvelope<T[K], NonNullable<Resource>, F, S>
+        : UnifiedFieldSelection<NonNullable<Resource>, F, S>[]
       : never
     : T[K] extends {
           __type: "ComplexCalculation";
@@ -12726,15 +16534,15 @@ export type ComplexFieldSelection<T extends TypedSchema> = {
         ? NonNullable<ReturnType> extends TypedSchema
           ? {
               args: Args;
-              fields: UnifiedFieldSelection<NonNullable<ReturnType>>[];
+              fields: UnifiedFieldSelection<NonNullable<ReturnType>, F, S>[];
             }
           : { args: Args }
         : NonNullable<ReturnType> extends TypedSchema
-          ? { fields: UnifiedFieldSelection<NonNullable<ReturnType>>[] }
+          ? { fields: UnifiedFieldSelection<NonNullable<ReturnType>, F, S>[] }
           : never
       : T[K] extends { __type: "TypedMap" }
         ? NonNullable<T[K]> extends TypedSchema
-          ? UnifiedFieldSelection<NonNullable<T[K]>>[]
+          ? UnifiedFieldSelection<NonNullable<T[K]>, F, S>[]
           : never
         : T[K] extends { __type: "Union"; __primitiveFields: infer PrimitiveFields }
           ? T[K] extends { __array: true }
@@ -12742,26 +16550,57 @@ export type ComplexFieldSelection<T extends TypedSchema> = {
                 [UnionKey in keyof Omit<T[K], "__type" | "__primitiveFields" | "__array">]?: NonNullable<T[K][UnionKey]> extends { __type: "TypedMap"; __primitiveFields: any }
                   ? NonNullable<T[K][UnionKey]>["__primitiveFields"][]
                   : NonNullable<T[K][UnionKey]> extends TypedSchema
-                    ? UnifiedFieldSelection<NonNullable<T[K][UnionKey]>>[]
+                    ? UnifiedFieldSelection<NonNullable<T[K][UnionKey]>, F, S>[]
                     : never;
               })[]
             : (PrimitiveFields | {
                 [UnionKey in keyof Omit<T[K], "__type" | "__primitiveFields">]?: NonNullable<T[K][UnionKey]> extends { __type: "TypedMap"; __primitiveFields: any }
                   ? NonNullable<T[K][UnionKey]>["__primitiveFields"][]
                   : NonNullable<T[K][UnionKey]> extends TypedSchema
-                    ? UnifiedFieldSelection<NonNullable<T[K][UnionKey]>>[]
+                    ? UnifiedFieldSelection<NonNullable<T[K][UnionKey]>, F, S>[]
                     : never;
               })[]
             : NonNullable<T[K]> extends TypedSchema
-              ? UnifiedFieldSelection<NonNullable<T[K]>>[]
+              ? UnifiedFieldSelection<NonNullable<T[K]>, F, S>[]
               : never;
 };
 
 // Main type: Use explicit base case detection to prevent infinite recursion
-export type UnifiedFieldSelection<T extends TypedSchema> =
+export type UnifiedFieldSelection<
+  T extends TypedSchema,
+  F extends boolean = true,
+  S extends boolean = true,
+> =
   HasComplexFields<T> extends false
     ? LeafFieldSelection<T> // Base case: only primitives, no recursion
-    : LeafFieldSelection<T> | ComplexFieldSelection<T>; // Recursive case
+    : LeafFieldSelection<T> | ComplexFieldSelection<T, F, S>; // Recursive case
+
+// Infers the result value of one selected member inside a TypedMap:
+// Relationship-wrapped members (embedded resources) recurse through the
+// wrapped resource; plain TypedSchema members (nested TypedMaps) recurse
+// directly. The Selection guard satisfies InferResult's constraint.
+export type InferTypedMapMemberValue<M, Selection> = M extends {
+  __type: "Relationship";
+  __resource: infer Resource;
+}
+  ? NonNullable<Resource> extends TypedSchema
+    ? Selection extends UnifiedFieldSelection<NonNullable<Resource>>[] | undefined
+      ? M extends { __array: true }
+        ? null extends Resource
+          ? Array<InferResult<NonNullable<Resource>, Selection>> | null
+          : Array<InferResult<NonNullable<Resource>, Selection>>
+        : null extends Resource
+          ? InferResult<NonNullable<Resource>, Selection> | null
+          : InferResult<NonNullable<Resource>, Selection>
+      : never
+    : never
+  : NonNullable<M> extends TypedSchema
+    ? Selection extends UnifiedFieldSelection<NonNullable<M>>[] | undefined
+      ? null extends M
+        ? InferResult<NonNullable<M>, Selection> | null
+        : InferResult<NonNullable<M>, Selection>
+      : never
+    : never;
 
 export type InferFieldValue<
   T extends TypedSchema,
@@ -12772,17 +16611,29 @@ export type InferFieldValue<
     : never
   : Field extends Record<string, any>
     ? {
-        [K in keyof Field]: K extends keyof T
+        [K in keyof Field as Field[K] extends undefined ? never : K]: K extends keyof T
           ? T[K] extends {
               __type: "Relationship";
               __resource: infer Resource;
             }
             ? NonNullable<Resource> extends TypedSchema
-              ? T[K] extends { __array: true }
-                ? Array<InferResult<NonNullable<Resource>, Field[K]>>
-                : null extends Resource
-                  ? InferResult<NonNullable<Resource>, Field[K]> | null
-                  : InferResult<NonNullable<Resource>, Field[K]>
+              ? Field[K] extends { fields: infer NestedFields }
+                ? NestedFields extends UnifiedFieldSelection<NonNullable<Resource>>[]
+                  ? Field[K] extends { page: infer Page }
+                    ? T[K] extends { __pagination: infer P extends string }
+                      ? NestedPageResult<NonNullable<Resource>, NestedFields, P, Page>
+                      : never
+                    : T[K] extends { __array: true }
+                      ? Array<InferResult<NonNullable<Resource>, NestedFields>>
+                      : never
+                  : never
+                : T[K] extends { __array: true }
+                  ? null extends Resource
+                    ? Array<InferResult<NonNullable<Resource>, Field[K]>> | null
+                    : Array<InferResult<NonNullable<Resource>, Field[K]>>
+                  : null extends Resource
+                    ? InferResult<NonNullable<Resource>, Field[K]> | null
+                    : InferResult<NonNullable<Resource>, Field[K]>
             : never
           : T[K] extends {
                 __type: "ComplexCalculation";
@@ -12807,12 +16658,8 @@ export type InferFieldValue<
                                   : never
                                 : E extends Record<string, any>
                                   ? {
-                                      [NestedKey in keyof E]: NestedKey extends keyof NonNullable<T[K]>
-                                        ? NonNullable<NonNullable<T[K]>[NestedKey]> extends TypedSchema
-                                          ? null extends NonNullable<T[K]>[NestedKey]
-                                            ? InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]> | null
-                                            : InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]>
-                                          : never
+                                      [NestedKey in keyof E as E[NestedKey] extends undefined ? never : NestedKey]: NestedKey extends keyof NonNullable<T[K]>
+                                          ? InferTypedMapMemberValue<NonNullable<T[K]>[NestedKey], E[NestedKey]>
                                         : never;
                                     }
                                   : E extends keyof NonNullable<T[K]>
@@ -12832,12 +16679,8 @@ export type InferFieldValue<
                                   : never
                                 : E extends Record<string, any>
                                   ? {
-                                      [NestedKey in keyof E]: NestedKey extends keyof NonNullable<T[K]>
-                                        ? NonNullable<NonNullable<T[K]>[NestedKey]> extends TypedSchema
-                                          ? null extends NonNullable<T[K]>[NestedKey]
-                                            ? InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]> | null
-                                            : InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]>
-                                          : never
+                                      [NestedKey in keyof E as E[NestedKey] extends undefined ? never : NestedKey]: NestedKey extends keyof NonNullable<T[K]>
+                                          ? InferTypedMapMemberValue<NonNullable<T[K]>[NestedKey], E[NestedKey]>
                                         : never;
                                     }
                                   : E extends keyof NonNullable<T[K]>
@@ -12859,12 +16702,8 @@ export type InferFieldValue<
                                 : never
                               : E extends Record<string, any>
                                 ? {
-                                    [NestedKey in keyof E]: NestedKey extends keyof NonNullable<T[K]>
-                                      ? NonNullable<NonNullable<T[K]>[NestedKey]> extends TypedSchema
-                                        ? null extends NonNullable<T[K]>[NestedKey]
-                                          ? InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]> | null
-                                          : InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]>
-                                        : never
+                                    [NestedKey in keyof E as E[NestedKey] extends undefined ? never : NestedKey]: NestedKey extends keyof NonNullable<T[K]>
+                                        ? InferTypedMapMemberValue<NonNullable<T[K]>[NestedKey], E[NestedKey]>
                                       : never;
                                   }
                                 : E extends keyof NonNullable<T[K]>
@@ -12882,12 +16721,8 @@ export type InferFieldValue<
                                 : never
                               : E extends Record<string, any>
                                 ? {
-                                    [NestedKey in keyof E]: NestedKey extends keyof NonNullable<T[K]>
-                                      ? NonNullable<NonNullable<T[K]>[NestedKey]> extends TypedSchema
-                                        ? null extends NonNullable<T[K]>[NestedKey]
-                                          ? InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]> | null
-                                          : InferResult<NonNullable<NonNullable<T[K]>[NestedKey]>, E[NestedKey]>
-                                        : never
+                                    [NestedKey in keyof E as E[NestedKey] extends undefined ? never : NestedKey]: NestedKey extends keyof NonNullable<T[K]>
+                                        ? InferTypedMapMemberValue<NonNullable<T[K]>[NestedKey], E[NestedKey]>
                                       : never;
                                   }
                                 : E extends keyof NonNullable<T[K]>
@@ -12934,17 +16769,22 @@ export type InferResult<
   : {};
 
 // Pagination conditional types
-// Checks if a page configuration object has any pagination parameters
+// Checks if a page configuration object has any pagination parameters.
+// A limit-only page (e.g. { limit: 20 } for the first page) also paginates.
 export type HasPaginationParams<Page> =
   Page extends { offset: any } ? true :
   Page extends { after: any } ? true :
   Page extends { before: any } ? true :
+  Page extends { limit: any } ? true :
   false;
 
-// Infer which pagination type is being used from the page config
+// Infer which pagination type is being used from the page config.
+// A limit-only page resolves to keyset — when an action supports both
+// strategies, Ash paginates limit-only requests with keyset.
 export type InferPaginationType<Page> =
   Page extends { offset: any } ? "offset" :
   Page extends { after: any } | { before: any } ? "keyset" :
+  Page extends { limit: any } ? "keyset" :
   never;
 
 // Returns either non-paginated (array) or paginated result based on page params
@@ -12978,6 +16818,42 @@ export type ConditionalPaginatedResultMixed<
         : OffsetType | KeysetType  // Fallback to union if can't determine
     : RecordType;
 
+// Nested relationship pagination results — shaped identically to the
+// top-level page payloads, but generic over the destination schema.
+export type NestedOffsetPageResult<R extends TypedSchema, Fields> = {
+  results: Fields extends UnifiedFieldSelection<R>[] ? Array<InferResult<R, Fields>> : never;
+  has_more: boolean;
+  limit: number;
+  offset: number;
+  count?: number | null;
+  type: "offset";
+};
+
+export type NestedKeysetPageResult<R extends TypedSchema, Fields> = {
+  results: Fields extends UnifiedFieldSelection<R>[] ? Array<InferResult<R, Fields>> : never;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+};
+
+// P is the relationship's __pagination marker; Page is the page input the
+// caller actually passed (used to narrow "mixed" to a concrete side).
+export type NestedPageResult<R extends TypedSchema, Fields, P extends string, Page> =
+  P extends "offset"
+    ? NestedOffsetPageResult<R, Fields>
+    : P extends "keyset"
+      ? NestedKeysetPageResult<R, Fields>
+      : InferPaginationType<Page> extends "offset"
+        ? NestedOffsetPageResult<R, Fields>
+        : InferPaginationType<Page> extends "keyset"
+          ? NestedKeysetPageResult<R, Fields>
+          : NestedOffsetPageResult<R, Fields> | NestedKeysetPageResult<R, Fields>;
+
 export type SuccessDataFunc<T extends (...args: any[]) => Promise<any>> = Extract<
   Awaited<ReturnType<T>>,
   { success: true }
@@ -13004,6 +16880,18 @@ export type ErrorData<T extends (...args: any[]) => Promise<any>> = Extract<
  *   path: ["user", "email"],
  *   details: { suggestion: "Provide a valid email address" }
  * }
+ *
+ * @example
+ * // An internal error withholds detail and carries a correlation ID
+ * const error: AshRpcError = {
+ *   type: "internal_error",
+ *   message: "Something went wrong. Unique error id: 4f3c...",
+ *   short_message: "Internal error",
+ *   vars: {},
+ *   fields: [],
+ *   path: [],
+ *   error_id: "4f3c..."
+ * }
  */
 export type AshRpcError = {
   /** Machine-readable error type (e.g., "invalid_changes", "not_found") */
@@ -13020,6 +16908,12 @@ export type AshRpcError = {
   path: string[];
   /** Optional map with extra details (e.g., suggestions, hints) */
   details?: Record<string, any>;
+  /**
+   * Correlation ID for an error whose details were withheld. Present on
+   * internal errors, where the full exception is written to the server log
+   * under this same ID — surface it so a user can quote it to support.
+   */
+  error_id?: string;
 }
 
 /**
@@ -13063,15 +16957,17 @@ export type ChatStreamIntermediatePayload = {ref: number, text: string};
 export type ChatStreamStartPayload = {ref: number, conversation_id: UUID};
 export type ChatStreamStatusPayload = {ref: number, status: string, tool_name: string | null};
 
-// Channel types for OriginsWeb.StreamingChatTypedChannel
+// Channel types for OriginsWeb.AshTypescriptRpcChannel
 
-export type StreamingChatTypedChannel = {
-  readonly __channelType: "StreamingChatTypedChannel";
+export type AshTypescriptRpcChannel = {
+  readonly __channelType: "AshTypescriptRpcChannel";
   on(event: string, callback: (payload: unknown) => void): number;
   off(event: string, ref: number): void;
+  join(timeout?: number): unknown;
+  leave(timeout?: number): unknown;
 };
 
-export type StreamingChatTypedChannelEvents = {
+export type AshTypescriptRpcChannelEvents = {
   chat_stream_blocked: ChatStreamBlockedPayload;
   chat_stream_chunk: ChatStreamChunkPayload;
   chat_stream_complete: ChatStreamCompletePayload;
@@ -13081,10 +16977,10 @@ export type StreamingChatTypedChannelEvents = {
   chat_stream_status: ChatStreamStatusPayload;
 };
 
-export type StreamingChatTypedChannelHandlers = {
-  [E in keyof StreamingChatTypedChannelEvents]?: (payload: StreamingChatTypedChannelEvents[E]) => void;
+export type AshTypescriptRpcChannelHandlers = {
+  [E in keyof AshTypescriptRpcChannelEvents]?: (payload: AshTypescriptRpcChannelEvents[E]) => void;
 };
 
-export type StreamingChatTypedChannelRefs = {
-  [E in keyof StreamingChatTypedChannelEvents]?: number;
+export type AshTypescriptRpcChannelRefs = {
+  [E in keyof AshTypescriptRpcChannelEvents]?: number;
 };

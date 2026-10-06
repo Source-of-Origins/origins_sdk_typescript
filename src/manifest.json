@@ -1,5 +1,4 @@
 {
-  "$schema": "https://github.com/ash-project/ash_typescript/blob/main/json-manifest-schema.json",
   "actions": [
     {
       "actionType": "read",
@@ -29,12 +28,14 @@
       },
       "variantNames": {
         "channel": "list_consent_history_channel",
-        "validation": "validate_list_consent_history"
+        "validation": "validate_list_consent_history",
+        "validationChannel": "validate_list_consent_history_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -67,12 +68,14 @@
       },
       "variantNames": {
         "channel": "list_consents_for_kind_channel",
-        "validation": "validate_list_consents_for_kind"
+        "validation": "validate_list_consents_for_kind",
+        "validationChannel": "validate_list_consents_for_kind_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -104,12 +107,14 @@
       },
       "variantNames": {
         "channel": "list_current_consents_channel",
-        "validation": "validate_list_current_consents"
+        "validation": "validate_list_current_consents",
+        "validationChannel": "validate_list_current_consents_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -140,12 +145,14 @@
       },
       "variantNames": {
         "channel": "record_consent_channel",
-        "validation": "validate_record_consent"
+        "validation": "validate_record_consent",
+        "validationChannel": "validate_record_consent_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -176,12 +183,14 @@
       },
       "variantNames": {
         "channel": "list_my_tenant_grants_channel",
-        "validation": "validate_list_my_tenant_grants"
+        "validation": "validate_list_my_tenant_grants",
+        "validationChannel": "validate_list_my_tenant_grants_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -210,12 +219,14 @@
       },
       "variantNames": {
         "channel": "create_tenant_for_user_channel",
-        "validation": "validate_create_tenant_for_user"
+        "validation": "validate_create_tenant_for_user",
+        "validationChannel": "validate_create_tenant_for_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -246,12 +257,14 @@
       },
       "variantNames": {
         "channel": "create_tenant_stripe_price_channel",
-        "validation": "validate_create_tenant_stripe_price"
+        "validation": "validate_create_tenant_stripe_price",
+        "validationChannel": "validate_create_tenant_stripe_price_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -282,12 +295,14 @@
       },
       "variantNames": {
         "channel": "get_lesson_watch_time_channel",
-        "validation": "validate_get_lesson_watch_time"
+        "validation": "validate_get_lesson_watch_time",
+        "validationChannel": "validate_get_lesson_watch_time_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -319,12 +334,14 @@
       },
       "variantNames": {
         "channel": "get_tenant_channel",
-        "validation": "validate_get_tenant"
+        "validation": "validate_get_tenant",
+        "validationChannel": "validate_get_tenant_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -354,12 +371,14 @@
       },
       "variantNames": {
         "channel": "get_tenant_arr_channel",
-        "validation": "validate_get_tenant_arr"
+        "validation": "validate_get_tenant_arr",
+        "validationChannel": "validate_get_tenant_arr_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -390,12 +409,14 @@
       },
       "variantNames": {
         "channel": "get_tenant_net_revenue_channel",
-        "validation": "validate_get_tenant_net_revenue"
+        "validation": "validate_get_tenant_net_revenue",
+        "validationChannel": "validate_get_tenant_net_revenue_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -426,12 +447,14 @@
       },
       "variantNames": {
         "channel": "list_all_tenants_channel",
-        "validation": "validate_list_all_tenants"
+        "validation": "validate_list_all_tenants",
+        "validationChannel": "validate_list_all_tenants_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -462,12 +485,14 @@
       },
       "variantNames": {
         "channel": "list_my_tenants_channel",
-        "validation": "validate_list_my_tenants"
+        "validation": "validate_list_my_tenants",
+        "validationChannel": "validate_list_my_tenants_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -497,12 +522,14 @@
       },
       "variantNames": {
         "channel": "list_tenant_stripe_prices_channel",
-        "validation": "validate_list_tenant_stripe_prices"
+        "validation": "validate_list_tenant_stripe_prices",
+        "validationChannel": "validate_list_tenant_stripe_prices_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -526,17 +553,21 @@
       "resource": "User",
       "see": [],
       "types": {
+        "fields": "ConfirmAnonymousAccountFields",
+        "inferResult": "InferConfirmAnonymousAccountResult",
         "input": "ConfirmAnonymousAccountInput",
         "result": "ConfirmAnonymousAccountResult"
       },
       "variantNames": {
         "channel": "confirm_anonymous_account_channel",
-        "validation": "validate_confirm_anonymous_account"
+        "validation": "validate_confirm_anonymous_account",
+        "validationChannel": "validate_confirm_anonymous_account_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -567,12 +598,14 @@
       },
       "variantNames": {
         "channel": "create_anonymous_user_channel",
-        "validation": "validate_create_anonymous_user"
+        "validation": "validate_create_anonymous_user",
+        "validationChannel": "validate_create_anonymous_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -600,12 +633,14 @@
       },
       "variantNames": {
         "channel": "delete_own_account_channel",
-        "validation": "validate_delete_own_account"
+        "validation": "validate_delete_own_account",
+        "validationChannel": "validate_delete_own_account_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -636,12 +671,14 @@
       },
       "variantNames": {
         "channel": "get_current_user_channel",
-        "validation": "validate_get_current_user"
+        "validation": "validate_get_current_user",
+        "validationChannel": "validate_get_current_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -672,12 +709,14 @@
       },
       "variantNames": {
         "channel": "list_all_users_channel",
-        "validation": "validate_list_all_users"
+        "validation": "validate_list_all_users",
+        "validationChannel": "validate_list_all_users_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -709,12 +748,14 @@
       },
       "variantNames": {
         "channel": "list_confirmed_users_channel",
-        "validation": "validate_list_confirmed_users"
+        "validation": "validate_list_confirmed_users",
+        "validationChannel": "validate_list_confirmed_users_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -745,12 +786,14 @@
       },
       "variantNames": {
         "channel": "register_with_invitation_channel",
-        "validation": "validate_register_with_invitation"
+        "validation": "validate_register_with_invitation",
+        "validationChannel": "validate_register_with_invitation_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -781,12 +824,14 @@
       },
       "variantNames": {
         "channel": "register_with_password_channel",
-        "validation": "validate_register_with_password"
+        "validation": "validate_register_with_password",
+        "validationChannel": "validate_register_with_password_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -818,12 +863,14 @@
       },
       "variantNames": {
         "channel": "request_magic_link_channel",
-        "validation": "validate_request_magic_link"
+        "validation": "validate_request_magic_link",
+        "validationChannel": "validate_request_magic_link_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -847,17 +894,21 @@
       "resource": "User",
       "see": [],
       "types": {
+        "fields": "RequestOriginMagicLinkFields",
+        "inferResult": "InferRequestOriginMagicLinkResult",
         "input": "RequestOriginMagicLinkInput",
         "result": "RequestOriginMagicLinkResult"
       },
       "variantNames": {
         "channel": "request_origin_magic_link_channel",
-        "validation": "validate_request_origin_magic_link"
+        "validation": "validate_request_origin_magic_link",
+        "validationChannel": "validate_request_origin_magic_link_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -886,12 +937,14 @@
       },
       "variantNames": {
         "channel": "request_password_reset_token_channel",
-        "validation": "validate_request_password_reset_token"
+        "validation": "validate_request_password_reset_token",
+        "validationChannel": "validate_request_password_reset_token_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -922,12 +975,14 @@
       },
       "variantNames": {
         "channel": "reset_password_with_token_channel",
-        "validation": "validate_reset_password_with_token"
+        "validation": "validate_reset_password_with_token",
+        "validationChannel": "validate_reset_password_with_token_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -951,17 +1006,21 @@
       "resource": "User",
       "see": [],
       "types": {
+        "fields": "SetOwnPasswordFields",
+        "inferResult": "InferSetOwnPasswordResult",
         "input": "SetOwnPasswordInput",
         "result": "SetOwnPasswordResult"
       },
       "variantNames": {
         "channel": "set_own_password_channel",
-        "validation": "validate_set_own_password"
+        "validation": "validate_set_own_password",
+        "validationChannel": "validate_set_own_password_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -992,12 +1051,14 @@
       },
       "variantNames": {
         "channel": "set_own_phone_channel",
-        "validation": "validate_set_own_phone"
+        "validation": "validate_set_own_phone",
+        "validationChannel": "validate_set_own_phone_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1021,17 +1082,21 @@
       "resource": "User",
       "see": [],
       "types": {
+        "fields": "SignInWithAppleTokenFields",
+        "inferResult": "InferSignInWithAppleTokenResult",
         "input": "SignInWithAppleTokenInput",
         "result": "SignInWithAppleTokenResult"
       },
       "variantNames": {
         "channel": "sign_in_with_apple_token_channel",
-        "validation": "validate_sign_in_with_apple_token"
+        "validation": "validate_sign_in_with_apple_token",
+        "validationChannel": "validate_sign_in_with_apple_token_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1055,17 +1120,21 @@
       "resource": "User",
       "see": [],
       "types": {
+        "fields": "SignInWithGoogleTokenFields",
+        "inferResult": "InferSignInWithGoogleTokenResult",
         "input": "SignInWithGoogleTokenInput",
         "result": "SignInWithGoogleTokenResult"
       },
       "variantNames": {
         "channel": "sign_in_with_google_token_channel",
-        "validation": "validate_sign_in_with_google_token"
+        "validation": "validate_sign_in_with_google_token",
+        "validationChannel": "validate_sign_in_with_google_token_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1097,12 +1166,14 @@
       },
       "variantNames": {
         "channel": "sign_in_with_magic_link_channel",
-        "validation": "validate_sign_in_with_magic_link"
+        "validation": "validate_sign_in_with_magic_link",
+        "validationChannel": "validate_sign_in_with_magic_link_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1134,12 +1205,14 @@
       },
       "variantNames": {
         "channel": "sign_in_with_password_channel",
-        "validation": "validate_sign_in_with_password"
+        "validation": "validate_sign_in_with_password",
+        "validationChannel": "validate_sign_in_with_password_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1168,12 +1241,14 @@
       },
       "variantNames": {
         "channel": "start_tenant_session_channel",
-        "validation": "validate_start_tenant_session"
+        "validation": "validate_start_tenant_session",
+        "validationChannel": "validate_start_tenant_session_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1203,12 +1278,14 @@
       },
       "variantNames": {
         "channel": "approve_waitlist_entry_channel",
-        "validation": "validate_approve_waitlist_entry"
+        "validation": "validate_approve_waitlist_entry",
+        "validationChannel": "validate_approve_waitlist_entry_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1236,12 +1313,14 @@
       },
       "variantNames": {
         "channel": "delete_waitlist_entry_channel",
-        "validation": "validate_delete_waitlist_entry"
+        "validation": "validate_delete_waitlist_entry",
+        "validationChannel": "validate_delete_waitlist_entry_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1273,12 +1352,14 @@
       },
       "variantNames": {
         "channel": "get_waitlist_entry_by_token_channel",
-        "validation": "validate_get_waitlist_entry_by_token"
+        "validation": "validate_get_waitlist_entry_by_token",
+        "validationChannel": "validate_get_waitlist_entry_by_token_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1310,12 +1391,14 @@
       },
       "variantNames": {
         "channel": "list_waitlist_entries_channel",
-        "validation": "validate_list_waitlist_entries"
+        "validation": "validate_list_waitlist_entries",
+        "validationChannel": "validate_list_waitlist_entries_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1345,12 +1428,14 @@
       },
       "variantNames": {
         "channel": "reject_waitlist_entry_channel",
-        "validation": "validate_reject_waitlist_entry"
+        "validation": "validate_reject_waitlist_entry",
+        "validationChannel": "validate_reject_waitlist_entry_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1381,12 +1466,14 @@
       },
       "variantNames": {
         "channel": "submit_waitlist_entry_channel",
-        "validation": "validate_submit_waitlist_entry"
+        "validation": "validate_submit_waitlist_entry",
+        "validationChannel": "validate_submit_waitlist_entry_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1410,17 +1497,21 @@
       "resource": "Conversation",
       "see": [],
       "types": {
+        "fields": "AvatarPublicChatFields",
+        "inferResult": "InferAvatarPublicChatResult",
         "input": "AvatarPublicChatInput",
         "result": "AvatarPublicChatResult"
       },
       "variantNames": {
         "channel": "avatar_public_chat_channel",
-        "validation": "validate_avatar_public_chat"
+        "validation": "validate_avatar_public_chat",
+        "validationChannel": "validate_avatar_public_chat_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1449,12 +1540,14 @@
       },
       "variantNames": {
         "channel": "count_user_messages_channel",
-        "validation": "validate_count_user_messages"
+        "validation": "validate_count_user_messages",
+        "validationChannel": "validate_count_user_messages_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1485,12 +1578,14 @@
       },
       "variantNames": {
         "channel": "create_conversation_channel",
-        "validation": "validate_create_conversation"
+        "validation": "validate_create_conversation",
+        "validationChannel": "validate_create_conversation_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1522,12 +1617,14 @@
       },
       "variantNames": {
         "channel": "find_root_conversation_channel",
-        "validation": "validate_find_root_conversation"
+        "validation": "validate_find_root_conversation",
+        "validationChannel": "validate_find_root_conversation_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1551,17 +1648,21 @@
       "resource": "Conversation",
       "see": [],
       "types": {
+        "fields": "GenerateChatSuggestionsFields",
+        "inferResult": "InferGenerateChatSuggestionsResult",
         "input": "GenerateChatSuggestionsInput",
         "result": "GenerateChatSuggestionsResult"
       },
       "variantNames": {
         "channel": "generate_chat_suggestions_channel",
-        "validation": "validate_generate_chat_suggestions"
+        "validation": "validate_generate_chat_suggestions",
+        "validationChannel": "validate_generate_chat_suggestions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1590,12 +1691,14 @@
       },
       "variantNames": {
         "channel": "get_brand_users_channel",
-        "validation": "validate_get_brand_users"
+        "validation": "validate_get_brand_users",
+        "validationChannel": "validate_get_brand_users_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1619,17 +1722,21 @@
       "resource": "Conversation",
       "see": [],
       "types": {
+        "fields": "GetConversationHistoryFields",
+        "inferResult": "InferGetConversationHistoryResult",
         "input": "GetConversationHistoryInput",
         "result": "GetConversationHistoryResult"
       },
       "variantNames": {
         "channel": "get_conversation_history_channel",
-        "validation": "validate_get_conversation_history"
+        "validation": "validate_get_conversation_history",
+        "validationChannel": "validate_get_conversation_history_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1653,17 +1760,21 @@
       "resource": "Conversation",
       "see": [],
       "types": {
+        "fields": "GetTurnStateFields",
+        "inferResult": "InferGetTurnStateResult",
         "input": "GetTurnStateInput",
         "result": "GetTurnStateResult"
       },
       "variantNames": {
         "channel": "get_turn_state_channel",
-        "validation": "validate_get_turn_state"
+        "validation": "validate_get_turn_state",
+        "validationChannel": "validate_get_turn_state_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1695,12 +1806,14 @@
       },
       "variantNames": {
         "channel": "list_conversations_channel",
-        "validation": "validate_list_conversations"
+        "validation": "validate_list_conversations",
+        "validationChannel": "validate_list_conversations_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1732,12 +1845,14 @@
       },
       "variantNames": {
         "channel": "list_my_conversations_channel",
-        "validation": "validate_list_my_conversations"
+        "validation": "validate_list_my_conversations",
+        "validationChannel": "validate_list_my_conversations_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1761,17 +1876,21 @@
       "resource": "Conversation",
       "see": [],
       "types": {
+        "fields": "PreviewChatFields",
+        "inferResult": "InferPreviewChatResult",
         "input": "PreviewChatInput",
         "result": "PreviewChatResult"
       },
       "variantNames": {
         "channel": "preview_chat_channel",
-        "validation": "validate_preview_chat"
+        "validation": "validate_preview_chat",
+        "validationChannel": "validate_preview_chat_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1783,7 +1902,7 @@
       "enableSort": true,
       "functionName": "update_conversation",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -1802,12 +1921,14 @@
       },
       "variantNames": {
         "channel": "update_conversation_channel",
-        "validation": "validate_update_conversation"
+        "validation": "validate_update_conversation",
+        "validationChannel": "validate_update_conversation_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1836,12 +1957,14 @@
       },
       "variantNames": {
         "channel": "presign_storage_url_channel",
-        "validation": "validate_presign_storage_url"
+        "validation": "validate_presign_storage_url",
+        "validationChannel": "validate_presign_storage_url_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1870,12 +1993,14 @@
       },
       "variantNames": {
         "channel": "upload_chat_attachment_channel",
-        "validation": "validate_upload_chat_attachment"
+        "validation": "validate_upload_chat_attachment",
+        "validationChannel": "validate_upload_chat_attachment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1905,12 +2030,14 @@
       },
       "variantNames": {
         "channel": "coaching_types_channel",
-        "validation": "validate_coaching_types"
+        "validation": "validate_coaching_types",
+        "validationChannel": "validate_coaching_types_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1941,12 +2068,14 @@
       },
       "variantNames": {
         "channel": "create_app_channel",
-        "validation": "validate_create_app"
+        "validation": "validate_create_app",
+        "validationChannel": "validate_create_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -1977,12 +2106,14 @@
       },
       "variantNames": {
         "channel": "create_app_from_template_channel",
-        "validation": "validate_create_app_from_template"
+        "validation": "validate_create_app_from_template",
+        "validationChannel": "validate_create_app_from_template_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2006,17 +2137,21 @@
       "resource": "App",
       "see": [],
       "types": {
+        "fields": "DailyBriefingFields",
+        "inferResult": "InferDailyBriefingResult",
         "input": "DailyBriefingInput",
         "result": "DailyBriefingResult"
       },
       "variantNames": {
         "channel": "daily_briefing_channel",
-        "validation": "validate_daily_briefing"
+        "validation": "validate_daily_briefing",
+        "validationChannel": "validate_daily_briefing_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2044,12 +2179,14 @@
       },
       "variantNames": {
         "channel": "destroy_app_channel",
-        "validation": "validate_destroy_app"
+        "validation": "validate_destroy_app",
+        "validationChannel": "validate_destroy_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2080,12 +2217,14 @@
       },
       "variantNames": {
         "channel": "duplicate_app_channel",
-        "validation": "validate_duplicate_app"
+        "validation": "validate_duplicate_app",
+        "validationChannel": "validate_duplicate_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2114,12 +2253,14 @@
       },
       "variantNames": {
         "channel": "for_user_personalized_channel",
-        "validation": "validate_for_user_personalized"
+        "validation": "validate_for_user_personalized",
+        "validationChannel": "validate_for_user_personalized_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2143,17 +2284,21 @@
       "resource": "App",
       "see": [],
       "types": {
+        "fields": "GatedPersonalizedCourseForUserFields",
+        "inferResult": "InferGatedPersonalizedCourseForUserResult",
         "input": "GatedPersonalizedCourseForUserInput",
         "result": "GatedPersonalizedCourseForUserResult"
       },
       "variantNames": {
         "channel": "gated_personalized_course_for_user_channel",
-        "validation": "validate_gated_personalized_course_for_user"
+        "validation": "validate_gated_personalized_course_for_user",
+        "validationChannel": "validate_gated_personalized_course_for_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2185,12 +2330,14 @@
       },
       "variantNames": {
         "channel": "get_app_channel",
-        "validation": "validate_get_app"
+        "validation": "validate_get_app",
+        "validationChannel": "validate_get_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2222,12 +2369,14 @@
       },
       "variantNames": {
         "channel": "get_app_for_origin_type_and_slug_channel",
-        "validation": "validate_get_app_for_origin_type_and_slug"
+        "validation": "validate_get_app_for_origin_type_and_slug",
+        "validationChannel": "validate_get_app_for_origin_type_and_slug_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2251,17 +2400,21 @@
       "resource": "App",
       "see": [],
       "types": {
+        "fields": "GetAssessmentGraphFields",
+        "inferResult": "InferGetAssessmentGraphResult",
         "input": "GetAssessmentGraphInput",
         "result": "GetAssessmentGraphResult"
       },
       "variantNames": {
         "channel": "get_assessment_graph_channel",
-        "validation": "validate_get_assessment_graph"
+        "validation": "validate_get_assessment_graph",
+        "validationChannel": "validate_get_assessment_graph_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2290,12 +2443,14 @@
       },
       "variantNames": {
         "channel": "get_program_channel",
-        "validation": "validate_get_program"
+        "validation": "validate_get_program",
+        "validationChannel": "validate_get_program_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2324,12 +2479,14 @@
       },
       "variantNames": {
         "channel": "get_program_assessment_channel",
-        "validation": "validate_get_program_assessment"
+        "validation": "validate_get_program_assessment",
+        "validationChannel": "validate_get_program_assessment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2358,12 +2515,14 @@
       },
       "variantNames": {
         "channel": "initialize_personalization_channel",
-        "validation": "validate_initialize_personalization"
+        "validation": "validate_initialize_personalization",
+        "validationChannel": "validate_initialize_personalization_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2392,12 +2551,14 @@
       },
       "variantNames": {
         "channel": "list_app_library_vfs_paths_channel",
-        "validation": "validate_list_app_library_vfs_paths"
+        "validation": "validate_list_app_library_vfs_paths",
+        "validationChannel": "validate_list_app_library_vfs_paths_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2429,12 +2590,14 @@
       },
       "variantNames": {
         "channel": "list_apps_for_origin_channel",
-        "validation": "validate_list_apps_for_origin"
+        "validation": "validate_list_apps_for_origin",
+        "validationChannel": "validate_list_apps_for_origin_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2466,12 +2629,14 @@
       },
       "variantNames": {
         "channel": "list_apps_for_origin_and_type_channel",
-        "validation": "validate_list_apps_for_origin_and_type"
+        "validation": "validate_list_apps_for_origin_and_type",
+        "validationChannel": "validate_list_apps_for_origin_and_type_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2495,17 +2660,21 @@
       "resource": "App",
       "see": [],
       "types": {
+        "fields": "MarkBriefingReadFields",
+        "inferResult": "InferMarkBriefingReadResult",
         "input": "MarkBriefingReadInput",
         "result": "MarkBriefingReadResult"
       },
       "variantNames": {
         "channel": "mark_briefing_read_channel",
-        "validation": "validate_mark_briefing_read"
+        "validation": "validate_mark_briefing_read",
+        "validationChannel": "validate_mark_briefing_read_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2529,17 +2698,21 @@
       "resource": "App",
       "see": [],
       "types": {
+        "fields": "ParseAuthoringDocumentFields",
+        "inferResult": "InferParseAuthoringDocumentResult",
         "input": "ParseAuthoringDocumentInput",
         "result": "ParseAuthoringDocumentResult"
       },
       "variantNames": {
         "channel": "parse_authoring_document_channel",
-        "validation": "validate_parse_authoring_document"
+        "validation": "validate_parse_authoring_document",
+        "validationChannel": "validate_parse_authoring_document_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2569,12 +2742,14 @@
       },
       "variantNames": {
         "channel": "publish_app_channel",
-        "validation": "validate_publish_app"
+        "validation": "validate_publish_app",
+        "validationChannel": "validate_publish_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2603,12 +2778,14 @@
       },
       "variantNames": {
         "channel": "regenerate_personalization_channel",
-        "validation": "validate_regenerate_personalization"
+        "validation": "validate_regenerate_personalization",
+        "validationChannel": "validate_regenerate_personalization_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2639,12 +2816,14 @@
       },
       "variantNames": {
         "channel": "restore_app_version_channel",
-        "validation": "validate_restore_app_version"
+        "validation": "validate_restore_app_version",
+        "validationChannel": "validate_restore_app_version_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2673,12 +2852,14 @@
       },
       "variantNames": {
         "channel": "send_app_chat_message_channel",
-        "validation": "validate_send_app_chat_message"
+        "validation": "validate_send_app_chat_message",
+        "validationChannel": "validate_send_app_chat_message_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2708,12 +2889,14 @@
       },
       "variantNames": {
         "channel": "unpublish_app_channel",
-        "validation": "validate_unpublish_app"
+        "validation": "validate_unpublish_app",
+        "validationChannel": "validate_unpublish_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2725,7 +2908,7 @@
       "enableSort": true,
       "functionName": "update_app",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -2744,12 +2927,14 @@
       },
       "variantNames": {
         "channel": "update_app_channel",
-        "validation": "validate_update_app"
+        "validation": "validate_update_app",
+        "validationChannel": "validate_update_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2780,12 +2965,14 @@
       },
       "variantNames": {
         "channel": "complete_assessment_channel",
-        "validation": "validate_complete_assessment"
+        "validation": "validate_complete_assessment",
+        "validationChannel": "validate_complete_assessment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2816,12 +3003,14 @@
       },
       "variantNames": {
         "channel": "create_assessment_response_channel",
-        "validation": "validate_create_assessment_response"
+        "validation": "validate_create_assessment_response",
+        "validationChannel": "validate_create_assessment_response_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2852,12 +3041,14 @@
       },
       "variantNames": {
         "channel": "create_assessment_response_at_activity_channel",
-        "validation": "validate_create_assessment_response_at_activity"
+        "validation": "validate_create_assessment_response_at_activity",
+        "validationChannel": "validate_create_assessment_response_at_activity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2889,12 +3080,14 @@
       },
       "variantNames": {
         "channel": "get_assessment_response_at_activity_channel",
-        "validation": "validate_get_assessment_response_at_activity"
+        "validation": "validate_get_assessment_response_at_activity",
+        "validationChannel": "validate_get_assessment_response_at_activity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2926,12 +3119,14 @@
       },
       "variantNames": {
         "channel": "get_my_assessment_response_channel",
-        "validation": "validate_get_my_assessment_response"
+        "validation": "validate_get_my_assessment_response",
+        "validationChannel": "validate_get_my_assessment_response_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2963,12 +3158,14 @@
       },
       "variantNames": {
         "channel": "list_assessment_responses_for_enrollment_channel",
-        "validation": "validate_list_assessment_responses_for_enrollment"
+        "validation": "validate_list_assessment_responses_for_enrollment",
+        "validationChannel": "validate_list_assessment_responses_for_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -2999,12 +3196,14 @@
       },
       "variantNames": {
         "channel": "sync_assessment_progress_channel",
-        "validation": "validate_sync_assessment_progress"
+        "validation": "validate_sync_assessment_progress",
+        "validationChannel": "validate_sync_assessment_progress_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3035,12 +3234,14 @@
       },
       "variantNames": {
         "channel": "answer_activity_prompt_channel",
-        "validation": "validate_answer_activity_prompt"
+        "validation": "validate_answer_activity_prompt",
+        "validationChannel": "validate_answer_activity_prompt_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3071,12 +3272,14 @@
       },
       "variantNames": {
         "channel": "complete_activity_step_channel",
-        "validation": "validate_complete_activity_step"
+        "validation": "validate_complete_activity_step",
+        "validationChannel": "validate_complete_activity_step_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3107,12 +3310,14 @@
       },
       "variantNames": {
         "channel": "advance_enrollment_session_channel",
-        "validation": "validate_advance_enrollment_session"
+        "validation": "validate_advance_enrollment_session",
+        "validationChannel": "validate_advance_enrollment_session_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3142,12 +3347,14 @@
       },
       "variantNames": {
         "channel": "complete_enrollment_channel",
-        "validation": "validate_complete_enrollment"
+        "validation": "validate_complete_enrollment",
+        "validationChannel": "validate_complete_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3178,12 +3385,14 @@
       },
       "variantNames": {
         "channel": "create_enrollment_channel",
-        "validation": "validate_create_enrollment"
+        "validation": "validate_create_enrollment",
+        "validationChannel": "validate_create_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3215,12 +3424,14 @@
       },
       "variantNames": {
         "channel": "find_enrollment_channel",
-        "validation": "validate_find_enrollment"
+        "validation": "validate_find_enrollment",
+        "validationChannel": "validate_find_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3252,12 +3463,14 @@
       },
       "variantNames": {
         "channel": "get_enrollment_channel",
-        "validation": "validate_get_enrollment"
+        "validation": "validate_get_enrollment",
+        "validationChannel": "validate_get_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3281,17 +3494,21 @@
       "resource": "CourseEnrollment",
       "see": [],
       "types": {
+        "fields": "GetEnrollmentCompletionsFields",
+        "inferResult": "InferGetEnrollmentCompletionsResult",
         "input": "GetEnrollmentCompletionsInput",
         "result": "GetEnrollmentCompletionsResult"
       },
       "variantNames": {
         "channel": "get_enrollment_completions_channel",
-        "validation": "validate_get_enrollment_completions"
+        "validation": "validate_get_enrollment_completions",
+        "validationChannel": "validate_get_enrollment_completions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3321,12 +3538,14 @@
       },
       "variantNames": {
         "channel": "pause_enrollment_channel",
-        "validation": "validate_pause_enrollment"
+        "validation": "validate_pause_enrollment",
+        "validationChannel": "validate_pause_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3356,12 +3575,14 @@
       },
       "variantNames": {
         "channel": "reactivate_enrollment_channel",
-        "validation": "validate_reactivate_enrollment"
+        "validation": "validate_reactivate_enrollment",
+        "validationChannel": "validate_reactivate_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3391,12 +3612,14 @@
       },
       "variantNames": {
         "channel": "resume_enrollment_channel",
-        "validation": "validate_resume_enrollment"
+        "validation": "validate_resume_enrollment",
+        "validationChannel": "validate_resume_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3426,12 +3649,14 @@
       },
       "variantNames": {
         "channel": "start_enrollment_channel",
-        "validation": "validate_start_enrollment"
+        "validation": "validate_start_enrollment",
+        "validationChannel": "validate_start_enrollment_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3460,12 +3685,14 @@
       },
       "variantNames": {
         "channel": "cancel_my_membership_channel",
-        "validation": "validate_cancel_my_membership"
+        "validation": "validate_cancel_my_membership",
+        "validationChannel": "validate_cancel_my_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3496,12 +3723,14 @@
       },
       "variantNames": {
         "channel": "list_my_entitlements_channel",
-        "validation": "validate_list_my_entitlements"
+        "validation": "validate_list_my_entitlements",
+        "validationChannel": "validate_list_my_entitlements_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3530,12 +3759,14 @@
       },
       "variantNames": {
         "channel": "my_membership_cancellation_channel",
-        "validation": "validate_my_membership_cancellation"
+        "validation": "validate_my_membership_cancellation",
+        "validationChannel": "validate_my_membership_cancellation_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3567,12 +3798,14 @@
       },
       "variantNames": {
         "channel": "list_blocks_channel",
-        "validation": "validate_list_blocks"
+        "validation": "validate_list_blocks",
+        "validationChannel": "validate_list_blocks_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3604,12 +3837,14 @@
       },
       "variantNames": {
         "channel": "list_app_versions_channel",
-        "validation": "validate_list_app_versions"
+        "validation": "validate_list_app_versions",
+        "validationChannel": "validate_list_app_versions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3640,12 +3875,14 @@
       },
       "variantNames": {
         "channel": "create_plan_channel",
-        "validation": "validate_create_plan"
+        "validation": "validate_create_plan",
+        "validationChannel": "validate_create_plan_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3673,12 +3910,14 @@
       },
       "variantNames": {
         "channel": "destroy_plan_channel",
-        "validation": "validate_destroy_plan"
+        "validation": "validate_destroy_plan",
+        "validationChannel": "validate_destroy_plan_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3710,12 +3949,14 @@
       },
       "variantNames": {
         "channel": "list_plans_channel",
-        "validation": "validate_list_plans"
+        "validation": "validate_list_plans",
+        "validationChannel": "validate_list_plans_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3747,12 +3988,14 @@
       },
       "variantNames": {
         "channel": "list_sellable_plans_for_app_channel",
-        "validation": "validate_list_sellable_plans_for_app"
+        "validation": "validate_list_sellable_plans_for_app",
+        "validationChannel": "validate_list_sellable_plans_for_app_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3782,12 +4025,14 @@
       },
       "variantNames": {
         "channel": "list_unlockable_apps_channel",
-        "validation": "validate_list_unlockable_apps"
+        "validation": "validate_list_unlockable_apps",
+        "validationChannel": "validate_list_unlockable_apps_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3799,7 +4044,7 @@
       "enableSort": true,
       "functionName": "update_plan",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -3818,12 +4063,14 @@
       },
       "variantNames": {
         "channel": "update_plan_channel",
-        "validation": "validate_update_plan"
+        "validation": "validate_update_plan",
+        "validationChannel": "validate_update_plan_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3854,12 +4101,14 @@
       },
       "variantNames": {
         "channel": "create_program_test_channel",
-        "validation": "validate_create_program_test"
+        "validation": "validate_create_program_test",
+        "validationChannel": "validate_create_program_test_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3887,12 +4136,14 @@
       },
       "variantNames": {
         "channel": "destroy_program_test_channel",
-        "validation": "validate_destroy_program_test"
+        "validation": "validate_destroy_program_test",
+        "validationChannel": "validate_destroy_program_test_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3924,12 +4175,14 @@
       },
       "variantNames": {
         "channel": "get_program_test_channel",
-        "validation": "validate_get_program_test"
+        "validation": "validate_get_program_test",
+        "validationChannel": "validate_get_program_test_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3958,12 +4211,14 @@
       },
       "variantNames": {
         "channel": "get_program_test_credentials_channel",
-        "validation": "validate_get_program_test_credentials"
+        "validation": "validate_get_program_test_credentials",
+        "validationChannel": "validate_get_program_test_credentials_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -3995,12 +4250,14 @@
       },
       "variantNames": {
         "channel": "list_program_tests_channel",
-        "validation": "validate_list_program_tests"
+        "validation": "validate_list_program_tests",
+        "validationChannel": "validate_list_program_tests_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4029,12 +4286,14 @@
       },
       "variantNames": {
         "channel": "start_program_test_run_channel",
-        "validation": "validate_start_program_test_run"
+        "validation": "validate_start_program_test_run",
+        "validationChannel": "validate_start_program_test_run_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4065,12 +4324,14 @@
       },
       "variantNames": {
         "channel": "list_app_templates_channel",
-        "validation": "validate_list_app_templates"
+        "validation": "validate_list_app_templates",
+        "validationChannel": "validate_list_app_templates_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4102,12 +4363,14 @@
       },
       "variantNames": {
         "channel": "list_app_templates_for_type_channel",
-        "validation": "validate_list_app_templates_for_type"
+        "validation": "validate_list_app_templates_for_type",
+        "validationChannel": "validate_list_app_templates_for_type_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4139,12 +4402,14 @@
       },
       "variantNames": {
         "channel": "list_webhook_deliveries_channel",
-        "validation": "validate_list_webhook_deliveries"
+        "validation": "validate_list_webhook_deliveries",
+        "validationChannel": "validate_list_webhook_deliveries_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4175,12 +4440,14 @@
       },
       "variantNames": {
         "channel": "create_webhook_subscription_channel",
-        "validation": "validate_create_webhook_subscription"
+        "validation": "validate_create_webhook_subscription",
+        "validationChannel": "validate_create_webhook_subscription_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4208,12 +4475,14 @@
       },
       "variantNames": {
         "channel": "destroy_webhook_subscription_channel",
-        "validation": "validate_destroy_webhook_subscription"
+        "validation": "validate_destroy_webhook_subscription",
+        "validationChannel": "validate_destroy_webhook_subscription_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4245,12 +4514,14 @@
       },
       "variantNames": {
         "channel": "list_webhook_subscriptions_channel",
-        "validation": "validate_list_webhook_subscriptions"
+        "validation": "validate_list_webhook_subscriptions",
+        "validationChannel": "validate_list_webhook_subscriptions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4279,12 +4550,14 @@
       },
       "variantNames": {
         "channel": "send_test_webhook_channel",
-        "validation": "validate_send_test_webhook"
+        "validation": "validate_send_test_webhook",
+        "validationChannel": "validate_send_test_webhook_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4296,7 +4569,7 @@
       "enableSort": true,
       "functionName": "update_webhook_subscription",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -4315,12 +4588,14 @@
       },
       "variantNames": {
         "channel": "update_webhook_subscription_channel",
-        "validation": "validate_update_webhook_subscription"
+        "validation": "validate_update_webhook_subscription",
+        "validationChannel": "validate_update_webhook_subscription_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4351,12 +4626,14 @@
       },
       "variantNames": {
         "channel": "create_feature_flag_channel",
-        "validation": "validate_create_feature_flag"
+        "validation": "validate_create_feature_flag",
+        "validationChannel": "validate_create_feature_flag_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4384,12 +4661,14 @@
       },
       "variantNames": {
         "channel": "delete_feature_flag_channel",
-        "validation": "validate_delete_feature_flag"
+        "validation": "validate_delete_feature_flag",
+        "validationChannel": "validate_delete_feature_flag_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4420,12 +4699,14 @@
       },
       "variantNames": {
         "channel": "list_feature_flags_channel",
-        "validation": "validate_list_feature_flags"
+        "validation": "validate_list_feature_flags",
+        "validationChannel": "validate_list_feature_flags_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4456,12 +4737,14 @@
       },
       "variantNames": {
         "channel": "update_feature_flag_channel",
-        "validation": "validate_update_feature_flag"
+        "validation": "validate_update_feature_flag",
+        "validationChannel": "validate_update_feature_flag_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4492,12 +4775,14 @@
       },
       "variantNames": {
         "channel": "create_feedback_channel",
-        "validation": "validate_create_feedback"
+        "validation": "validate_create_feedback",
+        "validationChannel": "validate_create_feedback_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4529,12 +4814,14 @@
       },
       "variantNames": {
         "channel": "list_feedback_channel",
-        "validation": "validate_list_feedback"
+        "validation": "validate_list_feedback",
+        "validationChannel": "validate_list_feedback_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4546,7 +4833,7 @@
       "enableSort": true,
       "functionName": "update_feedback",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -4565,12 +4852,14 @@
       },
       "variantNames": {
         "channel": "update_feedback_channel",
-        "validation": "validate_update_feedback"
+        "validation": "validate_update_feedback",
+        "validationChannel": "validate_update_feedback_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4601,12 +4890,14 @@
       },
       "variantNames": {
         "channel": "create_homepage_card_channel",
-        "validation": "validate_create_homepage_card"
+        "validation": "validate_create_homepage_card",
+        "validationChannel": "validate_create_homepage_card_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4634,12 +4925,14 @@
       },
       "variantNames": {
         "channel": "delete_homepage_card_channel",
-        "validation": "validate_delete_homepage_card"
+        "validation": "validate_delete_homepage_card",
+        "validationChannel": "validate_delete_homepage_card_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4670,12 +4963,14 @@
       },
       "variantNames": {
         "channel": "list_homepage_cards_channel",
-        "validation": "validate_list_homepage_cards"
+        "validation": "validate_list_homepage_cards",
+        "validationChannel": "validate_list_homepage_cards_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4687,7 +4982,7 @@
       "enableSort": true,
       "functionName": "update_homepage_card",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -4706,12 +5001,14 @@
       },
       "variantNames": {
         "channel": "update_homepage_card_channel",
-        "validation": "validate_update_homepage_card"
+        "validation": "validate_update_homepage_card",
+        "validationChannel": "validate_update_homepage_card_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4742,12 +5039,14 @@
       },
       "variantNames": {
         "channel": "create_chat_config_channel",
-        "validation": "validate_create_chat_config"
+        "validation": "validate_create_chat_config",
+        "validationChannel": "validate_create_chat_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4779,12 +5078,14 @@
       },
       "variantNames": {
         "channel": "list_chat_configs_channel",
-        "validation": "validate_list_chat_configs"
+        "validation": "validate_list_chat_configs",
+        "validationChannel": "validate_list_chat_configs_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4815,12 +5116,14 @@
       },
       "variantNames": {
         "channel": "update_chat_config_channel",
-        "validation": "validate_update_chat_config"
+        "validation": "validate_update_chat_config",
+        "validationChannel": "validate_update_chat_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4851,12 +5154,14 @@
       },
       "variantNames": {
         "channel": "create_origin_asset_channel",
-        "validation": "validate_create_origin_asset"
+        "validation": "validate_create_origin_asset",
+        "validationChannel": "validate_create_origin_asset_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4885,12 +5190,14 @@
       },
       "variantNames": {
         "channel": "edit_asset_image_channel",
-        "validation": "validate_edit_asset_image"
+        "validation": "validate_edit_asset_image",
+        "validationChannel": "validate_edit_asset_image_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4922,12 +5229,14 @@
       },
       "variantNames": {
         "channel": "list_origin_assets_channel",
-        "validation": "validate_list_origin_assets"
+        "validation": "validate_list_origin_assets",
+        "validationChannel": "validate_list_origin_assets_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4939,7 +5248,7 @@
       "enableSort": true,
       "functionName": "update_origin_asset",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -4958,12 +5267,14 @@
       },
       "variantNames": {
         "channel": "update_origin_asset_channel",
-        "validation": "validate_update_origin_asset"
+        "validation": "validate_update_origin_asset",
+        "validationChannel": "validate_update_origin_asset_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -4992,12 +5303,14 @@
       },
       "variantNames": {
         "channel": "clone_cartesia_voice_channel",
-        "validation": "validate_clone_cartesia_voice"
+        "validation": "validate_clone_cartesia_voice",
+        "validationChannel": "validate_clone_cartesia_voice_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5028,12 +5341,14 @@
       },
       "variantNames": {
         "channel": "create_origin_entity_channel",
-        "validation": "validate_create_origin_entity"
+        "validation": "validate_create_origin_entity",
+        "validationChannel": "validate_create_origin_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5061,12 +5376,14 @@
       },
       "variantNames": {
         "channel": "delete_origin_entity_channel",
-        "validation": "validate_delete_origin_entity"
+        "validation": "validate_delete_origin_entity",
+        "validationChannel": "validate_delete_origin_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5095,12 +5412,14 @@
       },
       "variantNames": {
         "channel": "discover_and_extract_profile_channel",
-        "validation": "validate_discover_and_extract_profile"
+        "validation": "validate_discover_and_extract_profile",
+        "validationChannel": "validate_discover_and_extract_profile_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5129,12 +5448,14 @@
       },
       "variantNames": {
         "channel": "discover_entity_links_channel",
-        "validation": "validate_discover_entity_links"
+        "validation": "validate_discover_entity_links",
+        "validationChannel": "validate_discover_entity_links_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5163,12 +5484,14 @@
       },
       "variantNames": {
         "channel": "generate_profile_description_channel",
-        "validation": "validate_generate_profile_description"
+        "validation": "validate_generate_profile_description",
+        "validationChannel": "validate_generate_profile_description_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5197,12 +5520,14 @@
       },
       "variantNames": {
         "channel": "generate_soul_config_channel",
-        "validation": "validate_generate_soul_config"
+        "validation": "validate_generate_soul_config",
+        "validationChannel": "validate_generate_soul_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5234,12 +5559,14 @@
       },
       "variantNames": {
         "channel": "get_origin_entity_channel",
-        "validation": "validate_get_origin_entity"
+        "validation": "validate_get_origin_entity",
+        "validationChannel": "validate_get_origin_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5271,12 +5598,14 @@
       },
       "variantNames": {
         "channel": "get_origin_entity_by_slug_channel",
-        "validation": "validate_get_origin_entity_by_slug"
+        "validation": "validate_get_origin_entity_by_slug",
+        "validationChannel": "validate_get_origin_entity_by_slug_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5308,12 +5637,14 @@
       },
       "variantNames": {
         "channel": "get_public_origin_entity_channel",
-        "validation": "validate_get_public_origin_entity"
+        "validation": "validate_get_public_origin_entity",
+        "validationChannel": "validate_get_public_origin_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5341,12 +5672,14 @@
       },
       "variantNames": {
         "channel": "list_cartesia_voices_channel",
-        "validation": "validate_list_cartesia_voices"
+        "validation": "validate_list_cartesia_voices",
+        "validationChannel": "validate_list_cartesia_voices_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5378,12 +5711,14 @@
       },
       "variantNames": {
         "channel": "list_origin_entities_channel",
-        "validation": "validate_list_origin_entities"
+        "validation": "validate_list_origin_entities",
+        "validationChannel": "validate_list_origin_entities_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5414,12 +5749,14 @@
       },
       "variantNames": {
         "channel": "list_origin_entities_for_switcher_channel",
-        "validation": "validate_list_origin_entities_for_switcher"
+        "validation": "validate_list_origin_entities_for_switcher",
+        "validationChannel": "validate_list_origin_entities_for_switcher_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5451,12 +5788,14 @@
       },
       "variantNames": {
         "channel": "list_origin_entities_for_user_channel",
-        "validation": "validate_list_origin_entities_for_user"
+        "validation": "validate_list_origin_entities_for_user",
+        "validationChannel": "validate_list_origin_entities_for_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5488,12 +5827,14 @@
       },
       "variantNames": {
         "channel": "list_public_origin_entities_channel",
-        "validation": "validate_list_public_origin_entities"
+        "validation": "validate_list_public_origin_entities",
+        "validationChannel": "validate_list_public_origin_entities_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5524,12 +5865,14 @@
       },
       "variantNames": {
         "channel": "scrape_website_content_channel",
-        "validation": "validate_scrape_website_content"
+        "validation": "validate_scrape_website_content",
+        "validationChannel": "validate_scrape_website_content_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5558,12 +5901,14 @@
       },
       "variantNames": {
         "channel": "speech_to_text_channel",
-        "validation": "validate_speech_to_text"
+        "validation": "validate_speech_to_text",
+        "validationChannel": "validate_speech_to_text_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5592,12 +5937,14 @@
       },
       "variantNames": {
         "channel": "text_to_speech_channel",
-        "validation": "validate_text_to_speech"
+        "validation": "validate_text_to_speech",
+        "validationChannel": "validate_text_to_speech_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5609,7 +5956,7 @@
       "enableSort": true,
       "functionName": "update_origin_entity",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -5628,12 +5975,14 @@
       },
       "variantNames": {
         "channel": "update_origin_entity_channel",
-        "validation": "validate_update_origin_entity"
+        "validation": "validate_update_origin_entity",
+        "validationChannel": "validate_update_origin_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5664,12 +6013,14 @@
       },
       "variantNames": {
         "channel": "update_origin_entity_profile_config_channel",
-        "validation": "validate_update_origin_entity_profile_config"
+        "validation": "validate_update_origin_entity_profile_config",
+        "validationChannel": "validate_update_origin_entity_profile_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5700,12 +6051,14 @@
       },
       "variantNames": {
         "channel": "accept_membership_invitation_channel",
-        "validation": "validate_accept_membership_invitation"
+        "validation": "validate_accept_membership_invitation",
+        "validationChannel": "validate_accept_membership_invitation_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5735,12 +6088,14 @@
       },
       "variantNames": {
         "channel": "activate_membership_channel",
-        "validation": "validate_activate_membership"
+        "validation": "validate_activate_membership",
+        "validationChannel": "validate_activate_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5771,12 +6126,14 @@
       },
       "variantNames": {
         "channel": "create_origin_entity_membership_channel",
-        "validation": "validate_create_origin_entity_membership"
+        "validation": "validate_create_origin_entity_membership",
+        "validationChannel": "validate_create_origin_entity_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5804,12 +6161,14 @@
       },
       "variantNames": {
         "channel": "delete_origin_entity_membership_channel",
-        "validation": "validate_delete_origin_entity_membership"
+        "validation": "validate_delete_origin_entity_membership",
+        "validationChannel": "validate_delete_origin_entity_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5841,12 +6200,14 @@
       },
       "variantNames": {
         "channel": "get_inherited_memberships_channel",
-        "validation": "validate_get_inherited_memberships"
+        "validation": "validate_get_inherited_memberships",
+        "validationChannel": "validate_get_inherited_memberships_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5878,12 +6239,14 @@
       },
       "variantNames": {
         "channel": "get_membership_by_token_channel",
-        "validation": "validate_get_membership_by_token"
+        "validation": "validate_get_membership_by_token",
+        "validationChannel": "validate_get_membership_by_token_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5915,12 +6278,14 @@
       },
       "variantNames": {
         "channel": "get_memberships_for_origin_channel",
-        "validation": "validate_get_memberships_for_origin"
+        "validation": "validate_get_memberships_for_origin",
+        "validationChannel": "validate_get_memberships_for_origin_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5952,12 +6317,14 @@
       },
       "variantNames": {
         "channel": "get_memberships_for_user_channel",
-        "validation": "validate_get_memberships_for_user"
+        "validation": "validate_get_memberships_for_user",
+        "validationChannel": "validate_get_memberships_for_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -5989,12 +6356,14 @@
       },
       "variantNames": {
         "channel": "get_origin_entity_membership_channel",
-        "validation": "validate_get_origin_entity_membership"
+        "validation": "validate_get_origin_entity_membership",
+        "validationChannel": "validate_get_origin_entity_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6026,12 +6395,14 @@
       },
       "variantNames": {
         "channel": "get_pending_memberships_channel",
-        "validation": "validate_get_pending_memberships"
+        "validation": "validate_get_pending_memberships",
+        "validationChannel": "validate_get_pending_memberships_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6062,12 +6433,14 @@
       },
       "variantNames": {
         "channel": "invite_to_origin_channel",
-        "validation": "validate_invite_to_origin"
+        "validation": "validate_invite_to_origin",
+        "validationChannel": "validate_invite_to_origin_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6099,12 +6472,14 @@
       },
       "variantNames": {
         "channel": "list_origin_entity_memberships_channel",
-        "validation": "validate_list_origin_entity_memberships"
+        "validation": "validate_list_origin_entity_memberships",
+        "validationChannel": "validate_list_origin_entity_memberships_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6134,12 +6509,14 @@
       },
       "variantNames": {
         "channel": "suspend_membership_channel",
-        "validation": "validate_suspend_membership"
+        "validation": "validate_suspend_membership",
+        "validationChannel": "validate_suspend_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6151,7 +6528,7 @@
       "enableSort": true,
       "functionName": "update_origin_entity_membership",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -6170,12 +6547,14 @@
       },
       "variantNames": {
         "channel": "update_origin_entity_membership_channel",
-        "validation": "validate_update_origin_entity_membership"
+        "validation": "validate_update_origin_entity_membership",
+        "validationChannel": "validate_update_origin_entity_membership_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6206,12 +6585,14 @@
       },
       "variantNames": {
         "channel": "create_prompt_context_channel",
-        "validation": "validate_create_prompt_context"
+        "validation": "validate_create_prompt_context",
+        "validationChannel": "validate_create_prompt_context_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6239,12 +6620,14 @@
       },
       "variantNames": {
         "channel": "delete_prompt_context_channel",
-        "validation": "validate_delete_prompt_context"
+        "validation": "validate_delete_prompt_context",
+        "validationChannel": "validate_delete_prompt_context_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6273,12 +6656,14 @@
       },
       "variantNames": {
         "channel": "get_prompt_context_public_title_channel",
-        "validation": "validate_get_prompt_context_public_title"
+        "validation": "validate_get_prompt_context_public_title",
+        "validationChannel": "validate_get_prompt_context_public_title_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6310,12 +6695,14 @@
       },
       "variantNames": {
         "channel": "list_prompt_contexts_for_origin_channel",
-        "validation": "validate_list_prompt_contexts_for_origin"
+        "validation": "validate_list_prompt_contexts_for_origin",
+        "validationChannel": "validate_list_prompt_contexts_for_origin_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6327,7 +6714,7 @@
       "enableSort": true,
       "functionName": "update_prompt_context",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -6346,12 +6733,14 @@
       },
       "variantNames": {
         "channel": "update_prompt_context_channel",
-        "validation": "validate_update_prompt_context"
+        "validation": "validate_update_prompt_context",
+        "validationChannel": "validate_update_prompt_context_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6382,12 +6771,14 @@
       },
       "variantNames": {
         "channel": "create_prompt_tool_channel",
-        "validation": "validate_create_prompt_tool"
+        "validation": "validate_create_prompt_tool",
+        "validationChannel": "validate_create_prompt_tool_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6415,12 +6806,14 @@
       },
       "variantNames": {
         "channel": "delete_prompt_tool_channel",
-        "validation": "validate_delete_prompt_tool"
+        "validation": "validate_delete_prompt_tool",
+        "validationChannel": "validate_delete_prompt_tool_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6452,12 +6845,14 @@
       },
       "variantNames": {
         "channel": "list_prompt_tools_for_origin_channel",
-        "validation": "validate_list_prompt_tools_for_origin"
+        "validation": "validate_list_prompt_tools_for_origin",
+        "validationChannel": "validate_list_prompt_tools_for_origin_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6469,7 +6864,7 @@
       "enableSort": true,
       "functionName": "update_prompt_tool",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -6488,12 +6883,14 @@
       },
       "variantNames": {
         "channel": "update_prompt_tool_channel",
-        "validation": "validate_update_prompt_tool"
+        "validation": "validate_update_prompt_tool",
+        "validationChannel": "validate_update_prompt_tool_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6524,12 +6921,14 @@
       },
       "variantNames": {
         "channel": "create_setup_progress_channel",
-        "validation": "validate_create_setup_progress"
+        "validation": "validate_create_setup_progress",
+        "validationChannel": "validate_create_setup_progress_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6561,12 +6960,14 @@
       },
       "variantNames": {
         "channel": "list_setup_progress_channel",
-        "validation": "validate_list_setup_progress"
+        "validation": "validate_list_setup_progress",
+        "validationChannel": "validate_list_setup_progress_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6578,7 +6979,7 @@
       "enableSort": true,
       "functionName": "update_setup_progress",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -6597,12 +6998,14 @@
       },
       "variantNames": {
         "channel": "update_setup_progress_channel",
-        "validation": "validate_update_setup_progress"
+        "validation": "validate_update_setup_progress",
+        "validationChannel": "validate_update_setup_progress_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6633,12 +7036,14 @@
       },
       "variantNames": {
         "channel": "create_soul_config_channel",
-        "validation": "validate_create_soul_config"
+        "validation": "validate_create_soul_config",
+        "validationChannel": "validate_create_soul_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6667,12 +7072,14 @@
       },
       "variantNames": {
         "channel": "generate_conversation_starters_channel",
-        "validation": "validate_generate_conversation_starters"
+        "validation": "validate_generate_conversation_starters",
+        "validationChannel": "validate_generate_conversation_starters_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6704,12 +7111,14 @@
       },
       "variantNames": {
         "channel": "list_soul_configs_channel",
-        "validation": "validate_list_soul_configs"
+        "validation": "validate_list_soul_configs",
+        "validationChannel": "validate_list_soul_configs_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6740,12 +7149,14 @@
       },
       "variantNames": {
         "channel": "update_soul_config_channel",
-        "validation": "validate_update_soul_config"
+        "validation": "validate_update_soul_config",
+        "validationChannel": "validate_update_soul_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6777,12 +7188,14 @@
       },
       "variantNames": {
         "channel": "list_user_profiles_channel",
-        "validation": "validate_list_user_profiles"
+        "validation": "validate_list_user_profiles",
+        "validationChannel": "validate_list_user_profiles_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6794,7 +7207,7 @@
       "enableSort": true,
       "functionName": "update_user_profile",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -6813,12 +7226,14 @@
       },
       "variantNames": {
         "channel": "update_user_profile_channel",
-        "validation": "validate_update_user_profile"
+        "validation": "validate_update_user_profile",
+        "validationChannel": "validate_update_user_profile_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6850,12 +7265,14 @@
       },
       "variantNames": {
         "channel": "list_interview_generated_contents_channel",
-        "validation": "validate_list_interview_generated_contents"
+        "validation": "validate_list_interview_generated_contents",
+        "validationChannel": "validate_list_interview_generated_contents_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6867,7 +7284,7 @@
       "enableSort": true,
       "functionName": "update_interview_generated_content",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -6886,12 +7303,14 @@
       },
       "variantNames": {
         "channel": "update_interview_generated_content_channel",
-        "validation": "validate_update_interview_generated_content"
+        "validation": "validate_update_interview_generated_content",
+        "validationChannel": "validate_update_interview_generated_content_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6920,12 +7339,14 @@
       },
       "variantNames": {
         "channel": "presign_recording_download_url_channel",
-        "validation": "validate_presign_recording_download_url"
+        "validation": "validate_presign_recording_download_url",
+        "validationChannel": "validate_presign_recording_download_url_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6956,12 +7377,14 @@
       },
       "variantNames": {
         "channel": "create_interview_session_channel",
-        "validation": "validate_create_interview_session"
+        "validation": "validate_create_interview_session",
+        "validationChannel": "validate_create_interview_session_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -6991,12 +7414,14 @@
       },
       "variantNames": {
         "channel": "finish_interview_session_channel",
-        "validation": "validate_finish_interview_session"
+        "validation": "validate_finish_interview_session",
+        "validationChannel": "validate_finish_interview_session_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7025,12 +7450,14 @@
       },
       "variantNames": {
         "channel": "generate_interview_question_channel",
-        "validation": "validate_generate_interview_question"
+        "validation": "validate_generate_interview_question",
+        "validationChannel": "validate_generate_interview_question_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7062,12 +7489,14 @@
       },
       "variantNames": {
         "channel": "get_interview_session_channel",
-        "validation": "validate_get_interview_session"
+        "validation": "validate_get_interview_session",
+        "validationChannel": "validate_get_interview_session_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7099,12 +7528,14 @@
       },
       "variantNames": {
         "channel": "list_interview_sessions_channel",
-        "validation": "validate_list_interview_sessions"
+        "validation": "validate_list_interview_sessions",
+        "validationChannel": "validate_list_interview_sessions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7116,7 +7547,7 @@
       "enableSort": true,
       "functionName": "update_interview_session",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -7135,12 +7566,14 @@
       },
       "variantNames": {
         "channel": "update_interview_session_channel",
-        "validation": "validate_update_interview_session"
+        "validation": "validate_update_interview_session",
+        "validationChannel": "validate_update_interview_session_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7171,12 +7604,14 @@
       },
       "variantNames": {
         "channel": "create_interview_turn_channel",
-        "validation": "validate_create_interview_turn"
+        "validation": "validate_create_interview_turn",
+        "validationChannel": "validate_create_interview_turn_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7204,12 +7639,14 @@
       },
       "variantNames": {
         "channel": "forget_agent_memory_channel",
-        "validation": "validate_forget_agent_memory"
+        "validation": "validate_forget_agent_memory",
+        "validationChannel": "validate_forget_agent_memory_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7240,12 +7677,14 @@
       },
       "variantNames": {
         "channel": "update_agent_memory_channel",
-        "validation": "validate_update_agent_memory"
+        "validation": "validate_update_agent_memory",
+        "validationChannel": "validate_update_agent_memory_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7277,12 +7716,14 @@
       },
       "variantNames": {
         "channel": "get_drive_connection_for_entity_channel",
-        "validation": "validate_get_drive_connection_for_entity"
+        "validation": "validate_get_drive_connection_for_entity",
+        "validationChannel": "validate_get_drive_connection_for_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7311,12 +7752,14 @@
       },
       "variantNames": {
         "channel": "initiate_drive_oauth_channel",
-        "validation": "validate_initiate_drive_oauth"
+        "validation": "validate_initiate_drive_oauth",
+        "validationChannel": "validate_initiate_drive_oauth_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7348,12 +7791,14 @@
       },
       "variantNames": {
         "channel": "get_github_connection_for_entity_channel",
-        "validation": "validate_get_github_connection_for_entity"
+        "validation": "validate_get_github_connection_for_entity",
+        "validationChannel": "validate_get_github_connection_for_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7382,12 +7827,14 @@
       },
       "variantNames": {
         "channel": "initiate_github_oauth_channel",
-        "validation": "validate_initiate_github_oauth"
+        "validation": "validate_initiate_github_oauth",
+        "validationChannel": "validate_initiate_github_oauth_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7416,12 +7863,14 @@
       },
       "variantNames": {
         "channel": "list_github_branches_channel",
-        "validation": "validate_list_github_branches"
+        "validation": "validate_list_github_branches",
+        "validationChannel": "validate_list_github_branches_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7450,12 +7899,14 @@
       },
       "variantNames": {
         "channel": "list_github_repositories_channel",
-        "validation": "validate_list_github_repositories"
+        "validation": "validate_list_github_repositories",
+        "validationChannel": "validate_list_github_repositories_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7486,12 +7937,14 @@
       },
       "variantNames": {
         "channel": "create_library_channel",
-        "validation": "validate_create_library"
+        "validation": "validate_create_library",
+        "validationChannel": "validate_create_library_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7519,12 +7972,14 @@
       },
       "variantNames": {
         "channel": "delete_library_channel",
-        "validation": "validate_delete_library"
+        "validation": "validate_delete_library",
+        "validationChannel": "validate_delete_library_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7556,12 +8011,14 @@
       },
       "variantNames": {
         "channel": "get_library_channel",
-        "validation": "validate_get_library"
+        "validation": "validate_get_library",
+        "validationChannel": "validate_get_library_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7590,12 +8047,14 @@
       },
       "variantNames": {
         "channel": "library_shell_exec_channel",
-        "validation": "validate_library_shell_exec"
+        "validation": "validate_library_shell_exec",
+        "validationChannel": "validate_library_shell_exec_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7624,12 +8083,14 @@
       },
       "variantNames": {
         "channel": "library_shell_list_tree_channel",
-        "validation": "validate_library_shell_list_tree"
+        "validation": "validate_library_shell_list_tree",
+        "validationChannel": "validate_library_shell_list_tree_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7658,12 +8119,14 @@
       },
       "variantNames": {
         "channel": "library_shell_read_channel",
-        "validation": "validate_library_shell_read"
+        "validation": "validate_library_shell_read",
+        "validationChannel": "validate_library_shell_read_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7695,12 +8158,14 @@
       },
       "variantNames": {
         "channel": "list_libraries_channel",
-        "validation": "validate_list_libraries"
+        "validation": "validate_list_libraries",
+        "validationChannel": "validate_list_libraries_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7733,12 +8198,14 @@
       },
       "variantNames": {
         "channel": "list_libraries_for_origin_channel",
-        "validation": "validate_list_libraries_for_origin"
+        "validation": "validate_list_libraries_for_origin",
+        "validationChannel": "validate_list_libraries_for_origin_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7767,12 +8234,14 @@
       },
       "variantNames": {
         "channel": "preview_library_sync_filter_channel",
-        "validation": "validate_preview_library_sync_filter"
+        "validation": "validate_preview_library_sync_filter",
+        "validationChannel": "validate_preview_library_sync_filter_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7801,12 +8270,14 @@
       },
       "variantNames": {
         "channel": "sync_library_now_channel",
-        "validation": "validate_sync_library_now"
+        "validation": "validate_sync_library_now",
+        "validationChannel": "validate_sync_library_now_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7818,7 +8289,7 @@
       "enableSort": true,
       "functionName": "update_library",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -7837,12 +8308,14 @@
       },
       "variantNames": {
         "channel": "update_library_channel",
-        "validation": "validate_update_library"
+        "validation": "validate_update_library",
+        "validationChannel": "validate_update_library_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7873,12 +8346,14 @@
       },
       "variantNames": {
         "channel": "update_library_sync_filter_channel",
-        "validation": "validate_update_library_sync_filter"
+        "validation": "validate_update_library_sync_filter",
+        "validationChannel": "validate_update_library_sync_filter_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7909,12 +8384,14 @@
       },
       "variantNames": {
         "channel": "create_library_access_grant_channel",
-        "validation": "validate_create_library_access_grant"
+        "validation": "validate_create_library_access_grant",
+        "validationChannel": "validate_create_library_access_grant_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7942,12 +8419,14 @@
       },
       "variantNames": {
         "channel": "delete_library_access_grant_channel",
-        "validation": "validate_delete_library_access_grant"
+        "validation": "validate_delete_library_access_grant",
+        "validationChannel": "validate_delete_library_access_grant_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -7979,12 +8458,14 @@
       },
       "variantNames": {
         "channel": "list_library_access_grants_channel",
-        "validation": "validate_list_library_access_grants"
+        "validation": "validate_list_library_access_grants",
+        "validationChannel": "validate_list_library_access_grants_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8015,12 +8496,14 @@
       },
       "variantNames": {
         "channel": "create_library_file_channel",
-        "validation": "validate_create_library_file"
+        "validation": "validate_create_library_file",
+        "validationChannel": "validate_create_library_file_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8051,12 +8534,14 @@
       },
       "variantNames": {
         "channel": "create_library_file_inline_channel",
-        "validation": "validate_create_library_file_inline"
+        "validation": "validate_create_library_file_inline",
+        "validationChannel": "validate_create_library_file_inline_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8084,12 +8569,14 @@
       },
       "variantNames": {
         "channel": "delete_library_file_channel",
-        "validation": "validate_delete_library_file"
+        "validation": "validate_delete_library_file",
+        "validationChannel": "validate_delete_library_file_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8121,12 +8608,14 @@
       },
       "variantNames": {
         "channel": "get_library_file_channel",
-        "validation": "validate_get_library_file"
+        "validation": "validate_get_library_file",
+        "validationChannel": "validate_get_library_file_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8157,12 +8646,14 @@
       },
       "variantNames": {
         "channel": "list_library_file_facets_channel",
-        "validation": "validate_list_library_file_facets"
+        "validation": "validate_list_library_file_facets",
+        "validationChannel": "validate_list_library_file_facets_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8194,12 +8685,14 @@
       },
       "variantNames": {
         "channel": "list_library_files_channel",
-        "validation": "validate_list_library_files"
+        "validation": "validate_list_library_files",
+        "validationChannel": "validate_list_library_files_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8232,12 +8725,14 @@
       },
       "variantNames": {
         "channel": "list_library_files_for_library_channel",
-        "validation": "validate_list_library_files_for_library"
+        "validation": "validate_list_library_files_for_library",
+        "validationChannel": "validate_list_library_files_for_library_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8268,12 +8763,14 @@
       },
       "variantNames": {
         "channel": "semantic_search_library_files_channel",
-        "validation": "validate_semantic_search_library_files"
+        "validation": "validate_semantic_search_library_files",
+        "validationChannel": "validate_semantic_search_library_files_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8285,7 +8782,7 @@
       "enableSort": true,
       "functionName": "update_library_file",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -8304,12 +8801,14 @@
       },
       "variantNames": {
         "channel": "update_library_file_channel",
-        "validation": "validate_update_library_file"
+        "validation": "validate_update_library_file",
+        "validationChannel": "validate_update_library_file_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8340,12 +8839,14 @@
       },
       "variantNames": {
         "channel": "upload_library_asset_channel",
-        "validation": "validate_upload_library_asset"
+        "validation": "validate_upload_library_asset",
+        "validationChannel": "validate_upload_library_asset_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8376,12 +8877,14 @@
       },
       "variantNames": {
         "channel": "upsert_website_scrape_library_file_channel",
-        "validation": "validate_upsert_website_scrape_library_file"
+        "validation": "validate_upsert_website_scrape_library_file",
+        "validationChannel": "validate_upsert_website_scrape_library_file_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8412,12 +8915,14 @@
       },
       "variantNames": {
         "channel": "create_channel",
-        "validation": "validate_create"
+        "validation": "validate_create",
+        "validationChannel": "validate_create_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8445,12 +8950,14 @@
       },
       "variantNames": {
         "channel": "destroy_channel",
-        "validation": "validate_destroy"
+        "validation": "validate_destroy",
+        "validationChannel": "validate_destroy_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8482,12 +8989,14 @@
       },
       "variantNames": {
         "channel": "get_by_id_channel",
-        "validation": "validate_get_by_id"
+        "validation": "validate_get_by_id",
+        "validationChannel": "validate_get_by_id_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8519,12 +9028,14 @@
       },
       "variantNames": {
         "channel": "list_for_user_channel",
-        "validation": "validate_list_for_user"
+        "validation": "validate_list_for_user",
+        "validationChannel": "validate_list_for_user_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8536,7 +9047,7 @@
       "enableSort": true,
       "functionName": "update",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -8555,12 +9066,14 @@
       },
       "variantNames": {
         "channel": "update_channel",
-        "validation": "validate_update"
+        "validation": "validate_update",
+        "validationChannel": "validate_update_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8591,12 +9104,14 @@
       },
       "variantNames": {
         "channel": "add_item_channel",
-        "validation": "validate_add_item"
+        "validation": "validate_add_item",
+        "validationChannel": "validate_add_item_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8627,12 +9142,14 @@
       },
       "variantNames": {
         "channel": "add_many_channel",
-        "validation": "validate_add_many"
+        "validation": "validate_add_many",
+        "validationChannel": "validate_add_many_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8665,12 +9182,14 @@
       },
       "variantNames": {
         "channel": "list_for_playlist_channel",
-        "validation": "validate_list_for_playlist"
+        "validation": "validate_list_for_playlist",
+        "validationChannel": "validate_list_for_playlist_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8698,12 +9217,14 @@
       },
       "variantNames": {
         "channel": "remove_item_channel",
-        "validation": "validate_remove_item"
+        "validation": "validate_remove_item",
+        "validationChannel": "validate_remove_item_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8715,7 +9236,7 @@
       "enableSort": true,
       "functionName": "reorder",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -8734,12 +9255,14 @@
       },
       "variantNames": {
         "channel": "reorder_channel",
-        "validation": "validate_reorder"
+        "validation": "validate_reorder",
+        "validationChannel": "validate_reorder_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8763,17 +9286,21 @@
       "resource": "VideoAsset",
       "see": [],
       "types": {
+        "fields": "ListVideoStaticRenditionsFields",
+        "inferResult": "InferListVideoStaticRenditionsResult",
         "input": "ListVideoStaticRenditionsInput",
         "result": "ListVideoStaticRenditionsResult"
       },
       "variantNames": {
         "channel": "list_video_static_renditions_channel",
-        "validation": "validate_list_video_static_renditions"
+        "validation": "validate_list_video_static_renditions",
+        "validationChannel": "validate_list_video_static_renditions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8804,12 +9331,14 @@
       },
       "variantNames": {
         "channel": "request_static_renditions_channel",
-        "validation": "validate_request_static_renditions"
+        "validation": "validate_request_static_renditions",
+        "validationChannel": "validate_request_static_renditions_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8840,12 +9369,14 @@
       },
       "variantNames": {
         "channel": "resolve_video_playback_channel",
-        "validation": "validate_resolve_video_playback"
+        "validation": "validate_resolve_video_playback",
+        "validationChannel": "validate_resolve_video_playback_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8873,12 +9404,14 @@
       },
       "variantNames": {
         "channel": "destroy_chat_binding_channel",
-        "validation": "validate_destroy_chat_binding"
+        "validation": "validate_destroy_chat_binding",
+        "validationChannel": "validate_destroy_chat_binding_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8907,12 +9440,14 @@
       },
       "variantNames": {
         "channel": "get_binding_preview_channel",
-        "validation": "validate_get_binding_preview"
+        "validation": "validate_get_binding_preview",
+        "validationChannel": "validate_get_binding_preview_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8944,12 +9479,14 @@
       },
       "variantNames": {
         "channel": "list_all_chat_bindings_channel",
-        "validation": "validate_list_all_chat_bindings"
+        "validation": "validate_list_all_chat_bindings",
+        "validationChannel": "validate_list_all_chat_bindings_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -8981,12 +9518,14 @@
       },
       "variantNames": {
         "channel": "list_chat_bindings_for_origin_entity_channel",
-        "validation": "validate_list_chat_bindings_for_origin_entity"
+        "validation": "validate_list_chat_bindings_for_origin_entity",
+        "validationChannel": "validate_list_chat_bindings_for_origin_entity_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9017,12 +9556,14 @@
       },
       "variantNames": {
         "channel": "register_prospect_channel",
-        "validation": "validate_register_prospect"
+        "validation": "validate_register_prospect",
+        "validationChannel": "validate_register_prospect_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9051,12 +9592,14 @@
       },
       "variantNames": {
         "channel": "resolve_messaging_line_channel",
-        "validation": "validate_resolve_messaging_line"
+        "validation": "validate_resolve_messaging_line",
+        "validationChannel": "validate_resolve_messaging_line_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9087,12 +9630,14 @@
       },
       "variantNames": {
         "channel": "create_podcast_config_channel",
-        "validation": "validate_create_podcast_config"
+        "validation": "validate_create_podcast_config",
+        "validationChannel": "validate_create_podcast_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9124,12 +9669,14 @@
       },
       "variantNames": {
         "channel": "list_podcast_configs_channel",
-        "validation": "validate_list_podcast_configs"
+        "validation": "validate_list_podcast_configs",
+        "validationChannel": "validate_list_podcast_configs_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9158,12 +9705,14 @@
       },
       "variantNames": {
         "channel": "sync_podcast_episodes_channel",
-        "validation": "validate_sync_podcast_episodes"
+        "validation": "validate_sync_podcast_episodes",
+        "validationChannel": "validate_sync_podcast_episodes_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9194,12 +9743,14 @@
       },
       "variantNames": {
         "channel": "update_podcast_config_channel",
-        "validation": "validate_update_podcast_config"
+        "validation": "validate_update_podcast_config",
+        "validationChannel": "validate_update_podcast_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9231,12 +9782,14 @@
       },
       "variantNames": {
         "channel": "get_podcast_episode_settings_for_character_channel",
-        "validation": "validate_get_podcast_episode_settings_for_character"
+        "validation": "validate_get_podcast_episode_settings_for_character",
+        "validationChannel": "validate_get_podcast_episode_settings_for_character_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9268,12 +9821,14 @@
       },
       "variantNames": {
         "channel": "get_podcast_episode_settings_for_podcast_config_channel",
-        "validation": "validate_get_podcast_episode_settings_for_podcast_config"
+        "validation": "validate_get_podcast_episode_settings_for_podcast_config",
+        "validationChannel": "validate_get_podcast_episode_settings_for_podcast_config_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9305,12 +9860,14 @@
       },
       "variantNames": {
         "channel": "list_podcast_episode_settings_channel",
-        "validation": "validate_list_podcast_episode_settings"
+        "validation": "validate_list_podcast_episode_settings",
+        "validationChannel": "validate_list_podcast_episode_settings_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9341,12 +9898,14 @@
       },
       "variantNames": {
         "channel": "upsert_podcast_episode_settings_channel",
-        "validation": "validate_upsert_podcast_episode_settings"
+        "validation": "validate_upsert_podcast_episode_settings",
+        "validationChannel": "validate_upsert_podcast_episode_settings_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9377,12 +9936,14 @@
       },
       "variantNames": {
         "channel": "create_youtube_episode_channel",
-        "validation": "validate_create_youtube_episode"
+        "validation": "validate_create_youtube_episode",
+        "validationChannel": "validate_create_youtube_episode_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9410,12 +9971,14 @@
       },
       "variantNames": {
         "channel": "delete_youtube_episode_channel",
-        "validation": "validate_delete_youtube_episode"
+        "validation": "validate_delete_youtube_episode",
+        "validationChannel": "validate_delete_youtube_episode_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9444,12 +10007,14 @@
       },
       "variantNames": {
         "channel": "fetch_youtube_single_video_channel",
-        "validation": "validate_fetch_youtube_single_video"
+        "validation": "validate_fetch_youtube_single_video",
+        "validationChannel": "validate_fetch_youtube_single_video_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9478,12 +10043,14 @@
       },
       "variantNames": {
         "channel": "fetch_youtube_transcript_channel",
-        "validation": "validate_fetch_youtube_transcript"
+        "validation": "validate_fetch_youtube_transcript",
+        "validationChannel": "validate_fetch_youtube_transcript_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9515,12 +10082,14 @@
       },
       "variantNames": {
         "channel": "get_youtube_episode_channel",
-        "validation": "validate_get_youtube_episode"
+        "validation": "validate_get_youtube_episode",
+        "validationChannel": "validate_get_youtube_episode_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9552,12 +10121,14 @@
       },
       "variantNames": {
         "channel": "list_youtube_episodes_channel",
-        "validation": "validate_list_youtube_episodes"
+        "validation": "validate_list_youtube_episodes",
+        "validationChannel": "validate_list_youtube_episodes_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9569,7 +10140,7 @@
       "enableSort": true,
       "functionName": "update_youtube_episode",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -9588,12 +10159,14 @@
       },
       "variantNames": {
         "channel": "update_youtube_episode_channel",
-        "validation": "validate_update_youtube_episode"
+        "validation": "validate_update_youtube_episode",
+        "validationChannel": "validate_update_youtube_episode_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     },
@@ -9622,12 +10195,14 @@
       },
       "variantNames": {
         "channel": "youtube_fetch_public_data_channel",
-        "validation": "validate_youtube_fetch_public_data"
+        "validation": "validate_youtube_fetch_public_data",
+        "validationChannel": "validate_youtube_fetch_public_data_channel"
       },
       "variants": {
         "channel": true,
         "valibot": false,
         "validation": true,
+        "validationChannel": true,
         "zod": false
       }
     }
@@ -9646,7 +10221,304 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-09-30",
+  "generatedAt": "2026-10-06",
+  "resources": {
+    "User": {
+      "relationships": {
+        "origin_entities": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        },
+        "origin_entity_memberships": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "staff_tenant_grants": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "Feedback": {
+      "relationships": {}
+    },
+    "PublicConversation": {
+      "relationships": {
+        "memories": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "messages": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "threads": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "Tenant": {
+      "relationships": {}
+    },
+    "ChatConfig": {
+      "relationships": {}
+    },
+    "InterviewSession": {
+      "relationships": {
+        "interview_generated_contents": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "interview_recordings": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "interview_turns": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "DriveConnection": {
+      "relationships": {}
+    },
+    "AppVersion": {
+      "relationships": {}
+    },
+    "DocumentBlock": {
+      "relationships": {
+        "children": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "OriginEntity": {
+      "relationships": {
+        "apps": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        },
+        "child_origin_entities": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        },
+        "feature_flags": {
+          "filterable": true,
+          "pagination": "none",
+          "sortable": true
+        },
+        "feedbacks": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "homepage_cards": {
+          "filterable": true,
+          "pagination": "none",
+          "sortable": true
+        },
+        "interview_sessions": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "memberships": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "origin_assets": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        },
+        "prompt_contexts": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "prompt_tools": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        },
+        "youtube_episodes": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "InterviewRecording": {
+      "relationships": {}
+    },
+    "Plan": {
+      "relationships": {
+        "apps": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        }
+      }
+    },
+    "LibraryAccessGrant": {
+      "relationships": {}
+    },
+    "OriginAsset": {
+      "relationships": {}
+    },
+    "UserProfile": {
+      "relationships": {}
+    },
+    "HomepageCard": {
+      "relationships": {}
+    },
+    "CourseEnrollment": {
+      "relationships": {
+        "activity_completions": {
+          "filterable": true,
+          "pagination": "none",
+          "sortable": true
+        }
+      }
+    },
+    "VideoAsset": {
+      "relationships": {}
+    },
+    "CourseActivityCompletion": {
+      "relationships": {}
+    },
+    "Library": {
+      "relationships": {
+        "files": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        },
+        "grants": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "ChatBinding": {
+      "relationships": {}
+    },
+    "OriginEntityStaffMembership": {
+      "relationships": {}
+    },
+    "GithubConnection": {
+      "relationships": {}
+    },
+    "WaitlistEntry": {
+      "relationships": {}
+    },
+    "YoutubeEpisode": {
+      "relationships": {}
+    },
+    "App": {
+      "relationships": {}
+    },
+    "AppTemplate": {
+      "relationships": {}
+    },
+    "PromptTool": {
+      "relationships": {}
+    },
+    "WebhookDelivery": {
+      "relationships": {}
+    },
+    "LibraryFile": {
+      "relationships": {}
+    },
+    "CourseEntitlement": {
+      "relationships": {}
+    },
+    "AssessmentResponse": {
+      "relationships": {}
+    },
+    "StaffTenantGrant": {
+      "relationships": {}
+    },
+    "SoulConfig": {
+      "relationships": {}
+    },
+    "FeatureFlag": {
+      "relationships": {}
+    },
+    "MessageAttachment": {
+      "relationships": {}
+    },
+    "InterviewTurn": {
+      "relationships": {}
+    },
+    "PlaylistItem": {
+      "relationships": {}
+    },
+    "PromptContext": {
+      "relationships": {}
+    },
+    "SetupProgress": {
+      "relationships": {
+        "origin_entities": {
+          "filterable": true,
+          "pagination": "keyset",
+          "sortable": true
+        }
+      }
+    },
+    "PodcastEpisodeSettings": {
+      "relationships": {}
+    },
+    "ConsentRecord": {
+      "relationships": {}
+    },
+    "PodcastConfig": {
+      "relationships": {}
+    },
+    "InterviewGeneratedContent": {
+      "relationships": {}
+    },
+    "WebhookSubscription": {
+      "relationships": {}
+    },
+    "Playlist": {
+      "relationships": {
+        "items": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    },
+    "AgentMemory": {
+      "relationships": {}
+    },
+    "ProgramTest": {
+      "relationships": {
+        "memories": {
+          "filterable": true,
+          "pagination": "mixed",
+          "sortable": true
+        }
+      }
+    }
+  },
   "typedControllerRoutes": [],
-  "version": "1.0"
+  "version": "1.1"
 }
