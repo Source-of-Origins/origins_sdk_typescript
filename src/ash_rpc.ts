@@ -2582,6 +2582,135 @@ export async function create_anonymous_user_channel<Fields extends CreateAnonymo
 }
 
 
+export type CreateUserInput = {
+  email: string;
+};
+
+export type CreateUserFields = UnifiedFieldSelection<UserResourceSchema>[];
+
+export type InferCreateUserResult<
+  Fields extends CreateUserFields | undefined,
+> = InferResult<UserResourceSchema, Fields>;
+
+export type CreateUserResult<Fields extends CreateUserFields | undefined = undefined> = | { success: true; data: InferCreateUserResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new User
+ *
+ * @ashActionType :create
+ */
+export async function create_user<Fields extends CreateUserFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: CreateUserInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<CreateUserResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "create_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<CreateUserResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new User
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_user(
+  config: {
+  tenant?: string;
+  input: CreateUserInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "create_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new User
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_create_user_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateUserInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "create_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new User
+ *
+ * @ashActionType :create
+ */
+export async function create_user_channel<Fields extends CreateUserFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: CreateUserInput;
+  fields?: Fields;
+  result_handler: (result: CreateUserResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<CreateUserResult<Fields>>(
+    config.channel,
+    {
+    action: "create_user",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type InferDeleteOwnAccountResult = Record<string, any>;
 
 export type DeleteOwnAccountResult = | { success: true; data: InferDeleteOwnAccountResult; }
@@ -7573,6 +7702,8 @@ export async function create_app_channel<Fields extends CreateAppFields | undefi
 
 export type CreateAppFromTemplateInput = {
   origin_entity_id: UUID;
+  title?: string | null;
+  slug?: string | null;
   template_id: UUID;
 };
 
@@ -13158,6 +13289,138 @@ export async function cancel_my_membership_channel(config: {
     action: "cancel_my_membership",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GrantPlanEntitlementInput = {
+  user_id: UUID;
+  tier: string;
+  plan_id?: UUID | null;
+  scope?: "every_app" | "one_app";
+};
+
+export type GrantPlanEntitlementFields = UnifiedFieldSelection<CourseEntitlementResourceSchema>[];
+
+export type InferGrantPlanEntitlementResult<
+  Fields extends GrantPlanEntitlementFields | undefined,
+> = InferResult<CourseEntitlementResourceSchema, Fields>;
+
+export type GrantPlanEntitlementResult<Fields extends GrantPlanEntitlementFields | undefined = undefined> = | { success: true; data: InferGrantPlanEntitlementResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Create a new CourseEntitlement
+ *
+ * @ashActionType :create
+ */
+export async function grant_plan_entitlement<Fields extends GrantPlanEntitlementFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: GrantPlanEntitlementInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GrantPlanEntitlementResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "grant_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GrantPlanEntitlementResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new CourseEntitlement
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_grant_plan_entitlement(
+  config: {
+  tenant?: string;
+  input: GrantPlanEntitlementInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "grant_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Create a new CourseEntitlement
+ *
+ * @ashActionType :create
+ * @validation true
+ */
+export async function validate_grant_plan_entitlement_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GrantPlanEntitlementInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "grant_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Create a new CourseEntitlement
+ *
+ * @ashActionType :create
+ */
+export async function grant_plan_entitlement_channel<Fields extends GrantPlanEntitlementFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GrantPlanEntitlementInput;
+  fields?: Fields;
+  result_handler: (result: GrantPlanEntitlementResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GrantPlanEntitlementResult<Fields>>(
+    config.channel,
+    {
+    action: "grant_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config

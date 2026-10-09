@@ -24,6 +24,7 @@ export type ConsentRecordResourceSchema = {
   recorded_at: UtcDateTimeUsec;
   text_shown: string;
   user_agent: string | null;
+  profile: { __type: "Relationship"; __resource: UserProfileResourceSchema | null; };
 };
 
 
@@ -4059,6 +4060,7 @@ export type ConsentRecordFilterInput = {
     string_starts_with?: string;
   };
 
+  profile?: UserProfileFilterInput;
 
 };
 export type StaffTenantGrantFilterInput = {
@@ -15780,7 +15782,7 @@ export type YoutubeEpisodeFilterInput = {
 };
 
 
-export const consentRecordFilterFields = ["custom_name", "email", "granted", "id", "ip", "kind", "method", "policy_version", "recorded_at", "text_shown", "user_agent"] as const;
+export const consentRecordFilterFields = ["custom_name", "email", "granted", "id", "ip", "kind", "method", "policy_version", "recorded_at", "text_shown", "user_agent", "profile"] as const;
 export type ConsentRecordFilterField = (typeof consentRecordFilterFields)[number];
 
 export const staffTenantGrantFilterFields = ["created_at", "granted_at", "id", "revoked_at", "tenant_id", "updated_at", "user_id", "tenant", "user"] as const;

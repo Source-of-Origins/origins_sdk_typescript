@@ -610,6 +610,44 @@
       }
     },
     {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Create a real, passwordless user by email, reached by magic link. Upserts\non email, so a rerun reuses the row and an anonymous one becomes real; a\nregistered account keeps everything else.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_user",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "fields": "CreateUserFields",
+        "inferResult": "InferCreateUserResult",
+        "input": "CreateUserInput",
+        "result": "CreateUserResult"
+      },
+      "variantNames": {
+        "channel": "create_user_channel",
+        "validation": "validate_create_user",
+        "validationChannel": "validate_create_user_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "action",
       "deprecated": false,
       "description": "Mark the caller's own account for deletion and sign them out everywhere.",
@@ -2082,7 +2120,7 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Create a new instance seeded from an `Apps.Template`. Title defaults to the template name (numeric suffix on collision); slug is derived from title.",
+      "description": "Create a new instance seeded from an `Apps.Template`. Title defaults to the template name (numeric suffix on collision); slug defaults to one derived from the title. A supplied slug must be free within (origin, page_type).",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "create_app_from_template",
@@ -3687,6 +3725,44 @@
         "channel": "cancel_my_membership_channel",
         "validation": "validate_cancel_my_membership",
         "validationChannel": "validate_cancel_my_membership_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "create",
+      "deprecated": false,
+      "description": "Grant (or refresh) a plan-level entitlement, for a plan that unlocks no apps.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "grant_plan_entitlement",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CourseEntitlement",
+      "see": [],
+      "types": {
+        "fields": "GrantPlanEntitlementFields",
+        "inferResult": "InferGrantPlanEntitlementResult",
+        "input": "GrantPlanEntitlementInput",
+        "result": "GrantPlanEntitlementResult"
+      },
+      "variantNames": {
+        "channel": "grant_plan_entitlement_channel",
+        "validation": "validate_grant_plan_entitlement",
+        "validationChannel": "validate_grant_plan_entitlement_channel"
       },
       "variants": {
         "channel": true,
@@ -10221,7 +10297,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-10-06",
+  "generatedAt": "2026-10-09",
   "resources": {
     "User": {
       "relationships": {
