@@ -307,6 +307,44 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "How many people reached each step of a masterclass page's funnel over a\nwindow, read from PostHog and limited to the caller's tenant.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_masterclass_funnel",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "GetMasterclassFunnelFields",
+        "inferResult": "InferGetMasterclassFunnelResult",
+        "input": "GetMasterclassFunnelInput",
+        "result": "GetMasterclassFunnelResult"
+      },
+      "variantNames": {
+        "channel": "get_masterclass_funnel_channel",
+        "validation": "validate_get_masterclass_funnel",
+        "validationChannel": "validate_get_masterclass_funnel_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read Tenant records",
@@ -2519,6 +2557,44 @@
         "channel": "get_program_assessment_channel",
         "validation": "validate_get_program_assessment",
         "validationChannel": "validate_get_program_assessment_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The color each theme token shows when an app sets none: the Origin's brand color, else the page type's default.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "inherited_theme",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "fields": "InheritedThemeFields",
+        "inferResult": "InferInheritedThemeResult",
+        "input": "InheritedThemeInput",
+        "result": "InheritedThemeResult"
+      },
+      "variantNames": {
+        "channel": "inherited_theme_channel",
+        "validation": "validate_inherited_theme",
+        "validationChannel": "validate_inherited_theme_channel"
       },
       "variants": {
         "channel": true,
@@ -5204,157 +5280,6 @@
       }
     },
     {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new OriginAsset",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_origin_asset",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "OriginAsset",
-      "see": [],
-      "types": {
-        "fields": "CreateOriginAssetFields",
-        "inferResult": "InferCreateOriginAssetResult",
-        "input": "CreateOriginAssetInput",
-        "result": "CreateOriginAssetResult"
-      },
-      "variantNames": {
-        "channel": "create_origin_asset_channel",
-        "validation": "validate_create_origin_asset",
-        "validationChannel": "validate_create_origin_asset_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Execute generic action on OriginAsset",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "edit_asset_image",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "OriginAsset",
-      "see": [],
-      "types": {
-        "input": "EditAssetImageInput",
-        "result": "EditAssetImageResult"
-      },
-      "variantNames": {
-        "channel": "edit_asset_image_channel",
-        "validation": "validate_edit_asset_image",
-        "validationChannel": "validate_edit_asset_image_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read OriginAsset records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_origin_assets",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": false,
-        "required": false,
-        "supported": true
-      },
-      "resource": "OriginAsset",
-      "see": [],
-      "types": {
-        "config": "ListOriginAssetsConfig",
-        "fields": "ListOriginAssetsFields",
-        "filterInput": "OriginAssetFilterInput",
-        "inferResult": "InferListOriginAssetsResult",
-        "result": "ListOriginAssetsResult"
-      },
-      "variantNames": {
-        "channel": "list_origin_assets_channel",
-        "validation": "validate_list_origin_assets",
-        "validationChannel": "validate_list_origin_assets_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing OriginAsset",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_origin_asset",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "OriginAsset",
-      "see": [],
-      "types": {
-        "fields": "UpdateOriginAssetFields",
-        "inferResult": "InferUpdateOriginAssetResult",
-        "input": "UpdateOriginAssetInput",
-        "result": "UpdateOriginAssetResult"
-      },
-      "variantNames": {
-        "channel": "update_origin_asset_channel",
-        "validation": "validate_update_origin_asset",
-        "validationChannel": "validate_update_origin_asset_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
       "actionType": "action",
       "deprecated": false,
       "description": "Clone a voice using Cartesia API",
@@ -5490,42 +5415,6 @@
         "channel": "discover_and_extract_profile_channel",
         "validation": "validate_discover_and_extract_profile",
         "validationChannel": "validate_discover_and_extract_profile_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Discover social media links and official website for an entity using AI with confidence scores",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "discover_entity_links",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "OriginEntity",
-      "see": [],
-      "types": {
-        "input": "DiscoverEntityLinksInput",
-        "result": "DiscoverEntityLinksResult"
-      },
-      "variantNames": {
-        "channel": "discover_entity_links_channel",
-        "validation": "validate_discover_entity_links",
-        "validationChannel": "validate_discover_entity_links_channel"
       },
       "variants": {
         "channel": true,
@@ -6053,6 +5942,44 @@
         "channel": "update_origin_entity_channel",
         "validation": "validate_update_origin_entity",
         "validationChannel": "validate_update_origin_entity_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing OriginEntity",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "update_origin_entity_brand_theme",
+      "get": false,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "OriginEntity",
+      "see": [],
+      "types": {
+        "fields": "UpdateOriginEntityBrandThemeFields",
+        "inferResult": "InferUpdateOriginEntityBrandThemeResult",
+        "input": "UpdateOriginEntityBrandThemeInput",
+        "result": "UpdateOriginEntityBrandThemeResult"
+      },
+      "variantNames": {
+        "channel": "update_origin_entity_brand_theme_channel",
+        "validation": "validate_update_origin_entity_brand_theme",
+        "validationChannel": "validate_update_origin_entity_brand_theme_channel"
       },
       "variants": {
         "channel": true,
@@ -8324,6 +8251,42 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "Start a background agent that fills the Origin's brand theme from its libraries.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "pull_brand_from_library",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Library",
+      "see": [],
+      "types": {
+        "input": "PullBrandFromLibraryInput",
+        "result": "PullBrandFromLibraryResult"
+      },
+      "variantNames": {
+        "channel": "pull_brand_from_library_channel",
+        "validation": "validate_pull_brand_from_library",
+        "validationChannel": "validate_pull_brand_from_library_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Run a one-shot source-adapter sync for this Library.",
       "enableFilter": true,
       "enableSort": true,
@@ -8803,6 +8766,44 @@
         "channel": "list_library_files_for_library_channel",
         "validation": "validate_list_library_files_for_library",
         "validationChannel": "validate_list_library_files_for_library_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Clips of a short-form library nearest a person's taste, best first: the\naverage of their onboarding answers and the clips they watched past\nhalfway, without the clips they were already shown.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "recommend_clips",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "LibraryFile",
+      "see": [],
+      "types": {
+        "fields": "RecommendClipsFields",
+        "inferResult": "InferRecommendClipsResult",
+        "input": "RecommendClipsInput",
+        "result": "RecommendClipsResult"
+      },
+      "variantNames": {
+        "channel": "recommend_clips_channel",
+        "validation": "validate_recommend_clips",
+        "validationChannel": "validate_recommend_clips_channel"
       },
       "variants": {
         "channel": true,
@@ -9305,14 +9306,14 @@
       }
     },
     {
-      "actionType": "update",
+      "actionType": "action",
       "deprecated": false,
-      "description": "Update item position for drag-and-drop reordering.",
+      "description": "Move an item to a zero-based slot. Returns the playlist items in their new order.",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "reorder",
       "get": false,
-      "input": "optional",
+      "input": "required",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -10297,7 +10298,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-10-09",
+  "generatedAt": "2026-10-23",
   "resources": {
     "User": {
       "relationships": {
@@ -10417,11 +10418,6 @@
           "pagination": "mixed",
           "sortable": true
         },
-        "origin_assets": {
-          "filterable": true,
-          "pagination": "keyset",
-          "sortable": true
-        },
         "prompt_contexts": {
           "filterable": true,
           "pagination": "mixed",
@@ -10452,9 +10448,6 @@
       }
     },
     "LibraryAccessGrant": {
-      "relationships": {}
-    },
-    "OriginAsset": {
       "relationships": {}
     },
     "UserProfile": {

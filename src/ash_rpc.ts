@@ -3,7 +3,7 @@
 
 import { Channel } from "phoenix";
 
-import type { AgentMemoryResourceSchema, AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, ConsentRecordFilterInput, ConsentRecordResourceSchema, ConsentRecordSortField, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DocumentBlockFilterInput, DocumentBlockResourceSchema, DocumentBlockSortField, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginAssetFilterInput, OriginAssetResourceSchema, OriginAssetSortField, OriginEntityFilterInput, OriginEntityResourceSchema, OriginEntitySortField, OriginEntityStaffMembershipFilterInput, OriginEntityStaffMembershipResourceSchema, OriginEntityStaffMembershipSortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, TurnStateResourceSchema, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
+import type { AgentMemoryResourceSchema, AppFilterInput, AppResourceSchema, AppSortField, AppTemplateFilterInput, AppTemplateResourceSchema, AppTemplateSortField, AppVersionFilterInput, AppVersionResourceSchema, AppVersionSortField, AshDate, AshRpcError, AssessmentGraphResourceSchema, AssessmentResponseFilterInput, AssessmentResponseResourceSchema, AssessmentResponseSortField, AuthoringDocumentResourceSchema, ChatBindingFilterInput, ChatBindingResourceSchema, ChatBindingSortField, ChatConfigFilterInput, ChatConfigResourceSchema, ChatConfigSortField, ChatMessageResourceSchema, ChatReplyResourceSchema, ChatSuggestionsResourceSchema, ConditionalPaginatedResult, ConditionalPaginatedResultMixed, ConsentRecordFilterInput, ConsentRecordResourceSchema, ConsentRecordSortField, CourseActivityCompletionResourceSchema, CourseEnrollmentFilterInput, CourseEnrollmentResourceSchema, CourseEnrollmentSortField, CourseEntitlementFilterInput, CourseEntitlementResourceSchema, CourseEntitlementSortField, DailyBriefingResourceSchema, Decimal, DocumentBlockFilterInput, DocumentBlockResourceSchema, DocumentBlockSortField, DriveConnectionFilterInput, DriveConnectionResourceSchema, DriveConnectionSortField, EnrollmentCompletionsResourceSchema, FeatureFlagFilterInput, FeatureFlagResourceSchema, FeatureFlagSortField, FeedbackFilterInput, FeedbackResourceSchema, FeedbackSortField, GatedCoursePayloadResourceSchema, GithubConnectionFilterInput, GithubConnectionResourceSchema, GithubConnectionSortField, HomepageCardFilterInput, HomepageCardResourceSchema, HomepageCardSortField, InferResult, InterviewGeneratedContentFilterInput, InterviewGeneratedContentResourceSchema, InterviewGeneratedContentSortField, InterviewSessionFilterInput, InterviewSessionResourceSchema, InterviewSessionSortField, InterviewTurnResourceSchema, LibraryAccessGrantFilterInput, LibraryAccessGrantResourceSchema, LibraryAccessGrantSortField, LibraryFileFilterInput, LibraryFileResourceSchema, LibraryFileSortField, LibraryFilterInput, LibraryResourceSchema, LibrarySortField, OriginEntityFilterInput, OriginEntityResourceSchema, OriginEntitySortField, OriginEntityStaffMembershipFilterInput, OriginEntityStaffMembershipResourceSchema, OriginEntityStaffMembershipSortField, OriginsAppsEdgeInputSchema, OriginsAppsNodeInputSchema, OriginsIdentityAppearanceConfigInputSchema, OriginsIdentityBrandConversationConfigInputSchema, OriginsIdentityBrandThemeInputSchema, OriginsIdentityPromptContextGuardrailConfigInputSchema, OriginsIdentityPublicProfileConfigInputSchema, OriginsIdentitySocialLinkInputSchema, OriginsIdentitySoulConfigCommunicationStyleInputSchema, OriginsIdentitySoulConfigExperienceSettingsInputSchema, OriginsIdentitySoulConfigResponseFormatPreferencesInputSchema, PlanFilterInput, PlanResourceSchema, PlanSortField, PlaylistFilterInput, PlaylistItemFilterInput, PlaylistItemResourceSchema, PlaylistItemSortField, PlaylistResourceSchema, PlaylistSortField, PodcastConfigFilterInput, PodcastConfigResourceSchema, PodcastConfigSortField, PodcastEpisodeSettingsFilterInput, PodcastEpisodeSettingsResourceSchema, PodcastEpisodeSettingsSortField, ProgramTestFilterInput, ProgramTestResourceSchema, ProgramTestSortField, PromptContextFilterInput, PromptContextResourceSchema, PromptContextSortField, PromptToolFilterInput, PromptToolResourceSchema, PromptToolSortField, PublicConversationFilterInput, PublicConversationResourceSchema, PublicConversationSortField, ResolvedPlaybackResourceSchema, ScrapedWebsiteContentResourceSchema, SetupProgressFilterInput, SetupProgressResourceSchema, SetupProgressSortField, SignInLinkResponseResourceSchema, SocialSignInResponseResourceSchema, SortString, SoulConfigFilterInput, SoulConfigResourceSchema, SoulConfigSortField, StaffTenantGrantFilterInput, StaffTenantGrantResourceSchema, StaffTenantGrantSortField, StaticRenditionRequestResultResourceSchema, StaticRenditionResourceSchema, TenantFilterInput, TenantResourceSchema, TenantSortField, TurnStateResourceSchema, UUID, UnifiedFieldSelection, UserFilterInput, UserProfileFilterInput, UserProfileResourceSchema, UserProfileSortField, UserResourceSchema, UserSortField, UtcDateTime, UtcDateTimeUsec, ValidationResult, WaitlistEntryFilterInput, WaitlistEntryResourceSchema, WaitlistEntrySortField, WebhookDeliveryFilterInput, WebhookDeliveryResourceSchema, WebhookDeliverySortField, WebhookSubscriptionFilterInput, WebhookSubscriptionResourceSchema, WebhookSubscriptionSortField, YoutubeEpisodeFilterInput, YoutubeEpisodeResourceSchema, YoutubeEpisodeSortField } from "./ash_types";
 export type * from "./ash_types";
 
 // Helper Functions
@@ -1795,6 +1795,137 @@ export async function list_my_tenants_channel<Fields extends ListMyTenantsFields
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
     ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type GetMasterclassFunnelInput = {
+  masterclass: string;
+  from: AshDate;
+  to: AshDate;
+};
+
+export type GetMasterclassFunnelFields = UnifiedFieldSelection<{step: string | null, persons: number | null, pct_of_pageviews: number | null, __type: "TypedMap", __primitiveFields: "step" | "persons" | "pct_of_pageviews"}>[];
+
+export type InferGetMasterclassFunnelResult<
+  Fields extends GetMasterclassFunnelFields | undefined,
+> = Array<InferResult<{step: string | null, persons: number | null, pct_of_pageviews: number | null, __type: "TypedMap", __primitiveFields: "step" | "persons" | "pct_of_pageviews"}, Fields>>;
+
+export type GetMasterclassFunnelResult<Fields extends GetMasterclassFunnelFields | undefined = undefined> = | { success: true; data: InferGetMasterclassFunnelResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_masterclass_funnel<Fields extends GetMasterclassFunnelFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: GetMasterclassFunnelInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetMasterclassFunnelResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "get_masterclass_funnel",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<GetMasterclassFunnelResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_masterclass_funnel(
+  config: {
+  tenant?: string;
+  input: GetMasterclassFunnelInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "get_masterclass_funnel",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_get_masterclass_funnel_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetMasterclassFunnelInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "get_masterclass_funnel",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Tenant
+ *
+ * @ashActionType :action
+ */
+export async function get_masterclass_funnel_channel<Fields extends GetMasterclassFunnelFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: GetMasterclassFunnelInput;
+  fields: Fields;
+  result_handler: (result: GetMasterclassFunnelResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<GetMasterclassFunnelResult<Fields>>(
+    config.channel,
+    {
+    action: "get_masterclass_funnel",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -9081,6 +9212,136 @@ export async function get_program_assessment_channel(config: {
     action: "get_program_assessment",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type InheritedThemeInput = {
+  origin_entity_id: UUID;
+  page_type: string;
+};
+
+export type InheritedThemeFields = UnifiedFieldSelection<{background: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, card: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, card_foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, primary: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, primary_foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, accent: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, accent_foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, border: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, __type: "TypedMap", __primitiveFields: never}>[];
+
+export type InferInheritedThemeResult<
+  Fields extends InheritedThemeFields | undefined,
+> = InferResult<{background: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, card: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, card_foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, primary: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, primary_foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, accent: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, accent_foreground: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, border: {value: string, from_brand: boolean, __type: "TypedMap", __primitiveFields: "value" | "from_brand"}, __type: "TypedMap", __primitiveFields: never}, Fields>;
+
+export type InheritedThemeResult<Fields extends InheritedThemeFields | undefined = undefined> = | { success: true; data: InferInheritedThemeResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function inherited_theme<Fields extends InheritedThemeFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: InheritedThemeInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<InheritedThemeResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "inherited_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<InheritedThemeResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_inherited_theme(
+  config: {
+  tenant?: string;
+  input: InheritedThemeInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "inherited_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on App
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_inherited_theme_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: InheritedThemeInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "inherited_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on App
+ *
+ * @ashActionType :action
+ */
+export async function inherited_theme_channel<Fields extends InheritedThemeFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: InheritedThemeInput;
+  fields: Fields;
+  result_handler: (result: InheritedThemeResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<InheritedThemeResult<Fields>>(
+    config.channel,
+    {
+    action: "inherited_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
   },
     config.timeout,
     config
@@ -18562,563 +18823,6 @@ export async function update_chat_config_channel<Fields extends UpdateChatConfig
 }
 
 
-export type CreateOriginAssetInput = {
-  asset_type: string;
-  asset_url: string;
-  asset_key?: string | null;
-  asset_name?: string | null;
-  asset_metadata?: Record<string, any> | null;
-  source_platform?: string | null;
-  shared_with_origin_entity_ids?: Array<UUID> | null;
-  is_shared_globally?: boolean | null;
-  origin_entity_id: UUID;
-};
-
-export type CreateOriginAssetFields = UnifiedFieldSelection<OriginAssetResourceSchema>[];
-
-export type InferCreateOriginAssetResult<
-  Fields extends CreateOriginAssetFields | undefined,
-> = InferResult<OriginAssetResourceSchema, Fields>;
-
-export type CreateOriginAssetResult<Fields extends CreateOriginAssetFields | undefined = undefined> = | { success: true; data: InferCreateOriginAssetResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Create a new OriginAsset
- *
- * @ashActionType :create
- */
-export async function create_origin_asset<Fields extends CreateOriginAssetFields | undefined = undefined>(
-  config: {
-  tenant?: string;
-  input: CreateOriginAssetInput;
-  fields?: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<CreateOriginAssetResult<Fields extends undefined ? [] : Fields>> {
-  const payload = {
-    action: "create_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<CreateOriginAssetResult<Fields extends undefined ? [] : Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Create a new OriginAsset
- *
- * @ashActionType :create
- * @validation true
- */
-export async function validate_create_origin_asset(
-  config: {
-  tenant?: string;
-  input: CreateOriginAssetInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "create_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Create a new OriginAsset
- *
- * @ashActionType :create
- * @validation true
- */
-export async function validate_create_origin_asset_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: CreateOriginAssetInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "create_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Create a new OriginAsset
- *
- * @ashActionType :create
- */
-export async function create_origin_asset_channel<Fields extends CreateOriginAssetFields | undefined = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  input: CreateOriginAssetInput;
-  fields?: Fields;
-  result_handler: (result: CreateOriginAssetResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<CreateOriginAssetResult<Fields>>(
-    config.channel,
-    {
-    action: "create_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type EditAssetImageInput = {
-  image_url: string;
-  prompt: string;
-  edit_mode?: string | null;
-  asset_name?: string | null;
-  asset_type?: string | null;
-  origin_entity_id: UUID;
-};
-
-export type InferEditAssetImageResult = Record<string, any>;
-
-export type EditAssetImageResult = | { success: true; data: InferEditAssetImageResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on OriginAsset
- *
- * @ashActionType :action
- */
-export async function edit_asset_image(
-  config: {
-  tenant?: string;
-  input: EditAssetImageInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<EditAssetImageResult> {
-  const payload = {
-    action: "edit_asset_image",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<EditAssetImageResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on OriginAsset
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_edit_asset_image(
-  config: {
-  tenant?: string;
-  input: EditAssetImageInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "edit_asset_image",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on OriginAsset
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_edit_asset_image_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: EditAssetImageInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "edit_asset_image",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on OriginAsset
- *
- * @ashActionType :action
- */
-export async function edit_asset_image_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: EditAssetImageInput;
-  result_handler: (result: EditAssetImageResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<EditAssetImageResult>(
-    config.channel,
-    {
-    action: "edit_asset_image",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type ListOriginAssetsFields = UnifiedFieldSelection<OriginAssetResourceSchema>[];
-
-
-export type InferListOriginAssetsResult<
-  Fields extends ListOriginAssetsFields | undefined,
-  Page extends ListOriginAssetsConfig["page"] = undefined
-> = ConditionalPaginatedResult<Page, Array<InferResult<OriginAssetResourceSchema, Fields>>, {
-  results: Array<InferResult<OriginAssetResourceSchema, Fields>>;
-  has_more: boolean;
-  limit: number;
-  after: string | null;
-  before: string | null;
-  previous_page: string | null;
-  next_page: string | null;
-  count?: number | null;
-  type: "keyset";
-}>;
-
-export type ListOriginAssetsConfig = {
-  tenant?: string;
-  fields: ListOriginAssetsFields;
-  filter?: OriginAssetFilterInput;
-  sort?: SortString<OriginAssetSortField> | SortString<OriginAssetSortField>[];
-  page?: {
-    limit?: number;
-    after?: string;
-    before?: string;
-    offset?: never;
-    count?: never;
-  };
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-};
-
-export type ListOriginAssetsResult<Fields extends ListOriginAssetsFields, Page extends ListOriginAssetsConfig["page"] = undefined> = | { success: true; data: InferListOriginAssetsResult<Fields, Page>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Read OriginAsset records
- *
- * @ashActionType :read
- */
-export async function list_origin_assets<Fields extends ListOriginAssetsFields, Config extends ListOriginAssetsConfig = ListOriginAssetsConfig>(
-  config: Config & { fields: Fields }
-): Promise<ListOriginAssetsResult<Fields, Config["page"]>> {
-  const payload = {
-    action: "list_origin_assets",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  };
-
-  return executeActionRpcRequest<ListOriginAssetsResult<Fields, Config["page"]>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginAsset records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_origin_assets(
-  config: {
-  tenant?: string;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "list_origin_assets",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Read OriginAsset records
- *
- * @ashActionType :read
- * @validation true
- */
-export async function validate_list_origin_assets_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "list_origin_assets",
-    ...(config.tenant !== undefined && { tenant: config.tenant })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Read OriginAsset records
- *
- * @ashActionType :read
- */
-export async function list_origin_assets_channel<Fields extends ListOriginAssetsFields, Page extends ListOriginAssetsConfig["page"] = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  fields: Fields;
-  filter?: OriginAssetFilterInput;
-  sort?: SortString<OriginAssetSortField> | SortString<OriginAssetSortField>[];
-  page?: Page;
-  result_handler: (result: ListOriginAssetsResult<Fields, Page>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<ListOriginAssetsResult<Fields, Page>>(
-    config.channel,
-    {
-    action: "list_origin_assets",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    ...(config.fields !== undefined && { fields: config.fields }),
-    ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
-    ...(config.page && { page: config.page })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type UpdateOriginAssetInput = {
-  asset_type?: string;
-  asset_url?: string;
-  asset_key?: string | null;
-  asset_name?: string | null;
-  asset_metadata?: Record<string, any> | null;
-  source_platform?: string | null;
-  shared_with_origin_entity_ids?: Array<UUID> | null;
-  is_shared_globally?: boolean | null;
-  origin_entity_id?: UUID;
-};
-
-export type UpdateOriginAssetFields = UnifiedFieldSelection<OriginAssetResourceSchema>[];
-
-export type InferUpdateOriginAssetResult<
-  Fields extends UpdateOriginAssetFields | undefined,
-> = InferResult<OriginAssetResourceSchema, Fields>;
-
-export type UpdateOriginAssetResult<Fields extends UpdateOriginAssetFields | undefined = undefined> = | { success: true; data: InferUpdateOriginAssetResult<Fields>; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Update an existing OriginAsset
- *
- * @ashActionType :update
- */
-export async function update_origin_asset<Fields extends UpdateOriginAssetFields | undefined = undefined>(
-  config: {
-  tenant?: string;
-  identity: UUID;
-  input?: UpdateOriginAssetInput;
-  fields?: Fields;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<UpdateOriginAssetResult<Fields extends undefined ? [] : Fields>> {
-  const payload = {
-    action: "update_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  };
-
-  return executeActionRpcRequest<UpdateOriginAssetResult<Fields extends undefined ? [] : Fields>>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Update an existing OriginAsset
- *
- * @ashActionType :update
- * @validation true
- */
-export async function validate_update_origin_asset(
-  config: {
-  tenant?: string;
-  identity: UUID | string;
-  input?: UpdateOriginAssetInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "update_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Update an existing OriginAsset
- *
- * @ashActionType :update
- * @validation true
- */
-export async function validate_update_origin_asset_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  identity: UUID | string;
-  input?: UpdateOriginAssetInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "update_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Update an existing OriginAsset
- *
- * @ashActionType :update
- */
-export async function update_origin_asset_channel<Fields extends UpdateOriginAssetFields | undefined = undefined>(config: {
-  channel: Channel;
-  tenant?: string;
-  identity: UUID;
-  input?: UpdateOriginAssetInput;
-  fields?: Fields;
-  result_handler: (result: UpdateOriginAssetResult<Fields>) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<UpdateOriginAssetResult<Fields>>(
-    config.channel,
-    {
-    action: "update_origin_asset",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
-    input: config.input,
-    ...(config.fields !== undefined && { fields: config.fields })
-  },
-    config.timeout,
-    config
-  );
-}
-
-
 export type CloneCartesiaVoiceInput = {
   name: string;
   description?: string | null;
@@ -19648,129 +19352,6 @@ export async function discover_and_extract_profile_channel(config: {
     config.channel,
     {
     action: "discover_and_extract_profile",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-export type DiscoverEntityLinksInput = {
-  origin_entity_id?: UUID | null;
-  entity_name: string;
-  category_hint: string;
-};
-
-export type InferDiscoverEntityLinksResult = Record<string, any>;
-
-export type DiscoverEntityLinksResult = | { success: true; data: InferDiscoverEntityLinksResult; }
-| { success: false; errors: AshRpcError[]; }
-
-;
-
-/**
- * Execute generic action on OriginEntity
- *
- * @ashActionType :action
- */
-export async function discover_entity_links(
-  config: {
-  tenant?: string;
-  input: DiscoverEntityLinksInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<DiscoverEntityLinksResult> {
-  const payload = {
-    action: "discover_entity_links",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeActionRpcRequest<DiscoverEntityLinksResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on OriginEntity
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_discover_entity_links(
-  config: {
-  tenant?: string;
-  input: DiscoverEntityLinksInput;
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ValidationResult> {
-  const payload = {
-    action: "discover_entity_links",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  };
-
-  return executeValidationRpcRequest<ValidationResult>(
-    payload,
-    config
-  );
-}
-
-
-/**
- * Validate: Execute generic action on OriginEntity
- *
- * @ashActionType :action
- * @validation true
- */
-export async function validate_discover_entity_links_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: DiscoverEntityLinksInput;
-  result_handler: (result: ValidationResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeValidationChannelPush<ValidationResult>(
-    config.channel,
-    {
-    action: "discover_entity_links",
-    ...(config.tenant !== undefined && { tenant: config.tenant }),
-    input: config.input
-  },
-    config.timeout,
-    config
-  );
-}
-
-
-/**
- * Execute generic action on OriginEntity
- *
- * @ashActionType :action
- */
-export async function discover_entity_links_channel(config: {
-  channel: Channel;
-  tenant?: string;
-  input: DiscoverEntityLinksInput;
-  result_handler: (result: DiscoverEntityLinksResult) => void;
-  error_handler?: (error: any) => void;
-  timeout_handler?: () => void;
-  timeout?: number;
-}) {
-  executeActionChannelPush<DiscoverEntityLinksResult>(
-    config.channel,
-    {
-    action: "discover_entity_links",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input
   },
@@ -21636,6 +21217,143 @@ export async function update_origin_entity_channel<Fields extends UpdateOriginEn
     config.channel,
     {
     action: "update_origin_entity",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type UpdateOriginEntityBrandThemeInput = {
+  brand_theme?: OriginsIdentityBrandThemeInputSchema | null;
+};
+
+export type UpdateOriginEntityBrandThemeFields = UnifiedFieldSelection<OriginEntityResourceSchema>[];
+
+export type InferUpdateOriginEntityBrandThemeResult<
+  Fields extends UpdateOriginEntityBrandThemeFields | undefined,
+> = InferResult<OriginEntityResourceSchema, Fields>;
+
+export type UpdateOriginEntityBrandThemeResult<Fields extends UpdateOriginEntityBrandThemeFields | undefined = undefined> = | { success: true; data: InferUpdateOriginEntityBrandThemeResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing OriginEntity
+ *
+ * @ashActionType :update
+ */
+export async function update_origin_entity_brand_theme<Fields extends UpdateOriginEntityBrandThemeFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input?: UpdateOriginEntityBrandThemeInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<UpdateOriginEntityBrandThemeResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "update_origin_entity_brand_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<UpdateOriginEntityBrandThemeResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing OriginEntity
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_update_origin_entity_brand_theme(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input?: UpdateOriginEntityBrandThemeInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "update_origin_entity_brand_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing OriginEntity
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_update_origin_entity_brand_theme_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input?: UpdateOriginEntityBrandThemeInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "update_origin_entity_brand_theme",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing OriginEntity
+ *
+ * @ashActionType :update
+ */
+export async function update_origin_entity_brand_theme_channel<Fields extends UpdateOriginEntityBrandThemeFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input?: UpdateOriginEntityBrandThemeInput;
+  fields?: Fields;
+  result_handler: (result: UpdateOriginEntityBrandThemeResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<UpdateOriginEntityBrandThemeResult<Fields>>(
+    config.channel,
+    {
+    action: "update_origin_entity_brand_theme",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     identity: config.identity,
     input: config.input,
@@ -29219,6 +28937,127 @@ export async function preview_library_sync_filter_channel(config: {
 }
 
 
+export type PullBrandFromLibraryInput = {
+  origin_entity_id: UUID;
+};
+
+export type InferPullBrandFromLibraryResult = {};
+
+export type PullBrandFromLibraryResult = | { success: true; data: InferPullBrandFromLibraryResult; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on Library
+ *
+ * @ashActionType :action
+ */
+export async function pull_brand_from_library(
+  config: {
+  tenant?: string;
+  input: PullBrandFromLibraryInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<PullBrandFromLibraryResult> {
+  const payload = {
+    action: "pull_brand_from_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeActionRpcRequest<PullBrandFromLibraryResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Library
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_pull_brand_from_library(
+  config: {
+  tenant?: string;
+  input: PullBrandFromLibraryInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "pull_brand_from_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on Library
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_pull_brand_from_library_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: PullBrandFromLibraryInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "pull_brand_from_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on Library
+ *
+ * @ashActionType :action
+ */
+export async function pull_brand_from_library_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: PullBrandFromLibraryInput;
+  result_handler: (result: PullBrandFromLibraryResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<PullBrandFromLibraryResult>(
+    config.channel,
+    {
+    action: "pull_brand_from_library",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type ListLibrariesFields = UnifiedFieldSelection<LibraryResourceSchema>[];
 
 
@@ -31492,6 +31331,140 @@ export async function list_library_files_channel<Fields extends ListLibraryFiles
 }
 
 
+export type RecommendClipsInput = {
+  origin_entity_id: UUID;
+  library_id: UUID;
+  answers?: Array<string> | null;
+  watched_file_ids?: Array<UUID> | null;
+  seen_file_ids?: Array<UUID> | null;
+  limit?: number | null;
+};
+
+export type RecommendClipsFields = UnifiedFieldSelection<{library_file_id: UUID, score: number, __type: "TypedMap", __primitiveFields: "library_file_id" | "score"}>[];
+
+export type InferRecommendClipsResult<
+  Fields extends RecommendClipsFields | undefined,
+> = Array<InferResult<{library_file_id: UUID, score: number, __type: "TypedMap", __primitiveFields: "library_file_id" | "score"}, Fields>>;
+
+export type RecommendClipsResult<Fields extends RecommendClipsFields | undefined = undefined> = | { success: true; data: InferRecommendClipsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function recommend_clips<Fields extends RecommendClipsFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: RecommendClipsInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RecommendClipsResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "recommend_clips",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<RecommendClipsResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_recommend_clips(
+  config: {
+  tenant?: string;
+  input: RecommendClipsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "recommend_clips",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_recommend_clips_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RecommendClipsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "recommend_clips",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on LibraryFile
+ *
+ * @ashActionType :action
+ */
+export async function recommend_clips_channel<Fields extends RecommendClipsFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: RecommendClipsInput;
+  fields: Fields;
+  result_handler: (result: RecommendClipsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<RecommendClipsResult<Fields>>(
+    config.channel,
+    {
+    action: "recommend_clips",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type SemanticSearchLibraryFilesInput = {
   origin_entity_id: UUID;
   query: string;
@@ -33233,14 +33206,15 @@ export async function remove_item_channel(config: {
 
 
 export type ReorderInput = {
-  position?: number;
+  id: UUID;
+  index: number;
 };
 
 export type ReorderFields = UnifiedFieldSelection<PlaylistItemResourceSchema>[];
 
 export type InferReorderResult<
   Fields extends ReorderFields | undefined,
-> = InferResult<PlaylistItemResourceSchema, Fields>;
+> = Array<InferResult<PlaylistItemResourceSchema, Fields>>;
 
 export type ReorderResult<Fields extends ReorderFields | undefined = undefined> = | { success: true; data: InferReorderResult<Fields>; }
 | { success: false; errors: AshRpcError[]; }
@@ -33248,16 +33222,15 @@ export type ReorderResult<Fields extends ReorderFields | undefined = undefined> 
 ;
 
 /**
- * Update an existing PlaylistItem
+ * Execute generic action on PlaylistItem
  *
- * @ashActionType :update
+ * @ashActionType :action
  */
 export async function reorder<Fields extends ReorderFields | undefined = undefined>(
   config: {
   tenant?: string;
-  identity: UUID;
-  input?: ReorderInput;
-  fields?: Fields;
+  input: ReorderInput;
+  fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -33266,7 +33239,6 @@ export async function reorder<Fields extends ReorderFields | undefined = undefin
   const payload = {
     action: "reorder",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   };
@@ -33279,16 +33251,15 @@ export async function reorder<Fields extends ReorderFields | undefined = undefin
 
 
 /**
- * Validate: Update an existing PlaylistItem
+ * Validate: Execute generic action on PlaylistItem
  *
- * @ashActionType :update
+ * @ashActionType :action
  * @validation true
  */
 export async function validate_reorder(
   config: {
   tenant?: string;
-  identity: UUID | string;
-  input?: ReorderInput;
+  input: ReorderInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -33297,7 +33268,6 @@ export async function validate_reorder(
   const payload = {
     action: "reorder",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
     input: config.input
   };
 
@@ -33309,16 +33279,15 @@ export async function validate_reorder(
 
 
 /**
- * Validate: Update an existing PlaylistItem
+ * Validate: Execute generic action on PlaylistItem
  *
- * @ashActionType :update
+ * @ashActionType :action
  * @validation true
  */
 export async function validate_reorder_channel(config: {
   channel: Channel;
   tenant?: string;
-  identity: UUID | string;
-  input?: ReorderInput;
+  input: ReorderInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -33329,7 +33298,6 @@ export async function validate_reorder_channel(config: {
     {
     action: "reorder",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
     input: config.input
   },
     config.timeout,
@@ -33339,16 +33307,15 @@ export async function validate_reorder_channel(config: {
 
 
 /**
- * Update an existing PlaylistItem
+ * Execute generic action on PlaylistItem
  *
- * @ashActionType :update
+ * @ashActionType :action
  */
 export async function reorder_channel<Fields extends ReorderFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
-  identity: UUID;
-  input?: ReorderInput;
-  fields?: Fields;
+  input: ReorderInput;
+  fields: Fields;
   result_handler: (result: ReorderResult<Fields>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -33359,7 +33326,6 @@ export async function reorder_channel<Fields extends ReorderFields | undefined =
     {
     action: "reorder",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
-    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },

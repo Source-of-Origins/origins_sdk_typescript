@@ -495,7 +495,8 @@ export type TurnStateInputSchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_letta_agent" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
+  __primitiveFields: "cover_image_url" | "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_letta_agent" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
+  cover_image_url: string | null;
   created_at: UtcDateTimeUsec;
   generation_error: string | null;
   generation_format: string | null;
@@ -2312,6 +2313,51 @@ export type OriginsIdentityBrandConversationSocialLinkInputSchema = {
 };
 
 
+// OriginsIdentityBrandTheme Schema
+export type OriginsIdentityBrandThemeResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "accent" | "accent_foreground" | "background" | "border" | "card" | "card_foreground" | "foreground" | "primary" | "primary_foreground";
+  accent: string | null;
+  accent_foreground: string | null;
+  background: string | null;
+  border: string | null;
+  card: string | null;
+  card_foreground: string | null;
+  foreground: string | null;
+  primary: string | null;
+  primary_foreground: string | null;
+};
+
+
+
+export type OriginsIdentityBrandThemeAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "accent" | "accent_foreground" | "background" | "border" | "card" | "card_foreground" | "foreground" | "primary" | "primary_foreground";
+  accent: string | null;
+  accent_foreground: string | null;
+  background: string | null;
+  border: string | null;
+  card: string | null;
+  card_foreground: string | null;
+  foreground: string | null;
+  primary: string | null;
+  primary_foreground: string | null;
+};
+
+
+export type OriginsIdentityBrandThemeInputSchema = {
+  accent?: string | null;
+  accent_foreground?: string | null;
+  background?: string | null;
+  border?: string | null;
+  card?: string | null;
+  card_foreground?: string | null;
+  foreground?: string | null;
+  primary?: string | null;
+  primary_foreground?: string | null;
+};
+
+
 // ChatConfig Schema
 export type ChatConfigResourceSchema = {
   __type: "Resource";
@@ -2461,45 +2507,6 @@ export type OriginsIdentityCustomLinkInputSchema = {
 };
 
 
-// OriginAsset Schema
-export type OriginAssetResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "asset_key" | "asset_metadata" | "asset_name" | "asset_type" | "asset_url" | "created_at" | "id" | "is_shared_globally" | "origin_entity_id" | "shared_with_origin_entity_ids" | "source_platform" | "updated_at";
-  asset_key: string | null;
-  asset_metadata: Record<string, any> | null;
-  asset_name: string | null;
-  asset_type: string;
-  asset_url: string;
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  is_shared_globally: boolean | null;
-  origin_entity_id: UUID;
-  shared_with_origin_entity_ids: Array<UUID> | null;
-  source_platform: string | null;
-  updated_at: UtcDateTimeUsec;
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-};
-
-
-
-export type OriginAssetAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "asset_key" | "asset_metadata" | "asset_name" | "asset_type" | "asset_url" | "created_at" | "id" | "is_shared_globally" | "origin_entity_id" | "shared_with_origin_entity_ids" | "source_platform" | "updated_at";
-  asset_key: string | null;
-  asset_metadata: Record<string, any> | null;
-  asset_name: string | null;
-  asset_type: string;
-  asset_url: string;
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  is_shared_globally: boolean | null;
-  origin_entity_id: UUID;
-  shared_with_origin_entity_ids: Array<UUID> | null;
-  source_platform: string | null;
-  updated_at: UtcDateTimeUsec;
-};
-
-
 // OriginEntity Schema
 export type OriginEntityResourceSchema = {
   __type: "Resource";
@@ -2554,6 +2561,7 @@ export type OriginEntityResourceSchema = {
   youtube_sync_settings: Record<string, any> | null;
   appearance_config: { __type: "Relationship"; __resource: OriginsIdentityAppearanceConfigResourceSchema | null; };
   brand_conversation_config: { __type: "Relationship"; __resource: OriginsIdentityBrandConversationConfigResourceSchema | null; };
+  brand_theme: { __type: "Relationship"; __resource: OriginsIdentityBrandThemeResourceSchema | null; };
   public_profile_config: { __type: "Relationship"; __resource: OriginsIdentityPublicProfileConfigResourceSchema | null; };
   social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkResourceSchema | null; };
   apps: { __type: "Relationship"; __array: true; __resource: AppResourceSchema; __pagination: "keyset"; __filterInput: AppFilterInput; __sortField: AppSortField; };
@@ -2564,7 +2572,6 @@ export type OriginEntityResourceSchema = {
   homepage_cards: { __type: "Relationship"; __array: true; __resource: HomepageCardResourceSchema; __filterInput: HomepageCardFilterInput; __sortField: HomepageCardSortField; };
   interview_sessions: { __type: "Relationship"; __array: true; __resource: InterviewSessionResourceSchema; __pagination: "mixed"; __filterInput: InterviewSessionFilterInput; __sortField: InterviewSessionSortField; };
   memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; __pagination: "mixed"; __filterInput: OriginEntityStaffMembershipFilterInput; __sortField: OriginEntityStaffMembershipSortField; };
-  origin_assets: { __type: "Relationship"; __array: true; __resource: OriginAssetResourceSchema; __pagination: "keyset"; __filterInput: OriginAssetFilterInput; __sortField: OriginAssetSortField; };
   parent_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
   podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
   prompt_contexts: { __type: "Relationship"; __array: true; __resource: PromptContextResourceSchema; __pagination: "mixed"; __filterInput: PromptContextFilterInput; __sortField: PromptContextSortField; };
@@ -2628,6 +2635,7 @@ export type OriginEntityAttributesOnlySchema = {
   youtube_sync_settings: Record<string, any> | null;
   appearance_config: { __type: "Relationship"; __resource: OriginsIdentityAppearanceConfigAttributesOnlySchema | null; };
   brand_conversation_config: { __type: "Relationship"; __resource: OriginsIdentityBrandConversationConfigAttributesOnlySchema | null; };
+  brand_theme: { __type: "Relationship"; __resource: OriginsIdentityBrandThemeAttributesOnlySchema | null; };
   public_profile_config: { __type: "Relationship"; __resource: OriginsIdentityPublicProfileConfigAttributesOnlySchema | null; };
   social_links: { __type: "Relationship"; __array: true; __resource: OriginsIdentitySocialLinkAttributesOnlySchema | null; };
 };
@@ -3577,7 +3585,7 @@ export type PlaylistItemResourceSchema = {
   library_file_id: UUID | null;
   library_id: UUID | null;
   playlist_id: UUID;
-  position: number;
+  position: Decimal;
   updated_at: UtcDateTimeUsec;
   library: { __type: "Relationship"; __resource: LibraryResourceSchema | null; };
   library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
@@ -3595,7 +3603,7 @@ export type PlaylistItemAttributesOnlySchema = {
   library_file_id: UUID | null;
   library_id: UUID | null;
   playlist_id: UUID;
-  position: number;
+  position: Decimal;
   updated_at: UtcDateTimeUsec;
 };
 
@@ -5397,6 +5405,20 @@ export type AppFilterInput = {
     greater_than?: AuthoringDocumentResourceSchema;
     less_than_or_equal?: AuthoringDocumentResourceSchema;
     greater_than_or_equal?: AuthoringDocumentResourceSchema;
+  };
+
+  cover_image_url?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   created_at?: {
@@ -10483,6 +10505,139 @@ export type OriginsIdentityBrandConversationSocialLinkFilterInput = {
 
 
 };
+export type OriginsIdentityBrandThemeFilterInput = {
+  and?: Array<OriginsIdentityBrandThemeFilterInput>;
+  or?: Array<OriginsIdentityBrandThemeFilterInput>;
+  not?: Array<OriginsIdentityBrandThemeFilterInput>;
+
+  accent?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  accent_foreground?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  background?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  border?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  card?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  card_foreground?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  foreground?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  primary?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  primary_foreground?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+
+};
 export type ChatConfigFilterInput = {
   and?: Array<ChatConfigFilterInput>;
   or?: Array<ChatConfigFilterInput>;
@@ -11157,148 +11312,6 @@ export type OriginsIdentityCustomLinkFilterInput = {
 
 
 };
-export type OriginAssetFilterInput = {
-  and?: Array<OriginAssetFilterInput>;
-  or?: Array<OriginAssetFilterInput>;
-  not?: Array<OriginAssetFilterInput>;
-
-  asset_key?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  asset_metadata?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  asset_name?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  asset_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  asset_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  is_shared_globally?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  shared_with_origin_entity_ids?: {
-    is_nil?: boolean;
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    has?: UUID;
-  };
-
-  source_platform?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  origin_entity?: OriginEntityFilterInput;
-
-};
 export type OriginEntityFilterInput = {
   and?: Array<OriginEntityFilterInput>;
   or?: Array<OriginEntityFilterInput>;
@@ -11374,6 +11387,17 @@ export type OriginEntityFilterInput = {
     greater_than?: OriginsIdentityBrandConversationConfigResourceSchema;
     less_than_or_equal?: OriginsIdentityBrandConversationConfigResourceSchema;
     greater_than_or_equal?: OriginsIdentityBrandConversationConfigResourceSchema;
+  };
+
+  brand_theme?: {
+    is_nil?: boolean;
+    eq?: OriginsIdentityBrandThemeResourceSchema;
+    not_eq?: OriginsIdentityBrandThemeResourceSchema;
+    in?: Array<OriginsIdentityBrandThemeResourceSchema>;
+    less_than?: OriginsIdentityBrandThemeResourceSchema;
+    greater_than?: OriginsIdentityBrandThemeResourceSchema;
+    less_than_or_equal?: OriginsIdentityBrandThemeResourceSchema;
+    greater_than_or_equal?: OriginsIdentityBrandThemeResourceSchema;
   };
 
   categories?: {
@@ -11905,8 +11929,6 @@ export type OriginEntityFilterInput = {
   interview_sessions?: InterviewSessionFilterInput;
 
   memberships?: OriginEntityStaffMembershipFilterInput;
-
-  origin_assets?: OriginAssetFilterInput;
 
   parent_origin_entity?: OriginEntityFilterInput;
 
@@ -14727,13 +14749,13 @@ export type PlaylistItemFilterInput = {
   };
 
   position?: {
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
+    eq?: Decimal;
+    not_eq?: Decimal;
+    in?: Array<Decimal>;
+    less_than?: Decimal;
+    greater_than?: Decimal;
+    less_than_or_equal?: Decimal;
+    greater_than_or_equal?: Decimal;
   };
 
   updated_at?: {
@@ -15791,7 +15813,7 @@ export type StaffTenantGrantFilterField = (typeof staffTenantGrantFilterFields)[
 export const tenantFilterFields = ["archived_at", "created_at", "id", "name", "root_origin_entity_id", "slug", "status", "updated_at", "root_origin_entity"] as const;
 export type TenantFilterField = (typeof tenantFilterFields)[number];
 
-export const userFilterFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "deleted_at", "email", "email_confirmed_at", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "phone", "phone_change_sent_at", "phone_confirmed_at", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "tenant_id", "updated_at", "identities", "origin_entities", "origin_entity_memberships", "profile", "staff_tenant_grants", "tenant"] as const;
+export const userFilterFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "deleted_at", "email", "email_confirmed_at", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "phone", "phone_change_sent_at", "phone_confirmed_at", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "tenant_id", "updated_at", "origin_entities", "origin_entity_memberships", "profile", "staff_tenant_grants", "tenant"] as const;
 export type UserFilterField = (typeof userFilterFields)[number];
 
 export const signInLinkResponseFilterFields = ["status"] as const;
@@ -15824,7 +15846,7 @@ export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["assessment_graph", "authoring_document", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at", "document", "origin_entity"] as const;
+export const appFilterFields = ["assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const assessmentGraphFilterFields = ["edges", "nodes", "start_node"] as const;
@@ -15893,7 +15915,7 @@ export type CourseUnlocksWhenFilterField = (typeof courseUnlocksWhenFilterFields
 export const courseActivityCompletionFilterFields = ["activity_id", "attachments", "completed_date", "created_at", "duration_seconds", "enrollment_id", "id", "notes", "responses", "step_id", "updated_at", "enrollment"] as const;
 export type CourseActivityCompletionFilterField = (typeof courseActivityCompletionFilterFields)[number];
 
-export const courseEnrollmentFilterFields = ["app_id", "assessment_answers", "character_id", "created_at", "current_personalization_id", "current_phase_id", "current_phase_started_at", "current_session_id", "enrolled_at", "entered_session_ids", "id", "reactivated_at", "settings", "status", "streak_count", "streak_last_date", "updated_at", "user_id", "activity_completions", "app", "character", "current_personalization", "user"] as const;
+export const courseEnrollmentFilterFields = ["app_id", "assessment_answers", "character_id", "created_at", "current_personalization_id", "current_phase_id", "current_phase_started_at", "current_session_id", "enrolled_at", "entered_session_ids", "id", "reactivated_at", "settings", "status", "streak_count", "streak_last_date", "updated_at", "user_id", "activity_completions", "app", "character", "user"] as const;
 export type CourseEnrollmentFilterField = (typeof courseEnrollmentFilterFields)[number];
 
 export const activityCompletionSummaryFilterFields = ["activity_id", "completed_date", "id", "responses", "step_id"] as const;
@@ -15905,7 +15927,7 @@ export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilt
 export const courseEntitlementFilterFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier", "plan"] as const;
 export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
 
-export const documentBlockFilterFields = ["block_type", "created_at", "document_id", "library_file_id", "parent_record_id", "payload", "position", "record_id", "target_app_id", "target_origin_entity_id", "target_record_id", "updated_at", "children", "document", "library_file", "parent", "references", "target_app", "target_block", "target_origin_entity"] as const;
+export const documentBlockFilterFields = ["block_type", "created_at", "document_id", "library_file_id", "parent_record_id", "payload", "position", "record_id", "target_app_id", "target_origin_entity_id", "target_record_id", "updated_at", "children", "library_file", "parent", "target_app", "target_block", "target_origin_entity"] as const;
 export type DocumentBlockFilterField = (typeof documentBlockFilterFields)[number];
 
 export const appVersionFilterFields = ["change_source_message_id", "change_summary", "changes", "id", "version_action_name", "version_action_type", "version_inserted_at", "version_source_id", "version_updated_at", "version_source"] as const;
@@ -15959,16 +15981,16 @@ export type OriginsIdentityBrandConversationConfigFilterField = (typeof originsI
 export const originsIdentityBrandConversationSocialLinkFilterFields = ["custom_icon_url", "custom_label", "custom_url", "icon", "icon_name", "platform", "url", "visible"] as const;
 export type OriginsIdentityBrandConversationSocialLinkFilterField = (typeof originsIdentityBrandConversationSocialLinkFilterFields)[number];
 
+export const originsIdentityBrandThemeFilterFields = ["accent", "accent_foreground", "background", "border", "card", "card_foreground", "foreground", "primary", "primary_foreground"] as const;
+export type OriginsIdentityBrandThemeFilterField = (typeof originsIdentityBrandThemeFilterFields)[number];
+
 export const chatConfigFilterFields = ["available_avatar_ids", "button_shape", "chat_bubble_color", "chat_bubble_text_color", "chat_button_border_color", "chat_button_color", "chat_button_icon", "chat_button_position", "chat_button_show_icon", "chat_button_text", "chat_button_text_color", "chat_window_title", "created_at", "enable_chat_history", "enable_sound_notifications", "header_style", "id", "inherits_descendant_knowledge", "input_placeholder", "input_style", "origin_entity_id", "podcast_button_border_color", "podcast_button_color", "podcast_button_icon", "podcast_button_shape", "podcast_button_show_icon", "podcast_button_text", "podcast_button_text_color", "podcast_show_brand_logo", "public_profile_button_border_color", "public_profile_button_color", "public_profile_button_icon", "public_profile_button_shape", "public_profile_button_show_icon", "public_profile_button_text", "public_profile_button_text_color", "public_profile_show_brand_logo", "response_delay", "send_button_style", "show_ai_message_avatar", "show_brand_logo", "show_close_button", "show_header_avatar", "show_powered_by", "show_typing_indicator", "updated_at", "use_chat_button_for_podcast", "use_chat_button_for_public_profile", "user_bubble_color", "user_bubble_text_color", "welcome_message", "window_animation", "window_border_radius", "window_position_mode", "window_size", "origin_entity"] as const;
 export type ChatConfigFilterField = (typeof chatConfigFilterFields)[number];
 
 export const originsIdentityCustomLinkFilterFields = ["label", "url"] as const;
 export type OriginsIdentityCustomLinkFilterField = (typeof originsIdentityCustomLinkFilterFields)[number];
 
-export const originAssetFilterFields = ["asset_key", "asset_metadata", "asset_name", "asset_type", "asset_url", "created_at", "id", "is_shared_globally", "origin_entity_id", "shared_with_origin_entity_ids", "source_platform", "updated_at", "origin_entity"] as const;
-export type OriginAssetFilterField = (typeof originAssetFilterFields)[number];
-
-export const originEntityFilterFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "description", "engagement_metrics", "extracted_content", "guardrails_settings", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings", "apps", "chat_config", "child_origin_entities", "feature_flags", "feedbacks", "homepage_cards", "interview_sessions", "memberships", "origin_assets", "parent_origin_entity", "podcast_config", "prompt_contexts", "prompt_tools", "setup_progress", "soul_config", "tenant", "youtube_episodes"] as const;
+export const originEntityFilterFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "brand_theme", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "description", "engagement_metrics", "extracted_content", "guardrails_settings", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings", "apps", "chat_config", "child_origin_entities", "feature_flags", "feedbacks", "homepage_cards", "interview_sessions", "memberships", "parent_origin_entity", "podcast_config", "prompt_contexts", "prompt_tools", "setup_progress", "soul_config", "tenant", "youtube_episodes"] as const;
 export type OriginEntityFilterField = (typeof originEntityFilterFields)[number];
 
 export const scrapedWebsiteContentFilterFields = ["headings", "meta_description", "meta_keywords", "open_graph", "paragraphs", "scraped_at", "text_content", "title", "url"] as const;
@@ -16122,7 +16144,7 @@ export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[nu
 export const turnStateSortFields = ["running", "stale_at"] as const;
 export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
-export const appSortFields = ["assessment_graph", "authoring_document", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at"] as const;
+export const appSortFields = ["assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const assessmentGraphSortFields = ["edges", "nodes", "start_node"] as const;
@@ -16257,16 +16279,16 @@ export type OriginsIdentityBrandConversationConfigSortField = (typeof originsIde
 export const originsIdentityBrandConversationSocialLinkSortFields = ["custom_icon_url", "custom_label", "custom_url", "icon", "icon_name", "platform", "url", "visible"] as const;
 export type OriginsIdentityBrandConversationSocialLinkSortField = (typeof originsIdentityBrandConversationSocialLinkSortFields)[number];
 
+export const originsIdentityBrandThemeSortFields = ["accent", "accent_foreground", "background", "border", "card", "card_foreground", "foreground", "primary", "primary_foreground"] as const;
+export type OriginsIdentityBrandThemeSortField = (typeof originsIdentityBrandThemeSortFields)[number];
+
 export const chatConfigSortFields = ["available_avatar_ids", "button_shape", "chat_bubble_color", "chat_bubble_text_color", "chat_button_border_color", "chat_button_color", "chat_button_icon", "chat_button_position", "chat_button_show_icon", "chat_button_text", "chat_button_text_color", "chat_window_title", "created_at", "enable_chat_history", "enable_sound_notifications", "header_style", "id", "inherits_descendant_knowledge", "input_placeholder", "input_style", "origin_entity_id", "podcast_button_border_color", "podcast_button_color", "podcast_button_icon", "podcast_button_shape", "podcast_button_show_icon", "podcast_button_text", "podcast_button_text_color", "podcast_show_brand_logo", "public_profile_button_border_color", "public_profile_button_color", "public_profile_button_icon", "public_profile_button_shape", "public_profile_button_show_icon", "public_profile_button_text", "public_profile_button_text_color", "public_profile_show_brand_logo", "response_delay", "send_button_style", "show_ai_message_avatar", "show_brand_logo", "show_close_button", "show_header_avatar", "show_powered_by", "show_typing_indicator", "updated_at", "use_chat_button_for_podcast", "use_chat_button_for_public_profile", "user_bubble_color", "user_bubble_text_color", "welcome_message", "window_animation", "window_border_radius", "window_position_mode", "window_size"] as const;
 export type ChatConfigSortField = (typeof chatConfigSortFields)[number];
 
 export const originsIdentityCustomLinkSortFields = ["label", "url"] as const;
 export type OriginsIdentityCustomLinkSortField = (typeof originsIdentityCustomLinkSortFields)[number];
 
-export const originAssetSortFields = ["asset_key", "asset_metadata", "asset_name", "asset_type", "asset_url", "created_at", "id", "is_shared_globally", "origin_entity_id", "shared_with_origin_entity_ids", "source_platform", "updated_at"] as const;
-export type OriginAssetSortField = (typeof originAssetSortFields)[number];
-
-export const originEntitySortFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "description", "engagement_metrics", "extracted_content", "guardrails_settings", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings"] as const;
+export const originEntitySortFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "brand_theme", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "description", "engagement_metrics", "extracted_content", "guardrails_settings", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings"] as const;
 export type OriginEntitySortField = (typeof originEntitySortFields)[number];
 
 export const scrapedWebsiteContentSortFields = ["headings", "meta_description", "meta_keywords", "open_graph", "paragraphs", "scraped_at", "text_content", "title", "url"] as const;
