@@ -2755,6 +2755,45 @@
       }
     },
     {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "The apps of one page type that an origin's content may name, as a save resolves them.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_referable_apps",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "fields": "ListReferableAppsFields",
+        "filterInput": "AppFilterInput",
+        "inferResult": "InferListReferableAppsResult",
+        "input": "ListReferableAppsInput",
+        "result": "ListReferableAppsResult"
+      },
+      "variantNames": {
+        "channel": "list_referable_apps_channel",
+        "validation": "validate_list_referable_apps",
+        "validationChannel": "validate_list_referable_apps_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "action",
       "deprecated": false,
       "description": "Execute generic action on App",
@@ -3913,6 +3952,45 @@
         "channel": "my_membership_cancellation_channel",
         "validation": "validate_my_membership_cancellation",
         "validationChannel": "validate_my_membership_cancellation_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Read CoursePersonalization records",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_course_personalization",
+      "get": true,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": true,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CoursePersonalization",
+      "see": [],
+      "types": {
+        "fields": "GetCoursePersonalizationFields",
+        "filterInput": "CoursePersonalizationFilterInput",
+        "inferResult": "InferGetCoursePersonalizationResult",
+        "input": "GetCoursePersonalizationInput",
+        "result": "GetCoursePersonalizationResult"
+      },
+      "variantNames": {
+        "channel": "get_course_personalization_channel",
+        "validation": "validate_get_course_personalization",
+        "validationChannel": "validate_get_course_personalization_channel"
       },
       "variants": {
         "channel": true,
@@ -5461,42 +5539,6 @@
       }
     },
     {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Generate AI soul configuration (personality, purpose, speaking style, etc.)",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "generate_soul_config",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "OriginEntity",
-      "see": [],
-      "types": {
-        "input": "GenerateSoulConfigInput",
-        "result": "GenerateSoulConfigResult"
-      },
-      "variantNames": {
-        "channel": "generate_soul_config_channel",
-        "validation": "validate_generate_soul_config",
-        "validationChannel": "validate_generate_soul_config_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read OriginEntity records",
@@ -5832,6 +5874,44 @@
         "channel": "scrape_website_content_channel",
         "validation": "validate_scrape_website_content",
         "validationChannel": "validate_scrape_website_content_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Makes one of the origin's own agents its default.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "set_default_agent",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "OriginEntity",
+      "see": [],
+      "types": {
+        "fields": "SetDefaultAgentFields",
+        "inferResult": "InferSetDefaultAgentResult",
+        "input": "SetDefaultAgentInput",
+        "result": "SetDefaultAgentResult"
+      },
+      "variantNames": {
+        "channel": "set_default_agent_channel",
+        "validation": "validate_set_default_agent",
+        "validationChannel": "validate_set_default_agent_channel"
       },
       "variants": {
         "channel": true,
@@ -6564,192 +6644,6 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Create a new PromptContext",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_prompt_context",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptContext",
-      "see": [],
-      "types": {
-        "fields": "CreatePromptContextFields",
-        "inferResult": "InferCreatePromptContextResult",
-        "input": "CreatePromptContextInput",
-        "result": "CreatePromptContextResult"
-      },
-      "variantNames": {
-        "channel": "create_prompt_context_channel",
-        "validation": "validate_create_prompt_context",
-        "validationChannel": "validate_create_prompt_context_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "destroy",
-      "deprecated": false,
-      "description": "Delete a PromptContext",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "delete_prompt_context",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptContext",
-      "see": [],
-      "types": {
-        "result": "DeletePromptContextResult"
-      },
-      "variantNames": {
-        "channel": "delete_prompt_context_channel",
-        "validation": "validate_delete_prompt_context",
-        "validationChannel": "validate_delete_prompt_context_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Execute generic action on PromptContext",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "get_prompt_context_public_title",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptContext",
-      "see": [],
-      "types": {
-        "input": "GetPromptContextPublicTitleInput",
-        "result": "GetPromptContextPublicTitleResult"
-      },
-      "variantNames": {
-        "channel": "get_prompt_context_public_title_channel",
-        "validation": "validate_get_prompt_context_public_title",
-        "validationChannel": "validate_get_prompt_context_public_title_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read PromptContext records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_prompt_contexts_for_origin",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptContext",
-      "see": [],
-      "types": {
-        "fields": "ListPromptContextsForOriginFields",
-        "filterInput": "PromptContextFilterInput",
-        "inferResult": "InferListPromptContextsForOriginResult",
-        "input": "ListPromptContextsForOriginInput",
-        "result": "ListPromptContextsForOriginResult"
-      },
-      "variantNames": {
-        "channel": "list_prompt_contexts_for_origin_channel",
-        "validation": "validate_list_prompt_contexts_for_origin",
-        "validationChannel": "validate_list_prompt_contexts_for_origin_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing PromptContext",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_prompt_context",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptContext",
-      "see": [],
-      "types": {
-        "fields": "UpdatePromptContextFields",
-        "inferResult": "InferUpdatePromptContextResult",
-        "input": "UpdatePromptContextInput",
-        "result": "UpdatePromptContextResult"
-      },
-      "variantNames": {
-        "channel": "update_prompt_context_channel",
-        "validation": "validate_update_prompt_context",
-        "validationChannel": "validate_update_prompt_context_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
       "description": "Create a new PromptTool",
       "enableFilter": true,
       "enableSort": true,
@@ -7003,157 +6897,6 @@
         "channel": "update_setup_progress_channel",
         "validation": "validate_update_setup_progress",
         "validationChannel": "validate_update_setup_progress_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new SoulConfig",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_soul_config",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "SoulConfig",
-      "see": [],
-      "types": {
-        "fields": "CreateSoulConfigFields",
-        "inferResult": "InferCreateSoulConfigResult",
-        "input": "CreateSoulConfigInput",
-        "result": "CreateSoulConfigResult"
-      },
-      "variantNames": {
-        "channel": "create_soul_config_channel",
-        "validation": "validate_create_soul_config",
-        "validationChannel": "validate_create_soul_config_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Generate conversation starters from episode transcript or origin profile using AI",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "generate_conversation_starters",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "SoulConfig",
-      "see": [],
-      "types": {
-        "input": "GenerateConversationStartersInput",
-        "result": "GenerateConversationStartersResult"
-      },
-      "variantNames": {
-        "channel": "generate_conversation_starters_channel",
-        "validation": "validate_generate_conversation_starters",
-        "validationChannel": "validate_generate_conversation_starters_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read SoulConfig records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_soul_configs",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "SoulConfig",
-      "see": [],
-      "types": {
-        "config": "ListSoulConfigsConfig",
-        "fields": "ListSoulConfigsFields",
-        "filterInput": "SoulConfigFilterInput",
-        "inferResult": "InferListSoulConfigsResult",
-        "result": "ListSoulConfigsResult"
-      },
-      "variantNames": {
-        "channel": "list_soul_configs_channel",
-        "validation": "validate_list_soul_configs",
-        "validationChannel": "validate_list_soul_configs_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing SoulConfig",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_soul_config",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "SoulConfig",
-      "see": [],
-      "types": {
-        "fields": "UpdateSoulConfigFields",
-        "inferResult": "InferUpdateSoulConfigResult",
-        "input": "UpdateSoulConfigInput",
-        "result": "UpdateSoulConfigResult"
-      },
-      "variantNames": {
-        "channel": "update_soul_config_channel",
-        "validation": "validate_update_soul_config",
-        "validationChannel": "validate_update_soul_config_channel"
       },
       "variants": {
         "channel": true,
@@ -9422,12 +9165,12 @@
     {
       "actionType": "action",
       "deprecated": false,
-      "description": "Resolve a VFS path to a playable HLS URL (read-only, zero side effects).",
+      "description": "Resolve a VFS path or a LibraryFile id to a playable HLS URL (read-only, zero side effects).",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "resolve_video_playback",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -10132,6 +9875,42 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Write conversation starter questions from an episode transcript",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "generate_conversation_starters",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "YoutubeEpisode",
+      "see": [],
+      "types": {
+        "input": "GenerateConversationStartersInput",
+        "result": "GenerateConversationStartersResult"
+      },
+      "variantNames": {
+        "channel": "generate_conversation_starters_channel",
+        "validation": "validate_generate_conversation_starters",
+        "validationChannel": "validate_generate_conversation_starters_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "Read YoutubeEpisode records",
@@ -10298,7 +10077,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-10-23",
+  "generatedAt": "2026-11-02",
   "resources": {
     "User": {
       "relationships": {
@@ -10418,11 +10197,6 @@
           "pagination": "mixed",
           "sortable": true
         },
-        "prompt_contexts": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
-        },
         "prompt_tools": {
           "filterable": true,
           "pagination": "mixed",
@@ -10497,6 +10271,9 @@
     "WaitlistEntry": {
       "relationships": {}
     },
+    "CoursePersonalization": {
+      "relationships": {}
+    },
     "YoutubeEpisode": {
       "relationships": {}
     },
@@ -10524,9 +10301,6 @@
     "StaffTenantGrant": {
       "relationships": {}
     },
-    "SoulConfig": {
-      "relationships": {}
-    },
     "FeatureFlag": {
       "relationships": {}
     },
@@ -10537,9 +10311,6 @@
       "relationships": {}
     },
     "PlaylistItem": {
-      "relationships": {}
-    },
-    "PromptContext": {
       "relationships": {}
     },
     "SetupProgress": {
