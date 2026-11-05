@@ -495,7 +495,7 @@ export type TurnStateInputSchema = {
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "cover_image_url" | "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_letta_agent" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "segment" | "slug" | "source" | "title" | "updated_at";
+  __primitiveFields: "cover_image_url" | "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_letta_agent" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
   cover_image_url: string | null;
   created_at: UtcDateTimeUsec;
   generation_error: string | null;
@@ -509,7 +509,6 @@ export type AppResourceSchema = {
   meta: Record<string, any> | null;
   origin_entity_id: UUID;
   page_type: string;
-  segment: string | null;
   slug: string;
   source: string;
   title: string | null;
@@ -526,7 +525,7 @@ export type AppResourceSchema = {
 
 export type AppAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "created_at" | "generation_format" | "generation_prompt" | "id" | "is_published" | "meta" | "origin_entity_id" | "page_type" | "segment" | "slug" | "source" | "title" | "updated_at";
+  __primitiveFields: "created_at" | "generation_format" | "generation_prompt" | "id" | "is_published" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
   created_at: UtcDateTimeUsec;
   generation_format: string | null;
   generation_prompt: string | null;
@@ -535,7 +534,6 @@ export type AppAttributesOnlySchema = {
   meta: Record<string, any> | null;
   origin_entity_id: UUID;
   page_type: string;
-  segment: string | null;
   slug: string;
   source: string;
   title: string | null;
@@ -5392,20 +5390,6 @@ export type AppFilterInput = {
   };
 
   page_type?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  segment?: {
-    is_nil?: boolean;
     eq?: string;
     not_eq?: string;
     in?: Array<string>;
@@ -15309,7 +15293,7 @@ export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "segment", "slug", "source", "title", "updated_at", "origin_entity"] as const;
+export const appFilterFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const assessmentGraphFilterFields = ["edges", "nodes", "start_node"] as const;
@@ -15592,7 +15576,7 @@ export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[nu
 export const turnStateSortFields = ["running", "stale_at"] as const;
 export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
-export const appSortFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "segment", "slug", "source", "title", "updated_at"] as const;
+export const appSortFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const assessmentGraphSortFields = ["edges", "nodes", "start_node"] as const;

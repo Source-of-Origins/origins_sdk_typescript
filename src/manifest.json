@@ -6754,6 +6754,45 @@
       }
     },
     {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "The prompt tools an agent of an origin may name: the origin's own and its brand's.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_referable_prompt_tools",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "PromptTool",
+      "see": [],
+      "types": {
+        "fields": "ListReferablePromptToolsFields",
+        "filterInput": "PromptToolFilterInput",
+        "inferResult": "InferListReferablePromptToolsResult",
+        "input": "ListReferablePromptToolsInput",
+        "result": "ListReferablePromptToolsResult"
+      },
+      "variantNames": {
+        "channel": "list_referable_prompt_tools_channel",
+        "validation": "validate_list_referable_prompt_tools",
+        "validationChannel": "validate_list_referable_prompt_tools_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "update",
       "deprecated": false,
       "description": "Update an existing PromptTool",
@@ -9201,6 +9240,44 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Resolve many VFS paths to playable HLS URLs, one result per given path, in order (read-only, zero side effects).",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "resolve_video_playbacks",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "VideoAsset",
+      "see": [],
+      "types": {
+        "fields": "ResolveVideoPlaybacksFields",
+        "inferResult": "InferResolveVideoPlaybacksResult",
+        "input": "ResolveVideoPlaybacksInput",
+        "result": "ResolveVideoPlaybacksResult"
+      },
+      "variantNames": {
+        "channel": "resolve_video_playbacks_channel",
+        "validation": "validate_resolve_video_playbacks",
+        "validationChannel": "validate_resolve_video_playbacks_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "destroy",
       "deprecated": false,
       "description": "Delete a ChatBinding",
@@ -10077,7 +10154,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-11-02",
+  "generatedAt": "2026-11-05",
   "resources": {
     "User": {
       "relationships": {

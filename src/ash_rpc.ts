@@ -7055,7 +7055,6 @@ export type PreviewChatInput = {
   message: string;
   conversation_history?: Array<Record<string, any>> | null;
   agent_id?: UUID | null;
-  context_id?: UUID | null;
   conversation_id?: UUID | null;
   session_id?: string | null;
 };
@@ -24051,6 +24050,142 @@ export async function list_prompt_tools_for_origin_channel<Fields extends ListPr
 }
 
 
+export type ListReferablePromptToolsInput = {
+  origin_entity_id: UUID;
+};
+
+export type ListReferablePromptToolsFields = UnifiedFieldSelection<PromptToolResourceSchema>[];
+export type InferListReferablePromptToolsResult<
+  Fields extends ListReferablePromptToolsFields,
+> = Array<InferResult<PromptToolResourceSchema, Fields>>;
+
+export type ListReferablePromptToolsResult<Fields extends ListReferablePromptToolsFields> = | { success: true; data: InferListReferablePromptToolsResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Read PromptTool records
+ *
+ * @ashActionType :read
+ */
+export async function list_referable_prompt_tools<Fields extends ListReferablePromptToolsFields>(
+  config: {
+  tenant?: string;
+  input: ListReferablePromptToolsInput;
+  fields: Fields;
+  filter?: PromptToolFilterInput;
+  sort?: SortString<PromptToolSortField> | SortString<PromptToolSortField>[];
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListReferablePromptToolsResult<Fields>> {
+  const payload = {
+    action: "list_referable_prompt_tools",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  };
+
+  return executeActionRpcRequest<ListReferablePromptToolsResult<Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read PromptTool records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_referable_prompt_tools(
+  config: {
+  tenant?: string;
+  input: ListReferablePromptToolsInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "list_referable_prompt_tools",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Read PromptTool records
+ *
+ * @ashActionType :read
+ * @validation true
+ */
+export async function validate_list_referable_prompt_tools_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListReferablePromptToolsInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "list_referable_prompt_tools",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Read PromptTool records
+ *
+ * @ashActionType :read
+ */
+export async function list_referable_prompt_tools_channel<Fields extends ListReferablePromptToolsFields>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ListReferablePromptToolsInput;
+  fields: Fields;
+  filter?: PromptToolFilterInput;
+  sort?: SortString<PromptToolSortField> | SortString<PromptToolSortField>[];
+  result_handler: (result: ListReferablePromptToolsResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ListReferablePromptToolsResult<Fields>>(
+    config.channel,
+    {
+    action: "list_referable_prompt_tools",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields }),
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type UpdatePromptToolInput = {
   name?: string;
   description?: string;
@@ -32769,6 +32904,136 @@ export async function resolve_video_playback_channel<Fields extends ResolveVideo
     config.channel,
     {
     action: "resolve_video_playback",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ResolveVideoPlaybacksInput = {
+  paths: Array<string>;
+  origin_entity_id?: UUID | null;
+};
+
+export type ResolveVideoPlaybacksFields = UnifiedFieldSelection<ResolvedPlaybackResourceSchema>[];
+
+export type InferResolveVideoPlaybacksResult<
+  Fields extends ResolveVideoPlaybacksFields | undefined,
+> = Array<InferResult<ResolvedPlaybackResourceSchema, Fields>>;
+
+export type ResolveVideoPlaybacksResult<Fields extends ResolveVideoPlaybacksFields | undefined = undefined> = | { success: true; data: InferResolveVideoPlaybacksResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ */
+export async function resolve_video_playbacks<Fields extends ResolveVideoPlaybacksFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  input: ResolveVideoPlaybacksInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ResolveVideoPlaybacksResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "resolve_video_playbacks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<ResolveVideoPlaybacksResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_resolve_video_playbacks(
+  config: {
+  tenant?: string;
+  input: ResolveVideoPlaybacksInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "resolve_video_playbacks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ * @validation true
+ */
+export async function validate_resolve_video_playbacks_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ResolveVideoPlaybacksInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "resolve_video_playbacks",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Execute generic action on VideoAsset
+ *
+ * @ashActionType :action
+ */
+export async function resolve_video_playbacks_channel<Fields extends ResolveVideoPlaybacksFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  input: ResolveVideoPlaybacksInput;
+  fields: Fields;
+  result_handler: (result: ResolveVideoPlaybacksResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ResolveVideoPlaybacksResult<Fields>>(
+    config.channel,
+    {
+    action: "resolve_video_playbacks",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
