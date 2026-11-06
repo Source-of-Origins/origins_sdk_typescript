@@ -3850,6 +3850,43 @@
       }
     },
     {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Stop access without losing the receipt — a cancelled or lapsed subscription.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "end_plan_entitlement",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "CourseEntitlement",
+      "see": [],
+      "types": {
+        "fields": "EndPlanEntitlementFields",
+        "inferResult": "InferEndPlanEntitlementResult",
+        "result": "EndPlanEntitlementResult"
+      },
+      "variantNames": {
+        "channel": "end_plan_entitlement_channel",
+        "validation": "validate_end_plan_entitlement",
+        "validationChannel": "validate_end_plan_entitlement_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "create",
       "deprecated": false,
       "description": "Grant (or refresh) a plan-level entitlement, for a plan that unlocks no apps.",
@@ -3899,14 +3936,15 @@
       "namespace": null,
       "pagination": {
         "get": false,
-        "keyset": false,
+        "keyset": true,
         "offset": false,
         "required": false,
-        "supported": false
+        "supported": true
       },
       "resource": "CourseEntitlement",
       "see": [],
       "types": {
+        "config": "ListMyEntitlementsConfig",
         "fields": "ListMyEntitlementsFields",
         "filterInput": "CourseEntitlementFilterInput",
         "inferResult": "InferListMyEntitlementsResult",
@@ -10154,7 +10192,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-11-05",
+  "generatedAt": "2026-11-06",
   "resources": {
     "User": {
       "relationships": {

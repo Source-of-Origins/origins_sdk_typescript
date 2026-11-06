@@ -1490,7 +1490,7 @@ export type EnrollmentCompletionsInputSchema = {
 // CourseEntitlement Schema
 export type CourseEntitlementResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "app_id" | "ended_at" | "granted_at" | "id" | "plan_id" | "scope" | "tier";
+  __primitiveFields: "app_id" | "ended_at" | "granted_at" | "id" | "plan_id" | "scope" | "tier" | "user_id";
   app_id: UUID | null;
   ended_at: UtcDateTimeUsec | null;
   granted_at: UtcDateTimeUsec;
@@ -1498,14 +1498,16 @@ export type CourseEntitlementResourceSchema = {
   plan_id: UUID | null;
   scope: "every_app" | "one_app";
   tier: string;
+  user_id: UUID;
   plan: { __type: "Relationship"; __resource: PlanResourceSchema | null; };
+  user: { __type: "Relationship"; __resource: UserResourceSchema; };
 };
 
 
 
 export type CourseEntitlementAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "app_id" | "ended_at" | "granted_at" | "id" | "plan_id" | "scope" | "tier";
+  __primitiveFields: "app_id" | "ended_at" | "granted_at" | "id" | "plan_id" | "scope" | "tier" | "user_id";
   app_id: UUID | null;
   ended_at: UtcDateTimeUsec | null;
   granted_at: UtcDateTimeUsec;
@@ -1513,6 +1515,7 @@ export type CourseEntitlementAttributesOnlySchema = {
   plan_id: UUID | null;
   scope: "every_app" | "one_app";
   tier: string;
+  user_id: UUID;
 };
 
 
@@ -7808,7 +7811,19 @@ export type CourseEntitlementFilterInput = {
     string_starts_with?: string;
   };
 
+  user_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
   plan?: PlanFilterInput;
+
+  user?: UserFilterInput;
 
 };
 export type CoursePersonalizationFilterInput = {
@@ -15371,7 +15386,7 @@ export type ActivityCompletionSummaryFilterField = (typeof activityCompletionSum
 export const enrollmentCompletionsFilterFields = ["activity_completions", "current_phase_id", "current_phase_started_at", "current_session_id", "id", "status"] as const;
 export type EnrollmentCompletionsFilterField = (typeof enrollmentCompletionsFilterFields)[number];
 
-export const courseEntitlementFilterFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier", "plan"] as const;
+export const courseEntitlementFilterFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier", "user_id", "plan", "user"] as const;
 export type CourseEntitlementFilterField = (typeof courseEntitlementFilterFields)[number];
 
 export const coursePersonalizationFilterFields = ["briefings", "generation_error", "generation_format", "generation_prompt", "id", "markdoc_content", "source", "title"] as const;
@@ -15654,7 +15669,7 @@ export type ActivityCompletionSummarySortField = (typeof activityCompletionSumma
 export const enrollmentCompletionsSortFields = ["activity_completions", "current_phase_id", "current_phase_started_at", "current_session_id", "id", "status"] as const;
 export type EnrollmentCompletionsSortField = (typeof enrollmentCompletionsSortFields)[number];
 
-export const courseEntitlementSortFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier"] as const;
+export const courseEntitlementSortFields = ["app_id", "ended_at", "granted_at", "id", "plan_id", "scope", "tier", "user_id"] as const;
 export type CourseEntitlementSortField = (typeof courseEntitlementSortFields)[number];
 
 export const coursePersonalizationSortFields = ["briefings", "generation_error", "generation_format", "generation_prompt", "id", "markdoc_content", "source", "title"] as const;

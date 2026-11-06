@@ -13696,6 +13696,131 @@ export async function cancel_my_membership_channel(config: {
 }
 
 
+export type EndPlanEntitlementFields = UnifiedFieldSelection<CourseEntitlementResourceSchema>[];
+
+export type InferEndPlanEntitlementResult<
+  Fields extends EndPlanEntitlementFields | undefined,
+> = InferResult<CourseEntitlementResourceSchema, Fields>;
+
+export type EndPlanEntitlementResult<Fields extends EndPlanEntitlementFields | undefined = undefined> = | { success: true; data: InferEndPlanEntitlementResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing CourseEntitlement
+ *
+ * @ashActionType :update
+ */
+export async function end_plan_entitlement<Fields extends EndPlanEntitlementFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: { user_id: UUID; plan_id: UUID };
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<EndPlanEntitlementResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "end_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<EndPlanEntitlementResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing CourseEntitlement
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_end_plan_entitlement(
+  config: {
+  tenant?: string;
+  identity: { user_id: UUID | string; plan_id: UUID | string };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "end_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing CourseEntitlement
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_end_plan_entitlement_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: { user_id: UUID | string; plan_id: UUID | string };
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "end_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing CourseEntitlement
+ *
+ * @ashActionType :update
+ */
+export async function end_plan_entitlement_channel<Fields extends EndPlanEntitlementFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: { user_id: UUID; plan_id: UUID };
+  fields?: Fields;
+  result_handler: (result: EndPlanEntitlementResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<EndPlanEntitlementResult<Fields>>(
+    config.channel,
+    {
+    action: "end_plan_entitlement",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
 export type GrantPlanEntitlementInput = {
   user_id: UUID;
   tier: string;
@@ -13829,11 +13954,41 @@ export async function grant_plan_entitlement_channel<Fields extends GrantPlanEnt
 
 
 export type ListMyEntitlementsFields = UnifiedFieldSelection<CourseEntitlementResourceSchema>[];
-export type InferListMyEntitlementsResult<
-  Fields extends ListMyEntitlementsFields,
-> = Array<InferResult<CourseEntitlementResourceSchema, Fields>>;
 
-export type ListMyEntitlementsResult<Fields extends ListMyEntitlementsFields> = | { success: true; data: InferListMyEntitlementsResult<Fields>; }
+
+export type InferListMyEntitlementsResult<
+  Fields extends ListMyEntitlementsFields | undefined,
+  Page extends ListMyEntitlementsConfig["page"] = undefined
+> = ConditionalPaginatedResult<Page, Array<InferResult<CourseEntitlementResourceSchema, Fields>>, {
+  results: Array<InferResult<CourseEntitlementResourceSchema, Fields>>;
+  has_more: boolean;
+  limit: number;
+  after: string | null;
+  before: string | null;
+  previous_page: string | null;
+  next_page: string | null;
+  count?: number | null;
+  type: "keyset";
+}>;
+
+export type ListMyEntitlementsConfig = {
+  tenant?: string;
+  fields: ListMyEntitlementsFields;
+  filter?: CourseEntitlementFilterInput;
+  sort?: SortString<CourseEntitlementSortField> | SortString<CourseEntitlementSortField>[];
+  page?: {
+    limit?: number;
+    after?: string;
+    before?: string;
+    offset?: never;
+    count?: never;
+  };
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+};
+
+export type ListMyEntitlementsResult<Fields extends ListMyEntitlementsFields, Page extends ListMyEntitlementsConfig["page"] = undefined> = | { success: true; data: InferListMyEntitlementsResult<Fields, Page>; }
 | { success: false; errors: AshRpcError[]; }
 
 ;
@@ -13843,26 +13998,19 @@ export type ListMyEntitlementsResult<Fields extends ListMyEntitlementsFields> = 
  *
  * @ashActionType :read
  */
-export async function list_my_entitlements<Fields extends ListMyEntitlementsFields>(
-  config: {
-  tenant?: string;
-  fields: Fields;
-  filter?: CourseEntitlementFilterInput;
-  sort?: SortString<CourseEntitlementSortField> | SortString<CourseEntitlementSortField>[];
-  headers?: Record<string, string>;
-  fetch_options?: RequestInit;
-  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
-}
-): Promise<ListMyEntitlementsResult<Fields>> {
+export async function list_my_entitlements<Fields extends ListMyEntitlementsFields, Config extends ListMyEntitlementsConfig = ListMyEntitlementsConfig>(
+  config: Config & { fields: Fields }
+): Promise<ListMyEntitlementsResult<Fields, Config["page"]>> {
   const payload = {
     action: "list_my_entitlements",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   };
 
-  return executeActionRpcRequest<ListMyEntitlementsResult<Fields>>(
+  return executeActionRpcRequest<ListMyEntitlementsResult<Fields, Config["page"]>>(
     payload,
     config
   );
@@ -13926,25 +14074,27 @@ export async function validate_list_my_entitlements_channel(config: {
  *
  * @ashActionType :read
  */
-export async function list_my_entitlements_channel<Fields extends ListMyEntitlementsFields>(config: {
+export async function list_my_entitlements_channel<Fields extends ListMyEntitlementsFields, Page extends ListMyEntitlementsConfig["page"] = undefined>(config: {
   channel: Channel;
   tenant?: string;
   fields: Fields;
   filter?: CourseEntitlementFilterInput;
   sort?: SortString<CourseEntitlementSortField> | SortString<CourseEntitlementSortField>[];
-  result_handler: (result: ListMyEntitlementsResult<Fields>) => void;
+  page?: Page;
+  result_handler: (result: ListMyEntitlementsResult<Fields, Page>) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
   timeout?: number;
 }) {
-  executeActionChannelPush<ListMyEntitlementsResult<Fields>>(
+  executeActionChannelPush<ListMyEntitlementsResult<Fields, Page>>(
     config.channel,
     {
     action: "list_my_entitlements",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
     ...(config.fields !== undefined && { fields: config.fields }),
     ...(config.filter && { filter: config.filter }),
-    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort })
+    ...(config.sort && { sort: Array.isArray(config.sort) ? config.sort.join(",") : config.sort }),
+    ...(config.page && { page: config.page })
   },
     config.timeout,
     config
