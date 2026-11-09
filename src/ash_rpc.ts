@@ -5715,7 +5715,6 @@ export type AvatarPublicChatInput = {
   origin_entity_id: UUID;
   episode_id?: UUID | null;
   agent_id?: UUID | null;
-  context_id?: UUID | null;
   message: string;
   conversation_id?: UUID | null;
   session_id?: string | null;
@@ -5840,6 +5839,143 @@ export async function avatar_public_chat_channel<Fields extends AvatarPublicChat
     {
     action: "avatar_public_chat",
     ...(config.tenant !== undefined && { tenant: config.tenant }),
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+export type ClaimConversationInput = {
+  session_id: string;
+};
+
+export type ClaimConversationFields = UnifiedFieldSelection<PublicConversationResourceSchema>[];
+
+export type InferClaimConversationResult<
+  Fields extends ClaimConversationFields | undefined,
+> = InferResult<PublicConversationResourceSchema, Fields>;
+
+export type ClaimConversationResult<Fields extends ClaimConversationFields | undefined = undefined> = | { success: true; data: InferClaimConversationResult<Fields>; }
+| { success: false; errors: AshRpcError[]; }
+
+;
+
+/**
+ * Update an existing Conversation
+ *
+ * @ashActionType :update
+ */
+export async function claim_conversation<Fields extends ClaimConversationFields | undefined = undefined>(
+  config: {
+  tenant?: string;
+  identity: UUID;
+  input: ClaimConversationInput;
+  fields?: Fields;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ClaimConversationResult<Fields extends undefined ? [] : Fields>> {
+  const payload = {
+    action: "claim_conversation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input,
+    ...(config.fields !== undefined && { fields: config.fields })
+  };
+
+  return executeActionRpcRequest<ClaimConversationResult<Fields extends undefined ? [] : Fields>>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing Conversation
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_claim_conversation(
+  config: {
+  tenant?: string;
+  identity: UUID | string;
+  input: ClaimConversationInput;
+  headers?: Record<string, string>;
+  fetch_options?: RequestInit;
+  custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidationResult> {
+  const payload = {
+    action: "claim_conversation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  };
+
+  return executeValidationRpcRequest<ValidationResult>(
+    payload,
+    config
+  );
+}
+
+
+/**
+ * Validate: Update an existing Conversation
+ *
+ * @ashActionType :update
+ * @validation true
+ */
+export async function validate_claim_conversation_channel(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID | string;
+  input: ClaimConversationInput;
+  result_handler: (result: ValidationResult) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeValidationChannelPush<ValidationResult>(
+    config.channel,
+    {
+    action: "claim_conversation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
+    input: config.input
+  },
+    config.timeout,
+    config
+  );
+}
+
+
+/**
+ * Update an existing Conversation
+ *
+ * @ashActionType :update
+ */
+export async function claim_conversation_channel<Fields extends ClaimConversationFields | undefined = undefined>(config: {
+  channel: Channel;
+  tenant?: string;
+  identity: UUID;
+  input: ClaimConversationInput;
+  fields?: Fields;
+  result_handler: (result: ClaimConversationResult<Fields>) => void;
+  error_handler?: (error: any) => void;
+  timeout_handler?: () => void;
+  timeout?: number;
+}) {
+  executeActionChannelPush<ClaimConversationResult<Fields>>(
+    config.channel,
+    {
+    action: "claim_conversation",
+    ...(config.tenant !== undefined && { tenant: config.tenant }),
+    identity: config.identity,
     input: config.input,
     ...(config.fields !== undefined && { fields: config.fields })
   },
@@ -7185,19 +7321,10 @@ export async function preview_chat_channel<Fields extends PreviewChatFields | un
 
 
 export type UpdateConversationInput = {
-  channel?: string | null;
   closed_at?: UtcDateTimeUsec | null;
-  is_root?: boolean | null;
   metadata?: Record<string, any> | null;
-  origin_entity_id?: UUID;
-  phone_number?: string | null;
-  root_conversation_id?: UUID | null;
-  session_id?: string | null;
   sms_opt_in?: boolean | null;
   status?: string | null;
-  user_email?: string | null;
-  user_id?: UUID | null;
-  user_name?: string | null;
 };
 
 export type UpdateConversationFields = UnifiedFieldSelection<PublicConversationResourceSchema>[];

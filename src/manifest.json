@@ -1592,6 +1592,44 @@
       }
     },
     {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing Conversation",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "claim_conversation",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Conversation",
+      "see": [],
+      "types": {
+        "fields": "ClaimConversationFields",
+        "inferResult": "InferClaimConversationResult",
+        "input": "ClaimConversationInput",
+        "result": "ClaimConversationResult"
+      },
+      "variantNames": {
+        "channel": "claim_conversation_channel",
+        "validation": "validate_claim_conversation",
+        "validationChannel": "validate_claim_conversation_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "action",
       "deprecated": false,
       "description": "How many messages a user sent an Origin between two instants",
@@ -10192,7 +10230,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-11-06",
+  "generatedAt": "2026-11-09",
   "resources": {
     "User": {
       "relationships": {

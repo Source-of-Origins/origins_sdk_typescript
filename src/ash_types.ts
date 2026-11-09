@@ -348,7 +348,7 @@ export type ChatSuggestionsInputSchema = {
 // PublicConversation Schema
 export type PublicConversationResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "channel" | "closed_at" | "created_at" | "has_letta_agent" | "id" | "is_root" | "last_message_at" | "message_count" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "session_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
+  __primitiveFields: "channel" | "closed_at" | "created_at" | "has_letta_agent" | "id" | "is_root" | "last_message_at" | "message_count" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
   channel: string | null;
   closed_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
@@ -361,7 +361,6 @@ export type PublicConversationResourceSchema = {
   origin_entity_id: UUID;
   phone_number: string | null;
   root_conversation_id: UUID | null;
-  session_id: string | null;
   sms_opt_in: boolean | null;
   started_at: UtcDateTimeUsec;
   status: string | null;
@@ -381,7 +380,7 @@ export type PublicConversationResourceSchema = {
 
 export type PublicConversationAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "channel" | "closed_at" | "created_at" | "id" | "is_root" | "last_message_at" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "session_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
+  __primitiveFields: "channel" | "closed_at" | "created_at" | "id" | "is_root" | "last_message_at" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
   channel: string | null;
   closed_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
@@ -392,7 +391,6 @@ export type PublicConversationAttributesOnlySchema = {
   origin_entity_id: UUID;
   phone_number: string | null;
   root_conversation_id: UUID | null;
-  session_id: string | null;
   sms_opt_in: boolean | null;
   started_at: UtcDateTimeUsec;
   status: string | null;
@@ -4839,20 +4837,6 @@ export type PublicConversationFilterInput = {
     greater_than?: UUID;
     less_than_or_equal?: UUID;
     greater_than_or_equal?: UUID;
-  };
-
-  session_id?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
   };
 
   sms_opt_in?: {
@@ -15296,7 +15280,7 @@ export type ChatReplyFilterField = (typeof chatReplyFilterFields)[number];
 export const chatSuggestionsFilterFields = ["suggestions"] as const;
 export type ChatSuggestionsFilterField = (typeof chatSuggestionsFilterFields)[number];
 
-export const publicConversationFilterFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "session_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name", "memories", "messages", "origin_entity", "root_conversation", "threads", "user"] as const;
+export const publicConversationFilterFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name", "memories", "messages", "origin_entity", "root_conversation", "threads", "user"] as const;
 export type PublicConversationFilterField = (typeof publicConversationFilterFields)[number];
 
 export const publicMessageFilterFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used", "conversation"] as const;
@@ -15579,7 +15563,7 @@ export type ChatReplySortField = (typeof chatReplySortFields)[number];
 export const chatSuggestionsSortFields = ["suggestions"] as const;
 export type ChatSuggestionsSortField = (typeof chatSuggestionsSortFields)[number];
 
-export const publicConversationSortFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "session_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name"] as const;
+export const publicConversationSortFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name"] as const;
 export type PublicConversationSortField = (typeof publicConversationSortFields)[number];
 
 export const publicMessageSortFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used"] as const;
