@@ -1745,12 +1745,12 @@
     {
       "actionType": "action",
       "deprecated": false,
-      "description": "Generate contextual chat suggestions based on conversation history",
+      "description": "Generate follow-up messages the user could send next in a conversation",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "generate_chat_suggestions",
       "get": false,
-      "input": "required",
+      "input": "optional",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -10230,7 +10230,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-11-09",
+  "generatedAt": "2026-11-10",
   "resources": {
     "User": {
       "relationships": {

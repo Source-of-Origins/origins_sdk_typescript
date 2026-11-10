@@ -6382,8 +6382,9 @@ export async function find_root_conversation_channel<Fields extends FindRootConv
 
 
 export type GenerateChatSuggestionsInput = {
-  messages: Array<Record<string, any>>;
-  avatar_context: Record<string, any>;
+  conversation_id?: UUID | null;
+  messages?: Array<Record<string, any>> | null;
+  avatar_context?: Record<string, any> | null;
 };
 
 export type GenerateChatSuggestionsFields = UnifiedFieldSelection<ChatSuggestionsResourceSchema>[];
@@ -6405,7 +6406,7 @@ export type GenerateChatSuggestionsResult<Fields extends GenerateChatSuggestions
 export async function generate_chat_suggestions<Fields extends GenerateChatSuggestionsFields | undefined = undefined>(
   config: {
   tenant?: string;
-  input: GenerateChatSuggestionsInput;
+  input?: GenerateChatSuggestionsInput;
   fields: Fields;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
@@ -6435,7 +6436,7 @@ export async function generate_chat_suggestions<Fields extends GenerateChatSugge
 export async function validate_generate_chat_suggestions(
   config: {
   tenant?: string;
-  input: GenerateChatSuggestionsInput;
+  input?: GenerateChatSuggestionsInput;
   headers?: Record<string, string>;
   fetch_options?: RequestInit;
   custom_fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
@@ -6463,7 +6464,7 @@ export async function validate_generate_chat_suggestions(
 export async function validate_generate_chat_suggestions_channel(config: {
   channel: Channel;
   tenant?: string;
-  input: GenerateChatSuggestionsInput;
+  input?: GenerateChatSuggestionsInput;
   result_handler: (result: ValidationResult) => void;
   error_handler?: (error: any) => void;
   timeout_handler?: () => void;
@@ -6490,7 +6491,7 @@ export async function validate_generate_chat_suggestions_channel(config: {
 export async function generate_chat_suggestions_channel<Fields extends GenerateChatSuggestionsFields | undefined = undefined>(config: {
   channel: Channel;
   tenant?: string;
-  input: GenerateChatSuggestionsInput;
+  input?: GenerateChatSuggestionsInput;
   fields: Fields;
   result_handler: (result: GenerateChatSuggestionsResult<Fields>) => void;
   error_handler?: (error: any) => void;
@@ -6634,6 +6635,7 @@ export async function get_brand_users_channel(config: {
 
 export type GetConversationHistoryInput = {
   conversation_id: UUID;
+  session_id?: string | null;
 };
 
 export type GetConversationHistoryFields = UnifiedFieldSelection<ChatMessageResourceSchema>[];
