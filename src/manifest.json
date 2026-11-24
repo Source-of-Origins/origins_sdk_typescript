@@ -197,6 +197,82 @@
     {
       "actionType": "action",
       "deprecated": false,
+      "description": "A Stripe Checkout URL subscribing this tenant to the given plan Price.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_billing_checkout",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "CreateBillingCheckoutFields",
+        "inferResult": "InferCreateBillingCheckoutResult",
+        "input": "CreateBillingCheckoutInput",
+        "result": "CreateBillingCheckoutResult"
+      },
+      "variantNames": {
+        "channel": "create_billing_checkout_channel",
+        "validation": "validate_create_billing_checkout",
+        "validationChannel": "validate_create_billing_checkout_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "A Stripe hosted Customer Portal URL: plan changes, cards, receipts.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "create_billing_portal",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "CreateBillingPortalFields",
+        "inferResult": "InferCreateBillingPortalResult",
+        "input": "CreateBillingPortalInput",
+        "result": "CreateBillingPortalResult"
+      },
+      "variantNames": {
+        "channel": "create_billing_portal_channel",
+        "validation": "validate_create_billing_portal",
+        "validationChannel": "validate_create_billing_portal_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
       "description": "Mint a new tenant (with its root OE and an owner membership) for the\ncurrently authenticated user. Used by the in-app wizard's top-level\n\"New Origin\" path — see `Origins.Accounts.Actions.CreateTenantForUser`.\n",
       "enableFilter": true,
       "enableSort": true,
@@ -259,6 +335,43 @@
         "channel": "create_tenant_stripe_price_channel",
         "validation": "validate_create_tenant_stripe_price",
         "validationChannel": "validate_create_tenant_stripe_price_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The tenant's own subscription to Origins, read live from Stripe. Every\nfield nil when billing is not set up; `status` nil is that signal.\n",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_billing_subscription",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "GetBillingSubscriptionFields",
+        "inferResult": "InferGetBillingSubscriptionResult",
+        "result": "GetBillingSubscriptionResult"
+      },
+      "variantNames": {
+        "channel": "get_billing_subscription_channel",
+        "validation": "validate_get_billing_subscription",
+        "validationChannel": "validate_get_billing_subscription_channel"
       },
       "variants": {
         "channel": true,
@@ -497,6 +610,43 @@
       }
     },
     {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "The public Origins plans — Prices on Origins' own Stripe account.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_billing_prices",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Tenant",
+      "see": [],
+      "types": {
+        "fields": "ListBillingPricesFields",
+        "inferResult": "InferListBillingPricesResult",
+        "result": "ListBillingPricesResult"
+      },
+      "variantNames": {
+        "channel": "list_billing_prices_channel",
+        "validation": "validate_list_billing_prices",
+        "validationChannel": "validate_list_billing_prices_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
       "actionType": "read",
       "deprecated": false,
       "description": "The tenants the actor may act in: their home tenant plus every tenant they\nhold an active StaffTenantGrant on, or every active tenant for a\nsuper-admin. Single source of truth for the Switcher's top-level list; see\n`Origins.Accounts.TenantEntry`.\n",
@@ -612,7 +762,7 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Provision an anonymous, passwordless user, minted a JWT the browser uses to\nact as a real — if anonymous — principal that owns whatever it creates.\nCreated in a caller-supplied tenant (pass `tenant:`), so ownership reads on\ntenant-scoped resources line up. Upserts on email so a repeat visit reuses\nthe row; a later `:register_with_password` with the same email upgrades it\nin place, carrying its data over. An optional `display_name` lands in\n`raw_user_meta_data`, where the `user_profiles` trigger reads it; omitting\nit leaves the stored name alone rather than clearing it.\n",
+      "description": "Provision an anonymous, passwordless user, minted a JWT the browser uses to\nact as a real — if anonymous — principal that owns whatever it creates.\nCreated in a caller-supplied tenant (pass `tenant:`), so ownership reads on\ntenant-scoped resources line up. Mints a token only for a new account: an\nemail that already has a guest account fails with an error on `email`,\none owned by a registered account fails too, and neither mints a token.\nA later `:register_with_password` with the same email\nupgrades the row in place, carrying its data over. An optional\n`display_name` lands in `raw_user_meta_data`, where the `user_profiles`\ntrigger reads it.\n",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "create_anonymous_user",
@@ -761,6 +911,45 @@
     {
       "actionType": "read",
       "deprecated": false,
+      "description": "Everyone with a proven address in the acting tenant, filterable the way the Members page filters.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "get_member",
+      "get": true,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": true,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "fields": "GetMemberFields",
+        "filterInput": "UserFilterInput",
+        "inferResult": "InferGetMemberResult",
+        "input": "GetMemberInput",
+        "result": "GetMemberResult"
+      },
+      "variantNames": {
+        "channel": "get_member_channel",
+        "validation": "validate_get_member",
+        "validationChannel": "validate_get_member_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
       "description": "List all users (super admin only)",
       "enableFilter": true,
       "enableSort": true,
@@ -826,6 +1015,46 @@
         "channel": "list_confirmed_users_channel",
         "validation": "validate_list_confirmed_users",
         "validationChannel": "validate_list_confirmed_users_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "Everyone with a proven address in the acting tenant, filterable the way the Members page filters.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_members",
+      "get": false,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": true,
+        "required": false,
+        "supported": true
+      },
+      "resource": "User",
+      "see": [],
+      "types": {
+        "config": "ListMembersConfig",
+        "fields": "ListMembersFields",
+        "filterInput": "UserFilterInput",
+        "inferResult": "InferListMembersResult",
+        "input": "ListMembersInput",
+        "result": "ListMembersResult"
+      },
+      "variantNames": {
+        "channel": "list_members_channel",
+        "validation": "validate_list_members",
+        "validationChannel": "validate_list_members_channel"
       },
       "variants": {
         "channel": true,
@@ -1750,7 +1979,7 @@
       "enableSort": true,
       "functionName": "generate_chat_suggestions",
       "get": false,
-      "input": "optional",
+      "input": "required",
       "namespace": null,
       "pagination": {
         "get": false,
@@ -1771,42 +2000,6 @@
         "channel": "generate_chat_suggestions_channel",
         "validation": "validate_generate_chat_suggestions",
         "validationChannel": "validate_generate_chat_suggestions_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Get users with their conversation statistics for a specific Origin",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "get_brand_users",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "Conversation",
-      "see": [],
-      "types": {
-        "input": "GetBrandUsersInput",
-        "result": "GetBrandUsersResult"
-      },
-      "variantNames": {
-        "channel": "get_brand_users_channel",
-        "validation": "validate_get_brand_users",
-        "validationChannel": "validate_get_brand_users_channel"
       },
       "variants": {
         "channel": true,
@@ -1922,6 +2115,45 @@
         "channel": "list_conversations_channel",
         "validation": "validate_list_conversations",
         "validationChannel": "validate_list_conversations_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "read",
+      "deprecated": false,
+      "description": "A member's conversations holding a flagged message no admin has reviewed, newest first.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "list_flagged_conversations",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Conversation",
+      "see": [],
+      "types": {
+        "fields": "ListFlaggedConversationsFields",
+        "filterInput": "PublicConversationFilterInput",
+        "inferResult": "InferListFlaggedConversationsResult",
+        "input": "ListFlaggedConversationsInput",
+        "result": "ListFlaggedConversationsResult"
+      },
+      "variantNames": {
+        "channel": "list_flagged_conversations_channel",
+        "validation": "validate_list_flagged_conversations",
+        "validationChannel": "validate_list_flagged_conversations_channel"
       },
       "variants": {
         "channel": true,
@@ -2109,6 +2341,115 @@
         "channel": "upload_chat_attachment_channel",
         "validation": "validate_upload_chat_attachment",
         "validationChannel": "validate_upload_chat_attachment_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Mark every open flag in one conversation reviewed, all or none.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "mark_conversation_reviewed",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "MessageFlag",
+      "see": [],
+      "types": {
+        "input": "MarkConversationReviewedInput",
+        "result": "MarkConversationReviewedResult"
+      },
+      "variantNames": {
+        "channel": "mark_conversation_reviewed_channel",
+        "validation": "validate_mark_conversation_reviewed",
+        "validationChannel": "validate_mark_conversation_reviewed_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "destroy",
+      "deprecated": false,
+      "description": "Delete a Block",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "forget_agent_memory",
+      "get": false,
+      "input": "none",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Block",
+      "see": [],
+      "types": {
+        "result": "ForgetAgentMemoryResult"
+      },
+      "variantNames": {
+        "channel": "forget_agent_memory_channel",
+        "validation": "validate_forget_agent_memory",
+        "validationChannel": "validate_forget_agent_memory_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "update",
+      "deprecated": false,
+      "description": "Update an existing Block",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "update_agent_memory",
+      "get": false,
+      "input": "optional",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Block",
+      "see": [],
+      "types": {
+        "fields": "UpdateAgentMemoryFields",
+        "inferResult": "InferUpdateAgentMemoryResult",
+        "input": "UpdateAgentMemoryInput",
+        "result": "UpdateAgentMemoryResult"
+      },
+      "variantNames": {
+        "channel": "update_agent_memory_channel",
+        "validation": "validate_update_agent_memory",
+        "validationChannel": "validate_update_agent_memory_channel"
       },
       "variants": {
         "channel": true,
@@ -3009,6 +3350,44 @@
         "channel": "restore_app_version_channel",
         "validation": "validate_restore_app_version",
         "validationChannel": "validate_restore_app_version_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Save an App's content and title.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "save_app_content",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "App",
+      "see": [],
+      "types": {
+        "fields": "SaveAppContentFields",
+        "inferResult": "InferSaveAppContentResult",
+        "input": "SaveAppContentInput",
+        "result": "SaveAppContentResult"
+      },
+      "variantNames": {
+        "channel": "save_app_content_channel",
+        "validation": "validate_save_app_content",
+        "validationChannel": "validate_save_app_content_channel"
       },
       "variants": {
         "channel": true,
@@ -4908,155 +5287,6 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Create a new FeatureFlag",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_feature_flag",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "FeatureFlag",
-      "see": [],
-      "types": {
-        "fields": "CreateFeatureFlagFields",
-        "inferResult": "InferCreateFeatureFlagResult",
-        "input": "CreateFeatureFlagInput",
-        "result": "CreateFeatureFlagResult"
-      },
-      "variantNames": {
-        "channel": "create_feature_flag_channel",
-        "validation": "validate_create_feature_flag",
-        "validationChannel": "validate_create_feature_flag_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "destroy",
-      "deprecated": false,
-      "description": "Delete a FeatureFlag",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "delete_feature_flag",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "FeatureFlag",
-      "see": [],
-      "types": {
-        "result": "DeleteFeatureFlagResult"
-      },
-      "variantNames": {
-        "channel": "delete_feature_flag_channel",
-        "validation": "validate_delete_feature_flag",
-        "validationChannel": "validate_delete_feature_flag_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read FeatureFlag records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_feature_flags",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "FeatureFlag",
-      "see": [],
-      "types": {
-        "fields": "ListFeatureFlagsFields",
-        "filterInput": "FeatureFlagFilterInput",
-        "inferResult": "InferListFeatureFlagsResult",
-        "result": "ListFeatureFlagsResult"
-      },
-      "variantNames": {
-        "channel": "list_feature_flags_channel",
-        "validation": "validate_list_feature_flags",
-        "validationChannel": "validate_list_feature_flags_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing FeatureFlag",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_feature_flag",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "FeatureFlag",
-      "see": [],
-      "types": {
-        "fields": "UpdateFeatureFlagFields",
-        "inferResult": "InferUpdateFeatureFlagResult",
-        "input": "UpdateFeatureFlagInput",
-        "result": "UpdateFeatureFlagResult"
-      },
-      "variantNames": {
-        "channel": "update_feature_flag_channel",
-        "validation": "validate_update_feature_flag",
-        "validationChannel": "validate_update_feature_flag_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
       "description": "Create a new Feedback",
       "enableFilter": true,
       "enableSort": true,
@@ -5095,7 +5325,7 @@
     {
       "actionType": "read",
       "deprecated": false,
-      "description": "Read Feedback records",
+      "description": "Every tenant's feedback, for the super-admin inbox.",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "list_feedback",
@@ -6720,195 +6950,6 @@
     {
       "actionType": "create",
       "deprecated": false,
-      "description": "Create a new PromptTool",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_prompt_tool",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptTool",
-      "see": [],
-      "types": {
-        "fields": "CreatePromptToolFields",
-        "inferResult": "InferCreatePromptToolResult",
-        "input": "CreatePromptToolInput",
-        "result": "CreatePromptToolResult"
-      },
-      "variantNames": {
-        "channel": "create_prompt_tool_channel",
-        "validation": "validate_create_prompt_tool",
-        "validationChannel": "validate_create_prompt_tool_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "destroy",
-      "deprecated": false,
-      "description": "Delete a PromptTool",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "delete_prompt_tool",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptTool",
-      "see": [],
-      "types": {
-        "result": "DeletePromptToolResult"
-      },
-      "variantNames": {
-        "channel": "delete_prompt_tool_channel",
-        "validation": "validate_delete_prompt_tool",
-        "validationChannel": "validate_delete_prompt_tool_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read PromptTool records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_prompt_tools_for_origin",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptTool",
-      "see": [],
-      "types": {
-        "fields": "ListPromptToolsForOriginFields",
-        "filterInput": "PromptToolFilterInput",
-        "inferResult": "InferListPromptToolsForOriginResult",
-        "input": "ListPromptToolsForOriginInput",
-        "result": "ListPromptToolsForOriginResult"
-      },
-      "variantNames": {
-        "channel": "list_prompt_tools_for_origin_channel",
-        "validation": "validate_list_prompt_tools_for_origin",
-        "validationChannel": "validate_list_prompt_tools_for_origin_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "The prompt tools an agent of an origin may name: the origin's own and its brand's.",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_referable_prompt_tools",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptTool",
-      "see": [],
-      "types": {
-        "fields": "ListReferablePromptToolsFields",
-        "filterInput": "PromptToolFilterInput",
-        "inferResult": "InferListReferablePromptToolsResult",
-        "input": "ListReferablePromptToolsInput",
-        "result": "ListReferablePromptToolsResult"
-      },
-      "variantNames": {
-        "channel": "list_referable_prompt_tools_channel",
-        "validation": "validate_list_referable_prompt_tools",
-        "validationChannel": "validate_list_referable_prompt_tools_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing PromptTool",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_prompt_tool",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PromptTool",
-      "see": [],
-      "types": {
-        "fields": "UpdatePromptToolFields",
-        "inferResult": "InferUpdatePromptToolResult",
-        "input": "UpdatePromptToolInput",
-        "result": "UpdatePromptToolResult"
-      },
-      "variantNames": {
-        "channel": "update_prompt_tool_channel",
-        "validation": "validate_update_prompt_tool",
-        "validationChannel": "validate_update_prompt_tool_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
       "description": "Create a new SetupProgress",
       "enableFilter": true,
       "enableSort": true,
@@ -7089,457 +7130,6 @@
         "channel": "update_user_profile_channel",
         "validation": "validate_update_user_profile",
         "validationChannel": "validate_update_user_profile_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read InterviewGeneratedContent records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_interview_generated_contents",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "InterviewGeneratedContent",
-      "see": [],
-      "types": {
-        "config": "ListInterviewGeneratedContentsConfig",
-        "fields": "ListInterviewGeneratedContentsFields",
-        "filterInput": "InterviewGeneratedContentFilterInput",
-        "inferResult": "InferListInterviewGeneratedContentsResult",
-        "result": "ListInterviewGeneratedContentsResult"
-      },
-      "variantNames": {
-        "channel": "list_interview_generated_contents_channel",
-        "validation": "validate_list_interview_generated_contents",
-        "validationChannel": "validate_list_interview_generated_contents_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing InterviewGeneratedContent",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_interview_generated_content",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewGeneratedContent",
-      "see": [],
-      "types": {
-        "fields": "UpdateInterviewGeneratedContentFields",
-        "inferResult": "InferUpdateInterviewGeneratedContentResult",
-        "input": "UpdateInterviewGeneratedContentInput",
-        "result": "UpdateInterviewGeneratedContentResult"
-      },
-      "variantNames": {
-        "channel": "update_interview_generated_content_channel",
-        "validation": "validate_update_interview_generated_content",
-        "validationChannel": "validate_update_interview_generated_content_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Generate a presigned URL for downloading the recording",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "presign_recording_download_url",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewRecording",
-      "see": [],
-      "types": {
-        "input": "PresignRecordingDownloadUrlInput",
-        "result": "PresignRecordingDownloadUrlResult"
-      },
-      "variantNames": {
-        "channel": "presign_recording_download_url_channel",
-        "validation": "validate_presign_recording_download_url",
-        "validationChannel": "validate_presign_recording_download_url_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new InterviewSession",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_interview_session",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewSession",
-      "see": [],
-      "types": {
-        "fields": "CreateInterviewSessionFields",
-        "inferResult": "InferCreateInterviewSessionResult",
-        "input": "CreateInterviewSessionInput",
-        "result": "CreateInterviewSessionResult"
-      },
-      "variantNames": {
-        "channel": "create_interview_session_channel",
-        "validation": "validate_create_interview_session",
-        "validationChannel": "validate_create_interview_session_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Finish an interview and trigger the finalization pipeline",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "finish_interview_session",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewSession",
-      "see": [],
-      "types": {
-        "fields": "FinishInterviewSessionFields",
-        "inferResult": "InferFinishInterviewSessionResult",
-        "result": "FinishInterviewSessionResult"
-      },
-      "variantNames": {
-        "channel": "finish_interview_session_channel",
-        "validation": "validate_finish_interview_session",
-        "validationChannel": "validate_finish_interview_session_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Generate the next interview question using a Letta agent",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "generate_interview_question",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewSession",
-      "see": [],
-      "types": {
-        "input": "GenerateInterviewQuestionInput",
-        "result": "GenerateInterviewQuestionResult"
-      },
-      "variantNames": {
-        "channel": "generate_interview_question_channel",
-        "validation": "validate_generate_interview_question",
-        "validationChannel": "validate_generate_interview_question_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read InterviewSession records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "get_interview_session",
-      "get": true,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": true,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewSession",
-      "see": [],
-      "types": {
-        "fields": "GetInterviewSessionFields",
-        "filterInput": "InterviewSessionFilterInput",
-        "inferResult": "InferGetInterviewSessionResult",
-        "input": "GetInterviewSessionInput",
-        "result": "GetInterviewSessionResult"
-      },
-      "variantNames": {
-        "channel": "get_interview_session_channel",
-        "validation": "validate_get_interview_session",
-        "validationChannel": "validate_get_interview_session_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read InterviewSession records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_interview_sessions",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "InterviewSession",
-      "see": [],
-      "types": {
-        "config": "ListInterviewSessionsConfig",
-        "fields": "ListInterviewSessionsFields",
-        "filterInput": "InterviewSessionFilterInput",
-        "inferResult": "InferListInterviewSessionsResult",
-        "result": "ListInterviewSessionsResult"
-      },
-      "variantNames": {
-        "channel": "list_interview_sessions_channel",
-        "validation": "validate_list_interview_sessions",
-        "validationChannel": "validate_list_interview_sessions_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing InterviewSession",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_interview_session",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewSession",
-      "see": [],
-      "types": {
-        "fields": "UpdateInterviewSessionFields",
-        "inferResult": "InferUpdateInterviewSessionResult",
-        "input": "UpdateInterviewSessionInput",
-        "result": "UpdateInterviewSessionResult"
-      },
-      "variantNames": {
-        "channel": "update_interview_session_channel",
-        "validation": "validate_update_interview_session",
-        "validationChannel": "validate_update_interview_session_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new InterviewTurn",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_interview_turn",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "InterviewTurn",
-      "see": [],
-      "types": {
-        "fields": "CreateInterviewTurnFields",
-        "inferResult": "InferCreateInterviewTurnResult",
-        "input": "CreateInterviewTurnInput",
-        "result": "CreateInterviewTurnResult"
-      },
-      "variantNames": {
-        "channel": "create_interview_turn_channel",
-        "validation": "validate_create_interview_turn",
-        "validationChannel": "validate_create_interview_turn_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "destroy",
-      "deprecated": false,
-      "description": "Delete a Block",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "forget_agent_memory",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "Block",
-      "see": [],
-      "types": {
-        "result": "ForgetAgentMemoryResult"
-      },
-      "variantNames": {
-        "channel": "forget_agent_memory_channel",
-        "validation": "validate_forget_agent_memory",
-        "validationChannel": "validate_forget_agent_memory_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing Block",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_agent_memory",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "Block",
-      "see": [],
-      "types": {
-        "fields": "UpdateAgentMemoryFields",
-        "inferResult": "InferUpdateAgentMemoryResult",
-        "input": "UpdateAgentMemoryInput",
-        "result": "UpdateAgentMemoryResult"
-      },
-      "variantNames": {
-        "channel": "update_agent_memory_channel",
-        "validation": "validate_update_agent_memory",
-        "validationChannel": "validate_update_agent_memory_channel"
       },
       "variants": {
         "channel": true,
@@ -7835,6 +7425,78 @@
         "channel": "delete_library_channel",
         "validation": "validate_delete_library",
         "validationChannel": "validate_delete_library_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Add one YouTube video to the Origin's stored channel videos.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "fetch_youtube_single_video",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Library",
+      "see": [],
+      "types": {
+        "input": "FetchYoutubeSingleVideoInput",
+        "result": "FetchYoutubeSingleVideoResult"
+      },
+      "variantNames": {
+        "channel": "fetch_youtube_single_video_channel",
+        "validation": "validate_fetch_youtube_single_video",
+        "validationChannel": "validate_fetch_youtube_single_video_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Fetch the captions of a YouTube video.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "fetch_youtube_transcript",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Library",
+      "see": [],
+      "types": {
+        "input": "FetchYoutubeTranscriptInput",
+        "result": "FetchYoutubeTranscriptResult"
+      },
+      "variantNames": {
+        "channel": "fetch_youtube_transcript_channel",
+        "validation": "validate_fetch_youtube_transcript",
+        "validationChannel": "validate_fetch_youtube_transcript_channel"
       },
       "variants": {
         "channel": true,
@@ -8219,7 +7881,7 @@
     {
       "actionType": "update",
       "deprecated": false,
-      "description": "Set this Library's sync filter (include/exclude path globs) under\n`adapter_config[\"filters\"]`, leaving the rest of the adapter config\nintact. Tightening the filter orphan-removes the now-excluded files on\nthe next sync — the SPA shows `Origins.Libraries.FilterImpact` first.\n",
+      "description": "Set this Library's sync filter (include/exclude path globs) under\n`adapter_config.filters`, leaving the rest of the adapter config\nintact. Tightening the filter orphan-removes the now-excluded files on\nthe next sync — the SPA shows `Origins.Libraries.FilterImpact` first.\n",
       "enableFilter": true,
       "enableSort": true,
       "functionName": "update_library_sync_filter",
@@ -8245,6 +7907,42 @@
         "channel": "update_library_sync_filter_channel",
         "validation": "validate_update_library_sync_filter",
         "validationChannel": "validate_update_library_sync_filter_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Fetch a YouTube channel's public data onto the Origin and provision its YouTube Library.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "youtube_fetch_public_data",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "Library",
+      "see": [],
+      "types": {
+        "input": "YoutubeFetchPublicDataInput",
+        "result": "YoutubeFetchPublicDataResult"
+      },
+      "variantNames": {
+        "channel": "youtube_fetch_public_data_channel",
+        "validation": "validate_youtube_fetch_public_data",
+        "validationChannel": "validate_youtube_fetch_public_data_channel"
       },
       "variants": {
         "channel": true,
@@ -8662,6 +8360,42 @@
         "channel": "recommend_clips_channel",
         "validation": "validate_recommend_clips",
         "validationChannel": "validate_recommend_clips_channel"
+      },
+      "variants": {
+        "channel": true,
+        "valibot": false,
+        "validation": true,
+        "validationChannel": true,
+        "zod": false
+      }
+    },
+    {
+      "actionType": "action",
+      "deprecated": false,
+      "description": "Re-ingest this LibraryFile into the retrieval substrate and return the chunk count.",
+      "enableFilter": true,
+      "enableSort": true,
+      "functionName": "reindex_library_file",
+      "get": false,
+      "input": "required",
+      "namespace": null,
+      "pagination": {
+        "get": false,
+        "keyset": false,
+        "offset": false,
+        "required": false,
+        "supported": false
+      },
+      "resource": "LibraryFile",
+      "see": [],
+      "types": {
+        "input": "ReindexLibraryFileInput",
+        "result": "ReindexLibraryFileResult"
+      },
+      "variantNames": {
+        "channel": "reindex_library_file_channel",
+        "validation": "validate_reindex_library_file",
+        "validationChannel": "validate_reindex_library_file_channel"
       },
       "variants": {
         "channel": true,
@@ -9575,645 +9309,6 @@
         "validationChannel": true,
         "zod": false
       }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new PodcastConfig",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_podcast_config",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PodcastConfig",
-      "see": [],
-      "types": {
-        "fields": "CreatePodcastConfigFields",
-        "inferResult": "InferCreatePodcastConfigResult",
-        "input": "CreatePodcastConfigInput",
-        "result": "CreatePodcastConfigResult"
-      },
-      "variantNames": {
-        "channel": "create_podcast_config_channel",
-        "validation": "validate_create_podcast_config",
-        "validationChannel": "validate_create_podcast_config_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read PodcastConfig records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_podcast_configs",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "PodcastConfig",
-      "see": [],
-      "types": {
-        "config": "ListPodcastConfigsConfig",
-        "fields": "ListPodcastConfigsFields",
-        "filterInput": "PodcastConfigFilterInput",
-        "inferResult": "InferListPodcastConfigsResult",
-        "result": "ListPodcastConfigsResult"
-      },
-      "variantNames": {
-        "channel": "list_podcast_configs_channel",
-        "validation": "validate_list_podcast_configs",
-        "validationChannel": "validate_list_podcast_configs_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Sync YouTube playlist episodes",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "sync_podcast_episodes",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PodcastConfig",
-      "see": [],
-      "types": {
-        "input": "SyncPodcastEpisodesInput",
-        "result": "SyncPodcastEpisodesResult"
-      },
-      "variantNames": {
-        "channel": "sync_podcast_episodes_channel",
-        "validation": "validate_sync_podcast_episodes",
-        "validationChannel": "validate_sync_podcast_episodes_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing PodcastConfig",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_podcast_config",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PodcastConfig",
-      "see": [],
-      "types": {
-        "fields": "UpdatePodcastConfigFields",
-        "inferResult": "InferUpdatePodcastConfigResult",
-        "input": "UpdatePodcastConfigInput",
-        "result": "UpdatePodcastConfigResult"
-      },
-      "variantNames": {
-        "channel": "update_podcast_config_channel",
-        "validation": "validate_update_podcast_config",
-        "validationChannel": "validate_update_podcast_config_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read PodcastEpisodeSettings records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "get_podcast_episode_settings_for_character",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PodcastEpisodeSettings",
-      "see": [],
-      "types": {
-        "fields": "GetPodcastEpisodeSettingsForCharacterFields",
-        "filterInput": "PodcastEpisodeSettingsFilterInput",
-        "inferResult": "InferGetPodcastEpisodeSettingsForCharacterResult",
-        "input": "GetPodcastEpisodeSettingsForCharacterInput",
-        "result": "GetPodcastEpisodeSettingsForCharacterResult"
-      },
-      "variantNames": {
-        "channel": "get_podcast_episode_settings_for_character_channel",
-        "validation": "validate_get_podcast_episode_settings_for_character",
-        "validationChannel": "validate_get_podcast_episode_settings_for_character_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read PodcastEpisodeSettings records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "get_podcast_episode_settings_for_podcast_config",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PodcastEpisodeSettings",
-      "see": [],
-      "types": {
-        "fields": "GetPodcastEpisodeSettingsForPodcastConfigFields",
-        "filterInput": "PodcastEpisodeSettingsFilterInput",
-        "inferResult": "InferGetPodcastEpisodeSettingsForPodcastConfigResult",
-        "input": "GetPodcastEpisodeSettingsForPodcastConfigInput",
-        "result": "GetPodcastEpisodeSettingsForPodcastConfigResult"
-      },
-      "variantNames": {
-        "channel": "get_podcast_episode_settings_for_podcast_config_channel",
-        "validation": "validate_get_podcast_episode_settings_for_podcast_config",
-        "validationChannel": "validate_get_podcast_episode_settings_for_podcast_config_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read PodcastEpisodeSettings records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_podcast_episode_settings",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "PodcastEpisodeSettings",
-      "see": [],
-      "types": {
-        "config": "ListPodcastEpisodeSettingsConfig",
-        "fields": "ListPodcastEpisodeSettingsFields",
-        "filterInput": "PodcastEpisodeSettingsFilterInput",
-        "inferResult": "InferListPodcastEpisodeSettingsResult",
-        "result": "ListPodcastEpisodeSettingsResult"
-      },
-      "variantNames": {
-        "channel": "list_podcast_episode_settings_channel",
-        "validation": "validate_list_podcast_episode_settings",
-        "validationChannel": "validate_list_podcast_episode_settings_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new PodcastEpisodeSettings",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "upsert_podcast_episode_settings",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "PodcastEpisodeSettings",
-      "see": [],
-      "types": {
-        "fields": "UpsertPodcastEpisodeSettingsFields",
-        "inferResult": "InferUpsertPodcastEpisodeSettingsResult",
-        "input": "UpsertPodcastEpisodeSettingsInput",
-        "result": "UpsertPodcastEpisodeSettingsResult"
-      },
-      "variantNames": {
-        "channel": "upsert_podcast_episode_settings_channel",
-        "validation": "validate_upsert_podcast_episode_settings",
-        "validationChannel": "validate_upsert_podcast_episode_settings_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "create",
-      "deprecated": false,
-      "description": "Create a new YoutubeEpisode",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "create_youtube_episode",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "fields": "CreateYoutubeEpisodeFields",
-        "inferResult": "InferCreateYoutubeEpisodeResult",
-        "input": "CreateYoutubeEpisodeInput",
-        "result": "CreateYoutubeEpisodeResult"
-      },
-      "variantNames": {
-        "channel": "create_youtube_episode_channel",
-        "validation": "validate_create_youtube_episode",
-        "validationChannel": "validate_create_youtube_episode_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "destroy",
-      "deprecated": false,
-      "description": "Delete a YoutubeEpisode",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "delete_youtube_episode",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "result": "DeleteYoutubeEpisodeResult"
-      },
-      "variantNames": {
-        "channel": "delete_youtube_episode_channel",
-        "validation": "validate_delete_youtube_episode",
-        "validationChannel": "validate_delete_youtube_episode_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Fetch a single video from YouTube and save it as an episode",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "fetch_youtube_single_video",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "input": "FetchYoutubeSingleVideoInput",
-        "result": "FetchYoutubeSingleVideoResult"
-      },
-      "variantNames": {
-        "channel": "fetch_youtube_single_video_channel",
-        "validation": "validate_fetch_youtube_single_video",
-        "validationChannel": "validate_fetch_youtube_single_video_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Fetch transcript/captions from a YouTube video",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "fetch_youtube_transcript",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "input": "FetchYoutubeTranscriptInput",
-        "result": "FetchYoutubeTranscriptResult"
-      },
-      "variantNames": {
-        "channel": "fetch_youtube_transcript_channel",
-        "validation": "validate_fetch_youtube_transcript",
-        "validationChannel": "validate_fetch_youtube_transcript_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Write conversation starter questions from an episode transcript",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "generate_conversation_starters",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "input": "GenerateConversationStartersInput",
-        "result": "GenerateConversationStartersResult"
-      },
-      "variantNames": {
-        "channel": "generate_conversation_starters_channel",
-        "validation": "validate_generate_conversation_starters",
-        "validationChannel": "validate_generate_conversation_starters_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read YoutubeEpisode records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "get_youtube_episode",
-      "get": true,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": true,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "fields": "GetYoutubeEpisodeFields",
-        "filterInput": "YoutubeEpisodeFilterInput",
-        "inferResult": "InferGetYoutubeEpisodeResult",
-        "input": "GetYoutubeEpisodeInput",
-        "result": "GetYoutubeEpisodeResult"
-      },
-      "variantNames": {
-        "channel": "get_youtube_episode_channel",
-        "validation": "validate_get_youtube_episode",
-        "validationChannel": "validate_get_youtube_episode_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "read",
-      "deprecated": false,
-      "description": "Read YoutubeEpisode records",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "list_youtube_episodes",
-      "get": false,
-      "input": "none",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": true,
-        "offset": true,
-        "required": false,
-        "supported": true
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "config": "ListYoutubeEpisodesConfig",
-        "fields": "ListYoutubeEpisodesFields",
-        "filterInput": "YoutubeEpisodeFilterInput",
-        "inferResult": "InferListYoutubeEpisodesResult",
-        "result": "ListYoutubeEpisodesResult"
-      },
-      "variantNames": {
-        "channel": "list_youtube_episodes_channel",
-        "validation": "validate_list_youtube_episodes",
-        "validationChannel": "validate_list_youtube_episodes_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "update",
-      "deprecated": false,
-      "description": "Update an existing YoutubeEpisode",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "update_youtube_episode",
-      "get": false,
-      "input": "optional",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "fields": "UpdateYoutubeEpisodeFields",
-        "inferResult": "InferUpdateYoutubeEpisodeResult",
-        "input": "UpdateYoutubeEpisodeInput",
-        "result": "UpdateYoutubeEpisodeResult"
-      },
-      "variantNames": {
-        "channel": "update_youtube_episode_channel",
-        "validation": "validate_update_youtube_episode",
-        "validationChannel": "validate_update_youtube_episode_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
-    },
-    {
-      "actionType": "action",
-      "deprecated": false,
-      "description": "Fetch public data from a YouTube channel URL and upsert episodes",
-      "enableFilter": true,
-      "enableSort": true,
-      "functionName": "youtube_fetch_public_data",
-      "get": false,
-      "input": "required",
-      "namespace": null,
-      "pagination": {
-        "get": false,
-        "keyset": false,
-        "offset": false,
-        "required": false,
-        "supported": false
-      },
-      "resource": "YoutubeEpisode",
-      "see": [],
-      "types": {
-        "input": "YoutubeFetchPublicDataInput",
-        "result": "YoutubeFetchPublicDataResult"
-      },
-      "variantNames": {
-        "channel": "youtube_fetch_public_data_channel",
-        "validation": "validate_youtube_fetch_public_data",
-        "validationChannel": "validate_youtube_fetch_public_data_channel"
-      },
-      "variants": {
-        "channel": true,
-        "valibot": false,
-        "validation": true,
-        "validationChannel": true,
-        "zod": false
-      }
     }
   ],
   "files": {
@@ -10230,7 +9325,7 @@
       "importPath": "./ash_types"
     }
   },
-  "generatedAt": "2026-11-10",
+  "generatedAt": "2026-11-24",
   "resources": {
     "User": {
       "relationships": {
@@ -10279,25 +9374,6 @@
     "ChatConfig": {
       "relationships": {}
     },
-    "InterviewSession": {
-      "relationships": {
-        "interview_generated_contents": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
-        },
-        "interview_recordings": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
-        },
-        "interview_turns": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
-        }
-      }
-    },
     "DriveConnection": {
       "relationships": {}
     },
@@ -10325,45 +9401,17 @@
           "pagination": "keyset",
           "sortable": true
         },
-        "feature_flags": {
-          "filterable": true,
-          "pagination": "none",
-          "sortable": true
-        },
-        "feedbacks": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
-        },
         "homepage_cards": {
           "filterable": true,
           "pagination": "none",
-          "sortable": true
-        },
-        "interview_sessions": {
-          "filterable": true,
-          "pagination": "mixed",
           "sortable": true
         },
         "memberships": {
           "filterable": true,
           "pagination": "mixed",
           "sortable": true
-        },
-        "prompt_tools": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
-        },
-        "youtube_episodes": {
-          "filterable": true,
-          "pagination": "mixed",
-          "sortable": true
         }
       }
-    },
-    "InterviewRecording": {
-      "relationships": {}
     },
     "Plan": {
       "relationships": {
@@ -10381,6 +9429,9 @@
       "relationships": {}
     },
     "HomepageCard": {
+      "relationships": {}
+    },
+    "MessageFlag": {
       "relationships": {}
     },
     "CourseEnrollment": {
@@ -10427,16 +9478,10 @@
     "CoursePersonalization": {
       "relationships": {}
     },
-    "YoutubeEpisode": {
-      "relationships": {}
-    },
     "App": {
       "relationships": {}
     },
     "AppTemplate": {
-      "relationships": {}
-    },
-    "PromptTool": {
       "relationships": {}
     },
     "WebhookDelivery": {
@@ -10454,13 +9499,7 @@
     "StaffTenantGrant": {
       "relationships": {}
     },
-    "FeatureFlag": {
-      "relationships": {}
-    },
     "MessageAttachment": {
-      "relationships": {}
-    },
-    "InterviewTurn": {
       "relationships": {}
     },
     "PlaylistItem": {
@@ -10475,16 +9514,7 @@
         }
       }
     },
-    "PodcastEpisodeSettings": {
-      "relationships": {}
-    },
     "ConsentRecord": {
-      "relationships": {}
-    },
-    "PodcastConfig": {
-      "relationships": {}
-    },
-    "InterviewGeneratedContent": {
       "relationships": {}
     },
     "WebhookSubscription": {

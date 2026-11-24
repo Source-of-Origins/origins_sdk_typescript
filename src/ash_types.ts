@@ -110,29 +110,38 @@ export type TenantAttributesOnlySchema = {
 // User Schema
 export type UserResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "aud" | "banned_until" | "confirmation_sent_at" | "confirmed_at" | "created_at" | "deleted_at" | "email" | "email_confirmed_at" | "id" | "instance_id" | "invited_at" | "is_creator" | "is_super_admin" | "last_sign_in_at" | "phone" | "phone_change_sent_at" | "phone_confirmed_at" | "raw_app_meta_data" | "raw_user_meta_data" | "reauthentication_sent_at" | "recovery_sent_at" | "role" | "tenant_id" | "updated_at";
+  __primitiveFields: "aud" | "banned_until" | "confirmation_sent_at" | "confirmed_at" | "created_at" | "current_streak" | "deleted_at" | "email" | "email_confirmed_at" | "flagged_conversation_count" | "id" | "instance_id" | "invited_at" | "is_creator" | "is_super_admin" | "last_sign_in_at" | "lifetime_value_cents" | "longest_streak" | "member_status" | "name" | "phone" | "phone_change_sent_at" | "phone_confirmed_at" | "plan_name" | "program_titles" | "raw_app_meta_data" | "raw_user_meta_data" | "reauthentication_sent_at" | "recovery_sent_at" | "role" | "stripe_subscription_url" | "tenant_id" | "updated_at";
   aud: string | null;
   banned_until: UtcDateTimeUsec | null;
   confirmation_sent_at: UtcDateTimeUsec | null;
   confirmed_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec | null;
+  current_streak: number | null;
   deleted_at: UtcDateTimeUsec | null;
   email: string;
   email_confirmed_at: UtcDateTimeUsec | null;
+  flagged_conversation_count: number;
   id: UUID;
   instance_id: UUID | null;
   invited_at: UtcDateTimeUsec | null;
   is_creator: boolean;
   is_super_admin: boolean | null;
   last_sign_in_at: UtcDateTimeUsec | null;
+  lifetime_value_cents: number;
+  longest_streak: number | null;
+  member_status: "active" | "churned" | "non_paying" | null;
+  name: string | null;
   phone: string | null;
   phone_change_sent_at: UtcDateTimeUsec | null;
   phone_confirmed_at: UtcDateTimeUsec | null;
+  plan_name: string | null;
+  program_titles: Array<string>;
   raw_app_meta_data: Record<string, any> | null;
   raw_user_meta_data: Record<string, any> | null;
   reauthentication_sent_at: UtcDateTimeUsec | null;
   recovery_sent_at: UtcDateTimeUsec | null;
   role: string | null;
+  stripe_subscription_url: string | null;
   tenant_id: UUID;
   updated_at: UtcDateTimeUsec;
   origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; __pagination: "keyset"; __filterInput: OriginEntityFilterInput; __sortField: OriginEntitySortField; };
@@ -348,11 +357,11 @@ export type ChatSuggestionsInputSchema = {
 // PublicConversation Schema
 export type PublicConversationResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "channel" | "closed_at" | "created_at" | "has_letta_agent" | "id" | "is_root" | "last_message_at" | "message_count" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
+  __primitiveFields: "channel" | "closed_at" | "created_at" | "has_agent_state" | "id" | "is_root" | "last_message_at" | "message_count" | "metadata" | "origin_entity_id" | "phone_number" | "root_conversation_id" | "sms_opt_in" | "started_at" | "status" | "updated_at" | "user_email" | "user_id" | "user_name";
   channel: string | null;
   closed_at: UtcDateTimeUsec | null;
   created_at: UtcDateTimeUsec;
-  has_letta_agent: boolean | null;
+  has_agent_state: boolean | null;
   id: UUID;
   is_root: boolean | null;
   last_message_at: UtcDateTimeUsec;
@@ -415,6 +424,7 @@ export type PublicMessageResourceSchema = {
   role: string;
   tokens_used: number | null;
   conversation: { __type: "Relationship"; __resource: PublicConversationResourceSchema | null; };
+  flags: { __type: "Relationship"; __array: true; __resource: MessageFlagResourceSchema; __pagination: "mixed"; __filterInput: MessageFlagFilterInput; __sortField: MessageFlagSortField; };
 };
 
 
@@ -466,6 +476,33 @@ export type MessageAttachmentAttributesOnlySchema = {
 };
 
 
+// MessageFlag Schema
+export type MessageFlagResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "created_at" | "guardrail" | "id" | "message_id" | "reviewed_at" | "type";
+  created_at: UtcDateTimeUsec;
+  guardrail: "agent" | "moderation" | null;
+  id: UUID;
+  message_id: UUID;
+  reviewed_at: UtcDateTimeUsec | null;
+  type: "crisis_alert";
+  message: { __type: "Relationship"; __resource: PublicMessageResourceSchema; };
+};
+
+
+
+export type MessageFlagAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "created_at" | "guardrail" | "id" | "message_id" | "reviewed_at" | "type";
+  created_at: UtcDateTimeUsec;
+  guardrail: "agent" | "moderation" | null;
+  id: UUID;
+  message_id: UUID;
+  reviewed_at: UtcDateTimeUsec | null;
+  type: "crisis_alert";
+};
+
+
 // TurnState Schema
 export type TurnStateResourceSchema = {
   __type: "Resource";
@@ -490,17 +527,37 @@ export type TurnStateInputSchema = {
 };
 
 
+// AgentMemory Schema
+export type AgentMemoryResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "label" | "value";
+  id: string;
+  label: string;
+  value: string | null;
+};
+
+
+
+export type AgentMemoryAttributesOnlySchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "label" | "value";
+  id: string;
+  label: string;
+  value: string | null;
+};
+
+
 // App Schema
 export type AppResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "cover_image_url" | "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_letta_agent" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
+  __primitiveFields: "cover_image_url" | "created_at" | "generation_error" | "generation_format" | "generation_prompt" | "generation_status" | "has_agent_state" | "id" | "is_published" | "markdoc_content" | "meta" | "origin_entity_id" | "page_type" | "slug" | "source" | "title" | "updated_at";
   cover_image_url: string | null;
   created_at: UtcDateTimeUsec;
   generation_error: string | null;
   generation_format: string | null;
   generation_prompt: string | null;
   generation_status: string | null;
-  has_letta_agent: boolean | null;
+  has_agent_state: boolean | null;
   id: UUID;
   is_published: boolean | null;
   markdoc_content: string;
@@ -1998,33 +2055,6 @@ export type WebhookSubscriptionAttributesOnlySchema = {
 };
 
 
-// FeatureFlag Schema
-export type FeatureFlagResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "created_at" | "enabled" | "feature_name" | "id" | "origin_entity_id" | "updated_at";
-  created_at: UtcDateTimeUsec;
-  enabled: boolean;
-  feature_name: string;
-  id: UUID;
-  origin_entity_id: UUID;
-  updated_at: UtcDateTimeUsec;
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-};
-
-
-
-export type FeatureFlagAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "created_at" | "enabled" | "feature_name" | "id" | "origin_entity_id" | "updated_at";
-  created_at: UtcDateTimeUsec;
-  enabled: boolean;
-  feature_name: string;
-  id: UUID;
-  origin_entity_id: UUID;
-  updated_at: UtcDateTimeUsec;
-};
-
-
 // Feedback Schema
 export type FeedbackResourceSchema = {
   __type: "Resource";
@@ -2597,17 +2627,11 @@ export type OriginEntityResourceSchema = {
   chat_config: { __type: "Relationship"; __resource: ChatConfigResourceSchema | null; };
   child_origin_entities: { __type: "Relationship"; __array: true; __resource: OriginEntityResourceSchema; __pagination: "keyset"; __filterInput: OriginEntityFilterInput; __sortField: OriginEntitySortField; };
   default_agent: { __type: "Relationship"; __resource: AppResourceSchema | null; };
-  feature_flags: { __type: "Relationship"; __array: true; __resource: FeatureFlagResourceSchema; __filterInput: FeatureFlagFilterInput; __sortField: FeatureFlagSortField; };
-  feedbacks: { __type: "Relationship"; __array: true; __resource: FeedbackResourceSchema; __pagination: "mixed"; __filterInput: FeedbackFilterInput; __sortField: FeedbackSortField; };
   homepage_cards: { __type: "Relationship"; __array: true; __resource: HomepageCardResourceSchema; __filterInput: HomepageCardFilterInput; __sortField: HomepageCardSortField; };
-  interview_sessions: { __type: "Relationship"; __array: true; __resource: InterviewSessionResourceSchema; __pagination: "mixed"; __filterInput: InterviewSessionFilterInput; __sortField: InterviewSessionSortField; };
   memberships: { __type: "Relationship"; __array: true; __resource: OriginEntityStaffMembershipResourceSchema; __pagination: "mixed"; __filterInput: OriginEntityStaffMembershipFilterInput; __sortField: OriginEntityStaffMembershipSortField; };
   parent_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
-  podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
-  prompt_tools: { __type: "Relationship"; __array: true; __resource: PromptToolResourceSchema; __pagination: "mixed"; __filterInput: PromptToolFilterInput; __sortField: PromptToolSortField; };
   setup_progress: { __type: "Relationship"; __resource: SetupProgressResourceSchema | null; };
   tenant: { __type: "Relationship"; __resource: TenantResourceSchema; };
-  youtube_episodes: { __type: "Relationship"; __array: true; __resource: YoutubeEpisodeResourceSchema; __pagination: "mixed"; __filterInput: YoutubeEpisodeFilterInput; __sortField: YoutubeEpisodeSortField; };
 };
 
 
@@ -2807,50 +2831,6 @@ export type OriginEntityStaffMembershipAttributesOnlySchema = {
 };
 
 
-// PromptTool Schema
-export type PromptToolResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "auto_approve" | "created_at" | "description" | "id" | "is_active" | "letta_tools" | "max_tokens" | "model" | "name" | "origin_entity_id" | "prompt_template" | "source_origin_entity_id" | "temperature" | "updated_at";
-  auto_approve: boolean | null;
-  created_at: UtcDateTimeUsec;
-  description: string;
-  id: UUID;
-  is_active: boolean | null;
-  letta_tools: Array<string> | null;
-  max_tokens: number | null;
-  model: string | null;
-  name: string;
-  origin_entity_id: UUID;
-  prompt_template: string;
-  source_origin_entity_id: UUID | null;
-  temperature: number | null;
-  updated_at: UtcDateTimeUsec;
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-  source_origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
-};
-
-
-
-export type PromptToolAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "auto_approve" | "created_at" | "description" | "id" | "is_active" | "letta_tools" | "max_tokens" | "model" | "name" | "origin_entity_id" | "prompt_template" | "source_origin_entity_id" | "temperature" | "updated_at";
-  auto_approve: boolean | null;
-  created_at: UtcDateTimeUsec;
-  description: string;
-  id: UUID;
-  is_active: boolean | null;
-  letta_tools: Array<string> | null;
-  max_tokens: number | null;
-  model: string | null;
-  name: string;
-  origin_entity_id: UUID;
-  prompt_template: string;
-  source_origin_entity_id: UUID | null;
-  temperature: number | null;
-  updated_at: UtcDateTimeUsec;
-};
-
-
 // OriginsIdentityPublicProfileConfig Schema
 export type OriginsIdentityPublicProfileConfigResourceSchema = {
   __type: "Resource";
@@ -3004,177 +2984,6 @@ export type UserProfileAttributesOnlySchema = {
 };
 
 
-// InterviewGeneratedContent Schema
-export type InterviewGeneratedContentResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "content" | "content_type" | "created_at" | "id" | "interview_session_id" | "metadata" | "status" | "title" | "updated_at";
-  content: string;
-  content_type: "article" | "post" | "summary" | "thread" | "tweet";
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  interview_session_id: UUID;
-  metadata: Record<string, any> | null;
-  status: "approved" | "draft" | "published" | "rejected";
-  title: string | null;
-  updated_at: UtcDateTimeUsec;
-  interview_session: { __type: "Relationship"; __resource: InterviewSessionResourceSchema; };
-};
-
-
-
-export type InterviewGeneratedContentAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "content" | "content_type" | "created_at" | "id" | "interview_session_id" | "metadata" | "status" | "title" | "updated_at";
-  content: string;
-  content_type: "article" | "post" | "summary" | "thread" | "tweet";
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  interview_session_id: UUID;
-  metadata: Record<string, any> | null;
-  status: "approved" | "draft" | "published" | "rejected";
-  title: string | null;
-  updated_at: UtcDateTimeUsec;
-};
-
-
-// InterviewRecording Schema
-export type InterviewRecordingResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "audio_codec" | "created_at" | "duration_ms" | "error_message" | "file_name" | "file_size" | "height" | "id" | "interview_session_id" | "metadata" | "recording_type" | "status" | "storage_key" | "updated_at" | "video_codec" | "width";
-  audio_codec: string | null;
-  created_at: UtcDateTimeUsec;
-  duration_ms: number | null;
-  error_message: string | null;
-  file_name: string;
-  file_size: number | null;
-  height: number | null;
-  id: UUID;
-  interview_session_id: UUID;
-  metadata: Record<string, any> | null;
-  recording_type: "audio_only" | "audio_video" | "video_only";
-  status: "failed" | "processing" | "ready" | "recording" | "uploading";
-  storage_key: string;
-  updated_at: UtcDateTimeUsec;
-  video_codec: string | null;
-  width: number | null;
-  interview_session: { __type: "Relationship"; __resource: InterviewSessionResourceSchema; };
-};
-
-
-
-export type InterviewRecordingAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "audio_codec" | "created_at" | "duration_ms" | "error_message" | "file_name" | "file_size" | "height" | "id" | "interview_session_id" | "metadata" | "recording_type" | "status" | "storage_key" | "updated_at" | "video_codec" | "width";
-  audio_codec: string | null;
-  created_at: UtcDateTimeUsec;
-  duration_ms: number | null;
-  error_message: string | null;
-  file_name: string;
-  file_size: number | null;
-  height: number | null;
-  id: UUID;
-  interview_session_id: UUID;
-  metadata: Record<string, any> | null;
-  recording_type: "audio_only" | "audio_video" | "video_only";
-  status: "failed" | "processing" | "ready" | "recording" | "uploading";
-  storage_key: string;
-  updated_at: UtcDateTimeUsec;
-  video_codec: string | null;
-  width: number | null;
-};
-
-
-// InterviewSession Schema
-export type InterviewSessionResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "channel" | "created_at" | "id" | "key_quotes" | "metadata" | "origin_entity_id" | "session_name" | "status" | "summary" | "topics" | "updated_at";
-  channel: "video";
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  key_quotes: Array<Record<string, any>> | null;
-  metadata: Record<string, any> | null;
-  origin_entity_id: UUID;
-  session_name: string | null;
-  status: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-  summary: string | null;
-  topics: Array<string> | null;
-  updated_at: UtcDateTimeUsec;
-  interview_generated_contents: { __type: "Relationship"; __array: true; __resource: InterviewGeneratedContentResourceSchema; __pagination: "mixed"; __filterInput: InterviewGeneratedContentFilterInput; __sortField: InterviewGeneratedContentSortField; };
-  interview_recordings: { __type: "Relationship"; __array: true; __resource: InterviewRecordingResourceSchema; __pagination: "mixed"; __filterInput: InterviewRecordingFilterInput; __sortField: InterviewRecordingSortField; };
-  interview_turns: { __type: "Relationship"; __array: true; __resource: InterviewTurnResourceSchema; __pagination: "mixed"; __filterInput: InterviewTurnFilterInput; __sortField: InterviewTurnSortField; };
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-};
-
-
-
-export type InterviewSessionAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "channel" | "created_at" | "id" | "key_quotes" | "metadata" | "origin_entity_id" | "session_name" | "status" | "summary" | "topics" | "updated_at";
-  channel: "video";
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  key_quotes: Array<Record<string, any>> | null;
-  metadata: Record<string, any> | null;
-  origin_entity_id: UUID;
-  session_name: string | null;
-  status: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-  summary: string | null;
-  topics: Array<string> | null;
-  updated_at: UtcDateTimeUsec;
-};
-
-
-// InterviewTurn Schema
-export type InterviewTurnResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "answer" | "created_at" | "id" | "interview_session_id" | "metadata" | "question" | "turn_number" | "updated_at";
-  answer: string | null;
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  interview_session_id: UUID;
-  metadata: Record<string, any> | null;
-  question: string;
-  turn_number: number;
-  updated_at: UtcDateTimeUsec;
-  interview_session: { __type: "Relationship"; __resource: InterviewSessionResourceSchema; };
-};
-
-
-
-export type InterviewTurnAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "answer" | "created_at" | "id" | "interview_session_id" | "metadata" | "question" | "turn_number" | "updated_at";
-  answer: string | null;
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  interview_session_id: UUID;
-  metadata: Record<string, any> | null;
-  question: string;
-  turn_number: number;
-  updated_at: UtcDateTimeUsec;
-};
-
-
-// AgentMemory Schema
-export type AgentMemoryResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "id" | "label" | "value";
-  id: string;
-  label: string;
-  value: string | null;
-};
-
-
-
-export type AgentMemoryAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "id" | "label" | "value";
-  id: string;
-  label: string;
-  value: string | null;
-};
-
-
 // DriveConnection Schema
 export type DriveConnectionResourceSchema = {
   __type: "Resource";
@@ -3242,9 +3051,8 @@ export type GithubConnectionAttributesOnlySchema = {
 // Library Schema
 export type LibraryResourceSchema = {
   __type: "Resource";
-  __primitiveFields: "adapter_config" | "adapter_kind" | "auto_ingest_videos" | "auto_resync_enabled" | "created_at" | "error_count" | "id" | "inherits_to_descendants" | "last_error" | "last_error_at" | "last_synced_at" | "name" | "origin_entity_id" | "slug" | "status" | "transcribe_media" | "updated_at";
-  adapter_config: Record<string, any> | null;
-  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+  __primitiveFields: "adapter_kind" | "auto_ingest_videos" | "auto_resync_enabled" | "created_at" | "error_count" | "id" | "inherits_to_descendants" | "last_error" | "last_error_at" | "last_synced_at" | "name" | "origin_entity_id" | "slug" | "status" | "transcribe_media" | "updated_at";
+  adapter_kind: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
   auto_ingest_videos: boolean;
   auto_resync_enabled: boolean;
   created_at: UtcDateTimeUsec;
@@ -3260,6 +3068,12 @@ export type LibraryResourceSchema = {
   status: "error" | "pending" | "synced" | "syncing";
   transcribe_media: boolean;
   updated_at: UtcDateTimeUsec;
+  adapter_config: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"} | null;
+  files_count: { __type: "ComplexCalculation"; __returnType: number | null; __args: { item_types?: Array<string> | null; exclude_prefix?: string | null }; };
+  files_first_metadata_keys: { __type: "ComplexCalculation"; __returnType: Record<string, any> | null; __args: { keys: Array<string>; order_key: string; present_key?: string | null; item_types?: Array<string> | null; exclude_prefix?: string | null }; };
+  files_metadata_item_sum: { __type: "ComplexCalculation"; __returnType: Decimal | null; __args: { key: string; item_types?: Array<string> | null; exclude_prefix?: string | null }; };
+  files_metadata_match: { __type: "ComplexCalculation"; __returnType: boolean | null; __args: { match: Record<string, any>; item_types?: Array<string> | null; exclude_prefix?: string | null }; };
+  files_metadata_unique_values: { __type: "ComplexCalculation"; __returnType: Array<string> | null; __args: { key: string; item_types?: Array<string> | null; exclude_prefix?: string | null }; };
   files: { __type: "Relationship"; __array: true; __resource: LibraryFileResourceSchema; __pagination: "keyset"; __filterInput: LibraryFileFilterInput; __sortField: LibraryFileSortField; };
   grants: { __type: "Relationship"; __array: true; __resource: LibraryAccessGrantResourceSchema; __pagination: "mixed"; __filterInput: LibraryAccessGrantFilterInput; __sortField: LibraryAccessGrantSortField; };
   origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
@@ -3269,9 +3083,8 @@ export type LibraryResourceSchema = {
 
 export type LibraryAttributesOnlySchema = {
   __type: "Resource";
-  __primitiveFields: "adapter_config" | "adapter_kind" | "auto_ingest_videos" | "auto_resync_enabled" | "created_at" | "error_count" | "id" | "inherits_to_descendants" | "last_error" | "last_error_at" | "last_synced_at" | "name" | "origin_entity_id" | "slug" | "status" | "transcribe_media" | "updated_at";
-  adapter_config: Record<string, any> | null;
-  adapter_kind: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+  __primitiveFields: "adapter_kind" | "auto_ingest_videos" | "auto_resync_enabled" | "created_at" | "error_count" | "id" | "inherits_to_descendants" | "last_error" | "last_error_at" | "last_synced_at" | "name" | "origin_entity_id" | "slug" | "status" | "transcribe_media" | "updated_at";
+  adapter_kind: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
   auto_ingest_videos: boolean;
   auto_resync_enabled: boolean;
   created_at: UtcDateTimeUsec;
@@ -3287,6 +3100,7 @@ export type LibraryAttributesOnlySchema = {
   status: "error" | "pending" | "synced" | "syncing";
   transcribe_media: boolean;
   updated_at: UtcDateTimeUsec;
+  adapter_config: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"} | null;
 };
 
 
@@ -3337,6 +3151,7 @@ export type LibraryFileResourceSchema = {
   metadata_contains: { __type: "ComplexCalculation"; __returnType: boolean | null; __args: { value: Record<string, any> }; };
   metadata_keys: { __type: "ComplexCalculation"; __returnType: Record<string, any> | null; __args: { keys: Array<string> }; };
   metadata_number: { __type: "ComplexCalculation"; __returnType: Decimal | null; __args: { key: string }; };
+  metadata_text: { __type: "ComplexCalculation"; __returnType: string | null; __args: { key: string }; };
   library: { __type: "Relationship"; __resource: LibraryResourceSchema; };
   video_asset: { __type: "Relationship"; __resource: VideoAssetResourceSchema | null; };
 };
@@ -3595,158 +3410,6 @@ export type ChatBindingAttributesOnlySchema = {
   origin_entity_id: UUID;
   prospect_labels: Record<string, any>;
   updated_at: UtcDateTimeUsec;
-};
-
-
-// PodcastConfig Schema
-export type PodcastConfigResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "appearance_config" | "conversation_starter_config" | "created_at" | "cta_button_border_color" | "entity_profile_id" | "episodes" | "featured_video_url" | "hero_cta_link" | "hero_cta_text" | "id" | "is_public" | "logo_link_type" | "logo_link_url" | "origins_button_border_color" | "origins_button_text" | "origins_button_text_color" | "origins_button_visible" | "page_subtitle" | "page_title" | "playlist_id" | "trailer_url" | "updated_at";
-  appearance_config: Record<string, any> | null;
-  conversation_starter_config: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
-  cta_button_border_color: string | null;
-  entity_profile_id: UUID | null;
-  episodes: Array<Record<string, any>> | null;
-  featured_video_url: string | null;
-  hero_cta_link: string | null;
-  hero_cta_text: string | null;
-  id: UUID;
-  is_public: boolean | null;
-  logo_link_type: string | null;
-  logo_link_url: string | null;
-  origins_button_border_color: string | null;
-  origins_button_text: string | null;
-  origins_button_text_color: string | null;
-  origins_button_visible: boolean | null;
-  page_subtitle: string | null;
-  page_title: string | null;
-  playlist_id: string | null;
-  trailer_url: string | null;
-  updated_at: UtcDateTimeUsec;
-  entity_profile: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
-};
-
-
-
-export type PodcastConfigAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "appearance_config" | "conversation_starter_config" | "created_at" | "cta_button_border_color" | "entity_profile_id" | "episodes" | "featured_video_url" | "hero_cta_link" | "hero_cta_text" | "id" | "is_public" | "logo_link_type" | "logo_link_url" | "origins_button_border_color" | "origins_button_text" | "origins_button_text_color" | "origins_button_visible" | "page_subtitle" | "page_title" | "playlist_id" | "trailer_url" | "updated_at";
-  appearance_config: Record<string, any> | null;
-  conversation_starter_config: Record<string, any> | null;
-  created_at: UtcDateTimeUsec;
-  cta_button_border_color: string | null;
-  entity_profile_id: UUID | null;
-  episodes: Array<Record<string, any>> | null;
-  featured_video_url: string | null;
-  hero_cta_link: string | null;
-  hero_cta_text: string | null;
-  id: UUID;
-  is_public: boolean | null;
-  logo_link_type: string | null;
-  logo_link_url: string | null;
-  origins_button_border_color: string | null;
-  origins_button_text: string | null;
-  origins_button_text_color: string | null;
-  origins_button_visible: boolean | null;
-  page_subtitle: string | null;
-  page_title: string | null;
-  playlist_id: string | null;
-  trailer_url: string | null;
-  updated_at: UtcDateTimeUsec;
-};
-
-
-// PodcastEpisodeSettings Schema
-export type PodcastEpisodeSettingsResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "ai_enabled" | "character_id" | "created_at" | "id" | "order" | "podcast_config_id" | "updated_at" | "visible" | "youtube_episode_id";
-  ai_enabled: boolean;
-  character_id: UUID | null;
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  order: number;
-  podcast_config_id: UUID | null;
-  updated_at: UtcDateTimeUsec;
-  visible: boolean;
-  youtube_episode_id: UUID;
-  character: { __type: "Relationship"; __resource: OriginEntityResourceSchema | null; };
-  podcast_config: { __type: "Relationship"; __resource: PodcastConfigResourceSchema | null; };
-  youtube_episode: { __type: "Relationship"; __resource: YoutubeEpisodeResourceSchema; };
-};
-
-
-
-export type PodcastEpisodeSettingsAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "ai_enabled" | "character_id" | "created_at" | "id" | "order" | "podcast_config_id" | "updated_at" | "visible" | "youtube_episode_id";
-  ai_enabled: boolean;
-  character_id: UUID | null;
-  created_at: UtcDateTimeUsec;
-  id: UUID;
-  order: number;
-  podcast_config_id: UUID | null;
-  updated_at: UtcDateTimeUsec;
-  visible: boolean;
-  youtube_episode_id: UUID;
-};
-
-
-// YoutubeEpisode Schema
-export type YoutubeEpisodeResourceSchema = {
-  __type: "Resource";
-  __primitiveFields: "conversation_starters" | "created_at" | "description" | "duration" | "episode_number" | "guest_ids" | "guest_names" | "host_ids" | "id" | "origin_entity_id" | "playlist_id" | "public_profile_config" | "publish_date" | "thumbnail_url" | "title" | "transcript_id" | "updated_at" | "used_in_podcast" | "used_in_public_profile" | "video_id" | "video_url";
-  conversation_starters: Array<string> | null;
-  created_at: UtcDateTimeUsec;
-  description: string | null;
-  duration: string | null;
-  episode_number: number | null;
-  guest_ids: Array<UUID> | null;
-  guest_names: Array<string> | null;
-  host_ids: Array<UUID> | null;
-  id: UUID;
-  origin_entity_id: UUID;
-  playlist_id: string | null;
-  public_profile_config: Record<string, any> | null;
-  publish_date: UtcDateTimeUsec | null;
-  thumbnail_url: string | null;
-  title: string;
-  transcript_id: UUID | null;
-  updated_at: UtcDateTimeUsec;
-  used_in_podcast: boolean | null;
-  used_in_public_profile: boolean | null;
-  video_id: string;
-  video_url: string;
-  library_file: { __type: "Relationship"; __resource: LibraryFileResourceSchema | null; };
-  origin_entity: { __type: "Relationship"; __resource: OriginEntityResourceSchema; };
-};
-
-
-
-export type YoutubeEpisodeAttributesOnlySchema = {
-  __type: "Resource";
-  __primitiveFields: "conversation_starters" | "created_at" | "description" | "duration" | "episode_number" | "guest_ids" | "guest_names" | "host_ids" | "id" | "origin_entity_id" | "playlist_id" | "public_profile_config" | "publish_date" | "thumbnail_url" | "title" | "transcript_id" | "updated_at" | "used_in_podcast" | "used_in_public_profile" | "video_id" | "video_url";
-  conversation_starters: Array<string> | null;
-  created_at: UtcDateTimeUsec;
-  description: string | null;
-  duration: string | null;
-  episode_number: number | null;
-  guest_ids: Array<UUID> | null;
-  guest_names: Array<string> | null;
-  host_ids: Array<UUID> | null;
-  id: UUID;
-  origin_entity_id: UUID;
-  playlist_id: string | null;
-  public_profile_config: Record<string, any> | null;
-  publish_date: UtcDateTimeUsec | null;
-  thumbnail_url: string | null;
-  title: string;
-  transcript_id: UUID | null;
-  updated_at: UtcDateTimeUsec;
-  used_in_podcast: boolean | null;
-  used_in_public_profile: boolean | null;
-  video_id: string;
-  video_url: string;
 };
 
 
@@ -4126,6 +3789,17 @@ export type UserFilterInput = {
     greater_than_or_equal?: UtcDateTimeUsec;
   };
 
+  current_streak?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
   deleted_at?: {
     is_nil?: boolean;
     eq?: UtcDateTimeUsec;
@@ -4159,6 +3833,16 @@ export type UserFilterInput = {
     greater_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
     greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  flagged_conversation_count?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
   };
 
   id?: {
@@ -4217,6 +3901,52 @@ export type UserFilterInput = {
     greater_than_or_equal?: UtcDateTimeUsec;
   };
 
+  lifetime_value_cents?: {
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  longest_streak?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  member_status?: {
+    is_nil?: boolean;
+    eq?: "active" | "churned" | "non_paying";
+    not_eq?: "active" | "churned" | "non_paying";
+    in?: Array<"active" | "churned" | "non_paying">;
+    less_than?: "active" | "churned" | "non_paying";
+    greater_than?: "active" | "churned" | "non_paying";
+    less_than_or_equal?: "active" | "churned" | "non_paying";
+    greater_than_or_equal?: "active" | "churned" | "non_paying";
+  };
+
+  name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
   phone?: {
     is_nil?: boolean;
     eq?: string;
@@ -4251,6 +3981,27 @@ export type UserFilterInput = {
     greater_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
     greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  plan_name?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  program_titles?: {
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
   };
 
   raw_app_meta_data?: {
@@ -4298,6 +4049,20 @@ export type UserFilterInput = {
   };
 
   role?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  stripe_subscription_url?: {
     is_nil?: boolean;
     eq?: string;
     not_eq?: string;
@@ -4749,7 +4514,7 @@ export type PublicConversationFilterInput = {
     greater_than_or_equal?: UtcDateTimeUsec;
   };
 
-  has_letta_agent?: {
+  has_agent_state?: {
     is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
@@ -5044,6 +4809,8 @@ export type PublicMessageFilterInput = {
 
   conversation?: PublicConversationFilterInput;
 
+  flags?: MessageFlagFilterInput;
+
 };
 export type MessageAttachmentFilterInput = {
   and?: Array<MessageAttachmentFilterInput>;
@@ -5157,6 +4924,76 @@ export type MessageAttachmentFilterInput = {
 
 
 };
+export type MessageFlagFilterInput = {
+  and?: Array<MessageFlagFilterInput>;
+  or?: Array<MessageFlagFilterInput>;
+  not?: Array<MessageFlagFilterInput>;
+
+  created_at?: {
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  guardrail?: {
+    is_nil?: boolean;
+    eq?: "agent" | "moderation";
+    not_eq?: "agent" | "moderation";
+    in?: Array<"agent" | "moderation">;
+    less_than?: "agent" | "moderation";
+    greater_than?: "agent" | "moderation";
+    less_than_or_equal?: "agent" | "moderation";
+    greater_than_or_equal?: "agent" | "moderation";
+  };
+
+  id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  message_id?: {
+    eq?: UUID;
+    not_eq?: UUID;
+    in?: Array<UUID>;
+    less_than?: UUID;
+    greater_than?: UUID;
+    less_than_or_equal?: UUID;
+    greater_than_or_equal?: UUID;
+  };
+
+  reviewed_at?: {
+    is_nil?: boolean;
+    eq?: UtcDateTimeUsec;
+    not_eq?: UtcDateTimeUsec;
+    in?: Array<UtcDateTimeUsec>;
+    less_than?: UtcDateTimeUsec;
+    greater_than?: UtcDateTimeUsec;
+    less_than_or_equal?: UtcDateTimeUsec;
+    greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+  type?: {
+    eq?: "crisis_alert";
+    not_eq?: "crisis_alert";
+    in?: Array<"crisis_alert">;
+    less_than?: "crisis_alert";
+    greater_than?: "crisis_alert";
+    less_than_or_equal?: "crisis_alert";
+    greater_than_or_equal?: "crisis_alert";
+  };
+
+  message?: PublicMessageFilterInput;
+
+};
 export type TurnStateFilterInput = {
   and?: Array<TurnStateFilterInput>;
   or?: Array<TurnStateFilterInput>;
@@ -5177,6 +5014,53 @@ export type TurnStateFilterInput = {
     greater_than?: UtcDateTimeUsec;
     less_than_or_equal?: UtcDateTimeUsec;
     greater_than_or_equal?: UtcDateTimeUsec;
+  };
+
+
+};
+export type AgentMemoryFilterInput = {
+  and?: Array<AgentMemoryFilterInput>;
+  or?: Array<AgentMemoryFilterInput>;
+  not?: Array<AgentMemoryFilterInput>;
+
+  id?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  label?: {
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
+  };
+
+  value?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
 
@@ -5318,7 +5202,7 @@ export type AppFilterInput = {
     string_starts_with?: string;
   };
 
-  has_letta_agent?: {
+  has_agent_state?: {
     is_nil?: boolean;
     eq?: boolean;
     not_eq?: boolean;
@@ -5846,9 +5730,6 @@ export type OriginsAppsContentCourseActivityFilterInput = {
     greater_than?: string;
     less_than_or_equal?: string;
     greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
   };
 
   kind?: {
@@ -6024,9 +5905,6 @@ export type OriginsAppsContentCourseContributorFilterInput = {
     greater_than?: string;
     less_than_or_equal?: string;
     greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
   };
 
   bio?: {
@@ -6231,9 +6109,6 @@ export type OriginsAppsContentCourseCourseFilterInput = {
     greater_than?: string;
     less_than_or_equal?: string;
     greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
   };
 
   name?: {
@@ -9228,73 +9103,6 @@ export type WebhookSubscriptionFilterInput = {
   origin_entity?: OriginEntityFilterInput;
 
 };
-export type FeatureFlagFilterInput = {
-  and?: Array<FeatureFlagFilterInput>;
-  or?: Array<FeatureFlagFilterInput>;
-  not?: Array<FeatureFlagFilterInput>;
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  enabled?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  feature_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  origin_entity?: OriginEntityFilterInput;
-
-};
 export type FeedbackFilterInput = {
   and?: Array<FeedbackFilterInput>;
   or?: Array<FeedbackFilterInput>;
@@ -11855,27 +11663,15 @@ export type OriginEntityFilterInput = {
 
   default_agent?: AppFilterInput;
 
-  feature_flags?: FeatureFlagFilterInput;
-
-  feedbacks?: FeedbackFilterInput;
-
   homepage_cards?: HomepageCardFilterInput;
-
-  interview_sessions?: InterviewSessionFilterInput;
 
   memberships?: OriginEntityStaffMembershipFilterInput;
 
   parent_origin_entity?: OriginEntityFilterInput;
 
-  podcast_config?: PodcastConfigFilterInput;
-
-  prompt_tools?: PromptToolFilterInput;
-
   setup_progress?: SetupProgressFilterInput;
 
   tenant?: TenantFilterInput;
-
-  youtube_episodes?: YoutubeEpisodeFilterInput;
 
 };
 export type ScrapedWebsiteContentFilterInput = {
@@ -12227,164 +12023,6 @@ export type OriginEntityStaffMembershipFilterInput = {
   origin_entity?: OriginEntityFilterInput;
 
   user?: UserFilterInput;
-
-};
-export type PromptToolFilterInput = {
-  and?: Array<PromptToolFilterInput>;
-  or?: Array<PromptToolFilterInput>;
-  not?: Array<PromptToolFilterInput>;
-
-  auto_approve?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  description?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  is_active?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  letta_tools?: {
-    is_nil?: boolean;
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    has?: string;
-  };
-
-  max_tokens?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  model?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  prompt_template?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  source_origin_entity_id?: {
-    is_nil?: boolean;
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  temperature?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  origin_entity?: OriginEntityFilterInput;
-
-  source_origin_entity?: OriginEntityFilterInput;
 
 };
 export type OriginsIdentityPublicProfileConfigFilterInput = {
@@ -12821,575 +12459,6 @@ export type UserProfileFilterInput = {
 
 
 };
-export type InterviewGeneratedContentFilterInput = {
-  and?: Array<InterviewGeneratedContentFilterInput>;
-  or?: Array<InterviewGeneratedContentFilterInput>;
-  not?: Array<InterviewGeneratedContentFilterInput>;
-
-  content?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  content_type?: {
-    eq?: "article" | "post" | "summary" | "thread" | "tweet";
-    not_eq?: "article" | "post" | "summary" | "thread" | "tweet";
-    in?: Array<"article" | "post" | "summary" | "thread" | "tweet">;
-    less_than?: "article" | "post" | "summary" | "thread" | "tweet";
-    greater_than?: "article" | "post" | "summary" | "thread" | "tweet";
-    less_than_or_equal?: "article" | "post" | "summary" | "thread" | "tweet";
-    greater_than_or_equal?: "article" | "post" | "summary" | "thread" | "tweet";
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  interview_session_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  metadata?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  status?: {
-    eq?: "approved" | "draft" | "published" | "rejected";
-    not_eq?: "approved" | "draft" | "published" | "rejected";
-    in?: Array<"approved" | "draft" | "published" | "rejected">;
-    less_than?: "approved" | "draft" | "published" | "rejected";
-    greater_than?: "approved" | "draft" | "published" | "rejected";
-    less_than_or_equal?: "approved" | "draft" | "published" | "rejected";
-    greater_than_or_equal?: "approved" | "draft" | "published" | "rejected";
-  };
-
-  title?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  interview_session?: InterviewSessionFilterInput;
-
-};
-export type InterviewRecordingFilterInput = {
-  and?: Array<InterviewRecordingFilterInput>;
-  or?: Array<InterviewRecordingFilterInput>;
-  not?: Array<InterviewRecordingFilterInput>;
-
-  audio_codec?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  duration_ms?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  error_message?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  file_name?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  file_size?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  height?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  interview_session_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  metadata?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  recording_type?: {
-    eq?: "audio_only" | "audio_video" | "video_only";
-    not_eq?: "audio_only" | "audio_video" | "video_only";
-    in?: Array<"audio_only" | "audio_video" | "video_only">;
-    less_than?: "audio_only" | "audio_video" | "video_only";
-    greater_than?: "audio_only" | "audio_video" | "video_only";
-    less_than_or_equal?: "audio_only" | "audio_video" | "video_only";
-    greater_than_or_equal?: "audio_only" | "audio_video" | "video_only";
-  };
-
-  status?: {
-    eq?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    not_eq?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    in?: Array<"failed" | "processing" | "ready" | "recording" | "uploading">;
-    less_than?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    greater_than?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    less_than_or_equal?: "failed" | "processing" | "ready" | "recording" | "uploading";
-    greater_than_or_equal?: "failed" | "processing" | "ready" | "recording" | "uploading";
-  };
-
-  storage_key?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  video_codec?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  width?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  interview_session?: InterviewSessionFilterInput;
-
-};
-export type InterviewSessionFilterInput = {
-  and?: Array<InterviewSessionFilterInput>;
-  or?: Array<InterviewSessionFilterInput>;
-  not?: Array<InterviewSessionFilterInput>;
-
-  channel?: {
-    eq?: "video";
-    not_eq?: "video";
-    in?: Array<"video">;
-    less_than?: "video";
-    greater_than?: "video";
-    less_than_or_equal?: "video";
-    greater_than_or_equal?: "video";
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  key_quotes?: {
-    is_nil?: boolean;
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    has?: Record<string, any>;
-  };
-
-  metadata?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  session_name?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  status?: {
-    eq?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    not_eq?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    in?: Array<"cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing">;
-    less_than?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    greater_than?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    less_than_or_equal?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-    greater_than_or_equal?: "cancelled" | "completed" | "finalized" | "in_progress" | "pending" | "processing";
-  };
-
-  summary?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  topics?: {
-    is_nil?: boolean;
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    has?: string;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  interview_generated_contents?: InterviewGeneratedContentFilterInput;
-
-  interview_recordings?: InterviewRecordingFilterInput;
-
-  interview_turns?: InterviewTurnFilterInput;
-
-  origin_entity?: OriginEntityFilterInput;
-
-};
-export type InterviewTurnFilterInput = {
-  and?: Array<InterviewTurnFilterInput>;
-  or?: Array<InterviewTurnFilterInput>;
-  not?: Array<InterviewTurnFilterInput>;
-
-  answer?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  interview_session_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  metadata?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  question?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  turn_number?: {
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  interview_session?: InterviewSessionFilterInput;
-
-};
-export type AgentMemoryFilterInput = {
-  and?: Array<AgentMemoryFilterInput>;
-  or?: Array<AgentMemoryFilterInput>;
-  not?: Array<AgentMemoryFilterInput>;
-
-  id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  label?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  value?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-
-};
 export type DriveConnectionFilterInput = {
   and?: Array<DriveConnectionFilterInput>;
   or?: Array<DriveConnectionFilterInput>;
@@ -13598,23 +12667,23 @@ export type LibraryFilterInput = {
 
   adapter_config?: {
     is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
+    eq?: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"};
+    not_eq?: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"};
+    in?: Array<{drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"}>;
+    less_than?: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"};
+    greater_than?: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"};
+    less_than_or_equal?: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"};
+    greater_than_or_equal?: {drive_connection_id: string | null, drive_folder_id: string | null, is_shared_drive: boolean | null, shared_drive_id: string | null, owner: string | null, repo: string | null, ref: string | null, provider: string | null, region: string | null, endpoint: string | null, bucket: string | null, prefix: string | null, url: string | null, root: string | null, vendor: string | null, auth_method: string | null, channel_id: string | null, selected_playlists: Array<string> | null, filters: {include: Array<string>, exclude: Array<string>, __type: "TypedMap", __primitiveFields: "include" | "exclude"} | null, __type: "TypedMap", __primitiveFields: "drive_connection_id" | "drive_folder_id" | "is_shared_drive" | "shared_drive_id" | "owner" | "repo" | "ref" | "provider" | "region" | "endpoint" | "bucket" | "prefix" | "url" | "root" | "vendor" | "auth_method" | "channel_id" | "selected_playlists"};
   };
 
   adapter_kind?: {
-    eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
-    not_eq?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
-    in?: Array<"craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube">;
-    less_than?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
-    greater_than?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
-    less_than_or_equal?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
-    greater_than_or_equal?: "craft" | "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    eq?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    not_eq?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    in?: Array<"curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube">;
+    less_than?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    greater_than?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    less_than_or_equal?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
+    greater_than_or_equal?: "curated" | "drive" | "github" | "raw_upload" | "s3" | "webdav" | "youtube";
   };
 
   auto_ingest_videos?: {
@@ -13647,6 +12716,54 @@ export type LibraryFilterInput = {
     greater_than?: number;
     less_than_or_equal?: number;
     greater_than_or_equal?: number;
+  };
+
+  files_count?: {
+    is_nil?: boolean;
+    eq?: number;
+    not_eq?: number;
+    in?: Array<number>;
+    less_than?: number;
+    greater_than?: number;
+    less_than_or_equal?: number;
+    greater_than_or_equal?: number;
+  };
+
+  files_first_metadata_keys?: {
+    is_nil?: boolean;
+    eq?: Record<string, any>;
+    not_eq?: Record<string, any>;
+    in?: Array<Record<string, any>>;
+    less_than?: Record<string, any>;
+    greater_than?: Record<string, any>;
+    less_than_or_equal?: Record<string, any>;
+    greater_than_or_equal?: Record<string, any>;
+  };
+
+  files_metadata_item_sum?: {
+    is_nil?: boolean;
+    eq?: Decimal;
+    not_eq?: Decimal;
+    in?: Array<Decimal>;
+    less_than?: Decimal;
+    greater_than?: Decimal;
+    less_than_or_equal?: Decimal;
+    greater_than_or_equal?: Decimal;
+  };
+
+  files_metadata_match?: {
+    is_nil?: boolean;
+    eq?: boolean;
+    not_eq?: boolean;
+    in?: Array<boolean>;
+  };
+
+  files_metadata_unique_values?: {
+    is_nil?: boolean;
+    eq?: Array<string>;
+    not_eq?: Array<string>;
+    in?: Array<Array<string>>;
+    has?: string;
   };
 
   id?: {
@@ -13946,6 +13063,20 @@ export type LibraryFileFilterInput = {
     greater_than?: Decimal;
     less_than_or_equal?: Decimal;
     greater_than_or_equal?: Decimal;
+  };
+
+  metadata_text?: {
+    is_nil?: boolean;
+    eq?: string;
+    not_eq?: string;
+    in?: Array<string>;
+    less_than?: string;
+    greater_than?: string;
+    less_than_or_equal?: string;
+    greater_than_or_equal?: string;
+    contains?: string;
+    string_ends_with?: string;
+    string_starts_with?: string;
   };
 
   path?: {
@@ -14642,612 +13773,6 @@ export type ChatBindingFilterInput = {
   origin_entity?: OriginEntityFilterInput;
 
 };
-export type PodcastConfigFilterInput = {
-  and?: Array<PodcastConfigFilterInput>;
-  or?: Array<PodcastConfigFilterInput>;
-  not?: Array<PodcastConfigFilterInput>;
-
-  appearance_config?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  conversation_starter_config?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  cta_button_border_color?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  entity_profile_id?: {
-    is_nil?: boolean;
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  episodes?: {
-    is_nil?: boolean;
-    eq?: Array<Record<string, any>>;
-    not_eq?: Array<Record<string, any>>;
-    in?: Array<Array<Record<string, any>>>;
-    has?: Record<string, any>;
-  };
-
-  featured_video_url?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  hero_cta_link?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  hero_cta_text?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  is_public?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  logo_link_type?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  logo_link_url?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  origins_button_border_color?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  origins_button_text?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  origins_button_text_color?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  origins_button_visible?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  page_subtitle?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  page_title?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  playlist_id?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  trailer_url?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  entity_profile?: OriginEntityFilterInput;
-
-};
-export type PodcastEpisodeSettingsFilterInput = {
-  and?: Array<PodcastEpisodeSettingsFilterInput>;
-  or?: Array<PodcastEpisodeSettingsFilterInput>;
-  not?: Array<PodcastEpisodeSettingsFilterInput>;
-
-  ai_enabled?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  character_id?: {
-    is_nil?: boolean;
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  order?: {
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  podcast_config_id?: {
-    is_nil?: boolean;
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  visible?: {
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  youtube_episode_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  character?: OriginEntityFilterInput;
-
-  podcast_config?: PodcastConfigFilterInput;
-
-  youtube_episode?: YoutubeEpisodeFilterInput;
-
-};
-export type YoutubeEpisodeFilterInput = {
-  and?: Array<YoutubeEpisodeFilterInput>;
-  or?: Array<YoutubeEpisodeFilterInput>;
-  not?: Array<YoutubeEpisodeFilterInput>;
-
-  conversation_starters?: {
-    is_nil?: boolean;
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    has?: string;
-  };
-
-  created_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  description?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  duration?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  episode_number?: {
-    is_nil?: boolean;
-    eq?: number;
-    not_eq?: number;
-    in?: Array<number>;
-    less_than?: number;
-    greater_than?: number;
-    less_than_or_equal?: number;
-    greater_than_or_equal?: number;
-  };
-
-  guest_ids?: {
-    is_nil?: boolean;
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    has?: UUID;
-  };
-
-  guest_names?: {
-    is_nil?: boolean;
-    eq?: Array<string>;
-    not_eq?: Array<string>;
-    in?: Array<Array<string>>;
-    has?: string;
-  };
-
-  host_ids?: {
-    is_nil?: boolean;
-    eq?: Array<UUID>;
-    not_eq?: Array<UUID>;
-    in?: Array<Array<UUID>>;
-    has?: UUID;
-  };
-
-  id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  origin_entity_id?: {
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  playlist_id?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  public_profile_config?: {
-    is_nil?: boolean;
-    eq?: Record<string, any>;
-    not_eq?: Record<string, any>;
-    in?: Array<Record<string, any>>;
-    less_than?: Record<string, any>;
-    greater_than?: Record<string, any>;
-    less_than_or_equal?: Record<string, any>;
-    greater_than_or_equal?: Record<string, any>;
-  };
-
-  publish_date?: {
-    is_nil?: boolean;
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  thumbnail_url?: {
-    is_nil?: boolean;
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  title?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  transcript_id?: {
-    is_nil?: boolean;
-    eq?: UUID;
-    not_eq?: UUID;
-    in?: Array<UUID>;
-    less_than?: UUID;
-    greater_than?: UUID;
-    less_than_or_equal?: UUID;
-    greater_than_or_equal?: UUID;
-  };
-
-  updated_at?: {
-    eq?: UtcDateTimeUsec;
-    not_eq?: UtcDateTimeUsec;
-    in?: Array<UtcDateTimeUsec>;
-    less_than?: UtcDateTimeUsec;
-    greater_than?: UtcDateTimeUsec;
-    less_than_or_equal?: UtcDateTimeUsec;
-    greater_than_or_equal?: UtcDateTimeUsec;
-  };
-
-  used_in_podcast?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  used_in_public_profile?: {
-    is_nil?: boolean;
-    eq?: boolean;
-    not_eq?: boolean;
-    in?: Array<boolean>;
-  };
-
-  video_id?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  video_url?: {
-    eq?: string;
-    not_eq?: string;
-    in?: Array<string>;
-    less_than?: string;
-    greater_than?: string;
-    less_than_or_equal?: string;
-    greater_than_or_equal?: string;
-    contains?: string;
-    string_ends_with?: string;
-    string_starts_with?: string;
-  };
-
-  library_file?: LibraryFileFilterInput;
-
-  origin_entity?: OriginEntityFilterInput;
-
-};
 
 
 export const consentRecordFilterFields = ["custom_name", "email", "granted", "id", "ip", "kind", "method", "policy_version", "recorded_at", "text_shown", "user_agent", "profile"] as const;
@@ -15259,7 +13784,7 @@ export type StaffTenantGrantFilterField = (typeof staffTenantGrantFilterFields)[
 export const tenantFilterFields = ["archived_at", "created_at", "id", "name", "root_origin_entity_id", "slug", "status", "updated_at", "root_origin_entity"] as const;
 export type TenantFilterField = (typeof tenantFilterFields)[number];
 
-export const userFilterFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "deleted_at", "email", "email_confirmed_at", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "phone", "phone_change_sent_at", "phone_confirmed_at", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "tenant_id", "updated_at", "origin_entities", "origin_entity_memberships", "profile", "staff_tenant_grants", "tenant"] as const;
+export const userFilterFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "current_streak", "deleted_at", "email", "email_confirmed_at", "flagged_conversation_count", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "lifetime_value_cents", "longest_streak", "member_status", "name", "phone", "phone_change_sent_at", "phone_confirmed_at", "plan_name", "program_titles", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "stripe_subscription_url", "tenant_id", "updated_at", "origin_entities", "origin_entity_memberships", "profile", "staff_tenant_grants", "tenant"] as const;
 export type UserFilterField = (typeof userFilterFields)[number];
 
 export const signInLinkResponseFilterFields = ["status"] as const;
@@ -15280,19 +13805,25 @@ export type ChatReplyFilterField = (typeof chatReplyFilterFields)[number];
 export const chatSuggestionsFilterFields = ["suggestions"] as const;
 export type ChatSuggestionsFilterField = (typeof chatSuggestionsFilterFields)[number];
 
-export const publicConversationFilterFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name", "memories", "messages", "origin_entity", "root_conversation", "threads", "user"] as const;
+export const publicConversationFilterFields = ["channel", "closed_at", "created_at", "has_agent_state", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name", "memories", "messages", "origin_entity", "root_conversation", "threads", "user"] as const;
 export type PublicConversationFilterField = (typeof publicConversationFilterFields)[number];
 
-export const publicMessageFilterFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used", "conversation"] as const;
+export const publicMessageFilterFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used", "conversation", "flags"] as const;
 export type PublicMessageFilterField = (typeof publicMessageFilterFields)[number];
 
 export const messageAttachmentFilterFields = ["created_at", "file_name", "file_size", "file_type", "id", "message_id", "parsed_content", "pending_message_id", "storage_path"] as const;
 export type MessageAttachmentFilterField = (typeof messageAttachmentFilterFields)[number];
 
+export const messageFlagFilterFields = ["created_at", "guardrail", "id", "message_id", "reviewed_at", "type", "message"] as const;
+export type MessageFlagFilterField = (typeof messageFlagFilterFields)[number];
+
 export const turnStateFilterFields = ["running", "stale_at"] as const;
 export type TurnStateFilterField = (typeof turnStateFilterFields)[number];
 
-export const appFilterFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at", "origin_entity"] as const;
+export const agentMemoryFilterFields = ["id", "label", "value"] as const;
+export type AgentMemoryFilterField = (typeof agentMemoryFilterFields)[number];
+
+export const appFilterFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_agent_state", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at", "origin_entity"] as const;
 export type AppFilterField = (typeof appFilterFields)[number];
 
 export const assessmentGraphFilterFields = ["edges", "nodes", "start_node"] as const;
@@ -15412,9 +13943,6 @@ export type WebhookDeliveryFilterField = (typeof webhookDeliveryFilterFields)[nu
 export const webhookSubscriptionFilterFields = ["active", "app_id", "created_at", "description", "event_types", "id", "origin_entity_id", "secret", "target_url", "updated_at", "app", "origin_entity"] as const;
 export type WebhookSubscriptionFilterField = (typeof webhookSubscriptionFilterFields)[number];
 
-export const featureFlagFilterFields = ["created_at", "enabled", "feature_name", "id", "origin_entity_id", "updated_at", "origin_entity"] as const;
-export type FeatureFlagFilterField = (typeof featureFlagFilterFields)[number];
-
 export const feedbackFilterFields = ["admin_notes", "context_name", "context_type", "created_at", "feedback_type", "id", "message", "origin_entity_id", "resolved_at", "screenshot_url", "status", "subject", "updated_at", "user_email", "user_name", "origin_entity"] as const;
 export type FeedbackFilterField = (typeof feedbackFilterFields)[number];
 
@@ -15439,7 +13967,7 @@ export type ChatConfigFilterField = (typeof chatConfigFilterFields)[number];
 export const originsIdentityCustomLinkFilterFields = ["label", "url"] as const;
 export type OriginsIdentityCustomLinkFilterField = (typeof originsIdentityCustomLinkFilterFields)[number];
 
-export const originEntityFilterFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "brand_theme", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "default_agent_id", "description", "engagement_metrics", "extracted_content", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_agent_voice", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings", "apps", "chat_config", "child_origin_entities", "default_agent", "feature_flags", "feedbacks", "homepage_cards", "interview_sessions", "memberships", "parent_origin_entity", "podcast_config", "prompt_tools", "setup_progress", "tenant", "youtube_episodes"] as const;
+export const originEntityFilterFields = ["accent_colors", "ai_generated_summary", "appearance_config", "banner_key", "banner_url", "brand_conversation_config", "brand_theme", "categories", "content_tabs_config", "content_themes", "core_values", "created_at", "default_agent_id", "description", "engagement_metrics", "extracted_content", "id", "is_active", "is_featured", "is_public", "key_messaging", "last_website_scrape", "mission_statement", "name", "page_sections_config", "parent_origin_entity_id", "personality_traits", "picture_key", "picture_url", "podcast_button_color", "podcast_button_link", "podcast_button_text", "podcast_button_text_color", "podcast_button_visible", "podcast_content_settings", "presigned_banner_url", "presigned_picture_url", "public_agent_voice", "public_profile_config", "setup_progress_id", "slug", "social_links", "target_audience", "tenant_id", "title", "tone_of_voice", "updated_at", "voice_config", "voice_settings", "website_content", "youtube_channel_data", "youtube_channel_id", "youtube_content_settings", "youtube_sync_settings", "apps", "chat_config", "child_origin_entities", "default_agent", "homepage_cards", "memberships", "parent_origin_entity", "setup_progress", "tenant"] as const;
 export type OriginEntityFilterField = (typeof originEntityFilterFields)[number];
 
 export const scrapedWebsiteContentFilterFields = ["headings", "meta_description", "meta_keywords", "open_graph", "paragraphs", "scraped_at", "text_content", "title", "url"] as const;
@@ -15454,9 +13982,6 @@ export type ScrapedWebsiteContentOpenGraphFilterField = (typeof scrapedWebsiteCo
 export const originEntityStaffMembershipFilterFields = ["accepted_at", "created_at", "expires_at", "id", "invitation_token", "invited_by", "invited_email", "joined_at", "origin_entity_id", "role", "status", "updated_at", "user_id", "origin_entity", "user"] as const;
 export type OriginEntityStaffMembershipFilterField = (typeof originEntityStaffMembershipFilterFields)[number];
 
-export const promptToolFilterFields = ["auto_approve", "created_at", "description", "id", "is_active", "letta_tools", "max_tokens", "model", "name", "origin_entity_id", "prompt_template", "source_origin_entity_id", "temperature", "updated_at", "origin_entity", "source_origin_entity"] as const;
-export type PromptToolFilterField = (typeof promptToolFilterFields)[number];
-
 export const originsIdentityPublicProfileConfigFilterFields = ["custom_links", "display_order", "show_children_section", "show_content_section", "show_signin_button", "voice_enabled"] as const;
 export type OriginsIdentityPublicProfileConfigFilterField = (typeof originsIdentityPublicProfileConfigFilterFields)[number];
 
@@ -15469,34 +13994,19 @@ export type OriginsIdentitySocialLinkFilterField = (typeof originsIdentitySocial
 export const userProfileFilterFields = ["avatar_url", "bio", "created_at", "display_name", "email", "id", "notification_preferences", "privacy_settings", "theme_preference", "updated_at", "user_id"] as const;
 export type UserProfileFilterField = (typeof userProfileFilterFields)[number];
 
-export const interviewGeneratedContentFilterFields = ["content", "content_type", "created_at", "id", "interview_session_id", "metadata", "status", "title", "updated_at", "interview_session"] as const;
-export type InterviewGeneratedContentFilterField = (typeof interviewGeneratedContentFilterFields)[number];
-
-export const interviewRecordingFilterFields = ["audio_codec", "created_at", "duration_ms", "error_message", "file_name", "file_size", "height", "id", "interview_session_id", "metadata", "recording_type", "status", "storage_key", "updated_at", "video_codec", "width", "interview_session"] as const;
-export type InterviewRecordingFilterField = (typeof interviewRecordingFilterFields)[number];
-
-export const interviewSessionFilterFields = ["channel", "created_at", "id", "key_quotes", "metadata", "origin_entity_id", "session_name", "status", "summary", "topics", "updated_at", "interview_generated_contents", "interview_recordings", "interview_turns", "origin_entity"] as const;
-export type InterviewSessionFilterField = (typeof interviewSessionFilterFields)[number];
-
-export const interviewTurnFilterFields = ["answer", "created_at", "id", "interview_session_id", "metadata", "question", "turn_number", "updated_at", "interview_session"] as const;
-export type InterviewTurnFilterField = (typeof interviewTurnFilterFields)[number];
-
-export const agentMemoryFilterFields = ["id", "label", "value"] as const;
-export type AgentMemoryFilterField = (typeof agentMemoryFilterFields)[number];
-
 export const driveConnectionFilterFields = ["connected_by_user_id", "created_at", "entity_profile_id", "google_email", "id", "status", "token_expires_at", "updated_at", "entity_profile"] as const;
 export type DriveConnectionFilterField = (typeof driveConnectionFilterFields)[number];
 
 export const githubConnectionFilterFields = ["connected_by_user_id", "created_at", "entity_profile_id", "github_account_login", "github_account_type", "id", "installation_id", "status", "updated_at", "entity_profile"] as const;
 export type GithubConnectionFilterField = (typeof githubConnectionFilterFields)[number];
 
-export const libraryFilterFields = ["adapter_config", "adapter_kind", "auto_ingest_videos", "auto_resync_enabled", "created_at", "error_count", "id", "inherits_to_descendants", "last_error", "last_error_at", "last_synced_at", "name", "origin_entity_id", "slug", "status", "transcribe_media", "updated_at", "files", "grants", "origin_entity"] as const;
+export const libraryFilterFields = ["adapter_config", "adapter_kind", "auto_ingest_videos", "auto_resync_enabled", "created_at", "error_count", "files_count", "files_first_metadata_keys", "files_metadata_item_sum", "files_metadata_match", "files_metadata_unique_values", "id", "inherits_to_descendants", "last_error", "last_error_at", "last_synced_at", "name", "origin_entity_id", "slug", "status", "transcribe_media", "updated_at", "files", "grants", "origin_entity"] as const;
 export type LibraryFilterField = (typeof libraryFilterFields)[number];
 
 export const libraryAccessGrantFilterFields = ["created_at", "grantee_origin_entity_id", "id", "library_id", "updated_at", "grantee_origin_entity", "library"] as const;
 export type LibraryAccessGrantFilterField = (typeof libraryAccessGrantFilterFields)[number];
 
-export const libraryFileFilterFields = ["created_at", "id", "item_content", "item_name", "item_type", "library_id", "media_format", "metadata_contains", "metadata_keys", "metadata_number", "path", "s3_key", "signed_s3_url", "source_metadata", "sync_status", "updated_at", "vfs_path", "library", "video_asset"] as const;
+export const libraryFileFilterFields = ["created_at", "id", "item_content", "item_name", "item_type", "library_id", "media_format", "metadata_contains", "metadata_keys", "metadata_number", "metadata_text", "path", "s3_key", "signed_s3_url", "source_metadata", "sync_status", "updated_at", "vfs_path", "library", "video_asset"] as const;
 export type LibraryFileFilterField = (typeof libraryFileFilterFields)[number];
 
 export const playlistFilterFields = ["created_at", "description", "id", "item_count", "title", "updated_at", "user_id", "items", "user"] as const;
@@ -15523,15 +14033,6 @@ export type StaticRenditionRequestResultFilterField = (typeof staticRenditionReq
 export const chatBindingFilterFields = ["bound_at", "chat_guid", "created_at", "id", "notes", "origin_entity_id", "prospect_labels", "prospect_phones", "updated_at", "origin_entity"] as const;
 export type ChatBindingFilterField = (typeof chatBindingFilterFields)[number];
 
-export const podcastConfigFilterFields = ["appearance_config", "conversation_starter_config", "created_at", "cta_button_border_color", "entity_profile_id", "episodes", "featured_video_url", "hero_cta_link", "hero_cta_text", "id", "is_public", "logo_link_type", "logo_link_url", "origins_button_border_color", "origins_button_text", "origins_button_text_color", "origins_button_visible", "page_subtitle", "page_title", "playlist_id", "trailer_url", "updated_at", "entity_profile"] as const;
-export type PodcastConfigFilterField = (typeof podcastConfigFilterFields)[number];
-
-export const podcastEpisodeSettingsFilterFields = ["ai_enabled", "character_id", "created_at", "id", "order", "podcast_config_id", "updated_at", "visible", "youtube_episode_id", "character", "podcast_config", "youtube_episode"] as const;
-export type PodcastEpisodeSettingsFilterField = (typeof podcastEpisodeSettingsFilterFields)[number];
-
-export const youtubeEpisodeFilterFields = ["conversation_starters", "created_at", "description", "duration", "episode_number", "guest_ids", "guest_names", "host_ids", "id", "origin_entity_id", "playlist_id", "public_profile_config", "publish_date", "thumbnail_url", "title", "transcript_id", "updated_at", "used_in_podcast", "used_in_public_profile", "video_id", "video_url", "library_file", "origin_entity"] as const;
-export type YoutubeEpisodeFilterField = (typeof youtubeEpisodeFilterFields)[number];
-
 
 export const consentRecordSortFields = ["custom_name", "email", "granted", "id", "ip", "kind", "method", "policy_version", "recorded_at", "text_shown", "user_agent"] as const;
 export type ConsentRecordSortField = (typeof consentRecordSortFields)[number];
@@ -15542,7 +14043,7 @@ export type StaffTenantGrantSortField = (typeof staffTenantGrantSortFields)[numb
 export const tenantSortFields = ["archived_at", "created_at", "id", "name", "root_origin_entity_id", "slug", "status", "updated_at"] as const;
 export type TenantSortField = (typeof tenantSortFields)[number];
 
-export const userSortFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "deleted_at", "email", "email_confirmed_at", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "phone", "phone_change_sent_at", "phone_confirmed_at", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "tenant_id", "updated_at"] as const;
+export const userSortFields = ["aud", "banned_until", "confirmation_sent_at", "confirmed_at", "created_at", "current_streak", "deleted_at", "email", "email_confirmed_at", "flagged_conversation_count", "id", "instance_id", "invited_at", "is_creator", "is_super_admin", "last_sign_in_at", "lifetime_value_cents", "longest_streak", "member_status", "name", "phone", "phone_change_sent_at", "phone_confirmed_at", "plan_name", "program_titles", "raw_app_meta_data", "raw_user_meta_data", "reauthentication_sent_at", "recovery_sent_at", "role", "stripe_subscription_url", "tenant_id", "updated_at"] as const;
 export type UserSortField = (typeof userSortFields)[number];
 
 export const signInLinkResponseSortFields = ["status"] as const;
@@ -15563,7 +14064,7 @@ export type ChatReplySortField = (typeof chatReplySortFields)[number];
 export const chatSuggestionsSortFields = ["suggestions"] as const;
 export type ChatSuggestionsSortField = (typeof chatSuggestionsSortFields)[number];
 
-export const publicConversationSortFields = ["channel", "closed_at", "created_at", "has_letta_agent", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name"] as const;
+export const publicConversationSortFields = ["channel", "closed_at", "created_at", "has_agent_state", "id", "is_root", "last_message_at", "message_count", "metadata", "origin_entity_id", "phone_number", "root_conversation_id", "sms_opt_in", "started_at", "status", "updated_at", "user_email", "user_id", "user_name"] as const;
 export type PublicConversationSortField = (typeof publicConversationSortFields)[number];
 
 export const publicMessageSortFields = ["content", "conversation_id", "created_at", "id", "metadata", "model_used", "response_time_ms", "role", "tokens_used"] as const;
@@ -15572,10 +14073,16 @@ export type PublicMessageSortField = (typeof publicMessageSortFields)[number];
 export const messageAttachmentSortFields = ["created_at", "file_name", "file_size", "file_type", "id", "message_id", "parsed_content", "pending_message_id", "storage_path"] as const;
 export type MessageAttachmentSortField = (typeof messageAttachmentSortFields)[number];
 
+export const messageFlagSortFields = ["created_at", "guardrail", "id", "message_id", "reviewed_at", "type"] as const;
+export type MessageFlagSortField = (typeof messageFlagSortFields)[number];
+
 export const turnStateSortFields = ["running", "stale_at"] as const;
 export type TurnStateSortField = (typeof turnStateSortFields)[number];
 
-export const appSortFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_letta_agent", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at"] as const;
+export const agentMemorySortFields = ["id", "label", "value"] as const;
+export type AgentMemorySortField = (typeof agentMemorySortFields)[number];
+
+export const appSortFields = ["agent_public", "assessment_graph", "authoring_document", "cover_image_url", "created_at", "example_briefing", "generation_error", "generation_format", "generation_history", "generation_prompt", "generation_status", "has_agent_state", "id", "is_published", "markdoc_content", "meta", "origin_entity_id", "page_type", "slug", "source", "title", "updated_at"] as const;
 export type AppSortField = (typeof appSortFields)[number];
 
 export const assessmentGraphSortFields = ["edges", "nodes", "start_node"] as const;
@@ -15695,9 +14202,6 @@ export type WebhookDeliverySortField = (typeof webhookDeliverySortFields)[number
 export const webhookSubscriptionSortFields = ["active", "app_id", "created_at", "description", "event_types", "id", "origin_entity_id", "secret", "target_url", "updated_at"] as const;
 export type WebhookSubscriptionSortField = (typeof webhookSubscriptionSortFields)[number];
 
-export const featureFlagSortFields = ["created_at", "enabled", "feature_name", "id", "origin_entity_id", "updated_at"] as const;
-export type FeatureFlagSortField = (typeof featureFlagSortFields)[number];
-
 export const feedbackSortFields = ["admin_notes", "context_name", "context_type", "created_at", "feedback_type", "id", "message", "origin_entity_id", "resolved_at", "screenshot_url", "status", "subject", "updated_at", "user_email", "user_name"] as const;
 export type FeedbackSortField = (typeof feedbackSortFields)[number];
 
@@ -15737,9 +14241,6 @@ export type ScrapedWebsiteContentOpenGraphSortField = (typeof scrapedWebsiteCont
 export const originEntityStaffMembershipSortFields = ["accepted_at", "created_at", "expires_at", "id", "invitation_token", "invited_by", "invited_email", "joined_at", "origin_entity_id", "role", "status", "updated_at", "user_id"] as const;
 export type OriginEntityStaffMembershipSortField = (typeof originEntityStaffMembershipSortFields)[number];
 
-export const promptToolSortFields = ["auto_approve", "created_at", "description", "id", "is_active", "letta_tools", "max_tokens", "model", "name", "origin_entity_id", "prompt_template", "source_origin_entity_id", "temperature", "updated_at"] as const;
-export type PromptToolSortField = (typeof promptToolSortFields)[number];
-
 export const originsIdentityPublicProfileConfigSortFields = ["custom_links", "display_order", "show_children_section", "show_content_section", "show_signin_button", "voice_enabled"] as const;
 export type OriginsIdentityPublicProfileConfigSortField = (typeof originsIdentityPublicProfileConfigSortFields)[number];
 
@@ -15752,34 +14253,19 @@ export type OriginsIdentitySocialLinkSortField = (typeof originsIdentitySocialLi
 export const userProfileSortFields = ["avatar_url", "bio", "created_at", "display_name", "email", "id", "notification_preferences", "privacy_settings", "theme_preference", "updated_at", "user_id"] as const;
 export type UserProfileSortField = (typeof userProfileSortFields)[number];
 
-export const interviewGeneratedContentSortFields = ["content", "content_type", "created_at", "id", "interview_session_id", "metadata", "status", "title", "updated_at"] as const;
-export type InterviewGeneratedContentSortField = (typeof interviewGeneratedContentSortFields)[number];
-
-export const interviewRecordingSortFields = ["audio_codec", "created_at", "duration_ms", "error_message", "file_name", "file_size", "height", "id", "interview_session_id", "metadata", "recording_type", "status", "storage_key", "updated_at", "video_codec", "width"] as const;
-export type InterviewRecordingSortField = (typeof interviewRecordingSortFields)[number];
-
-export const interviewSessionSortFields = ["channel", "created_at", "id", "key_quotes", "metadata", "origin_entity_id", "session_name", "status", "summary", "topics", "updated_at"] as const;
-export type InterviewSessionSortField = (typeof interviewSessionSortFields)[number];
-
-export const interviewTurnSortFields = ["answer", "created_at", "id", "interview_session_id", "metadata", "question", "turn_number", "updated_at"] as const;
-export type InterviewTurnSortField = (typeof interviewTurnSortFields)[number];
-
-export const agentMemorySortFields = ["id", "label", "value"] as const;
-export type AgentMemorySortField = (typeof agentMemorySortFields)[number];
-
 export const driveConnectionSortFields = ["connected_by_user_id", "created_at", "entity_profile_id", "google_email", "id", "status", "token_expires_at", "updated_at"] as const;
 export type DriveConnectionSortField = (typeof driveConnectionSortFields)[number];
 
 export const githubConnectionSortFields = ["connected_by_user_id", "created_at", "entity_profile_id", "github_account_login", "github_account_type", "id", "installation_id", "status", "updated_at"] as const;
 export type GithubConnectionSortField = (typeof githubConnectionSortFields)[number];
 
-export const librarySortFields = ["adapter_config", "adapter_kind", "auto_ingest_videos", "auto_resync_enabled", "created_at", "error_count", "id", "inherits_to_descendants", "last_error", "last_error_at", "last_synced_at", "name", "origin_entity_id", "slug", "status", "transcribe_media", "updated_at"] as const;
+export const librarySortFields = ["adapter_config", "adapter_kind", "auto_ingest_videos", "auto_resync_enabled", "created_at", "error_count", "files_count", "files_first_metadata_keys", "files_metadata_item_sum", "files_metadata_match", "files_metadata_unique_values", "id", "inherits_to_descendants", "last_error", "last_error_at", "last_synced_at", "name", "origin_entity_id", "slug", "status", "transcribe_media", "updated_at"] as const;
 export type LibrarySortField = (typeof librarySortFields)[number];
 
 export const libraryAccessGrantSortFields = ["created_at", "grantee_origin_entity_id", "id", "library_id", "updated_at"] as const;
 export type LibraryAccessGrantSortField = (typeof libraryAccessGrantSortFields)[number];
 
-export const libraryFileSortFields = ["created_at", "id", "item_content", "item_name", "item_type", "library_id", "media_format", "metadata_contains", "metadata_keys", "metadata_number", "path", "s3_key", "signed_s3_url", "source_metadata", "sync_status", "updated_at", "vfs_path"] as const;
+export const libraryFileSortFields = ["created_at", "id", "item_content", "item_name", "item_type", "library_id", "media_format", "metadata_contains", "metadata_keys", "metadata_number", "metadata_text", "path", "s3_key", "signed_s3_url", "source_metadata", "sync_status", "updated_at", "vfs_path"] as const;
 export type LibraryFileSortField = (typeof libraryFileSortFields)[number];
 
 export const playlistSortFields = ["created_at", "description", "id", "item_count", "title", "updated_at", "user_id"] as const;
@@ -15805,15 +14291,6 @@ export type StaticRenditionRequestResultSortField = (typeof staticRenditionReque
 
 export const chatBindingSortFields = ["bound_at", "chat_guid", "created_at", "id", "notes", "origin_entity_id", "prospect_labels", "prospect_phones", "updated_at"] as const;
 export type ChatBindingSortField = (typeof chatBindingSortFields)[number];
-
-export const podcastConfigSortFields = ["appearance_config", "conversation_starter_config", "created_at", "cta_button_border_color", "entity_profile_id", "episodes", "featured_video_url", "hero_cta_link", "hero_cta_text", "id", "is_public", "logo_link_type", "logo_link_url", "origins_button_border_color", "origins_button_text", "origins_button_text_color", "origins_button_visible", "page_subtitle", "page_title", "playlist_id", "trailer_url", "updated_at"] as const;
-export type PodcastConfigSortField = (typeof podcastConfigSortFields)[number];
-
-export const podcastEpisodeSettingsSortFields = ["ai_enabled", "character_id", "created_at", "id", "order", "podcast_config_id", "updated_at", "visible", "youtube_episode_id"] as const;
-export type PodcastEpisodeSettingsSortField = (typeof podcastEpisodeSettingsSortFields)[number];
-
-export const youtubeEpisodeSortFields = ["conversation_starters", "created_at", "description", "duration", "episode_number", "guest_ids", "guest_names", "host_ids", "id", "origin_entity_id", "playlist_id", "public_profile_config", "publish_date", "thumbnail_url", "title", "transcript_id", "updated_at", "used_in_podcast", "used_in_public_profile", "video_id", "video_url"] as const;
-export type YoutubeEpisodeSortField = (typeof youtubeEpisodeSortFields)[number];
 
 
 // Utility Types
